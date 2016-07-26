@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>SmartIT DAO Class</Title>
+      <Shortcut>SmartIT_DAO_class</Shortcut>
+      <Author>Eduardo Claudio Nicacio</Author>
+      <Description>Classe DAO pública usando o SmartIT.Library</Description>
+      <SnippetTypes>
+        <SnippetType>SurroundsWith</SnippetType>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>SmartIT.Library.Data.dll</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Data.SqlClient</Namespace>
+        </Import>
+        <Import>
+          <Namespace>EnterprisePortal.Business.Model.Enum</Namespace>
+        </Import>
+        <Import>
+          <Namespace>SmartIT.Library.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>SmartIT.Library.Data.DAL</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>EntityName</ID>
+          <ToolTip>Entity name.</ToolTip>
+          <Default>EntityName</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>EntityTableName</ID>
+          <ToolTip>Table name.</ToolTip>
+          <Default>EntityTableName</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ConnectionStringName</ID>
+          <ToolTip>ConnectionString name.</ToolTip>
+          <Type>System.String</Type>
+          <Default>DefaultConnection</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp" Kind="type decl">
+        <![CDATA[
+            /// <summary>
+            /// Classe de acesso a dados da entidade $EntityName$.
+            /// </summary>
+            [ActiveConnection("$ConnectionStringName$")]
+            public class $EntityName$DAO : DAOBase<$EntityName$DAO>
+            {            
+                /// <summary>
+                /// Initializes a new instance of the <see cref="$EntityName$DAO" /> class.
+                /// </summary>
+                public $EntityName$DAO() : base()
+                {
+                }
+            
+                /// <summary>
+                /// Inclusão de um registro $EntityName$.
+                /// </summary>
+                /// <param name="obj"> Objeto $EntityName$ Model.</param>
+                /// <returns> Retorna 0 em caso de sucesso; 1 em caso de falha.</returns>
+                public int Insert($EntityName$Model obj)
+                {				
+					          SqlCommand cmd = new SqlCommand();
+
+					          cmd.CommandType = System.Data.CommandType.StoredProcedure;
+					          cmd.CommandText = "dbo.SP_$EntityTableName$_INSERT";
+
+					          cmd.Parameters.AddWithValue("@PKNI_$EntityTableName$", obj.Id);
+
+					          return DbHelper.ExecuteNonQuery(cmd);
+                }
+        
+                /// <summary>
+                /// Alteração de um registro $EntityName$.
+                /// </summary>
+                /// <param name="obj"> Objeto $EntityName$ Model.</param>
+                /// <returns> Retorna 0 em caso de sucesso; 1 em caso de falha.</returns>
+                public int Update($EntityName$Model obj)
+                {
+					          SqlCommand cmd = new SqlCommand();
+
+					          cmd.CommandType = System.Data.CommandType.StoredProcedure;
+					          cmd.CommandText = "dbo.SP_$EntityTableName$_UPDATE";
+
+					          cmd.Parameters.AddWithValue("@PKNI_$EntityTableName$", obj.Id);
+
+					          return DbHelper.ExecuteNonQuery(cmd);
+                }
+        
+                /// <summary>
+                /// Exclusão de um registro $EntityName$.
+                /// </summary>
+                /// <param name="obj"> Objeto $EntityName$ Model.</param>
+                /// <returns> Retorna 0 em caso de sucesso; 1 em caso de falha.</returns>
+                public int Delete($EntityName$Model obj)
+                {
+					          SqlCommand cmd = new SqlCommand();
+
+					          cmd.CommandType = System.Data.CommandType.StoredProcedure;
+					          cmd.CommandText = "dbo.SP_$EntityTableName$_DELETE";
+
+					          cmd.Parameters.AddWithValue("@PKNI_$EntityTableName$", obj.Id);
+
+					          return DbHelper.ExecuteNonQuery(cmd);
+                }
+        
+                /// <summary>
+                /// Retorna uma lista de objetos $EntityName$Model de acordo com os critérios de busca.
+                /// </summary>
+                /// <param name="criteria"> Par chave-valor.</param>
+                /// <returns> Lista de $EntityName$ Model.</returns>
+                public List<$EntityName$Model> Search(Dictionary<string, object> criteria)
+                {
+                    string SQL = @" SET DATEFORMAT dmy
+                    
+                                    SELECT Id
+                                      FROM $EntityTableName$ 
+                                      {0}
+                                  ORDER BY Id ";
+                    
+                    Dictionary<string, string> alias = new Dictionary<string, string>();
+					
+                    alias.Add("Id", "Id");
+                    alias.Add("Status", "Status");
+					alias.Add("CreationDate", "CreationDate");
+					alias.Add("CreationUser", "CreationUser");
+					alias.Add("CreationProgram", "CreationProgram");
+					alias.Add("UpdateDate", "UpdateDate");
+					alias.Add("UpdateUser", "UpdateUser");
+					alias.Add("UpdateProgram", "UpdateProgram");
+                    
+                    // Executa a Query
+                    return (List<$EntityName$Model>)SqlSearch(criteria, alias, SQL);
+                }
+				
+				        /// <summary>
+				        /// Retorna uma lista de $EntityName$Model de acordo com os critérios de busca
+				        /// </summary>
+				        /// <param name="obj">Objeto $EntityName$ Model.</param>
+				        /// <returns> Lista de $EntityName$ Model.</returns>
+				        public List<$EntityName$Model> Search($EntityName$Model obj)
+				        {
+					          SqlCommand cmd = new SqlCommand();
+
+					          cmd.CommandType = System.Data.CommandType.StoredProcedure;
+					          cmd.CommandText = "dbo.SP_$EntityTableName$_CONSULTAR";
+
+					          cmd.Parameters.AddWithValue("@PKNI_$EntityTableName$", obj.Id);
+
+					          return (List<$EntityName$Model>)SqlSearch(cmd);
+				        }
+                                
+                /// <summary>
+                /// Retorna uma lista com todos os registros retornados pelo Reader.
+                /// </summary>
+                /// <param name="reader">Safe Data Reader.</param>
+                /// <returns> Lista de $EntityName$ Model.</returns>
+                protected override object GetList(ref SafeDataReader reader)
+                {
+                    // Cria uma nova lista vazia
+                    List<$EntityName$Model> list = new List<$EntityName$Model>();
+					
+                    while (reader.Read())
+                    {
+                        // Cria um novo objeto
+                        $EntityName$Model obj = new $EntityName$Model();
+        
+                        obj.Id = reader.GetInt32("Id");
+        
+                        list.Add(obj);        
+                    }        
+					
+                    return list;
+                }                
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>SmartIT BLL Class</Title>
+      <Shortcut>SmartIT_BLL_class</Shortcut>
+      <Author>Eduardo Claudio Nicacio</Author>
+      <Description>Classe BLL pública usando o SmartIT.Library</Description>
+      <SnippetTypes>
+        <SnippetType>SurroundsWith</SnippetType>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>SmartIT.Library.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>SmartIT.Library.Data.ModelManager</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>EntityName</ID>
+          <ToolTip>Entity name.</ToolTip>
+          <Default>EntityName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp" Kind="type decl">
+        <![CDATA[
+            /// <summary>
+            /// Camada lógica e de negócio da entidade $EntityName$.
+            /// </summary>
+            public class $EntityName$BLL : ManagerBase<$EntityName$DAO>
+            {          
+                /// <summary>
+                /// Inclusão de um novo registro.
+                /// </summary>
+                /// <param name="obj"> Objeto $EntityName$ Model.</param>
+                /// <returns> Retorna 0 em caso de sucesso; 1 em caso de falha.</returns>
+                public static int Insert($EntityName$Model obj)
+                {                    
+                    //Implementar regras de negocio
+                    return ValidateModel(obj) ? EntityDb.Insert(obj) : 1;
+                }
+                
+                /// <summary>
+                /// Alteração de um registro existente.
+                /// </summary>
+                /// <param name="obj"> Objeto $EntityName$ Model.</param>
+                /// <returns> Retorna 0 em caso de sucesso; 1 em caso de falha.</returns>
+                public static int Update($EntityName$Model obj)
+                {    
+                    //Implementar regras de negocio 
+					return ValidateModel(obj) ? EntityDb.Update(obj) : 1;
+                }
+                
+                /// <summary>
+                /// Exclusão de um registro existente.
+                /// </summary>
+                /// <param name="obj"> Objeto $EntityName$ Model.</param>
+                /// <returns> Retorna 0 em caso de sucesso; 1 em caso de falha.</returns>
+                public static int Delete($EntityName$Model obj)
+                {    
+                    // Exclui um registro existente
+                    return EntityDb.Delete(obj);
+                }
+
+                /// <summary>
+                /// Retorna uma lista de $EntityName$Model de acordo com os critérios de busca.
+                /// </summary>
+                /// <returns>Lista de $EntityName$Model</returns>
+                public static List<$EntityName$Model> Search()
+                {
+                    // Efetua a busca com base nos critérios
+                    return EntityDb.Search(SearchCriteria);
+                }
+				
+				/// <summary>
+				/// Retorna uma lista de $EntityName$Model de acordo com o objeto passado como filtro.
+				/// </summary>
+				/// <param name="obj"> Objeto $EntityName$ Model.</param>
+				/// <returns> Lista de $EntityName$ Model.</returns>
+				public static List<$EntityName$Model> Search($EntityName$Model obj)
+				{
+                    // Efetua a busca usando o objeto como filtro
+					return EntityDb.Search(obj);
+				}
+        
+                /// <summary>
+                /// Retorna um registro $EntityName$Model específico.
+                /// </summary>
+                /// <param name="$EntityName$">$EntityName$Model procurado.</param>
+                /// <returns>$EntityName$Model encontrado, ou null.</returns>
+                public static $EntityName$Model SearchItem($EntityName$Model $EntityName$)
+                {
+                    // Efetua uma busca geral
+                    List<$EntityName$Model> list = Search();
+                    
+                    // Para cada objeto retornado, verifica
+					foreach ($EntityName$Model obj in list)
+                    {
+                        // Se encontrou o objeto procurado
+                        if (obj.Codigo.Equals($EntityName$.Codigo))
+                        {
+                            // Retorna-o
+                            return obj;
+                        }
+                    }
+        
+                    return null;
+                }  
+                
+                /// <summary>
+                /// Valida um $EntityName$Model (de acordo com as regras de NOT NULL do BD).
+                /// </summary>
+                /// <param name="obj">$EntityName$Model.</param>
+                /// <returns> True, se o modelo for válido; false, caso contrário.</returns>
+                public static bool ValidateModel($EntityName$Model obj)
+                {
+                    return obj == null || obj.Id <= 0 ? false : true;
+                }
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

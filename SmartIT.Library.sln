@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library", "SmartIT.Library\SmartIT.Library.csproj", "{E39543D1-AA80-4C1D-A7FE-B7761D445DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library.Data", "SmartIT.Library.Data\SmartIT.Library.Data.csproj", "{A85E5E26-8D3C-4547-B12D-4D461840C69F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5B864E96-0B59-4EA2-B32E-33E7E92E9B18}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E39543D1-AA80-4C1D-A7FE-B7761D445DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E39543D1-AA80-4C1D-A7FE-B7761D445DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E39543D1-AA80-4C1D-A7FE-B7761D445DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E39543D1-AA80-4C1D-A7FE-B7761D445DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

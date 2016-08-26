@@ -18,7 +18,7 @@ namespace SmartIT.Library.Web.WebControls
     public class MaskTextBox : System.Web.UI.WebControls.TextBox
     {
         private string jsPath;
-        private MaskTextBoxType mask;
+        private readonly MaskTextBoxType mask = MaskTextBoxType.None;
         private readonly int decimalDigits = 0;
         private readonly string decimalSeparator = string.Empty;
         private readonly string groupSeparator = string.Empty;

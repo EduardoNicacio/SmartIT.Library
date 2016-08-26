@@ -1,4 +1,4 @@
-﻿// <copyright file="DAOBase.cs" company="SmartIT Technologies LLC.">
+﻿// <copyright file="DaoBase.cs" company="SmartIT Technologies LLC.">
 // Copyright SmartIT Technologies LLC. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
@@ -19,7 +19,7 @@ namespace SmartIT.Library.Data.DAL
     /// </summary>
     /// <typeparam name="TEntity">Tipo Entity.</typeparam>
     [Serializable]
-    public class DAOBase<TEntity>
+    public class DaoBase<TEntity>
     {
         /// <summary>
         /// Default command timeout = 30 seconds.
@@ -34,7 +34,7 @@ namespace SmartIT.Library.Data.DAL
         /// <summary>
         /// Initializes a new instance of the <see cref="{TEntity}" /> class.
         /// </summary>
-        public DAOBase()
+        public DaoBase()
         {
             // Get the active connection
             ActiveConnectionAttribute activeCnn = DbHelper.GetActiveConnection(typeof(TEntity));
@@ -172,7 +172,11 @@ namespace SmartIT.Library.Data.DAL
 
             criteria.Clear();
 
-            customWhere.Append((customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty);
+            string tmpWhere = (customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty;
+            
+            customWhere.Clear();
+            customWhere.Append(tmpWhere);
+            
             cmd.CommandText = string.Format(sql, customWhere.ToString());
 
             return cmd;
@@ -326,7 +330,11 @@ namespace SmartIT.Library.Data.DAL
 
             criteria.Clear();
 
-            customWhere.Append((customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty);
+            string tmpWhere = (customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty;
+
+            customWhere.Clear();
+            customWhere.Append(tmpWhere);
+
             cmd.CommandText = string.Format(sql, customWhere.ToString());
 
             return cmd;
@@ -473,7 +481,11 @@ namespace SmartIT.Library.Data.DAL
 
             criteria.Clear();
 
-            customWhere.Append((customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty);
+            string tmpWhere = (customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty;
+
+            customWhere.Clear();
+            customWhere.Append(tmpWhere);
+
             cmd.CommandText = string.Format(sql, customWhere.ToString());
 
             return cmd;

@@ -346,7 +346,18 @@ namespace SmartIT.Library.Data
         /// <returns>True or false.</returns>
         public virtual bool GetBoolean(int i)
         {
-            return dataReader.IsDBNull(i) ? false : dataReader.GetBoolean(i);
+            bool result;
+
+            if (dataReader.IsDBNull(i))
+            {
+                result = false;
+            }
+            else
+            {
+                result = dataReader.GetBoolean(i);
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿// <copyright file="DBNullHelper.cs" company="SmartIT Technologies LLC.">
+﻿// <copyright file="DbNullHelper.cs" company="SmartIT Technologies LLC.">
 // Copyright SmartIT Technologies LLC. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
@@ -12,7 +12,7 @@ namespace SmartIT.Library.Data
     /// <summary>
     /// Classe que contém métodos para conversão de tipos entre o C# e os Bancos de Dados.
     /// </summary>
-    public static class DBNullHelper
+    public static class DbNullHelper
     {
         /// <summary>
         /// Retorna o valor de um objeto passado como parâmetro.

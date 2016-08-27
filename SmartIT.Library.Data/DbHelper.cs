@@ -198,9 +198,9 @@ namespace SmartIT.Library.Data
                 cmd.Connection = cnn;
                 reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new Exception(ex.Message, ex);
             }
 
             return reader;
@@ -265,9 +265,9 @@ namespace SmartIT.Library.Data
                 cmd.Connection = cnn;
                 rows = cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new Exception(ex.Message, ex);
             }
             finally
             {
@@ -363,9 +363,9 @@ namespace SmartIT.Library.Data
                 cmd.Connection = cnn;
                 obj = cmd.ExecuteScalar();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new Exception(ex.Message, ex);
             }
             finally
             {
@@ -444,9 +444,9 @@ namespace SmartIT.Library.Data
 
                 adapter.Fill(ds);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new Exception(ex.Message, ex);
             }
             finally
             {

@@ -167,9 +167,6 @@ namespace SmartIT.Library.Utility
         /// <typeparam name="T"> Generic Type.</typeparam>
         public class GenericComparer<T> : IComparer<T>
         {
-            private readonly SortDirection sortDirection;
-            private readonly string sortExpression;
-
             /// <summary>
             /// Initializes a new instance of the <see cref="GenericComparer" /> class.
             /// </summary>
@@ -184,9 +181,14 @@ namespace SmartIT.Library.Utility
             /// <param name="sortDirection">Direção de ordenação (ASC ou DESC).</param>
             public GenericComparer(string sortExpression, SortDirection sortDirection)
             {
-                this.sortExpression = sortExpression;
-                this.sortDirection = sortDirection;
+                this.GenericSortExpression = sortExpression;
+                this.GenericSortDirection = sortDirection;
             }
+
+            /// <summary>
+            /// Expression to compare.
+            /// </summary>
+            public string GenericSortExpression { get; set; }
 
             /// <summary>
             /// Direction in which to sort.
@@ -201,7 +203,7 @@ namespace SmartIT.Library.Utility
             /// <returns> Retorna -1 se x menor que y, 0 se forem iguais, 1 se y maior que x.</returns>
             public int Compare(T x, T y)
             {
-                PropertyInfo propertyInfo = typeof(T).GetProperty(sortExpression);
+                PropertyInfo propertyInfo = typeof(T).GetProperty(GenericSortExpression);
                 IComparable obj1 = (IComparable)propertyInfo.GetValue(x, null);
                 IComparable obj2 = (IComparable)propertyInfo.GetValue(y, null);
 

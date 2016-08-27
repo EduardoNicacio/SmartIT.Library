@@ -77,12 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\DAOBase.cs" />
+    <Compile Include="DAL\DaoBase.cs" />
     <Compile Include="ActiveConnectionAttribute.cs" />
     <Compile Include="BizValidationException.cs" />
     <Compile Include="DataBaseProviderFactory.cs" />
     <Compile Include="DbHelper.cs" />
-    <Compile Include="DBNullHelper.cs" />
+    <Compile Include="DbNullHelper.cs" />
     <Compile Include="SafeDataReader.cs" />
     <Compile Include="ModelManager\ManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

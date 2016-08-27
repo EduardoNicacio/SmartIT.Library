@@ -1,5 +1,5 @@
 projectKey=SmartIT.Library
 serverUrl=http://localhost:9000
 dashboardUrl=http://localhost:9000/dashboard/index/SmartIT.Library
-ceTaskId=AVYniPU5WjMIfEPLBFyb
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVYniPU5WjMIfEPLBFyb
+ceTaskId=AVbM9eVjOXtVhI3NNgcx
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVbM9eVjOXtVhI3NNgcx

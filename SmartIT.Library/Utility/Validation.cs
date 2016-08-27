@@ -29,7 +29,7 @@ namespace SmartIT.Library.Utility
             // Ou false, caso contrário
             try
             {
-                int.Parse(value);
+                isValid = int.Parse(value) >= 0 || int.Parse(value) <= 0;
             }
             catch (ArgumentNullException)
             {
@@ -64,7 +64,7 @@ namespace SmartIT.Library.Utility
             // Ou false, caso contrário
             try
             {
-                DateTime.Parse(value);
+                isValid = DateTime.Parse(value) >= DateTime.MinValue || DateTime.Parse(value) <= DateTime.MaxValue;
             }
             catch (ArgumentNullException)
             {
@@ -94,7 +94,7 @@ namespace SmartIT.Library.Utility
             // Ou false, caso contrário
             try
             {
-                decimal.Parse(value);
+                isValid = decimal.Parse(value) >= 0 || decimal.Parse(value) <= 0;
             }
             catch (ArgumentNullException)
             {
@@ -140,7 +140,7 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="value">CPF para validar.</param>
         /// <returns> True se for um CPF válido, False se inválido.</returns>
-        public static bool IsCPF(string value)
+        public static bool IsCpf(string value)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -211,7 +211,7 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="value">CNPJ para validar.</param>
         /// <returns> True se for um CNPJ válido, False se inválido.</returns>
-        public static bool IsCNPJ(string value)
+        public static bool IsCnpj(string value)
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -281,7 +281,7 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="cep">String.</param>
         /// <returns> True ou False.</returns>
-        public static bool IsCEP(string cep)
+        public static bool IsCep(string cep)
         {
             // Valida se o CEP passado é válido
             // No formato 99999-999

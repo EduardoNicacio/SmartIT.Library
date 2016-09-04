@@ -1,4 +1,4 @@
-The SmartIT.Library is a library witten in .Net Framework and C# with the ADO.Net flexibility and power in mind. Feel free to download, modify and expand this framework.
+The SmartIT.Library is a library written in .Net Framework and C# with the ADO.Net flexibility and power in mind. Feel free to download, modify and expand this framework.
 
 Main features:
 

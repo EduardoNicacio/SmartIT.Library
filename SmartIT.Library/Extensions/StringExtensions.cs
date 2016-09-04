@@ -21,7 +21,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string AdjustL(this string source)
         {
-            return source == null ? string.Empty : source.Trim().ToLowerInvariant();
+            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Trim().ToLowerInvariant();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string AdjustU(this string source)
         {
-            return source == null ? string.Empty : source.Trim().ToUpperInvariant();
+            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Trim().ToUpperInvariant();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToCpf(this string source)
         {
-            if (source == null)
+            if (string.IsNullOrWhiteSpace(source))
             {
                 return new string('0', 11);
             }
@@ -92,7 +92,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToCnpj(this string source)
         {
-            if (source == null)
+            if (string.IsNullOrWhiteSpace(source))
             {
                 return new string('0', 14);
             }
@@ -131,7 +131,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToZipCode(this string source)
         {
-            if (source == null)
+            if (string.IsNullOrWhiteSpace(source))
             {
                 return "00000-000";
             }
@@ -145,7 +145,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToCleanZipCode(this string source)
         {
-            if (source == null)
+            if (string.IsNullOrWhiteSpace(source))
             {
                 return "00000000";
             }
@@ -160,7 +160,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string Truncate(this string source, int length)
         {
-            return source == null ? string.Empty : source.Length > length ? source.Substring(0, length) : source;
+            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Length > length ? source.Substring(0, length) : source;
         }
     }
 }

@@ -280,11 +280,10 @@ namespace SmartIT.Library.Utility
         /// Valida a string como sendo um CEP válido.
         /// </summary>
         /// <param name="cep">String.</param>
-        /// <returns> True ou False.</returns>
+        /// <returns> True, se o CEP for válido; false caso contrário.</returns>
         public static bool IsCep(string cep)
         {
-            // Valida se o CEP passado é válido
-            // No formato 99999-999
+            // Valida se o CEP passado é válido no formato 99999-999
             System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex("^[0-9]{5}-[0-9]{3}$");
             return r.IsMatch(cep);
         }

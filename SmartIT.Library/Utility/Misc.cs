@@ -100,7 +100,7 @@ namespace SmartIT.Library.Utility
         public static string GetBooleanToStatus(object value)
         {
             bool v = Convert.ToBoolean(value);
-            return v ? "Ativo" : "Inativo";
+            return v ? "Active" : "Inactive";
         }
 
         /// <summary>
@@ -159,6 +159,30 @@ namespace SmartIT.Library.Utility
             }
 
             return sResult.ToString();
+        }
+
+        /// <summary>
+        /// Returns the age of a person by comparing its birth date with the current datetime.
+        /// </summary>
+        /// <param name="birthdate">Birth date.</param>
+        /// <returns>The age, in years.</returns>
+        public static int ToAge(this DateTime birthdate)
+        {
+            return ToAge(birthdate, DateTime.Today);
+        }
+
+        /// <summary>
+        /// Returns the age of a person by comparing its birth date with somewhere in time.
+        /// </summary>
+        /// <param name="birthdate">Birth date.</param>
+        /// <param name="referenceDate">Reference date.</param>
+        /// <returns>The age, in years.</returns>
+        public static int ToAge(this DateTime birthdate, DateTime referenceDate)
+        {
+            var today = referenceDate;
+            var age = today.Year - birthdate.Year;
+            if (birthdate > today.AddYears(-age)) age--;
+            return age;
         }
 
         /// <summary>

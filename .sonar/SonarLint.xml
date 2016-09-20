@@ -399,11 +399,14 @@
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC16.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC32.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC64.cs</File>
-    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Email.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EnumToList.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EventViewer.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\ExportToExcel.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Hash.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Misc.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\StringValueAttribute.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\SystemNetMail.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\SystemWebMail.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Validation.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Web\WebControls\MaskTextBox.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</File>

@@ -3,18 +3,17 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>16/07/2014</date>
-// <summary>Classe utilitária para geração de Hashes MD5, SHA1, SHA256, SHA384 e SHA512.</summary>
+// <summary>Utility class to easily generate CRC16, CRC32, CRC64, MD5, SHA1, SHA256, SHA384 and SHA512 hashes.</summary>
 
 namespace SmartIT.Library.Utility
 {
-    using System;
+    using SmartIT.Library.Utility.Criptography;
     using System.IO;
     using System.Security.Cryptography;
-    using SmartIT.Library.Utility.Criptography;
     using System.Text;
 
     /// <summary>
-    /// Classe utilitária para geração de Hashes MD5, SHA256 e SHA512.
+    /// Utility class to easily generate CRC16, CRC32, CRC64, MD5, SHA1, SHA256, SHA384 and SHA512 hashes.
     /// </summary>
     public static class Hash
     {

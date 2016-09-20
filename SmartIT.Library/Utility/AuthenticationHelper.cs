@@ -20,11 +20,11 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Get Windows user.
         /// </summary>
-        /// <returns>KeyValuePair.</returns>
-        public static KeyValuePair<bool, string> ObterUsuarioWindows()
+        /// <returns>Key-Value Pair.</returns>
+        public static KeyValuePair<bool, string> GetWindowsUser()
         {
-            KeyValuePair<bool, string> retorno;
-            bool usuarioAD = false;
+            KeyValuePair<bool, string> result;
+            bool activeDirectoryUser = false;
 
             var wi = WindowsIdentity.GetCurrent();
 
@@ -39,16 +39,16 @@ namespace SmartIT.Library.Utility
                 domain = wi.Name.Substring(0, hasDomain + 1).Replace(@"\", string.Empty);
             }
 
-            var domainPrincipal = ConfigurationManager.AppSettings["Domain"];
+            var mainDomain = ConfigurationManager.AppSettings["Domain"];
 
-            if (domain.ToLowerInvariant().Equals(domainPrincipal.ToLowerInvariant()))
+            if (domain.ToLowerInvariant().Equals(mainDomain.ToLowerInvariant()))
             {
-                usuarioAD = true;
+                activeDirectoryUser = true;
             }
 
-            retorno = new KeyValuePair<bool, string>(usuarioAD, windowsLogin);
+            result = new KeyValuePair<bool, string>(activeDirectoryUser, windowsLogin);
 
-            return retorno;
+            return result;
         }
     }
 }

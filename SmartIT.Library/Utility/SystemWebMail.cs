@@ -1,11 +1,11 @@
-﻿// <copyright file="Email.cs" company="SmartIT Technologies LLC.">
+﻿// <copyright file="SystemWebMail.cs" company="SmartIT Technologies LLC.">
 // Copyright SmartIT Technologies LLC. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>15/03/2015</date>
-// <summary>Classe que encapsula um objeto System.Web.Mail.</summary>
+// <summary>Class that encapsulates an object System.Web.Mail.</summary>
 
-namespace SmartIT.Library.Utility
+namespace SmartIT.Library.Utility.Mail
 {
     using System;
     using System.Web.Mail;
@@ -13,7 +13,7 @@ namespace SmartIT.Library.Utility
     /// <summary>
     /// Classe que encapsula um objeto System.Web.Mail, utilizado, por exemplo, para envio de informações de recuperação de senha ou Comunicados aos usuários do Portal.
     /// </summary>
-    public class Email : MarshalByRefObject, IDisposable
+    public class SystemWebMail : MarshalByRefObject, IDisposable
     {
         // Flag: Has Dispose already been called?
         bool disposed = false;
@@ -38,7 +38,7 @@ namespace SmartIT.Library.Utility
             string Subject,
             string Body,
             MailPriority MailPriority,
-            MailFormat MailFormat,
+            System.Web.Mail.MailFormat MailFormat,
             string SmtpServer)
         {
             MailMessage objemail = new MailMessage();
@@ -87,7 +87,7 @@ namespace SmartIT.Library.Utility
             string Subject,
             string Body,
             MailPriority MailPriority,
-            MailFormat MailFormat,
+            System.Web.Mail.MailFormat MailFormat,
             string SmtpServer,
             string[] Attachments)
         {
@@ -122,7 +122,7 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Implementação do método Dispose da classe, obrigatório pela interface IDisposable.
+        /// Implementation of Dispose pattern.
         /// </summary>
         public void Dispose()
         {

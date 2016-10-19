@@ -41,13 +41,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Return string.</returns>
         public static string OnlyNumbers(this string str)
         {
-            str = str.Trim();
-
-            Regex regex = new Regex(@"[^\d]");
-
-            str = regex.Replace(str, string.Empty);
-
-            return str;
+            return new Regex(@"[^\d]").Replace(str.Trim(), string.Empty);
         }
 
         /// <summary>
@@ -57,13 +51,7 @@ namespace SmartIT.Library.Extensions
         /// <returns>Return string.</returns>
         public static string RemoveSymbols(this string str)
         {
-            str = str.Trim();
-
-            Regex regex = new Regex(@"^[a-zA-Z0-9]+$");
-
-            str = regex.Replace(str, string.Empty);
-
-            return str;
+            return new Regex(@"^[a-zA-Z0-9]+$").Replace(str.Trim(), string.Empty);
         }
 
         /// <summary>
@@ -81,8 +69,7 @@ namespace SmartIT.Library.Extensions
             {
                 return source;
             }
-            source = source.PadLeft(11, '0');
-            return source.Substring(0, 3) + "." + source.Substring(3, 3) + "." + source.Substring(6, 3) + "-" + source.Substring(9, 2);
+            return source.PadLeft(11, '0').Substring(0, 3) + "." + source.Substring(3, 3) + "." + source.Substring(6, 3) + "-" + source.Substring(9, 2);
         }
 
         /// <summary>
@@ -100,8 +87,7 @@ namespace SmartIT.Library.Extensions
             {
                 return source;
             }
-            source = source.PadLeft(14, '0');
-            return source.Substring(0, 2) + "." + source.Substring(2, 3) + "." + source.Substring(5, 3) + "/" + source.Substring(8, 4) + "-" + source.Substring(12, 2);
+            return source.PadLeft(14, '0').Substring(0, 2) + "." + source.Substring(2, 3) + "." + source.Substring(5, 3) + "/" + source.Substring(8, 4) + "-" + source.Substring(12, 2);
         }
 
         /// <summary>
@@ -135,7 +121,7 @@ namespace SmartIT.Library.Extensions
             {
                 return "00000-000";
             }
-            return string.Format("{0}-{1}", source.Substring(0, 5), source.Substring(6, 3));
+            return string.Format("{0}-{1}", source.Substring(0, 5), source.Substring(5, 3));
         }
 
         /// <summary>
@@ -149,7 +135,7 @@ namespace SmartIT.Library.Extensions
             {
                 return "00000000";
             }
-            return source.Replace(".", "").Replace("-", "");
+            return source.Replace(".", string.Empty).Replace("-", string.Empty);
         }
 
         /// <summary>

@@ -394,11 +394,16 @@
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Extensions\StringExtensions.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Helper\StreamHelper.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Properties\AssemblyInfo.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\AuthenticationHelper.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Base64.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC16.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC32.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC64.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CaesarCipher.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Rot13.cs</File>
+    <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Rot47.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EnumToList.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EventViewer.cs</File>
     <File>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\ExportToExcel.cs</File>

@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>15/03/2015</date>
-// <summary>Authentication helper.</summary>
+// <summary>String Extensions class.</summary>
 
 namespace SmartIT.Library.Extensions
 {

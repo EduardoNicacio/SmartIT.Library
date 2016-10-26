@@ -30,14 +30,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o Hash CRC16 do stream informado.
         /// </summary>
-        /// <param name="stream">Input stream.</param>
+        /// <param name="input">Input stream.</param>
         /// <returns>Hash CRC16 em formato Hexadecimal.</returns>
-        public static string GetCrc16Hash(Stream stream)
+        public static string GetCrc16Hash(Stream input)
         {
             byte[] fileData = null;
-            using (var binaryReader = new BinaryReader(stream))
+            using (var binaryReader = new BinaryReader(input))
             {
-                fileData = binaryReader.ReadBytes((int)stream.Length);
+                fileData = binaryReader.ReadBytes((int)input.Length);
             }
             return Crc16.ComputeHash(fileData).ToString("x2");
         }
@@ -75,12 +75,12 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="input">Input string.</param>
         /// <returns>Hash CRC32 em formato Hexadecimal.</returns>
-        public static string GetCrc32Hash(Stream stream)
+        public static string GetCrc32Hash(Stream input)
         {
             using (Crc32 crc32Hash = new Crc32())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = crc32Hash.ComputeHash(stream);
+                byte[] data = crc32Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -131,12 +131,12 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="input">Input string.</param>
         /// <returns>Hash CRC64 em formato Hexadecimal.</returns>
-        public static string GetCrc64Hash(Stream stream) 
+        public static string GetCrc64Hash(Stream input) 
         {
             using (Crc32 crc32Hash = new Crc32())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = crc32Hash.ComputeHash(stream);
+                byte[] data = crc32Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -185,14 +185,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o hash MD5 do FileStream informado.
         /// </summary>
-        /// <param name="stream">Input File Stream.</param>
+        /// <param name="input">Input File Stream.</param>
         /// <returns> Hash MD5 em formato Hexadecimal.</returns>
-        public static string GetMd5Hash(Stream stream)
+        public static string GetMd5Hash(Stream input)
         {
             using (MD5 md5Hash = MD5.Create())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = md5Hash.ComputeHash(stream);
+                byte[] data = md5Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -241,14 +241,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o hash RIPEMD160 do FileStream informado.
         /// </summary>
-        /// <param name="stream">Input File Stream.</param>
+        /// <param name="input">Input File Stream.</param>
         /// <returns> Hash RIPEMD160 em formato Hexadecimal.</returns>
-        public static string GetRipeMd160Hash(Stream stream)
+        public static string GetRipeMd160Hash(Stream input)
         {
             using (RIPEMD160 ripeMd160Hash = RIPEMD160.Create())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = ripeMd160Hash.ComputeHash(stream);
+                byte[] data = ripeMd160Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -297,14 +297,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o hash SHA-1 do FileStream informado.
         /// </summary>
-        /// <param name="stream">Input File Stream.</param>
+        /// <param name="input">Input File Stream.</param>
         /// <returns> Hash SHA-1 em formato Hexadecimal.</returns>
-        public static string GetSha1Hash(Stream stream)
+        public static string GetSha1Hash(Stream input)
         {
             using (SHA1 sha1Hash = SHA1.Create())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = sha1Hash.ComputeHash(stream);
+                byte[] data = sha1Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -353,14 +353,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o Hash SHA-256 do FileStream informado.
         /// </summary>
-        /// <param name="stream">Input File Stream.</param>
+        /// <param name="input">Input File Stream.</param>
         /// <returns> Hash SHA-256 em formato Hexadecimal.</returns>
-        public static string GetSha256Hash(Stream stream)
+        public static string GetSha256Hash(Stream input)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = sha256Hash.ComputeHash(stream);
+                byte[] data = sha256Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -409,14 +409,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o Hash SHA-384 do FileStream informado.
         /// </summary>
-        /// <param name="stream">Input File Stream.</param>
+        /// <param name="input">Input File Stream.</param>
         /// <returns> Hash SHA-384 em formato Hexadecimal.</returns>
-        public static string GetSha384Hash(Stream stream)
+        public static string GetSha384Hash(Stream input)
         {
             using (SHA384 sha384Hash = SHA384.Create())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = sha384Hash.ComputeHash(stream);
+                byte[] data = sha384Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
@@ -465,14 +465,14 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna o Hash SHA-512 do FileStream informado.
         /// </summary>
-        /// <param name="stream">Input File Stream.</param>
+        /// <param name="input">Input File Stream.</param>
         /// <returns> Hash SHA-512 em formato Hexadecimal.</returns>
-        public static string GetSha512Hash(Stream stream)
+        public static string GetSha512Hash(Stream input)
         {
             using (SHA512 sha512Hash = SHA512.Create())
             {
                 // Convert the input stream to a byte array and compute the hash.
-                byte[] data = sha512Hash.ComputeHash(stream);
+                byte[] data = sha512Hash.ComputeHash(input);
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string. 

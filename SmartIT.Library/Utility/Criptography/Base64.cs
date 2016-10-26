@@ -18,41 +18,41 @@ namespace SmartIT.Library.Utility.Criptography
         /// <summary>
         /// Encodes a Plain Text using the Base64 algorithm.
         /// </summary>
-        /// <param name="plainText">Plain text.</param>
+        /// <param name="input">Plain text.</param>
         /// <returns>Base64 encoded string.</returns>
-        public static string Base64Encode(string plainText)
+        public static string Base64Encode(string input)
         {
-            return System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(plainText));
+            return System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(input));
         }
 
         /// <summary>
         /// Encodes a Byte array using the Base64 algorithm.
         /// </summary>
-        /// <param name="byteArray">Byte array.</param>
+        /// <param name="input">Byte array.</param>
         /// <returns>Base64 encoded string.</returns>
-        public static string Base64Encode(byte[] byteArray)
+        public static string Base64Encode(byte[] input)
         {
-            return System.Convert.ToBase64String(byteArray);
+            return System.Convert.ToBase64String(input);
         }
 
         /// <summary>
         /// Encodes a Stream using the Base64 algorithm.
         /// </summary>
-        /// <param name="stream">Input stream.</param>
+        /// <param name="input">Input stream.</param>
         /// <returns>Base64 encoded string.</returns>
-        public static string Base64Encode(Stream stream)
+        public static string Base64Encode(Stream input)
         {
-            return System.Convert.ToBase64String(StreamHelper.StreamToByteArray(stream));
+            return System.Convert.ToBase64String(StreamHelper.StreamToByteArray(input));
         }
 
         /// <summary>
         /// Decodes a plain text using the Base64 algorithm.
         /// </summary>
-        /// <param name="base64EncodedData">Base64 encoded string.</param>
+        /// <param name="input">Base64 encoded string.</param>
         /// <returns>Plain string.</returns>
-        public static string Base64Decode(string base64EncodedData)
+        public static string Base64Decode(string input)
         {
-            byte[] base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            byte[] base64EncodedBytes = System.Convert.FromBase64String(input);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
     }

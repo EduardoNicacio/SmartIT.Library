@@ -22,12 +22,12 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Limita texto para uma quantidade determinada de caracteres.
         /// </summary>
-        /// <param name="texto">Texto a ser limitado.</param>
+        /// <param name="value">Texto a ser limitado.</param>
         /// <param name="limit">Limite de caracteres pra ser retornado.</param>
         /// <returns> Texto limitado a quantidade de caracteres definida.</returns>
-        public static string LimitString(object texto, int limit)
+        public static string LimitString(object value, int limit)
         {
-            string str = texto.ToString();
+            string str = value.ToString();
 
             if (str.Length >= limit)
             {
@@ -74,16 +74,16 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Recupera o valor de um Enum através do valor do atributo StringValue.
         /// </summary>
-        /// <param name="strValue">Valor atribuido ao StringValue da opção do Enum.</param>
+        /// <param name="value">Valor atribuido ao StringValue da opção do Enum.</param>
         /// <param name="enumType">Tipo do Enum.</param>
         /// <returns> Objeto que mapeia um Enum.</returns>
-        public static object GetEnumValue(string strValue, Type enumType)
+        public static object GetEnumValue(string value, Type enumType)
         {
             foreach (FieldInfo fi in enumType.GetFields())
             {
                 StringValueAttribute[] attrs = fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
 
-                if (attrs.Length > 0 && attrs[0].Value == strValue)
+                if (attrs.Length > 0 && attrs[0].Value == value)
                 {
                     return Enum.Parse(enumType, fi.Name);
                 }
@@ -133,11 +133,11 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Retorna a data no formato utilizado pelo Moodle.
         /// </summary>
-        /// <param name="dateTime">Data e hora informado.</param>
+        /// <param name="value">Data e hora informado.</param>
         /// <returns>Data e hora no formato Unix.</returns>
-        public static double DateTimeToUnixTimestamp(DateTime dateTime)
+        public static double DateTimeToUnixTimestamp(DateTime value)
         {
-            return (dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
+            return (value - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
-﻿// <copyright file="Base64.cs" company="SmartIT Technologies LLC.">
+﻿// <copyright file="StreamHelper.cs" company="SmartIT Technologies LLC.">
 // Copyright SmartIT Technologies LLC. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>19/10/2016</date>
-// <summary>Stream helper static class.</summary>
+// <summary>Stream helper class.</summary>
 
 namespace SmartIT.Library.Helper
 {

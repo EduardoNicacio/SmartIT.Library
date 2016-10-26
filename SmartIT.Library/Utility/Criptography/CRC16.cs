@@ -49,14 +49,14 @@ namespace SmartIT.Library.Utility.Criptography
         /// <summary>
         /// Computes the checksum.
         /// </summary>
-        /// <param name="bytes">Byte array.</param>
+        /// <param name="input">Byte array.</param>
         /// <returns>Checksum.</returns>
-        public static ushort ComputeHash(byte[] bytes)
+        public static ushort ComputeHash(byte[] input)
         {
             ushort crc = 0;
-            for (int i = 0; i < bytes.Length; ++i)
+            for (int i = 0; i < input.Length; ++i)
             {
-                byte index = (byte)(crc ^ bytes[i]);
+                byte index = (byte)(crc ^ input[i]);
                 crc = (ushort)((crc >> 8) ^ table[index]);
             }
             return crc;

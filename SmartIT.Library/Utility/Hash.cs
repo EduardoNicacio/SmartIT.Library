@@ -103,7 +103,7 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="input">Input File Stream.</param>
         /// <returns> Hash MD5 em formato Hexadecimal.</returns>
-        public static string GetMD5Hash(Stream stream)
+        public static string GetMD5Hash(Stream input)
         {
             using (MD5 md5Hash = MD5.Create())
             {
@@ -271,7 +271,7 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="input">Input File Stream.</param>
         /// <returns> Hash SHA-256 em formato Hexadecimal.</returns>
-        public static string GetSHA256Hash(Stream stream)
+        public static string GetSHA256Hash(Stream input)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
@@ -383,7 +383,7 @@ namespace SmartIT.Library.Utility
         /// </summary>
         /// <param name="input">Input File Stream.</param>
         /// <returns> Hash SHA-512 em formato Hexadecimal.</returns>
-        public static string GetSHA512Hash(Stream stream)
+        public static string GetSHA512Hash(Stream input)
         {
             using (SHA512 sha512Hash = SHA512.Create())
             {

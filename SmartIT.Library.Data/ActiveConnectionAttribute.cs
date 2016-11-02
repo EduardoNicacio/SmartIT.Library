@@ -3,14 +3,14 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Classe Active Connection Attribute.</summary>
+// <summary>Active Connection Attribute.</summary>
 
 namespace SmartIT.Library.Data
 {
     using SmartIT.Library.Utility;
 
     /// <summary>
-    /// Classe Active Connection Attribute.
+    /// Active Connection Attribute.
     /// </summary>
     public class ActiveConnectionAttribute : StringValueAttribute
     {

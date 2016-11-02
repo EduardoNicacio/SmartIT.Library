@@ -3,7 +3,7 @@
 <AnalysisOutput>
   <Files>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\ActiveConnectionAttribute.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\ActiveConnectionAttribute.cs</Path>
       <Metrics>
         <Lines>43</Lines>
         <Classes>1</Classes>
@@ -59,7 +59,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\BizValidationException.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\BizValidationException.cs</Path>
       <Metrics>
         <Lines>97</Lines>
         <Classes>1</Classes>
@@ -160,7 +160,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DAL\DAOBase.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DAL\DAOBase.cs</Path>
       <Metrics>
         <Lines>505</Lines>
         <Classes>1</Classes>
@@ -621,7 +621,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DBNullHelper.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DBNullHelper.cs</Path>
       <Metrics>
         <Lines>109</Lines>
         <Classes>1</Classes>
@@ -737,7 +737,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DataBaseProviderFactory.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DataBaseProviderFactory.cs</Path>
       <Metrics>
         <Lines>171</Lines>
         <Classes>1</Classes>
@@ -899,7 +899,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DbHelper.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\DbHelper.cs</Path>
       <Metrics>
         <Lines>498</Lines>
         <Classes>1</Classes>
@@ -1347,7 +1347,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\ModelManager\ManagerBase.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\ModelManager\ManagerBase.cs</Path>
       <Metrics>
         <Lines>74</Lines>
         <Classes>1</Classes>
@@ -1439,60 +1439,7 @@
       </Issues>
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\Properties\AssemblyInfo.cs</Path>
-      <Metrics>
-        <Lines>44</Lines>
-        <Classes>0</Classes>
-        <Accessors>0</Accessors>
-        <Statements>0</Statements>
-        <Functions>0</Functions>
-        <PublicApi>0</PublicApi>
-        <PublicUndocumentedApi>0</PublicUndocumentedApi>
-        <Complexity>0</Complexity>
-        <FileComplexityDistribution>0=1;5=0;10=0;20=0;30=0;60=0;90=0</FileComplexityDistribution>
-        <FunctionComplexityDistribution>1=0;2=0;4=0;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
-        <Comments>
-          <NoSonar />
-          <NonBlank>
-            <Line>12</Line>
-            <Line>13</Line>
-            <Line>14</Line>
-            <Line>24</Line>
-            <Line>25</Line>
-            <Line>26</Line>
-            <Line>29</Line>
-            <Line>32</Line>
-            <Line>34</Line>
-            <Line>35</Line>
-            <Line>36</Line>
-            <Line>37</Line>
-            <Line>39</Line>
-            <Line>40</Line>
-            <Line>41</Line>
-          </NonBlank>
-        </Comments>
-        <LinesOfCode>
-          <Line>8</Line>
-          <Line>9</Line>
-          <Line>10</Line>
-          <Line>15</Line>
-          <Line>16</Line>
-          <Line>17</Line>
-          <Line>18</Line>
-          <Line>19</Line>
-          <Line>20</Line>
-          <Line>21</Line>
-          <Line>22</Line>
-          <Line>27</Line>
-          <Line>30</Line>
-          <Line>42</Line>
-          <Line>43</Line>
-        </LinesOfCode>
-      </Metrics>
-      <Issues />
-    </File>
-    <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\SafeDataReader.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\SafeDataReader.cs</Path>
       <Metrics>
         <Lines>745</Lines>
         <Classes>1</Classes>
@@ -2197,7 +2144,7 @@
       </Issues>
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -2218,7 +2165,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -2239,7 +2186,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -2260,7 +2207,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -2281,7 +2228,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -2302,7 +2249,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library.Data\obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -2323,7 +2270,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Extensions\StringExtensions.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Extensions\StringExtensions.cs</Path>
       <Metrics>
         <Lines>152</Lines>
         <Classes>1</Classes>
@@ -2480,7 +2427,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Helper\StreamHelper.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Helper\StreamHelper.cs</Path>
       <Metrics>
         <Lines>31</Lines>
         <Classes>1</Classes>
@@ -2526,60 +2473,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Properties\AssemblyInfo.cs</Path>
-      <Metrics>
-        <Lines>44</Lines>
-        <Classes>0</Classes>
-        <Accessors>0</Accessors>
-        <Statements>0</Statements>
-        <Functions>0</Functions>
-        <PublicApi>0</PublicApi>
-        <PublicUndocumentedApi>0</PublicUndocumentedApi>
-        <Complexity>0</Complexity>
-        <FileComplexityDistribution>0=1;5=0;10=0;20=0;30=0;60=0;90=0</FileComplexityDistribution>
-        <FunctionComplexityDistribution>1=0;2=0;4=0;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
-        <Comments>
-          <NoSonar />
-          <NonBlank>
-            <Line>12</Line>
-            <Line>13</Line>
-            <Line>14</Line>
-            <Line>24</Line>
-            <Line>25</Line>
-            <Line>26</Line>
-            <Line>29</Line>
-            <Line>32</Line>
-            <Line>34</Line>
-            <Line>35</Line>
-            <Line>36</Line>
-            <Line>37</Line>
-            <Line>39</Line>
-            <Line>40</Line>
-            <Line>41</Line>
-          </NonBlank>
-        </Comments>
-        <LinesOfCode>
-          <Line>8</Line>
-          <Line>9</Line>
-          <Line>10</Line>
-          <Line>15</Line>
-          <Line>16</Line>
-          <Line>17</Line>
-          <Line>18</Line>
-          <Line>19</Line>
-          <Line>20</Line>
-          <Line>21</Line>
-          <Line>22</Line>
-          <Line>27</Line>
-          <Line>30</Line>
-          <Line>42</Line>
-          <Line>43</Line>
-        </LinesOfCode>
-      </Metrics>
-      <Issues />
-    </File>
-    <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\AuthenticationHelper.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\AuthenticationHelper.cs</Path>
       <Metrics>
         <Lines>54</Lines>
         <Classes>1</Classes>
@@ -2640,7 +2534,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Base64.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Base64.cs</Path>
       <Metrics>
         <Lines>59</Lines>
         <Classes>1</Classes>
@@ -2711,7 +2605,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC16.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC16.cs</Path>
       <Metrics>
         <Lines>97</Lines>
         <Classes>1</Classes>
@@ -2817,7 +2711,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC32.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC32.cs</Path>
       <Metrics>
         <Lines>192</Lines>
         <Classes>1</Classes>
@@ -3007,7 +2901,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC64.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CRC64.cs</Path>
       <Metrics>
         <Lines>228</Lines>
         <Classes>2</Classes>
@@ -3238,7 +3132,7 @@
       </Issues>
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CaesarCipher.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\CaesarCipher.cs</Path>
       <Metrics>
         <Lines>66</Lines>
         <Classes>1</Classes>
@@ -3317,7 +3211,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Rot13.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Rot13.cs</Path>
       <Metrics>
         <Lines>77</Lines>
         <Classes>1</Classes>
@@ -3404,7 +3298,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Rot47.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Criptography\Rot47.cs</Path>
       <Metrics>
         <Lines>99</Lines>
         <Classes>1</Classes>
@@ -3512,7 +3406,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EnumToList.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EnumToList.cs</Path>
       <Metrics>
         <Lines>78</Lines>
         <Classes>1</Classes>
@@ -3599,7 +3493,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EventViewer.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\EventViewer.cs</Path>
       <Metrics>
         <Lines>53</Lines>
         <Classes>1</Classes>
@@ -3663,7 +3557,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\ExportToExcel.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\ExportToExcel.cs</Path>
       <Metrics>
         <Lines>393</Lines>
         <Classes>1</Classes>
@@ -4038,7 +3932,7 @@
       </Issues>
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Hash.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Hash.cs</Path>
       <Metrics>
         <Lines>493</Lines>
         <Classes>1</Classes>
@@ -4481,7 +4375,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Misc.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Misc.cs</Path>
       <Metrics>
         <Lines>245</Lines>
         <Classes>2</Classes>
@@ -4711,7 +4605,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\StringValueAttribute.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\StringValueAttribute.cs</Path>
       <Metrics>
         <Lines>37</Lines>
         <Classes>1</Classes>
@@ -4762,7 +4656,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\SystemNetMail.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\SystemNetMail.cs</Path>
       <Metrics>
         <Lines>371</Lines>
         <Classes>1</Classes>
@@ -5127,7 +5021,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\SystemWebMail.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\SystemWebMail.cs</Path>
       <Metrics>
         <Lines>157</Lines>
         <Classes>1</Classes>
@@ -5285,7 +5179,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Validation.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Utility\Validation.cs</Path>
       <Metrics>
         <Lines>291</Lines>
         <Classes>1</Classes>
@@ -5550,7 +5444,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Web\WebControls\MaskTextBox.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\Web\WebControls\MaskTextBox.cs</Path>
       <Metrics>
         <Lines>300</Lines>
         <Classes>1</Classes>
@@ -5822,7 +5716,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -5843,7 +5737,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -5864,7 +5758,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -5885,7 +5779,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -5906,7 +5800,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>
@@ -5927,7 +5821,7 @@
       <Issues />
     </File>
     <File>
-      <Path>D:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
+      <Path>E:\SRC\ECNSoft\00. SmartIT.Library\SmartIT.Library\obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs</Path>
       <Metrics>
         <Lines>1</Lines>
         <Classes>0</Classes>

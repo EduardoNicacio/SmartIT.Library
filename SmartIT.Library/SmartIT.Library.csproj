@@ -81,13 +81,21 @@
     <Compile Include="Helper\StreamHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\AuthenticationHelper.cs" />
-    <Compile Include="Utility\Email.cs" />
+    <Compile Include="Utility\Criptography\Base64.cs" />
+    <Compile Include="Utility\Criptography\CaesarCipher.cs" />
+    <Compile Include="Utility\Criptography\CRC16.cs" />
+    <Compile Include="Utility\Criptography\CRC32.cs" />
+    <Compile Include="Utility\Criptography\CRC64.cs" />
+    <Compile Include="Utility\Criptography\Rot13.cs" />
+    <Compile Include="Utility\Criptography\Rot47.cs" />
+    <Compile Include="Utility\EnumToList.cs" />
     <Compile Include="Utility\EventViewer.cs" />
     <Compile Include="Utility\ExportToExcel.cs" />
     <Compile Include="Utility\Hash.cs" />
     <Compile Include="Utility\Misc.cs" />
     <Compile Include="Utility\StringValueAttribute.cs" />
     <Compile Include="Utility\SystemNetMail.cs" />
+    <Compile Include="Utility\SystemWebMail.cs" />
     <Compile Include="Utility\Validation.cs" />
     <Compile Include="Web\WebControls\MaskTextBox.cs" />
   </ItemGroup>

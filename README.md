@@ -27,7 +27,7 @@ Main features:
 3. ActiveConnectionAttribute: class that maps the StringValueAttribute in the DAO classes;
 4. BizValidationException: class that extends the Exception class and manipulates the error messages (in plain text or HTML);
 5. DataBaseProviderFactory: class responsible to create and destroy database connections. Supports SQL Server, Oracle or OleDB connections;
-6. DbHelper: provides access to te database and contains methods that facilitate the data manipulation;
+6. DbHelper: provides access to databases and contains methods that make data manipulation easier;
 7. DBNullHelper: class that contains methods to convert values between Microsoft C# and SQL Server/Oracle data types;
 8. SafeDataReader: class that implements the IDataReader interface and 'fixes' any null values before they are returned to our business code.
 

@@ -71,7 +71,7 @@ namespace SmartIT.Library.Utility.Criptography
         /// <returns>Decoded string.</returns>
         public static string Rot13Decode(byte[] input)
         {
-            return Rot13Decode(input);
+            return Rot13Encode(input);
         }
     }
 }

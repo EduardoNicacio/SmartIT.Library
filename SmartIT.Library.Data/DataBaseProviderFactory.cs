@@ -20,19 +20,19 @@ namespace SmartIT.Library.Data
     public static class DataBaseProviderFactory
     {
         /// <summary>
-        /// Retorna uma conexão baseado na chave definida no arquivo de configuração.
+        /// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
         /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexão.</param>
+        /// <param name="connectionStringName">Nome da string de conexao.</param>
         /// <param name="providerName">Nome do provider para acesso.</param>
-        /// <returns> Conexão referente a chave.</returns>
+        /// <returns> Conexao referente a chave.</returns>
         public static IDbConnection CreateConnection(string connectionStringName, string providerName)
         {
             IDbConnection connection = null;
 
-            // Recupera a string de conexão
+            // Recupera a string de conexao
             string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
             
-            // Cria a Conexão de acordo com o provider (SQL, Oracle, OleDb)
+            // Cria a Conexao de acordo com o provider (SQL, Oracle, OleDb)
             switch (providerName.ToLowerInvariant())
             {
                 case "system.data.sqlclient":
@@ -54,17 +54,17 @@ namespace SmartIT.Library.Data
         }
 
         /// <summary>
-        /// Retorna uma conexão baseado na chave definida no arquivo de configuração.
+        /// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
         /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexão.</param>
-        /// <returns> Conexão referente a chave.</returns>
+        /// <param name="connectionStringName">Nome da string de conexao.</param>
+        /// <returns> Conexao referente a chave.</returns>
         public static IDbConnection CreateConnection(string connectionStringName)
         {
             string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
             
             if (string.IsNullOrEmpty(providerName))
             {
-                throw new Exception("Atributo 'ProviderName' não definido para connection string '" + connectionStringName + "' no arquivo de configuração.");
+                throw new ArgumentNullException("Atributo 'ProviderName' nao definido para connection string '" + connectionStringName + "' no arquivo de configuraçao.");
             }
 
             return CreateConnection(connectionStringName, providerName);
@@ -73,7 +73,7 @@ namespace SmartIT.Library.Data
         /// <summary>
         /// Retorna uma instancia concreta de um DataAdapter.
         /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexão.</param>
+        /// <param name="connectionStringName">Nome da string de conexao.</param>
         /// <returns> Instância concreta de um DataAdapter.</returns>
         public static IDbDataAdapter CreateDataAdapter(string connectionStringName)
         {
@@ -106,7 +106,7 @@ namespace SmartIT.Library.Data
         /// <summary>
         /// Retorna uma instancia concreta de um DbCommand.
         /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexão.</param>
+        /// <param name="connectionStringName">Nome da string de conexao.</param>
         /// <param name="commandText">Comando SQL que será atribuido ao objeto DbCommand.</param>
         /// <returns> Objeto IDbCommand.</returns>
         public static IDbCommand CreateCommand(string connectionStringName, string commandText)
@@ -136,7 +136,7 @@ namespace SmartIT.Library.Data
         }
 
         /// <summary>
-        /// Retorna o simbolo uilizado para criação de parametros na consulta SQL.
+        /// Retorna o simbolo uilizado para criaçao de parametros na consulta SQL.
         /// </summary>
         /// <param name="providerName">Nome do provider.</param>
         /// <returns> String com o simbolo para o provider.</returns>

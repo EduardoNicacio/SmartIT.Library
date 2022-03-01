@@ -3,35 +3,27 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Classe que adiciona o atributo StringValue aos tipos enumerados.</summary>
+// <summary>Class that adds the StringValue attribute to the Enum types.</summary>
 
 namespace SmartIT.Library.Utility
 {
     /// <summary>
-    /// Classe que adiciona o atributo StringValue aos tipos enumerados.
+    /// Class that adds the StringValue attribute to the Enum types.
     /// </summary>
     public class StringValueAttribute : System.Attribute
     {
         /// <summary>
-        /// Atributo value.
-        /// </summary>
-        private readonly string value;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="StringValueAttribute" /> class.
         /// </summary>
-        /// <param name="value">String com o valor.</param>
+        /// <param name="value"> Value property.</param>
         public StringValueAttribute(string value)
         {
-            this.value = value;
+            Value = value;
         }
 
         /// <summary>
-        /// Propriedade Valor.
+        /// Gets the Value property.
         /// </summary>
-        public string Value
-        {
-            get { return value; }
-        }
+        public string Value { get; }
     }
 }

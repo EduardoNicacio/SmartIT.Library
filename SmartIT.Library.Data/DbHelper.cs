@@ -39,9 +39,10 @@ namespace SmartIT.Library.Data
         /// <param name="commandTimeout"> Timeout da conexão.</param>
         private DbHelper(string connectionStringName, int commandTimeout)
         {
-            if (ConfigurationManager.ConnectionStrings[connectionStringName] == null)
+            if (ConfigurationManager.ConnectionStrings[connectionStringName] == null
+			 || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ToString()))
             {
-                throw new Exception("Conexão não encontrada.");
+                throw new ArgumentException("Conexão não encontrada.");
             }
 
             this.connectionStringName = connectionStringName;
@@ -66,7 +67,6 @@ namespace SmartIT.Library.Data
 
                 return transaction;
             }
-
             set
             {
                 transaction = value;
@@ -92,7 +92,6 @@ namespace SmartIT.Library.Data
         public static ActiveConnectionAttribute GetActiveConnection(Type type)
         {
             ActiveConnectionAttribute[] attrs = type.GetCustomAttributes(typeof(ActiveConnectionAttribute), false) as ActiveConnectionAttribute[];
-
             return attrs.Length > 0 ? attrs[0] : null;
         }
 
@@ -200,7 +199,7 @@ namespace SmartIT.Library.Data
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new ArgumentException(ex.Message, ex);
             }
 
             return reader;
@@ -227,7 +226,7 @@ namespace SmartIT.Library.Data
         public int ExecuteNonQuery(IDbCommand cmd)
         {
             cmd.CommandTimeout = commandTimeout;
-            int rows = -1;
+            int rows;
 
             if (transaction != null && transaction.Connection != null)
             {
@@ -241,7 +240,7 @@ namespace SmartIT.Library.Data
                 rows = ExecuteNonQuery(cmd, cnn);
             }
 
-            return rows;
+            return rows >= 0 ? rows : -1;
         }
 
         /// <summary>
@@ -253,7 +252,7 @@ namespace SmartIT.Library.Data
         public int ExecuteNonQuery(IDbCommand cmd, IDbConnection cnn)
         {
             cmd.CommandTimeout = commandTimeout;
-            int rows = -1;
+            int rows;
 
             try
             {
@@ -267,7 +266,7 @@ namespace SmartIT.Library.Data
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new ArgumentException(ex.Message, ex);
             }
             finally
             {
@@ -277,7 +276,7 @@ namespace SmartIT.Library.Data
                 }
             }
 
-            return rows;
+            return rows >= 0 ? rows : -1;
         }
 
         /// <summary>
@@ -304,7 +303,7 @@ namespace SmartIT.Library.Data
         {
             IDbCommand cmd;
 
-            if (transaction == null)
+            if (transaction != null)
             {
                 cmd = transaction.Connection.CreateCommand();
                 cmd.CommandText = sql;
@@ -327,7 +326,7 @@ namespace SmartIT.Library.Data
         public object ExecuteScalar(IDbCommand cmd)
         {
             cmd.CommandTimeout = commandTimeout;
-            object obj = null;
+            object obj;
 
             if (transaction != null && transaction.Connection != null)
             {
@@ -365,7 +364,7 @@ namespace SmartIT.Library.Data
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new ArgumentException(ex.Message, ex);
             }
             finally
             {
@@ -446,7 +445,7 @@ namespace SmartIT.Library.Data
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new ArgumentException(ex.Message, ex);
             }
             finally
             {
@@ -469,7 +468,7 @@ namespace SmartIT.Library.Data
         {
             string sql = string.Format("select max({0}) val from {1}", columnName, tableName);
 
-            IDbCommand cmd = null;
+            IDbCommand cmd;
             if (transaction != null && transaction.Connection != null)
             {
                 cmd = transaction.Connection.CreateCommand();

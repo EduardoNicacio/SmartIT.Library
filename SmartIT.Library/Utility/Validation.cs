@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Provê métodos para validação de valores.</summary>
+// <summary> Class that provides methods for diverse validation routines.</summary>
 
 namespace SmartIT.Library.Utility
 {
@@ -11,281 +11,250 @@ namespace SmartIT.Library.Utility
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Provê métodos para validação de valores.
+    /// Class that provides methods for diverse validation routines.
     /// </summary> 
     public static class Validation
     {
         /// <summary>
-        /// Valida número.
+        /// Validate numbers.
         /// </summary>
-        /// <param name="value">Valor em string para validar.</param>
-        /// <returns> True se for um número válido, False se inválido.</returns>
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
         public static bool IsNumber(string value)
         {
             bool isValid = true;
-
-            // Tenta chamar o parse do tipo
-            // Retorna true se o número é um inteiro válido
-            // Ou false, caso contrário
             try
             {
                 isValid = int.Parse(value) >= 0 || int.Parse(value) <= 0;
             }
             catch (ArgumentNullException)
             {
-                // If throw an ArgumentNullException, isValid is false
                 isValid = false;
             }
             catch (FormatException)
             {
-                // If throw an FormatException, isValid is false
                 isValid = false;
             }
             catch (OverflowException)
             {
-                // If throw an OverflowException, isValid is false
                 isValid = false;
             }
-
             return isValid;
         }
 
         /// <summary>
-        /// Valida data.
+        /// Validate DateTime objects.
         /// </summary>
-        /// <param name="value">Valor em string para validar.</param>
-        /// <returns> True se for uma data válida, False se inválida.</returns>
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
         public static bool IsDate(string value)
         {
             bool isValid = true;
-
-            // Tenta chamar o parse do tipo
-            // Retorna true se a Data é um DateTime válido
-            // Ou false, caso contrário
             try
             {
                 isValid = DateTime.Parse(value) >= DateTime.MinValue || DateTime.Parse(value) <= DateTime.MaxValue;
             }
             catch (ArgumentNullException)
             {
-                // If throw an ArgumentNullException, isValid is false
                 isValid = false;
             }
             catch (FormatException)
             {
-                // If throw an FormatException, isValid is false
                 isValid = false;
             }
-
             return isValid;
         }
 
         /// <summary>
-        /// Valida um número decimal.
+        /// Validates decimal numbers.
         /// </summary>
-        /// <param name="value">Valor em string para validar.</param>
-        /// <returns> True se for um número decimal válido, False se inválido.</returns>
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
         public static bool IsDecimal(string value)
         {
             bool isValid = true;
-
-            // Tenta chamar o parse do tipo
-            // Retorna true se o número é um decimal válido
-            // Ou false, caso contrário
             try
             {
                 isValid = decimal.Parse(value) >= 0 || decimal.Parse(value) <= 0;
             }
             catch (ArgumentNullException)
             {
-                // If throw an ArgumentNullException, isValid is false
                 isValid = false;
             }
             catch (FormatException)
             {
-                // If throw an FormatException, isValid is false
                 isValid = false;
             }
             catch (OverflowException)
             {
-                // If throw an OverflowException, isValid is false
                 isValid = false;
             }
-
             return isValid;
         }
 
         /// <summary>
-        /// Valida e-mail.
+        /// Validates email addresses.
         /// </summary>
-        /// <param name="value">E-mail para validar.</param>
-        /// <returns> True se for um e-mail válido, False se inválido.</returns>
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
         public static bool IsEmail(string value)
         {
-            // Cria a expressão regular para validação do e-mail
             string patternStrictEmail = @"^(([^<>()[\]\\.,;:\s@\""]+"
                 + @"(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@"
                 + @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
                 + @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+"
                 + @"[a-zA-Z]{2,}))$";
             Regex re = new Regex(patternStrictEmail);
-
-            // Retorna true se for um e-mail válido
-            // Ou false caso contrário
             return re.IsMatch(value);
         }
 
         /// <summary>
-        /// Valida CPF.
+        /// Validates the Brazilian CPF format.
         /// </summary>
-        /// <param name="value">CPF para validar.</param>
-        /// <returns> True se for um CPF válido, False se inválido.</returns>
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
         public static bool IsCpf(string value)
         {
-            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            string tempCpf;
-            string digito;
+            int[] mul1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] mul2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string temp;
+            string digit;
             string cpf;
-            int soma;
-            int resto;
+            int sum;
+            int rest;
 
-            cpf = value;
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", string.Empty).Replace("-", string.Empty);
+            cpf = value.Trim().Replace(".", string.Empty).Replace("-", string.Empty);
 
-            // Obrigatoriamente deve ter 11 caracteres
+            // MUST HAVE 11 chars! ALWAYS!
             if (cpf.Length != 11)
             {
                 return false;
             }
 
-            tempCpf = cpf.Substring(0, 9);
-            soma = 0;
+            temp = cpf.Substring(0, 9);
+            sum = 0;
 
             for (int i = 0; i < 9; i++)
             {
-                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+                sum += int.Parse(temp[i].ToString()) * mul1[i];
             }
 
-            resto = soma % 11;
+            rest = sum % 11;
 
-            if (resto < 2)
+            if (rest < 2)
             {
-                resto = 0;
+                rest = 0;
             }
             else
             {
-                resto = 11 - resto;
+                rest = 11 - rest;
             }
 
-            digito = resto.ToString();
+            digit = rest.ToString();
 
-            tempCpf = tempCpf + digito;
+            temp = temp + digit;
 
-            soma = 0;
+            sum = 0;
 
             for (int i = 0; i < 10; i++)
             {
-                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+                sum += int.Parse(temp[i].ToString()) * mul2[i];
             }
 
-            resto = soma % 11;
+            rest = sum % 11;
 
-            if (resto < 2)
+            if (rest < 2)
             {
-                resto = 0;
+                rest = 0;
             }
             else
             {
-                resto = 11 - resto;
+                rest = 11 - rest;
             }
 
-            digito = digito + resto.ToString();
+            digit = digit + rest.ToString();
 
-            return cpf.EndsWith(digito);
+            return cpf.EndsWith(digit);
         }
 
         /// <summary>
-        /// Valida CNPJ.
+        /// Validates the Brazilian CNPJ format.
         /// </summary>
-        /// <param name="value">CNPJ para validar.</param>
-        /// <returns> True se for um CNPJ válido, False se inválido.</returns>
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
         public static bool IsCnpj(string value)
         {
-            int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int soma;
-            int resto;
-            string digito;
-            string tempCnpj;
+            int[] mul1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] mul2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string digit;
+            string temp;
+            string cnpj;
+            int sum;
+            int rest;
 
-            string cnpj = value;
-            cnpj = cnpj.Trim();
-            cnpj = cnpj.Replace(".", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
+            cnpj = value.Trim().Replace(".", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
 
-            // Obrigatoriamente deve ter 14 caracteres
+            // MUST HAVE 14 chars! ALWAYS!
             if (cnpj.Length != 14)
             {
                 return false;
             }
 
-            tempCnpj = cnpj.Substring(0, 12);
+            temp = cnpj.Substring(0, 12);
 
-            soma = 0;
+            sum = 0;
 
             for (int i = 0; i < 12; i++)
             {
-                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador1[i];
+                sum += int.Parse(temp[i].ToString()) * mul1[i];
             }
 
-            resto = (soma % 11);
+            rest = (sum % 11);
 
-            if (resto < 2)
+            if (rest < 2)
             {
-                resto = 0;
+                rest = 0;
             }
             else
             {
-                resto = 11 - resto;
+                rest = 11 - rest;
             }
 
-            digito = resto.ToString();
+            digit = rest.ToString();
 
-            tempCnpj = tempCnpj + digito;
-            soma = 0;
+            temp = temp + digit;
+            sum = 0;
 
             for (int i = 0; i < 13; i++)
             {
-                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador2[i];
+                sum += int.Parse(temp[i].ToString()) * mul2[i];
             }
 
-            resto = (soma % 11);
+            rest = (sum % 11);
 
-            if (resto < 2)
+            if (rest < 2)
             {
-                resto = 0;
+                rest = 0;
             }
             else
             {
-                resto = 11 - resto;
+                rest = 11 - rest;
             }
 
-            digito = digito + resto.ToString();
+            digit = digit + rest.ToString();
 
-            return cnpj.EndsWith(digito);
+            return cnpj.EndsWith(digit);
         }
 
         /// <summary>
-        /// Valida a string como sendo um CEP válido.
+        /// Validates a Brazilian ZIP code.
         /// </summary>
-        /// <param name="cep">String.</param>
-        /// <returns> True, se o CEP for válido; false caso contrário.</returns>
-        public static bool IsCep(string cep)
+        /// <param name="value"> Value to validate.</param>
+        /// <returns> True if valid; false instead.</returns>
+        public static bool IsCep(string value)
         {
-            // Valida se o CEP passado é válido no formato 99999-999
-            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex("^[0-9]{5}-[0-9]{3}$");
-            return r.IsMatch(cep);
+            Regex regEx = new Regex("^[0-9]{5}-[0-9]{3}$");
+            return regEx.IsMatch(value);
         }
     }
 }

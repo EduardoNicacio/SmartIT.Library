@@ -37,7 +37,7 @@ namespace SmartIT.Library.Data
         /// <summary>
         /// Gets or sets the command timeout.
         /// </summary>
-        /// <value>Padrão 30 segundos.</value>
+        /// <value> Default: 30 seconds.</value>
         public int CommandTimeout { get; set; }
     }
 }

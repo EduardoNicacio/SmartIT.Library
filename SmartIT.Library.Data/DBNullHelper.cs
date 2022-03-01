@@ -51,14 +51,7 @@ namespace SmartIT.Library.Data
         /// <returns> Valor do objeto, ou DBNull.</returns>
         public static object GetValue(DateTime v)
         {
-            if (v == DateTime.MinValue)
-            {
-                return DBNull.Value;
-            }
-            else
-            {
-                return v;
-            }
+            return v == DateTime.MinValue ? DBNull.Value : (object)v;
         }
 
         /// <summary>
@@ -78,12 +71,7 @@ namespace SmartIT.Library.Data
         /// <returns> Valor do objeto.</returns>
         public static object GetValue(int v)
         {
-            if (v == 0)
-            {
-                return DBNull.Value;
-            }
-
-            return v;
+            return v == 0 ? DBNull.Value : (object)v;
         }
 
         /// <summary>

@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>02/09/2016</date>
-// <summary>Utility class to generate Excel files.</summary>
+// <summary>Utility class that generates Excel files.</summary>
 
 #define INCLUDE_WEB_FUNCTIONS
 
@@ -228,7 +228,7 @@ namespace SmartIT.Library.Utility
                 return false;
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -275,7 +275,7 @@ namespace SmartIT.Library.Utility
             writer.WriteStartElement(new Worksheet());
             writer.WriteStartElement(new SheetData());
 
-            var cellValue = "";
+            string cellValue;
 
             var numberOfColumns = dt.Columns.Count;
             var IsNumericColumn = new bool[numberOfColumns];
@@ -297,7 +297,7 @@ namespace SmartIT.Library.Utility
             }
             writer.WriteEndElement();
 
-            double cellNumericValue = 0;
+            double cellNumericValue;
             foreach (DataRow dr in dt.Rows)
             {
                 ++rowIndex;
@@ -310,7 +310,6 @@ namespace SmartIT.Library.Utility
 
                     if (IsNumericColumn[colInx])
                     {
-                        cellNumericValue = 0;
                         if (!double.TryParse(cellValue, out cellNumericValue)) continue;
                         cellValue = cellNumericValue.ToString(CultureInfo.InvariantCulture);
                         AppendNumericCell(excelColumnNames[colInx] + rowIndex.ToString(), cellValue, ref writer);

@@ -21,7 +21,7 @@ namespace SmartIT.Library.Helper
         /// <returns>Byte array.</returns>
         public static byte[] StreamToByteArray(Stream input)
         {
-            using (MemoryStream ms = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
                 input.CopyTo(ms);
                 return ms.ToArray();

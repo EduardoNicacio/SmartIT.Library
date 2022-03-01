@@ -21,10 +21,10 @@ namespace SmartIT.Library.Utility
         /// Returns the type T as a KeyValuePar list with the Enum value as integer and string.
         /// </summary>
         /// <typeparam name="T">Enum type.</typeparam>
-        /// <returns>List of <seealso cref="KeyValuePair"/> objects.</returns>
+        /// <returns>List of <seealso cref="System.Collections.Generic.KeyValuePair{TKey, TValue}"/> objects.</returns>
         public static List<KeyValuePair<int, string>> GetList<T>()
         {
-            var array = (T[])(Enum.GetValues(typeof(T)).Cast<T>());
+            T[] array = (T[])Enum.GetValues(typeof(T)).Cast<T>();
             return array.Select(x => new KeyValuePair<int, string>(Convert.ToInt32(x), x.ToString())).ToList();
         }
 
@@ -32,10 +32,10 @@ namespace SmartIT.Library.Utility
         /// Returns the type T as a KeyValuePar list with the Enum value as integer and description as string.
         /// </summary>
         /// <typeparam name="T">Enum type.</typeparam>
-        /// <returns>List of <seealso cref="KeyValuePair"/> objects.</returns>
+        /// <returns>List of <seealso cref="System.Collections.Generic.KeyValuePair{TKey, TValue}"/> objects.</returns>
         public static List<KeyValuePair<int, string>> GetDescriptionList<T>()
         {
-            var array = (T[])(Enum.GetValues(typeof(T)).Cast<T>());
+            T[] array = (T[])(Enum.GetValues(typeof(T)).Cast<T>());
             return array.Select(x => new KeyValuePair<int, string>(Convert.ToInt32(x), GetEnumDescription<T>(Convert.ToInt32(x)))).ToList();
         }
 
@@ -43,10 +43,10 @@ namespace SmartIT.Library.Utility
         /// Returns the type T as a KeyValuePar list with the Enum value as boolean and description as string.
         /// </summary>
         /// <typeparam name="T">Enum type.</typeparam>
-        /// <returns>An object that implements the <seealso cref="IDictionary"/> interface.</returns>
+        /// <returns>An object that implements the <seealso cref="System.Collections.Generic.IDictionary{TKey, TValue}"/> interface.</returns>
         public static IDictionary<bool, string> GetDescriptionBooleanList<T>()
         {
-            var array = (T[])(Enum.GetValues(typeof(T)).Cast<T>());
+            T[] array = (T[])Enum.GetValues(typeof(T)).Cast<T>();
             return array.ToDictionary(item => Convert.ToBoolean(item), item => GetEnumDescription<T>(Convert.ToInt32(item)));
         }
 
@@ -58,7 +58,7 @@ namespace SmartIT.Library.Utility
         /// <returns>The enum element description.</returns>
         public static string GetEnumDescription<TEnum>(int value)
         {
-            return GetEnumDescription((Enum)(object)((TEnum)(object)value));
+            return GetEnumDescription((Enum)(object)(TEnum)(object)value);
         }
 
         /// <summary>
@@ -69,7 +69,6 @@ namespace SmartIT.Library.Utility
         public static string GetEnumDescription(Enum value)
         {
             var fi = value.GetType().GetField(value.ToString());
-
             var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
             return attributes.Length > 0 ? attributes[0].Description : value.ToString();

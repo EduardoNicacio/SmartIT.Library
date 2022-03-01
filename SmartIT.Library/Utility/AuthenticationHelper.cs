@@ -33,15 +33,15 @@ namespace SmartIT.Library.Utility
             int hasDomain = windowsLogin.IndexOfAny(new char[] {'\\'}, 1, windowsLogin.Length);
             string domain = string.Empty;
 
-            if (hasDomain > 0)
+            if (hasDomain > 0 && !string.IsNullOrWhiteSpace(windowsLogin))
             {
                 windowsLogin = windowsLogin.Remove(0, hasDomain + 1);
-                domain = wi.Name.Substring(0, hasDomain + 1).Replace(@"\", string.Empty);
+                domain = wi != null ? wi.Name.Substring(0, hasDomain + 1).Replace(@"\", string.Empty) : string.Empty;
             }
 
             var mainDomain = ConfigurationManager.AppSettings["Domain"];
 
-            if (domain.ToLowerInvariant().Equals(mainDomain.ToLowerInvariant()))
+            if (domain.ToUpperInvariant().Equals(mainDomain.ToUpperInvariant()))
             {
                 activeDirectoryUser = true;
             }

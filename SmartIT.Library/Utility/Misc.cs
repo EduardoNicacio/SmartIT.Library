@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Provê métodos para diversas funcionalidades.</summary>
+// <summary> Provides many methods for unsorted features.</summary>
 
 namespace SmartIT.Library.Utility
 {
@@ -15,16 +15,16 @@ namespace SmartIT.Library.Utility
     using System.Web.UI.WebControls;
 
     /// <summary>
-    /// Provê métodos para diversas funcionalidades.
+    /// Provides many methods for unsorted features.
     /// </summary>
     public static class Misc
     {
         /// <summary>
-        /// Limita texto para uma quantidade determinada de caracteres.
+        /// Limit a string to a certain number of chars.
         /// </summary>
-        /// <param name="value">Texto a ser limitado.</param>
-        /// <param name="limit">Limite de caracteres pra ser retornado.</param>
-        /// <returns> Texto limitado a quantidade de caracteres definida.</returns>
+        /// <param name="value"> Input string.</param>
+        /// <param name="limit"> Limit of chars (greates than 0).</param>
+        /// <returns> Result string.</returns>
         public static string LimitString(object value, int limit)
         {
             string str = value.ToString();
@@ -38,10 +38,10 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Recupera a informação contida no atributo Description de um elemento do enum.
+        /// Retrieves the Description property given an Enum object.
         /// </summary>
-        /// <param name="value">Enum.</param>
-        /// <returns> Texto contido no Description do Enum.</returns>
+        /// <param name="value"> Enum object.</param>
+        /// <returns> The value of the Description property.</returns>
         public static string GetEnumDescription(Enum value)
         {
             FieldInfo fi = value.GetType().GetField(value.ToString());
@@ -51,10 +51,10 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Recupera o valor do atributo StringValue associado a um valor Enum.
+        /// Retrieves the StringValue property given an Enum object.
         /// </summary>
-        /// <param name="value">Valor de um Enum.</param>
-        /// <returns> string associado ao valor do Enum.</returns>
+        /// <param name="value"> Enum object.</param>
+        /// <returns> The value of the StringValue property.</returns>
         public static string GetEnumStringValue(Enum value)
         {
             string output = null;
@@ -72,11 +72,11 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Recupera o valor de um Enum através do valor do atributo StringValue.
+        /// Retrieves the Enum value given its StringValue property.
         /// </summary>
-        /// <param name="value">Valor atribuido ao StringValue da opção do Enum.</param>
-        /// <param name="enumType">Tipo do Enum.</param>
-        /// <returns> Objeto que mapeia um Enum.</returns>
+        /// <param name="value"> StringValue value.</param>
+        /// <param name="enumType"> Enum type.</param>
+        /// <returns> Enum as object.</returns>
         public static object GetEnumValue(string value, Type enumType)
         {
             foreach (FieldInfo fi in enumType.GetFields())
@@ -93,10 +93,10 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Converte o um valor boleano para flag "Ativo" ou "Inativo" para utilização em grids.
+        /// Converts a boolean value into "Active" or "Inactive" strings.
         /// </summary>
-        /// <param name="value">Objeto representando um valor boleano.</param>
-        /// <returns> "Ativo" se o valor for True e "Inativo" se o valor for False.</returns>
+        /// <param name="value"> Boolean value.</param>
+        /// <returns> Active or Inactive.</returns>
         public static string GetBooleanToStatus(object value)
         {
             bool v = Convert.ToBoolean(value);
@@ -104,37 +104,30 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Remove acentos de uma String.
+        /// Clear all special chars given a string.
         /// </summary>
-        /// <param name="value"> Texto a ter os acentos removidos.</param>
-        /// <returns> Texto formatado, sem os acentos.</returns>
+        /// <param name="value"> Input string.</param>
+        /// <returns> Output string, without special chars.</returns>
         public static string RemoveAccents(string value)
         {
-            // Retorna a mesma string identificando cada caracter (til, cedilha, acentos, etc) da string setada.            
-            // FormD -> Indica que uma seqüência de caracteres Unicode é normalizada usando decomposição completo canônica.
             string normalizedString = value.Normalize(System.Text.NormalizationForm.FormD);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-
             for (int i = 0; i < normalizedString.Length; i++)
             {
                 Char c = normalizedString[i];
-
-                // Compara cada caracter Unicode 
                 if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark)
                 {
                     stringBuilder.Append(c);
                 }
             }
-
-            // Retorna a string formatada
             return stringBuilder.ToString();
         }
 
         /// <summary>
-        /// Retorna a data no formato utilizado pelo Moodle.
+        /// Converts a DateTime object into an UNIX timestamp value.
         /// </summary>
-        /// <param name="value">Data e hora informado.</param>
-        /// <returns>Data e hora no formato Unix.</returns>
+        /// <param name="value"> Input DateTime.</param>
+        /// <returns> Output DateTime (Unix format).</returns>
         public static double DateTimeToUnixTimestamp(DateTime value)
         {
             return (value - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
@@ -148,16 +141,12 @@ namespace SmartIT.Library.Utility
         public static string GetClassProperties(object obj)
         {
             StringBuilder sResult = new StringBuilder(string.Empty);
-
             PropertyInfo[] propertyInfo = obj.GetType().GetProperties();
-
             sResult.Append(string.Format("Class={0}|", obj.GetType().Name));
-
             foreach (PropertyInfo pInfo in propertyInfo)
             {
                 sResult.Append(string.Format("{0}={1}|", pInfo.Name, pInfo.GetValue(obj, null)));
             }
-
             return sResult.ToString();
         }
 
@@ -181,28 +170,31 @@ namespace SmartIT.Library.Utility
         {
             var today = referenceDate;
             var age = today.Year - birthdate.Year;
-            if (birthdate > today.AddYears(-age)) age--;
+            if (birthdate > today.AddYears(-age))
+            {
+                age--;
+            }
             return age;
         }
 
         /// <summary>
-        /// Classe para comparação genérica de dois objetos.
+        /// Class that do a generic comparison between two objects.
         /// </summary>
         /// <typeparam name="T"> Generic Type.</typeparam>
         public class GenericComparer<T> : IComparer<T>
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="GenericComparer" /> class.
+            /// Initializes a new instance of the <see cref="Misc.GenericComparer{T}" /> class.
             /// </summary>
             public GenericComparer()
             {
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="GenericComparer" /> class.
+            /// Initializes a new instance of the <see cref="Misc.GenericComparer{T}" /> class.
             /// </summary>
-            /// <param name="sortExpression">Expressão de ordenação.</param>
-            /// <param name="sortDirection">Direção de ordenação (ASC ou DESC).</param>
+            /// <param name="sortExpression"> Sorting expression.</param>
+            /// <param name="sortDirection"> Sorting direction (ASC ou DESC).</param>
             public GenericComparer(string sortExpression, SortDirection sortDirection)
             {
                 this.GenericSortExpression = sortExpression;
@@ -220,25 +212,18 @@ namespace SmartIT.Library.Utility
             public SortDirection GenericSortDirection { get; set; }
 
             /// <summary>
-            /// Compara dois objetos com base no atributo e direção especificados.
+            /// Compare two objects based on the given sorting expression and direction.
             /// </summary>
             /// <param name="x">Generic Type.</param>
             /// <param name="y">Generic Type.</param> 
-            /// <returns> Retorna -1 se x menor que y, 0 se forem iguais, 1 se y maior que x.</returns>
+            /// <returns> Returns -1 if x lesser than y, 0 if the values are equal, 1 if y greater than x.</returns>
             public int Compare(T x, T y)
             {
                 PropertyInfo propertyInfo = typeof(T).GetProperty(GenericSortExpression);
                 IComparable obj1 = (IComparable)propertyInfo.GetValue(x, null);
                 IComparable obj2 = (IComparable)propertyInfo.GetValue(y, null);
 
-                if (GenericSortDirection == SortDirection.Ascending)
-                {
-                    return obj1.CompareTo(obj2);
-                }
-                else
-                {
-                    return obj2.CompareTo(obj1);
-                }
+                return GenericSortDirection == SortDirection.Ascending ? obj1.CompareTo(obj2) : obj2.CompareTo(obj1);
             }
         }
     }

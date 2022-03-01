@@ -8,7 +8,7 @@
 namespace SmartIT.Library.Utility.Criptography
 {
     using System.IO;
-    using SmartIT.Library.Helper;
+    using Helper;
 
     /// <summary>
     /// Base64 helper.

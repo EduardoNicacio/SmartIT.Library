@@ -7,7 +7,7 @@
 
 namespace SmartIT.Library.Utility.Criptography
 {
-    using SmartIT.Library.Helper;
+    using Helper;
     using System.IO;
     using System.Text;
 
@@ -33,7 +33,7 @@ namespace SmartIT.Library.Utility.Criptography
         /// <returns>Encoded string.</returns>
         public static string Rot47Encode(byte[] input)
         {
-            return Rot47Encode(System.Text.Encoding.UTF8.GetString(input, 0, input.Length));
+            return Rot47Encode(Encoding.UTF8.GetString(input, 0, input.Length));
         }
 
         /// <summary>

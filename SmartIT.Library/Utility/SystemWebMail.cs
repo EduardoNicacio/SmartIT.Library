@@ -37,32 +37,43 @@ namespace SmartIT.Library.Utility.Mail
             string Bcc,
             string Subject,
             string Body,
+#pragma warning disable CS0618 // Type or member is obsolete
             MailPriority MailPriority,
+#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
             System.Web.Mail.MailFormat MailFormat,
+#pragma warning restore CS0618 // Type or member is obsolete
             string SmtpServer)
         {
-            MailMessage objemail = new MailMessage();
+#pragma warning disable CS0618 // Type or member is obsolete
+            MailMessage objemail = new MailMessage
+#pragma warning restore CS0618 // Type or member is obsolete
+            {
+                // Define os parametros do e-mail
+                Priority = MailPriority,
+                BodyFormat = MailFormat,
+                To = To,
+                Cc = Cc,
+                Bcc = Bcc,
+                From = From,
+                Subject = Subject,
+                Body = Body
+            };
 
-            // Define os parametros do e-mail
-            objemail.Priority = MailPriority;
-            objemail.BodyFormat = MailFormat;
-            objemail.To = To;
-            objemail.Cc = Cc;
-            objemail.Bcc = Bcc;
-            objemail.From = From;
-            objemail.Subject = Subject;
-            objemail.Body = Body;
-
+#pragma warning disable CS0618 // Type or member is obsolete
             SmtpMail.SmtpServer = SmtpServer;
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // Envio do e-mail
             try
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 SmtpMail.Send(objemail);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -86,39 +97,60 @@ namespace SmartIT.Library.Utility.Mail
             string Bcc,
             string Subject,
             string Body,
+#pragma warning disable CS0618 // Type or member is obsolete
             MailPriority MailPriority,
+#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
             System.Web.Mail.MailFormat MailFormat,
+#pragma warning restore CS0618 // Type or member is obsolete
             string SmtpServer,
             string[] Attachments)
         {
-            MailMessage objemail = new MailMessage();
+#pragma warning disable CS0618 // Type or member is obsolete
+            MailMessage objemail = new MailMessage
+#pragma warning restore CS0618 // Type or member is obsolete
+            {
+                // Define os parametros do e-mail
+                Priority = MailPriority,
+                BodyFormat = MailFormat,
+                To = To,
+                Cc = Cc,
+                Bcc = Bcc,
+                From = From,
+                Subject = Subject,
+                Body = Body
+            };
 
-            // Define os parametros do e-mail
-            objemail.Priority = MailPriority;
-            objemail.BodyFormat = MailFormat;
-            objemail.To = To;
-            objemail.Cc = Cc;
-            objemail.Bcc = Bcc;
-            objemail.From = From;
-            objemail.Subject = Subject;
-            objemail.Body = Body;
-
+#pragma warning disable CS0618 // Type or member is obsolete
             SmtpMail.SmtpServer = SmtpServer;
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // Envio do e-mail
             foreach (string strpath_anexo in Attachments)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 objemail.Attachments.Add(new MailAttachment(strpath_anexo));
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             try
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 SmtpMail.Send(objemail);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                throw ex;
             }
+        }
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="SystemWebMail" /> class.
+        /// </summary>
+        ~SystemWebMail()
+        {
+            Dispose(false);
         }
 
         /// <summary>

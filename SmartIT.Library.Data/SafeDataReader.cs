@@ -46,7 +46,7 @@ namespace SmartIT.Library.Data
         /// Gets the RecordsAffected property value from the underlying datareader.
         /// </summary>
         /// <returns>The number of affected records.</returns>
-        /// <value>Obrigatório pelo SONAR.</value>
+        /// <value>Obrigatorio pelo SONAR.</value>
         public int RecordsAffected
         {
             get
@@ -59,7 +59,7 @@ namespace SmartIT.Library.Data
         /// Gets the depth property value from the datareader.
         /// </summary>
         /// <returns>The level of nesting.</returns>
-        /// <value> Obrigatório pelo SONAR.</value>
+        /// <value> Obrigatorio pelo SONAR.</value>
         public int Depth
         {
             get
@@ -72,7 +72,7 @@ namespace SmartIT.Library.Data
         /// Gets the FieldCount property from the datareader.
         /// </summary>
         /// <returns>When not positioned in a valid recordset, 0; otherwise, the number of columns in the current record. The default is -1.</returns>
-        /// <value> Obrigatório pelo SONAR.</value>
+        /// <value> Obrigatorio pelo SONAR.</value>
         public int FieldCount
         {
             get
@@ -85,7 +85,7 @@ namespace SmartIT.Library.Data
         /// Gets a value indicating whether the IsClosed property value from the datareader.
         /// </summary>
         /// <returns>True, if the DataReader is closed; otherwise, false.</returns>
-        /// <value>Obrigatório pelo SONAR.</value>
+        /// <value>Obrigatorio pelo SONAR.</value>
         public bool IsClosed
         {
             get
@@ -113,6 +113,7 @@ namespace SmartIT.Library.Data
             get
             {
                 object val = dataReader[name];
+
                 if (DBNull.Value.Equals(val))
                 {
                     return null;
@@ -723,7 +724,6 @@ namespace SmartIT.Library.Data
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) below.
             Dispose(true);
-            GC.Collect();
         }
 
         /// <summary>

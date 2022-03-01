@@ -109,7 +109,7 @@ namespace SmartIT.Library.Utility.Criptography
         /// <summary>
         /// Converts an unsigned 64bits integer number into a BigEndian byte array.
         /// </summary>
-        /// <param name="uint32">Unsigned 64bits integer.</param>
+        /// <param name="value">Unsigned 64bits integer.</param>
         /// <returns>BigEndian byte array.</returns>
         static byte[] UInt64ToBigEndianBytes(UInt64 value)
         {
@@ -176,7 +176,10 @@ namespace SmartIT.Library.Utility.Criptography
     /// </remarks>
     public class Crc64Iso : Crc64
     {
-        internal static UInt64[] Table;
+        /// <summary>
+        /// The Hash table.
+        /// </summary>
+        public static UInt64[] Table { get; set; }
 
         /// <summary>
         /// The default polynomial.

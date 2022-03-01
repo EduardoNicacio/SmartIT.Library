@@ -145,7 +145,7 @@ namespace SmartIT.Library.Data.DAL
                     else
                     {
                         criteria.Clear();
-                        throw new Exception(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", o));
+                        throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", o));
                     }
                 }
                 else
@@ -165,7 +165,7 @@ namespace SmartIT.Library.Data.DAL
                     else
                     {
                         criteria.Clear();
-                        throw new Exception(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", o));
+                        throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", o));
                     }
                 }
             }
@@ -173,10 +173,10 @@ namespace SmartIT.Library.Data.DAL
             criteria.Clear();
 
             string tmpWhere = (customWhere.Length > 0) ? " WHERE " + customWhere.ToString().Substring(4) : string.Empty;
-            
+
             customWhere.Clear();
             customWhere.Append(tmpWhere);
-            
+
             cmd.CommandText = string.Format(sql, customWhere.ToString());
 
             return cmd;
@@ -261,14 +261,14 @@ namespace SmartIT.Library.Data.DAL
                             }
                             else
                             {
-                                if (oper != "IN")
+                                if (oper == "IN")
                                 {
-                                    customWhere.Append(string.Format(" {0} {1} {2} @{3}", logicalOperator, alias[key], oper, key));
-                                    cmd.Parameters.AddWithValue("@" + key, criteria[s]);
+                                    customWhere.Append(string.Format(" {0} {1} IN {2}", logicalOperator, alias[key], criteria[s]));
                                 }
                                 else
                                 {
-                                    customWhere.Append(string.Format(" {0} {1} IN {2}", logicalOperator, alias[key], criteria[s]));
+                                    customWhere.Append(string.Format(" {0} {1} {2} @{3}", logicalOperator, alias[key], oper, key));
+                                    cmd.Parameters.AddWithValue("@" + key, criteria[s]);
                                 }
                             }
                         }
@@ -281,7 +281,11 @@ namespace SmartIT.Library.Data.DAL
                             }
                             else
                             {
-                                if (oper != "IN")
+                                if (oper == "IN")
+                                {
+                                    customWhere.Append(string.Format(" AND {0} IN {1}", alias[key], criteria[s]));
+                                }
+                                else
                                 {
                                     if (oper.ToUpperInvariant().Equals("LIKE"))
                                     {
@@ -293,17 +297,13 @@ namespace SmartIT.Library.Data.DAL
                                         cmd.Parameters.AddWithValue("@" + key, criteria[s]);
                                     }
                                 }
-                                else
-                                {
-                                    customWhere.Append(string.Format(" AND {0} IN {1}", alias[key], criteria[s]));
-                                }
                             }
                         }
                     }
                     else
                     {
                         criteria.Clear();
-                        throw new Exception(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", s));
+                        throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", s));
                     }
                 }
                 else
@@ -323,7 +323,7 @@ namespace SmartIT.Library.Data.DAL
                     else
                     {
                         criteria.Clear();
-                        throw new Exception(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", s));
+                        throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", s));
                     }
                 }
             }
@@ -419,14 +419,14 @@ namespace SmartIT.Library.Data.DAL
                             }
                             else
                             {
-                                if (oper != "IN")
+                                if (oper == "IN")
                                 {
-                                    customWhere.Append(string.Format(" {0} {1} {2} ?", logicalOperator, alias[key], oper));
-                                    cmd.Parameters.AddWithValue("@" + key, criteria[c]);
+                                    customWhere.Append(string.Format(" {0} {1} IN {2}", logicalOperator, alias[key], criteria[c]));
                                 }
                                 else
                                 {
-                                    customWhere.Append(string.Format(" {0} {1} IN {2}", logicalOperator, alias[key], criteria[c]));
+                                    customWhere.Append(string.Format(" {0} {1} {2} ?", logicalOperator, alias[key], oper));
+                                    cmd.Parameters.AddWithValue("@" + key, criteria[c]);
                                 }
                             }
                         }
@@ -439,14 +439,14 @@ namespace SmartIT.Library.Data.DAL
                             }
                             else
                             {
-                                if (oper != "IN")
+                                if (oper == "IN")
                                 {
-                                    customWhere.Append(string.Format(" AND {0} {1} ?", alias[key], oper));
-                                    cmd.Parameters.AddWithValue("@" + key, criteria[c]);
+                                    customWhere.Append(string.Format(" AND {0} IN {1}", alias[key], criteria[c]));
                                 }
                                 else
                                 {
-                                    customWhere.Append(string.Format(" AND {0} IN {1}", alias[key], criteria[c]));
+                                    customWhere.Append(string.Format(" AND {0} {1} ?", alias[key], oper));
+                                    cmd.Parameters.AddWithValue("@" + key, criteria[c]);
                                 }
                             }
                         }
@@ -454,7 +454,7 @@ namespace SmartIT.Library.Data.DAL
                     else
                     {
                         criteria.Clear();
-                        throw new Exception(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", c));
+                        throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", c));
                     }
                 }
                 else
@@ -474,7 +474,7 @@ namespace SmartIT.Library.Data.DAL
                     else
                     {
                         criteria.Clear();
-                        throw new Exception(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", c));
+                        throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", c));
                     }
                 }
             }

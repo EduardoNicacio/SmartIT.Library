@@ -3,17 +3,14 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>02/09/2016</date>
-// <summary>Class that encapsulates an object System.Net.Mail.</summary>
+// <summary>Class that encapsulates a System.Net.Mail object.</summary>
 
 namespace SmartIT.Library.Utility.Mail
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
     using System.Net.Mail;
-    using System.Collections;
 
     /// <summary>
     /// A System.Net.Mail simple implementation class.
@@ -89,14 +86,15 @@ namespace SmartIT.Library.Utility.Mail
             string SmtpPassword,
             bool EnableSsl,
             List<string> Attachments)
+        {
+            List<Attachment> list = new List<Attachment>();
+
+            foreach (var file in Attachments)
             {
-                List<Attachment> list = new List<Attachment>();
-                foreach (var file in Attachments)
-                {
-                    list.Add(new Attachment(file, System.Net.Mime.MediaTypeNames.Application.Octet));
-                }
-                SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, list);
+                list.Add(new Attachment(file, System.Net.Mime.MediaTypeNames.Application.Octet));
             }
+            SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, list);
+        }
 
         /// <summary>
         /// Dispatches an email.
@@ -140,21 +138,21 @@ namespace SmartIT.Library.Utility.Mail
                 message.Subject = Subject;
                 message.Body = Body;
                 message.IsBodyHtml = MailFormat.Equals(MailFormat.HtmlFormat);
-                message.SubjectEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
-                message.BodyEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
+                message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
+                message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
 
                 foreach (Attachment obj in Attachments)
                 {
                     message.Attachments.Add(obj);
                 }
 
-                using (System.Net.Mail.SmtpClient smtpServer = new System.Net.Mail.SmtpClient())
+                using (SmtpClient smtpServer = new SmtpClient())
                 {
                     smtpServer.Host = SmtpServer;
                     smtpServer.Port = SmtpPort > 0 ? SmtpPort : 25;
                     smtpServer.EnableSsl = EnableSsl;
 
-                    if (!string.IsNullOrWhiteSpace(SmtpUsername) && !string.IsNullOrWhiteSpace(SmtpPassword)) 
+                    if (!string.IsNullOrWhiteSpace(SmtpUsername) && !string.IsNullOrWhiteSpace(SmtpPassword))
                     {
                         smtpServer.Credentials = new System.Net.NetworkCredential(SmtpUsername, SmtpPassword);
                     }
@@ -163,9 +161,17 @@ namespace SmartIT.Library.Utility.Mail
                     {
                         smtpServer.Send(message);
                     }
-                    catch (Exception ex)
+                    catch (ArgumentNullException ex)
                     {
-                        throw new Exception(ex.Message, ex);
+                        throw new ArgumentNullException(ex.Message, ex);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        throw new InvalidOperationException(ex.Message, ex);
+                    }
+                    catch (SmtpException ex)
+                    {
+                        throw new SmtpException(ex.Message, ex);
                     }
                 }
             }
@@ -200,7 +206,7 @@ namespace SmartIT.Library.Utility.Mail
             int SmtpPort,
             string SmtpUsername,
             string SmtpPassword,
-            bool EnableSsl) 
+            bool EnableSsl)
         {
             SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, new List<Attachment>());
         }
@@ -239,9 +245,10 @@ namespace SmartIT.Library.Utility.Mail
             List<string> Attachments)
         {
             List<Attachment> list = new List<Attachment>();
+
             foreach (var file in Attachments)
             {
-                list.Add(new Attachment(file, System.Net.Mime.MediaTypeNames.Application.Octet));
+                list.Add(new Attachment(file, mediaType: System.Net.Mime.MediaTypeNames.Application.Octet));
             }
             SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, list);
         }
@@ -296,7 +303,7 @@ namespace SmartIT.Library.Utility.Mail
                     message.Attachments.Add(obj);
                 }
 
-                using (System.Net.Mail.SmtpClient smtpServer = new System.Net.Mail.SmtpClient())
+                using (SmtpClient smtpServer = new SmtpClient())
                 {
                     smtpServer.Host = SmtpServer;
                     smtpServer.Port = SmtpPort > 0 ? SmtpPort : 25;
@@ -311,12 +318,28 @@ namespace SmartIT.Library.Utility.Mail
                     {
                         smtpServer.Send(message);
                     }
-                    catch (Exception ex)
+                    catch (ArgumentNullException ex)
                     {
-                        throw new Exception(ex.Message, ex);
+                        throw new ArgumentNullException(ex.Message, ex);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        throw new InvalidOperationException(ex.Message, ex);
+                    }
+                    catch (SmtpException ex)
+                    {
+                        throw new SmtpException(ex.Message, ex);
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="SystemNetMail" /> class.
+        /// </summary>
+        ~SystemNetMail()
+        {
+            Dispose(false);
         }
 
         /// <summary>
@@ -345,7 +368,7 @@ namespace SmartIT.Library.Utility.Mail
             if (disposing)
             {
                 // Free any other managed objects here.
-                this.Dispose();
+                Dispose();
             }
 
             // Free any unmanaged objects here.

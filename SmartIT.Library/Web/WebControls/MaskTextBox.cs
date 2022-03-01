@@ -32,7 +32,7 @@ namespace SmartIT.Library.Web.WebControls
         {
             base.OnInit(e);
 
-            jsPath = (WebConfigurationManager.AppSettings.Get("MaskTextBox-JavaScript-Path") != null) ? WebConfigurationManager.AppSettings.Get("MaskTextBox-JavaScript-Path") : "~/JavaScript";
+            jsPath = WebConfigurationManager.AppSettings.Get("MaskTextBox-JavaScript-Path") ?? "~/JavaScript";
             RegisterScripts();
         }
 
@@ -69,7 +69,7 @@ namespace SmartIT.Library.Web.WebControls
         {
             string contentScript = string.Empty;
 
-            switch (this.MaskType)
+            switch (MaskType)
             {
                 case MaskTextBoxType.Currency:
 
@@ -78,7 +78,7 @@ namespace SmartIT.Library.Web.WebControls
 
                 case MaskTextBoxType.CustomMask:
 
-                    if (this.CustomMask == null)
+                    if (CustomMask == null)
                     {
                         throw new InvalidEnumArgumentException("A propriedade CustomMask deve ser definida quando o MaskType for CustomMask.");
                     }
@@ -114,7 +114,7 @@ namespace SmartIT.Library.Web.WebControls
         /// <returns> Script gerado.</returns>
         private string ConfigCurrencyControl()
         {
-            return "new NumberMask(new NumberParser(2, ',', '.', true, '', false), '" + this.UniqueID + "');";
+            return "new NumberMask(new NumberParser(2, ',', '.', true, '', false), '" + UniqueID + "');";
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SmartIT.Library.Web.WebControls
         /// <returns> Script gerado.</returns>
         private string ConfigCustomControl()
         {
-            return "new InputMask('" + this.CustomMask + "', '" + this.UniqueID + "');";
+            return "new InputMask('" + CustomMask + "', '" + UniqueID + "');";
         }
 
         /// <summary>
@@ -134,14 +134,14 @@ namespace SmartIT.Library.Web.WebControls
         {
             if (validationMsg.Length == 0)
             {
-                return "new DateMask('dd/MM/yyyy', '" + this.UniqueID + "');";
+                return "new DateMask('dd/MM/yyyy', '" + UniqueID + "');";
             }
             else
             {
                 return string.Format("var dtMsk{0} = new DateMask('dd/MM/yyyy', '{1}'); dtMsk{2}.validationMessage = '{3}';",
-                                    this.ClientID,
-                                    this.UniqueID,
-                                    this.ClientID,
+                                    ClientID,
+                                    UniqueID,
+                                    ClientID,
                                     validationMsg.Replace("'", "''"));
             }
         }
@@ -154,14 +154,14 @@ namespace SmartIT.Library.Web.WebControls
         {
             if (validationMsg.Length == 0)
             {
-                return "new DateMask('dd/MM/yyyy HH:mm', '" + this.UniqueID + "');";
+                return "new DateMask('dd/MM/yyyy HH:mm', '" + UniqueID + "');";
             }
             else
             {
                 return string.Format("var dtMsk{0} = new DateMask('dd/MM/yyyy HH:mm', '{1}'); dtMsk{2}.validationMessage = '{3}';",
-                                    this.ClientID,
-                                    this.UniqueID,
-                                    this.ClientID,
+                                    ClientID,
+                                    UniqueID,
+                                    ClientID,
                                     validationMsg.Replace("'", "''"));
             }
         }
@@ -172,8 +172,8 @@ namespace SmartIT.Library.Web.WebControls
         /// <returns> Script gerado.</returns>
         private string ConfigNumberControl()
         {
-            string parser = "new NumberParser(" + this.decimalDigits + ", '" + this.decimalSeparator.Trim() + "', '" + this.groupSeparator.Trim() + "', true, '', false)";
-            string numberMask = "new NumberMask(" + parser + ", '" + this.UniqueID + "');";
+            string parser = "new NumberParser(" + decimalDigits + ", '" + decimalSeparator.Trim() + "', '" + groupSeparator.Trim() + "', true, '', false)";
+            string numberMask = "new NumberMask(" + parser + ", '" + UniqueID + "');";
 
             return numberMask;
         }
@@ -185,21 +185,21 @@ namespace SmartIT.Library.Web.WebControls
         {
             get
             {
-                if (this.Text != null)
+                if (!string.IsNullOrEmpty(Text))
                 {
-                    if (this.mask == MaskTextBoxType.Date || this.mask == MaskTextBoxType.DateTime)
+                    if (mask == MaskTextBoxType.Date || mask == MaskTextBoxType.DateTime)
                     {
-                        return DateTime.Parse(this.Text);
+                        return DateTime.Parse(Text);
                     }
 
-                    if (this.mask == MaskTextBoxType.Currency)
+                    if (mask == MaskTextBoxType.Currency)
                     {
-                        return Decimal.Parse(this.Text.Replace(".", string.Empty));
+                        return decimal.Parse(Text.Replace(".", string.Empty));
                     }
 
-                    if (this.mask == MaskTextBoxType.Number)
+                    if (mask == MaskTextBoxType.Number)
                     {
-                        return int.Parse(this.Text);
+                        return int.Parse(Text);
                     }
                 }
 
@@ -228,9 +228,9 @@ namespace SmartIT.Library.Web.WebControls
         {
             get
             {
-                if (ViewState[this.ID + "_Mask"] != null)
+                if (ViewState[ID + "_Mask"] != null)
                 {
-                    return (string)ViewState[this.ID + "_Mask"];
+                    return (string)ViewState[ID + "_Mask"];
                 }
                 else
                 {
@@ -238,7 +238,7 @@ namespace SmartIT.Library.Web.WebControls
                 }
             }
 
-            set { ViewState[this.ID + "_Mask"] = value; }
+            set { ViewState[ID + "_Mask"] = value; }
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace SmartIT.Library.Web.WebControls
         CustomMask,
 
         /// <summary>
-        /// No one format.
+        /// No format.
         /// </summary>
         None
     }

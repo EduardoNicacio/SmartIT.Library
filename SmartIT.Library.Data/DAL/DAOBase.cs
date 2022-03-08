@@ -1,5 +1,5 @@
-﻿// <copyright file="DaoBase.cs" company="SmartIT Technologies LLC.">
-// Copyright SmartIT Technologies LLC. All rights reserved.
+﻿// <copyright file="DaoBase.cs" company="Eduardo Claudio Nicacio">
+// Copyright Eduardo Claudio Nicacio. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>

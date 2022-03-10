@@ -1,5 +1,5 @@
-﻿// <copyright file="AssemblyInfo.cs" company="Eduardo Claudio Nicacio">
-// Copyright Eduardo Claudio Nicacio. All rights reserved.
+﻿// <copyright file="AssemblyInfo.cs" company="SmartIT Technologies LLC.">
+// Copyright SmartIT Technologies LLC. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>30/04/2015</date>
@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SmartIT Technologies LLC")]
 [assembly: AssemblyProduct("SmartIT.Library")]
-[assembly: AssemblyCopyright("Copyright © 2016 Eduardo Claudio Nicacio.")]
+[assembly: AssemblyCopyright("Copyright © SmartIT Technologies LLC 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

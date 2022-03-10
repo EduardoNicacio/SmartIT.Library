@@ -1,5 +1,5 @@
-// <copyright file="DataBaseProviderFactory.cs" company="Eduardo Claudio Nicacio">
-// Copyright Eduardo Claudio Nicacio. All rights reserved.
+// <copyright file="DataBaseProviderFactory.cs" company="SmartIT Technologies LLC.">
+// Copyright SmartIT Technologies LLC. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
@@ -31,7 +31,7 @@ namespace SmartIT.Library.Data
 
             // Recupera a string de conexao
             string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
-
+            
             // Cria a Conexao de acordo com o provider (SQL, Oracle, OleDb)
             switch (providerName.ToLowerInvariant())
             {
@@ -61,10 +61,10 @@ namespace SmartIT.Library.Data
         public static IDbConnection CreateConnection(string connectionStringName)
         {
             string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
-
+            
             if (string.IsNullOrEmpty(providerName))
             {
-                throw new ArgumentNullException("Attribute 'ProviderName' not defined for the connection string '" + connectionStringName + "' in the configuration file.");
+                throw new ArgumentNullException("Atributo 'ProviderName' nao definido para connection string '" + connectionStringName + "' no arquivo de configuraçao.");
             }
 
             return CreateConnection(connectionStringName, providerName);
@@ -81,7 +81,7 @@ namespace SmartIT.Library.Data
 
             // Recupera o nome do Provider
             string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
-
+            
             // Cria um DataAdapter de acordo com o provider utilizado
             switch (providerName.ToLowerInvariant())
             {
@@ -113,7 +113,7 @@ namespace SmartIT.Library.Data
         {
             IDbCommand command = null;
             string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
-
+            
             // Cria o command correspondente ao nome do Provider (SQL, Oracle ou OleDb)
             switch (providerName.ToLowerInvariant())
             {
@@ -143,11 +143,11 @@ namespace SmartIT.Library.Data
         public static string GetParamSymbol(string providerName)
         {
             string paramSymbol = null;
-
+            
             // Retorna o símbolo do SQL conforme o nome do provider
             switch (providerName.ToLowerInvariant())
             {
-                // SQL Server - default
+                // SQL Server
                 case "system.data.sqlclient":
                     paramSymbol = "@";
                     break;
@@ -162,9 +162,7 @@ namespace SmartIT.Library.Data
                 case "oracle.dataaccess.client":
                     paramSymbol = ":";
                     break;
-                default:
-                    paramSymbol = "@";
-                    break;
+                default: break;
             }
 
             return paramSymbol;

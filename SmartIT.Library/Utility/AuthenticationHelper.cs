@@ -1,5 +1,5 @@
-﻿// <copyright file="AuthenticationHelper.cs" company="SmartIT Technologies LLC.">
-// Copyright SmartIT Technologies LLC. All rights reserved.
+﻿// <copyright file="AuthenticationHelper.cs" company="Eduardo Claudio Nicacio">
+// Copyright Eduardo Claudio Nicacio. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>15/03/2015</date>

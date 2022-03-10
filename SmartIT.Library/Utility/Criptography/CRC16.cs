@@ -1,5 +1,5 @@
-// <copyright file="Crc16.cs" company="SmartIT Technologies LLC.">
-// Copyright SmartIT Technologies LLC. All rights reserved.
+// <copyright file="Crc16.cs" company="Eduardo Claudio Nicacio">
+// Copyright Eduardo Claudio Nicacio. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>26/05/2016</date>

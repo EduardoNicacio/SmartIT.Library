@@ -1,5 +1,5 @@
-﻿// <copyright file="DaoBase.cs" company="SmartIT Technologies LLC.">
-// Copyright SmartIT Technologies LLC. All rights reserved.
+﻿// <copyright file="DaoBase.cs" company="Eduardo Claudio Nicacio">
+// Copyright Eduardo Claudio Nicacio. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
@@ -180,6 +180,23 @@ namespace SmartIT.Library.Data.DAL
             cmd.CommandText = string.Format(sql, customWhere.ToString());
 
             return cmd;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        protected object OracleSearch(OracleCommand cmd) {
+            // Cria um novo SafeDataReader
+            SafeDataReader reader = new SafeDataReader(DbHelper.ExecuteReader(cmd));
+            object list = this.GetList(ref reader);
+
+            reader.Close();
+            cmd.Dispose();
+
+            // Retorna a lista
+            return list;
         }
 
         /// <summary>

@@ -1,0 +1,6 @@
+projectKey=SmartIT.Library
+serverUrl=http://localhost:9000
+serverVersion=9.2.4.50792
+dashboardUrl=http://localhost:9000/dashboard?id=SmartIT.Library
+ceTaskId=AX927h6iq8DUyxm-mRrt
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX927h6iq8DUyxm-mRrt

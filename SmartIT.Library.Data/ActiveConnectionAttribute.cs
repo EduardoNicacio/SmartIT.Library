@@ -20,7 +20,7 @@ namespace SmartIT.Library.Data
         /// <param name="connectionStringName"> Nome da String de conexão.</param>
         public ActiveConnectionAttribute(string connectionStringName)
             : base(connectionStringName)
-        { 
+        {
         }
 
         /// <summary>

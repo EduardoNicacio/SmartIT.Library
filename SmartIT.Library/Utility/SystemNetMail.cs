@@ -9,8 +9,8 @@ namespace SmartIT.Library.Utility.Mail
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Net.Mail;
+    using System.Text;
 
     /// <summary>
     /// A System.Net.Mail simple implementation class.

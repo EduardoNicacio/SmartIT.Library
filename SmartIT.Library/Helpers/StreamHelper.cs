@@ -5,7 +5,7 @@
 // <date>19/10/2016</date>
 // <summary>Stream helper class.</summary>
 
-namespace SmartIT.Library.Helper
+namespace SmartIT.Library.Helpers
 {
     using System.IO;
 

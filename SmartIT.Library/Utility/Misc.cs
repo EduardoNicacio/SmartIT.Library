@@ -95,26 +95,43 @@ namespace SmartIT.Library.Utility
         /// <summary>
         /// Converts a boolean value into "Active" or "Inactive" strings.
         /// </summary>
-        /// <param name="value"> Boolean value.</param>
-        /// <returns> Active or Inactive.</returns>
+        /// <param name="value"> The input boolean.</param>
+        /// <returns> "Active", if the input boolean is true; "Inactive" instead.</returns>
         public static string GetBooleanToStatus(object value)
         {
+            const string A = "Active";
+            const string I = "Inactive";
+
             bool v = Convert.ToBoolean(value);
-            return v ? "Active" : "Inactive";
+            return v ? A : I;
         }
 
         /// <summary>
-        /// Clear all special chars given a string.
+        /// Converts the string values "Active" or "Inactive" into their correspondent boolean values.
+        /// </summary>
+        /// <param name="value">The input string.</param>
+        /// <returns>True, if the input string is "Active"; false instead.</returns>
+        public static bool GetStatusToBoolean(string value) 
+        {
+            if (string.IsNullOrWhiteSpace(value)) {
+                return false;
+            }
+
+            return "Active".Equals(value);
+        }
+
+        /// <summary>
+        /// Clear all special chars for a given a string.
         /// </summary>
         /// <param name="value"> Input string.</param>
         /// <returns> Output string, without special chars.</returns>
         public static string RemoveAccents(string value)
         {
-            string normalizedString = value.Normalize(System.Text.NormalizationForm.FormD);
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            string normalizedString = value.Normalize(NormalizationForm.FormD);
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < normalizedString.Length; i++)
             {
-                Char c = normalizedString[i];
+                char c = normalizedString[i];
                 if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark)
                 {
                     stringBuilder.Append(c);
@@ -178,7 +195,7 @@ namespace SmartIT.Library.Utility
         }
 
         /// <summary>
-        /// Class that do a generic comparison between two objects.
+        /// Class that performs a generic comparison between two objects.
         /// </summary>
         /// <typeparam name="T"> Generic Type.</typeparam>
         public class GenericComparer<T> : IComparer<T>

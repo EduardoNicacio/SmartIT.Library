@@ -71,7 +71,7 @@ namespace SmartIT.Library.Utility.Mail
                 SmtpMail.Send(objemail);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -139,7 +139,7 @@ namespace SmartIT.Library.Utility.Mail
                 SmtpMail.Send(objemail);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

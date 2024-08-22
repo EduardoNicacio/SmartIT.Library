@@ -37,13 +37,7 @@ namespace SmartIT.Library.Data.DAL
         public DaoBase()
         {
             // Get the active connection
-            ActiveConnectionAttribute activeCnn = DbHelper.GetActiveConnection(typeof(TEntity));
-
-            // Se não houver uma conexão ativa, levanta uam Exception.
-            if (activeCnn == null)
-            {
-                throw new ArgumentNullException("ActiveConnection", string.Format("A classe '{0}' não possui o ActiveConnection.", typeof(TEntity).ToString()));
-            }
+            ActiveConnectionAttribute activeCnn = DbHelper.GetActiveConnection(typeof(TEntity)) ?? throw new ArgumentNullException("ActiveConnection", string.Format("The class '{0}' does not contain the [ActiveConnection] annotation.", typeof(TEntity).ToString()));
 
             // Get the default instance of DbHelper
             this.DbHelper = DbHelper.GetInstance(activeCnn.Value, activeCnn.CommandTimeout);

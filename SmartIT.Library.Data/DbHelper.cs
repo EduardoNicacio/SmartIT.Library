@@ -40,7 +40,7 @@ namespace SmartIT.Library.Data
         private DbHelper(string connectionStringName, int commandTimeout)
         {
             if (ConfigurationManager.ConnectionStrings[connectionStringName] == null
-			 || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ToString()))
+             || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ToString()))
             {
                 throw new ArgumentException("Conexão não encontrada.");
             }

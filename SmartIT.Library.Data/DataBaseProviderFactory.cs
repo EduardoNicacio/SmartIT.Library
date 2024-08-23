@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Factory de conexıes com bases de dados.</summary>
+// <summary>Factory de conex√µes com bases de dados.</summary>
 
 namespace SmartIT.Library.Data
 {
@@ -15,12 +15,12 @@ namespace SmartIT.Library.Data
     using System.Data.SqlClient;
 
     /// <summary>
-    /// Factory de conexıes com bases de dados.
+    /// Factory de conex√µes com bases de dados.
     /// </summary>
     public static class DataBaseProviderFactory
     {
         /// <summary>
-        /// Retorna uma conexao baseado na chave definida no arquivo de configuraÁao.
+        /// Retorna uma conexao baseado na chave definida no arquivo de configura√ßao.
         /// </summary>
         /// <param name="connectionStringName">Nome da string de conexao.</param>
         /// <param name="providerName">Nome do provider para acesso.</param>
@@ -54,7 +54,7 @@ namespace SmartIT.Library.Data
         }
 
         /// <summary>
-        /// Retorna uma conexao baseado na chave definida no arquivo de configuraÁao.
+        /// Retorna uma conexao baseado na chave definida no arquivo de configura√ßao.
         /// </summary>
         /// <param name="connectionStringName">Nome da string de conexao.</param>
         /// <returns> Conexao referente a chave.</returns>
@@ -74,7 +74,7 @@ namespace SmartIT.Library.Data
         /// Retorna uma instancia concreta de um DataAdapter.
         /// </summary>
         /// <param name="connectionStringName">Nome da string de conexao.</param>
-        /// <returns> Inst‚ncia concreta de um DataAdapter.</returns>
+        /// <returns> Inst√¢ncia concreta de um DataAdapter.</returns>
         public static IDbDataAdapter CreateDataAdapter(string connectionStringName)
         {
             IDbDataAdapter dataAdapter = null;
@@ -107,7 +107,7 @@ namespace SmartIT.Library.Data
         /// Retorna uma instancia concreta de um DbCommand.
         /// </summary>
         /// <param name="connectionStringName">Nome da string de conexao.</param>
-        /// <param name="commandText">Comando SQL que ser· atribuido ao objeto DbCommand.</param>
+        /// <param name="commandText">Comando SQL que ser√° atribuido ao objeto DbCommand.</param>
         /// <returns> Objeto IDbCommand.</returns>
         public static IDbCommand CreateCommand(string connectionStringName, string commandText)
         {
@@ -136,7 +136,7 @@ namespace SmartIT.Library.Data
         }
 
         /// <summary>
-        /// Retorna o simbolo uilizado para criaÁao de parametros na consulta SQL.
+        /// Retorna o simbolo uilizado para cria√ßao de parametros na consulta SQL.
         /// </summary>
         /// <param name="providerName">Nome do provider.</param>
         /// <returns> String com o simbolo para o provider.</returns>
@@ -144,7 +144,7 @@ namespace SmartIT.Library.Data
         {
             string paramSymbol = null;
 
-            // Retorna o sÌmbolo do SQL conforme o nome do provider
+            // Retorna o s√≠mbolo do SQL conforme o nome do provider
             switch (providerName.ToLowerInvariant())
             {
                 // SQL Server - default
@@ -162,9 +162,7 @@ namespace SmartIT.Library.Data
                 case "oracle.dataaccess.client":
                     paramSymbol = ":";
                     break;
-                default:
-                    paramSymbol = "@";
-                    break;
+                default: break;
             }
 
             return paramSymbol;

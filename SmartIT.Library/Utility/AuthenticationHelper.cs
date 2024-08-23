@@ -30,7 +30,7 @@ namespace SmartIT.Library.Utility
 
             string windowsLogin = wi != null ? wi.Name : HttpContext.Current.User.Identity.Name;
 
-            int hasDomain = windowsLogin.IndexOfAny(new char[] {'\\'}, 1, windowsLogin.Length);
+            int hasDomain = windowsLogin.IndexOfAny(new char[] { '\\' }, 1, windowsLogin.Length);
             string domain = string.Empty;
 
             if (hasDomain > 0 && !string.IsNullOrWhiteSpace(windowsLogin))

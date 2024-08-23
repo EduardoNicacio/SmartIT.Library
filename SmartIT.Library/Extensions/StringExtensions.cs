@@ -7,6 +7,7 @@
 
 namespace SmartIT.Library.Extensions
 {
+    using System;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -21,7 +22,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string AdjustL(this string source)
         {
-            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Trim().ToLowerInvariant();
+            return string.IsNullOrWhiteSpace(source) ?
+                string.Empty :
+                source.Trim().ToLowerInvariant();
         }
 
         /// <summary>
@@ -31,7 +34,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string AdjustU(this string source)
         {
-            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Trim().ToUpperInvariant();
+            return string.IsNullOrWhiteSpace(source) ?
+                string.Empty :
+                source.Trim().ToUpperInvariant();
         }
 
         /// <summary>
@@ -41,7 +46,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Return string.</returns>
         public static string OnlyNumbers(this string str)
         {
-            return string.IsNullOrWhiteSpace(str) ? string.Empty : new Regex(@"[^\d]").Replace(str.Trim(), string.Empty);
+            return string.IsNullOrWhiteSpace(str) ?
+                string.Empty :
+                new Regex(@"[^\d]", RegexOptions.None, TimeSpan.FromMilliseconds(100)).Replace(str.Trim(), string.Empty);
         }
 
         /// <summary>
@@ -51,7 +58,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Return string.</returns>
         public static string RemoveSymbols(this string str)
         {
-            return string.IsNullOrWhiteSpace(str) ? string.Empty : new Regex(@"^[a-zA-Z0-9]+$").Replace(str.Trim(), string.Empty);
+            return string.IsNullOrWhiteSpace(str) ?
+                string.Empty :
+                new Regex(@"^[a-zA-Z0-9]+$", RegexOptions.None, TimeSpan.FromMilliseconds(100)).Replace(str.Trim(), string.Empty);
         }
 
         /// <summary>
@@ -97,7 +106,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToCleanCpf(this string source)
         {
-            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Replace(".", "").Replace("-", "").Replace("/", "").PadLeft(11, '0');
+            return string.IsNullOrWhiteSpace(source) ?
+                string.Empty :
+                source.Replace(".", "").Replace("-", "").Replace("/", "").PadLeft(11, '0');
         }
 
         /// <summary>
@@ -107,7 +118,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToCleanCnpj(this string source)
         {
-            return string.IsNullOrWhiteSpace(source) ? string.Empty : source.Replace(".", "").Replace("-", "").Replace("/", "").PadLeft(14, '0');
+            return string.IsNullOrWhiteSpace(source) ?
+                string.Empty :
+                source.Replace(".", "").Replace("-", "").Replace("/", "").PadLeft(14, '0');
         }
 
         /// <summary>
@@ -117,7 +130,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToZipCode(this string source)
         {
-            return string.IsNullOrWhiteSpace(source) ? "00000-000" : string.Format("{0}-{1}", source.Substring(0, 5), source.Substring(5, 3));
+            return string.IsNullOrWhiteSpace(source) ?
+                "00000-000" :
+                string.Format("{0}-{1}", source.Substring(0, 5), source.Substring(5, 3));
         }
 
         /// <summary>
@@ -127,7 +142,9 @@ namespace SmartIT.Library.Extensions
         /// <returns>Result string.</returns>
         public static string ToCleanZipCode(this string source)
         {
-            return string.IsNullOrWhiteSpace(source) ? "00000000" : source.Replace(".", string.Empty).Replace("-", string.Empty);
+            return string.IsNullOrWhiteSpace(source) ?
+                "00000000" :
+                source.Replace(".", string.Empty).Replace("-", string.Empty);
         }
 
         /// <summary>

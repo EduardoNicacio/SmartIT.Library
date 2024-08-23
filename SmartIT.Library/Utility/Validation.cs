@@ -22,7 +22,7 @@ namespace SmartIT.Library.Utility
         /// <returns> True if valid; false instead.</returns>
         public static bool IsNumber(string value)
         {
-            bool isValid = true;
+            bool isValid;
             try
             {
                 isValid = int.Parse(value) >= 0 || int.Parse(value) <= 0;
@@ -49,7 +49,7 @@ namespace SmartIT.Library.Utility
         /// <returns> True if valid; false instead.</returns>
         public static bool IsDate(string value)
         {
-            bool isValid = true;
+            bool isValid;
             try
             {
                 isValid = DateTime.Parse(value) >= DateTime.MinValue || DateTime.Parse(value) <= DateTime.MaxValue;
@@ -72,7 +72,7 @@ namespace SmartIT.Library.Utility
         /// <returns> True if valid; false instead.</returns>
         public static bool IsDecimal(string value)
         {
-            bool isValid = true;
+            bool isValid;
             try
             {
                 isValid = decimal.Parse(value) >= 0 || decimal.Parse(value) <= 0;
@@ -104,7 +104,7 @@ namespace SmartIT.Library.Utility
                 + @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
                 + @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+"
                 + @"[a-zA-Z]{2,}))$";
-            Regex re = new Regex(patternStrictEmail);
+            Regex re = new Regex(patternStrictEmail, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(100));
             return re.IsMatch(value);
         }
 
@@ -253,7 +253,7 @@ namespace SmartIT.Library.Utility
         /// <returns> True if valid; false instead.</returns>
         public static bool IsCep(string value)
         {
-            Regex regEx = new Regex("^[0-9]{5}-[0-9]{3}$");
+            Regex regEx = new Regex("^[0-9]{5}-[0-9]{3}$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(100));
             return regEx.IsMatch(value);
         }
     }

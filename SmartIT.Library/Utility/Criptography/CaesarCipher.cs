@@ -7,7 +7,7 @@
 
 namespace SmartIT.Library.Utility.Criptography
 {
-    using SmartIT.Library.Helper;
+    using SmartIT.Library.Helpers;
     using System.IO;
 
     /// <summary>

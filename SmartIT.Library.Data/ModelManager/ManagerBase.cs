@@ -23,8 +23,8 @@ namespace SmartIT.Library.Data.ModelManager
         protected ManagerBase()
         {
             EntityDb = new TEntityDb();
-            SearchCriteria = SearchCriteria != null ? SearchCriteria : new Dictionary<string, object>();
-            Values = Values != null ? Values : new Dictionary<string, object>();
+            SearchCriteria = SearchCriteria ?? new Dictionary<string, object>();
+            Values = Values ?? new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace SmartIT.Library.Data.ModelManager
         static ManagerBase()
         {
             EntityDb = new TEntityDb();
-            SearchCriteria = SearchCriteria != null ? SearchCriteria : new Dictionary<string, object>();
-            Values = Values != null ? Values : new Dictionary<string, object>();
+            SearchCriteria = SearchCriteria ?? new Dictionary<string, object>();
+            Values = Values ?? new Dictionary<string, object>();
         }
 
         /// <summary>

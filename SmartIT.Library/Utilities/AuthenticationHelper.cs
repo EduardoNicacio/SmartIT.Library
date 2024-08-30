@@ -10,6 +10,7 @@ namespace SmartIT.Library.Utilities
 	using System.Collections.Generic;
 	using System.Configuration;
 	using System.Security.Principal;
+	using System.Threading.Tasks;
 	using System.Web;
 
 	/// <summary>
@@ -18,7 +19,7 @@ namespace SmartIT.Library.Utilities
 	public static class AuthenticationHelper
 	{
 		/// <summary>
-		/// Get Windows user.
+		/// Gets the Windows user.
 		/// </summary>
 		/// <returns>Key-Value Pair.</returns>
 		public static KeyValuePair<bool, string> GetWindowsUser()
@@ -49,6 +50,15 @@ namespace SmartIT.Library.Utilities
 			result = new KeyValuePair<bool, string>(activeDirectoryUser, windowsLogin);
 
 			return result;
+		}
+
+		/// <summary>
+		/// Asynchronously gets the Windows user.
+		/// </summary>
+		/// <returns>Key-Value Pair.</returns>
+		public static Task<KeyValuePair<bool, string>> GetWindowsUserAsync() 
+		{
+			return Task.FromResult(GetWindowsUser());
 		}
 	}
 }

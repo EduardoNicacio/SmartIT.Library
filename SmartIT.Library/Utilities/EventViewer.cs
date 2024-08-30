@@ -8,9 +8,10 @@
 namespace SmartIT.Library.Utilities
 {
 	using System.Diagnostics;
+	using System.Threading.Tasks;
 
 	/// <summary>
-	/// Class that writes new entries into the Windows' Event system.
+	/// Class that creates new entries into the Windows' Event system.
 	/// </summary>
 	public static class EventViewer
 	{
@@ -44,13 +45,21 @@ namespace SmartIT.Library.Utilities
 				EventLog.CreateEventSource(sSource, sLog);
 			}
 
-			try
-			{
-				EventLog.WriteEntry(sSource, sEvent, sEntryType, eventID);
-			}
-			catch (System.ArgumentException) { }
-			catch (System.InvalidOperationException) { }
-			catch (System.ComponentModel.Win32Exception) { }
+			EventLog.WriteEntry(sSource, sEvent, sEntryType, eventID);
+		}
+
+		/// <summary>
+		/// Asynchrounously creates a new entry into the Windows Event system.
+		/// </summary>
+		/// <param name="source"> Application.</param>
+		/// <param name="log"> Log entry.</param>
+		/// <param name="message"> Log message.</param>
+		/// <param name="type"> Entry type (0 Information, 1 Warning, 2 Error).</param>
+		/// <param name="eventID"> Event ID.</param>
+		/// <returns>A Task.</returns>
+		public static async Task SetEventLogAsync(string source, string log, string message, byte type, int eventID) 
+		{
+			await Task.Run(() => SetEventLog(source, log, message, type, eventID));
 		}
 	}
 }

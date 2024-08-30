@@ -12,6 +12,7 @@ namespace SmartIT.Library.Utilities
 	using System.ComponentModel;
 	using System.Reflection;
 	using System.Text;
+	using System.Threading.Tasks;
 	using System.Web.UI.WebControls;
 
 	/// <summary>
@@ -20,11 +21,11 @@ namespace SmartIT.Library.Utilities
 	public static class Misc
 	{
 		/// <summary>
-		/// Limit a string to a certain number of chars.
+		/// Limits a string to a certain number of chars.
 		/// </summary>
 		/// <param name="value"> Input string.</param>
-		/// <param name="limit"> Limit of chars (greates than 0).</param>
-		/// <returns> Result string.</returns>
+		/// <param name="limit"> Limit of chars (greater than 0).</param>
+		/// <returns> Resulting string.</returns>
 		public static string LimitString(object value, int limit)
 		{
 			string str = value.ToString();
@@ -38,7 +39,18 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Retrieves the Description property given an Enum object.
+		/// Asynchronously limits a string to a certain number of chars.
+		/// </summary>
+		/// <param name="value"> Input string.</param>
+		/// <param name="limit"> Limit of chars (greater than 0).</param>
+		/// <returns> Resulting string.</returns>
+		public static async Task<string> LimiStringAsync(object value, int limit)
+		{
+			return await Task.Run(() => LimitString(value, limit));
+		}
+
+		/// <summary>
+		/// Retrieves the Description property for a given Enum object.
 		/// </summary>
 		/// <param name="value"> Enum object.</param>
 		/// <returns> The value of the Description property.</returns>
@@ -51,7 +63,17 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Retrieves the StringValue property given an Enum object.
+		/// Asynchronously retrieves the Description property for a given Enum object.
+		/// </summary>
+		/// <param name="value"> Enum object.</param>
+		/// <returns> The value of the Description property.</returns>
+		public static async Task<string> GetEnumDescriptionAsync(Enum value)
+		{
+			return await Task.Run(() => GetEnumDescription(value));
+		}
+
+		/// <summary>
+		/// Retrieves the StringValue property for a given Enum object.
 		/// </summary>
 		/// <param name="value"> Enum object.</param>
 		/// <returns> The value of the StringValue property.</returns>
@@ -72,11 +94,21 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Retrieves the Enum value given its StringValue property.
+		/// Asynchronously retrieves the StringValue property for a given Enum object.
+		/// </summary>
+		/// <param name="value"> Enum object.</param>
+		/// <returns> The value of the StringValue property.</returns>
+		public static async Task<string> GetEnumStringValueAsync(Enum value)
+		{
+			return await Task.Run(() => GetEnumStringValue(value));
+		}
+
+		/// <summary>
+		/// Returns an Enum object given its StringValue property.
 		/// </summary>
 		/// <param name="value"> StringValue value.</param>
 		/// <param name="enumType"> Enum type.</param>
-		/// <returns> Enum as object.</returns>
+		/// <returns> Enum object.</returns>
 		public static object GetEnumValue(string value, Type enumType)
 		{
 			foreach (FieldInfo fi in enumType.GetFields())
@@ -93,6 +125,17 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
+		/// Asynchronously returns an Enum object given its StringValue property.
+		/// </summary>
+		/// <param name="value"> StringValue value.</param>
+		/// <param name="enumType"> Enum type.</param>
+		/// <returns> Enum object.</returns>
+		public static async Task<object> GetEnumValueAsync(string value, Type enumType)
+		{
+			return await Task.Run(() => GetEnumValue(value, enumType));
+		}
+
+		/// <summary>
 		/// Converts a boolean value into "Active" or "Inactive" strings.
 		/// </summary>
 		/// <param name="value"> The input boolean.</param>
@@ -104,6 +147,16 @@ namespace SmartIT.Library.Utilities
 
 			bool v = Convert.ToBoolean(value);
 			return v ? A : I;
+		}
+
+		/// <summary>
+		/// Asynchronously converts a boolean value into "Active" or "Inactive" strings.
+		/// </summary>
+		/// <param name="value"> The input boolean.</param>
+		/// <returns> "Active", if the input boolean is true; "Inactive" instead.</returns>
+		public static async Task<string> GetBooleanToStatusAsync(object value)
+		{
+			return await Task.Run(() => GetBooleanToStatus(value));
 		}
 
 		/// <summary>
@@ -122,7 +175,17 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Clear all special chars for a given a string.
+		/// Asynchronously converts the string values "Active" or "Inactive" into their correspondent boolean values.
+		/// </summary>
+		/// <param name="value">The input string.</param>
+		/// <returns>True, if the input string is "Active"; false instead.</returns>
+		public static async Task<bool> GetStatusToBooleanAsync(string value)
+		{
+			return await Task.Run(() => GetStatusToBoolean(value));
+		}
+
+		/// <summary>
+		/// Clears all special chars for a given a string.
 		/// </summary>
 		/// <param name="value"> Input string.</param>
 		/// <returns> Output string, without special chars.</returns>
@@ -142,6 +205,16 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
+		/// Asynchronously clears all special chars for a given a string.
+		/// </summary>
+		/// <param name="value"> Input string.</param>
+		/// <returns> Output string, without special chars.</returns>
+		public static async Task<string> RemoveAccentsAsync(string value)
+		{
+			return await Task.Run(() => RemoveAccents(value));
+		}
+
+		/// <summary>
 		/// Converts a DateTime object into an UTC UNIX timestamp value.
 		/// </summary>
 		/// <param name="value"> Input DateTime.</param>
@@ -149,6 +222,16 @@ namespace SmartIT.Library.Utilities
 		public static double DateTimeToUnixTimestamp(DateTime value)
 		{
 			return (value - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).ToLocalTime()).TotalSeconds;
+		}
+
+		/// <summary>
+		/// Asynchronously converts a DateTime object into an UTC UNIX timestamp value.
+		/// </summary>
+		/// <param name="value"> Input DateTime.</param>
+		/// <returns> Output UTC DateTime (Unix format).</returns>
+		public static async Task<double> DateTimeToUnixTimestampAsync(DateTime value)
+		{
+			return await Task.Run(() => DateTimeToUnixTimestamp(value));
 		}
 
 		/// <summary>
@@ -166,6 +249,16 @@ namespace SmartIT.Library.Utilities
 				sResult.Append(string.Format("{0}={1}|", pInfo.Name, pInfo.GetValue(obj, null)));
 			}
 			return sResult.ToString();
+		}
+
+		/// <summary>
+		/// Asynchronously returns the class name and its properties.
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		/// <returns>The properties of an object.</returns>
+		public static async Task<string> GetClassPropertiesAsync(object obj)
+		{
+			return await Task.Run(() => GetClassProperties(obj));
 		}
 
 		/// <summary>
@@ -193,6 +286,27 @@ namespace SmartIT.Library.Utilities
 				age--;
 			}
 			return age;
+		}
+
+		/// <summary>
+		/// Asynchronously returns the age of a person by comparing its birth date with the current datetime.
+		/// </summary>
+		/// <param name="birthdate">Birth date.</param>
+		/// <returns>The age, in years.</returns>
+		public static async Task<int> ToAgeAsync(this DateTime birthdate)
+		{
+			return await Task.Run(() => ToAge(birthdate));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the age of a person by comparing its birth date with somewhere in time.
+		/// </summary>
+		/// <param name="birthdate">Birth date.</param>
+		/// <param name="referenceDate">Reference date.</param>
+		/// <returns>The age, in years.</returns>
+		public static async Task<int> ToAgeAsync(this DateTime birthdate, DateTime referenceDate)
+		{
+			return await Task.Run(() => ToAge(birthdate, referenceDate));
 		}
 
 		/// <summary>
@@ -230,7 +344,7 @@ namespace SmartIT.Library.Utilities
 			public SortDirection GenericSortDirection { get; set; }
 
 			/// <summary>
-			/// Compare two objects based on the given sorting expression and direction.
+			/// Compares two objects based on the given sorting expression and direction.
 			/// </summary>
 			/// <param name="x">Generic Type.</param>
 			/// <param name="y">Generic Type.</param> 
@@ -242,6 +356,17 @@ namespace SmartIT.Library.Utilities
 				IComparable obj2 = (IComparable)propertyInfo.GetValue(y, null);
 
 				return GenericSortDirection == SortDirection.Ascending ? obj1.CompareTo(obj2) : obj2.CompareTo(obj1);
+			}
+
+			/// <summary>
+			/// Asynchronously compares two objects based on the given sorting expression and direction.
+			/// </summary>
+			/// <param name="x">Generic Type.</param>
+			/// <param name="y">Generic Type.</param> 
+			/// <returns> Returns -1 if x lesser than y, 0 if the values are equal, 1 if y greater than x.</returns>
+			public async Task<int> CompareAsync(T x, T y)
+			{
+				return await Task.Run(() => Compare(x, y));
 			}
 		}
 	}

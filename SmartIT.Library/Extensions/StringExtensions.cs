@@ -9,6 +9,7 @@ namespace SmartIT.Library.Extensions
 {
 	using System;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 
 	/// <summary>
 	/// String extensions class.
@@ -28,6 +29,16 @@ namespace SmartIT.Library.Extensions
 		}
 
 		/// <summary>
+		/// Asynchronously ddjusts the source string to LowerCase.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> AdjustLAsync(this string source)
+		{
+			return await Task.Run(() => AdjustL(source));
+		}
+
+		/// <summary>
 		/// Adjusts the source string to UpperCase.
 		/// </summary>
 		/// <param name="source">Source string.</param>
@@ -40,27 +51,57 @@ namespace SmartIT.Library.Extensions
 		}
 
 		/// <summary>
-		/// Returns a number-only string.
+		/// Asynchronously adjusts the source string to UpperCase.
 		/// </summary>
-		/// <param name="str">Original string.</param>
-		/// <returns>Return string.</returns>
-		public static string OnlyNumbers(this string str)
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> AdjustUAsync(this string source)
 		{
-			return string.IsNullOrWhiteSpace(str) ?
+			return await Task.Run(() => AdjustU(source));
+		}
+
+		/// <summary>
+		/// Returns a numbers-only string.
+		/// </summary>
+		/// <param name="source">Original string.</param>
+		/// <returns>Return string.</returns>
+		public static string OnlyNumbers(this string source)
+		{
+			return string.IsNullOrWhiteSpace(source) ?
 				string.Empty :
-				new Regex(@"[^\d]", RegexOptions.None, TimeSpan.FromMilliseconds(100)).Replace(str.Trim(), string.Empty);
+				new Regex(@"[^\d]", RegexOptions.None, TimeSpan.FromMilliseconds(100)).Replace(source.Trim(), string.Empty);
+		}
+
+		/// <summary>
+		/// Asynchronously returns a numbers-only string.
+		/// </summary>
+		/// <param name="source">Original string.</param>
+		/// <returns>Return string.</returns>
+		public static async Task<string> OnlyNumbersAsync(this string source)
+		{
+			return await Task.Run(() => OnlyNumbers(source));
 		}
 
 		/// <summary>
 		/// Returns a formated string.
 		/// </summary>
-		/// <param name="str">Original string.</param>
+		/// <param name="source">Original string.</param>
 		/// <returns>Return string.</returns>
-		public static string RemoveSymbols(this string str)
+		public static string RemoveSymbols(this string source)
 		{
-			return string.IsNullOrWhiteSpace(str) ?
+			return string.IsNullOrWhiteSpace(source) ?
 				string.Empty :
-				new Regex(@"^[a-zA-Z0-9]+$", RegexOptions.None, TimeSpan.FromMilliseconds(100)).Replace(str.Trim(), string.Empty);
+				Regex.Replace(source, @"[^0-9a-zA-Z]+", string.Empty);
+		}
+
+		/// <summary>
+		/// Asynchronously returns a formated string.
+		/// </summary>
+		/// <param name="source">Original string.</param>
+		/// <returns>Return string.</returns>
+		public static async Task<string> RemoveSymbolsAsync(this string source)
+		{
+			return await Task.Run(() => RemoveSymbols(source));
 		}
 
 		/// <summary>
@@ -74,11 +115,21 @@ namespace SmartIT.Library.Extensions
 			{
 				return new string('0', 11);
 			}
-			if (source.Length >= 11)
+			if (source.Length > 11)
 			{
 				return source;
 			}
 			return source.PadLeft(11, '0').Substring(0, 3) + "." + source.Substring(3, 3) + "." + source.Substring(6, 3) + "-" + source.Substring(9, 2);
+		}
+
+		/// <summary>
+		/// Asynchronously converts the source string to the Brazilian CPF format with special chars.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> ToCpfAsync(this string source)
+		{
+			return await Task.Run(() => ToCpf(source));
 		}
 
 		/// <summary>
@@ -92,11 +143,21 @@ namespace SmartIT.Library.Extensions
 			{
 				return new string('0', 14);
 			}
-			if (source.Length >= 14)
+			if (source.Length > 14)
 			{
 				return source;
 			}
 			return source.PadLeft(14, '0').Substring(0, 2) + "." + source.Substring(2, 3) + "." + source.Substring(5, 3) + "/" + source.Substring(8, 4) + "-" + source.Substring(12, 2);
+		}
+
+		/// <summary>
+		/// Asynchronously converts the source string to the Brazilian CNPJ format with special chars.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> ToCnpjAsync(this string source)
+		{
+			return await Task.Run(() => ToCnpj(source));
 		}
 
 		/// <summary>
@@ -112,6 +173,16 @@ namespace SmartIT.Library.Extensions
 		}
 
 		/// <summary>
+		/// Asynchronously formats the source string to the Brazilian CPF format without special chars.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> ToCleanCpfAsync(this string source)
+		{
+			return await Task.Run(() => ToCleanCpf(source));
+		}
+
+		/// <summary>
 		/// Formats the source string to the Brazilian CNPJ format without special chars.
 		/// </summary>
 		/// <param name="source">Source string.</param>
@@ -121,6 +192,16 @@ namespace SmartIT.Library.Extensions
 			return string.IsNullOrWhiteSpace(source) ?
 				string.Empty :
 				source.Replace(".", "").Replace("-", "").Replace("/", "").PadLeft(14, '0');
+		}
+
+		/// <summary>
+		/// Asynchronously formats the source string to the Brazilian CNPJ format without special chars.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> ToCleanCnpjAsync(this string source)
+		{
+			return await Task.Run(() => ToCleanCnpj(source));
 		}
 
 		/// <summary>
@@ -136,6 +217,16 @@ namespace SmartIT.Library.Extensions
 		}
 
 		/// <summary>
+		/// Asynchronously formats the source string to the Brazilian ZIP code pattern with special char.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> ToZipCodeAsync(this string source)
+		{
+			return await Task.Run(() => ToZipCode(source));
+		}
+
+		/// <summary>
 		/// Formats the source string to the Brazilian ZIP code pattern without special char.
 		/// </summary>
 		/// <param name="source">Source string.</param>
@@ -145,6 +236,16 @@ namespace SmartIT.Library.Extensions
 			return string.IsNullOrWhiteSpace(source) ?
 				"00000000" :
 				source.Replace(".", string.Empty).Replace("-", string.Empty);
+		}
+
+		/// <summary>
+		/// Asynchronously formats the source string to the Brazilian ZIP code pattern without special char.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> ToCleanZipCodeAsync(this string source)
+		{
+			return await Task.Run(() => ToCleanZipCode(source));
 		}
 
 		/// <summary>
@@ -160,6 +261,17 @@ namespace SmartIT.Library.Extensions
 				return source.Length > length ? source.Substring(0, length) : source;
 			}
 			return string.Empty;
+		}
+
+		/// <summary>
+		/// Asynchronously truncates the source string to the indicated length.
+		/// </summary>
+		/// <param name="source">Source string.</param>
+		/// <param name="length">Number of chars to extract.</param>
+		/// <returns>Result string.</returns>
+		public static async Task<string> TruncateAsync(this string source, int length)
+		{
+			return await Task.Run(() => Truncate(source, length));
 		}
 	}
 }

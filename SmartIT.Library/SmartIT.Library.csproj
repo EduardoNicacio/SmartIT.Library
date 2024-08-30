@@ -106,6 +106,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>

@@ -8,6 +8,7 @@
 namespace SmartIT.Library.Utilities
 {
 	using System;
+	using System.Globalization;
 	using System.Text.RegularExpressions;
 
 	/// <summary>
@@ -50,9 +51,10 @@ namespace SmartIT.Library.Utilities
 		public static bool IsDate(string value)
 		{
 			bool isValid;
+
 			try
 			{
-				isValid = DateTime.Parse(value) >= DateTime.MinValue || DateTime.Parse(value) <= DateTime.MaxValue;
+				isValid = DateTime.Parse(value, CultureInfo.InvariantCulture) >= DateTime.MinValue || DateTime.Parse(value, CultureInfo.InvariantCulture) <= DateTime.MaxValue;
 			}
 			catch (ArgumentNullException)
 			{

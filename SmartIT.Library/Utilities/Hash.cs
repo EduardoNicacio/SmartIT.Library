@@ -11,9 +11,10 @@ namespace SmartIT.Library.Utilities
 	using System.IO;
 	using System.Security.Cryptography;
 	using System.Text;
+	using System.Threading.Tasks;
 
 	/// <summary>
-	/// Utility class to easily generate CRC16, CRC32, CRC64, MD5, SHA1, SHA256, SHA384 and SHA512 hashes.
+	/// Utility class to synchronously or asynchronously generate CRC16, CRC32, CRC64, MD5, SHA1, SHA256, SHA384 and SHA512 hashes.
 	/// </summary>
 	public static class Hash
 	{
@@ -40,6 +41,26 @@ namespace SmartIT.Library.Utilities
 				fileData = binaryReader.ReadBytes((int)stream.Length);
 			}
 			return Crc16.ComputeHash(fileData).ToString("x2");
+		}
+
+		/// <summary>
+		/// Asynchronously returns the CRC16 digest for the informed string.
+		/// </summary>
+		/// <param name="input">String de entrada.</param>
+		/// <returns>CRC16 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc16HashAsync(string input)
+		{
+			return await Task.Run(() => GetCrc16Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the CRC16 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns>CRC16 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc16HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetCrc16Hash(stream));
 		}
 
 		/// <summary>
@@ -73,14 +94,14 @@ namespace SmartIT.Library.Utilities
 		/// <summary>
 		/// Returns the CRC32 digest for the informed stream.
 		/// </summary>
-		/// <param name="input">Input stream.</param>
+		/// <param name="stream">Input stream.</param>
 		/// <returns>CRC32 digest in hexadecimal format.</returns>
-		public static string GetCrc32Hash(Stream input)
+		public static string GetCrc32Hash(Stream stream)
 		{
 			using (Crc32 crc32Hash = new Crc32())
 			{
 				// Convert the input stream to a byte array and compute the hash.
-				byte[] data = crc32Hash.ComputeHash(input);
+				byte[] data = crc32Hash.ComputeHash(stream);
 
 				// Create a new Stringbuilder to collect the bytes
 				// and create a string.
@@ -96,6 +117,26 @@ namespace SmartIT.Library.Utilities
 				// Return the hexadecimal string.
 				return sBuilder.ToString().ToUpperInvariant();
 			}
+		}
+
+		/// <summary>
+		/// Asynchronously returns the CRC32 digest for the informed string.
+		/// </summary>
+		/// <param name="input">Input string.</param>
+		/// <returns>CRC32 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc32HashAsync(string input)
+		{
+			return await Task.Run(() => GetCrc32Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the CRC32 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns>CRC32 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc32HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetCrc32Hash(stream));
 		}
 
 		/// <summary>
@@ -129,14 +170,14 @@ namespace SmartIT.Library.Utilities
 		/// <summary>
 		/// Returns the ISO-3309 compliant CRC64 digest for the informed stream.
 		/// </summary>
-		/// <param name="input">Input stream.</param>
+		/// <param name="stream">Input stream.</param>
 		/// <returns>ISO-3309 compliant CRC64 digest in hexadecimal format.</returns>
-		public static string GetCrc64Hash(Stream input)
+		public static string GetCrc64Hash(Stream stream)
 		{
 			using (Crc64Iso crc64Hash = new Crc64Iso())
 			{
 				// Convert the input stream to a byte array and compute the hash.
-				byte[] data = crc64Hash.ComputeHash(input);
+				byte[] data = crc64Hash.ComputeHash(stream);
 
 				// Create a new Stringbuilder to collect the bytes
 				// and create a string.
@@ -152,6 +193,26 @@ namespace SmartIT.Library.Utilities
 				// Return the hexadecimal string.
 				return sBuilder.ToString().ToUpperInvariant();
 			}
+		}
+
+		/// <summary>
+		/// Asynchronously returns the ISO-3309 compliant CRC64 digest for the informed string.
+		/// </summary>
+		/// <param name="input">Input string.</param>
+		/// <returns>ISO-3309 compliant CRC64 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc64HashAsync(string input)
+		{
+			return await Task.Run(() => GetCrc64Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the ISO-3309 compliant CRC64 digest for the informed string.
+		/// </summary>
+		/// <param name="stream">Input string.</param>
+		/// <returns>ISO-3309 compliant CRC64 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc64HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetCrc64Hash(stream));
 		}
 
 		/// <summary>
@@ -211,6 +272,26 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
+		/// Asynchronously returns the MD5 digest for the informed string.
+		/// </summary>
+		/// <param name="input"> Input string.</param>
+		/// <returns> MD5 digest in hexadecimal format.</returns>
+		public static async Task<string> GetMd5HashAsync(string input)
+		{
+			return await Task.Run(() => GetMd5Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the MD5 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns> MD5 digest in hexadecimal format.</returns>
+		public static async Task<string> GetMd5HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetMd5Hash(stream));
+		}
+
+		/// <summary>
 		/// Returns the RIPEMD160 digest for the informed string.
 		/// </summary>
 		/// <param name="input"> Input string.</param>
@@ -264,6 +345,26 @@ namespace SmartIT.Library.Utilities
 				// Return the hexadecimal string.
 				return sBuilder.ToString().ToUpperInvariant();
 			}
+		}
+
+		/// <summary>
+		/// Asynchronously returns the RIPEMD160 digest for the informed string.
+		/// </summary>
+		/// <param name="input"> Input string.</param>
+		/// <returns> RIPEMD160 digest in hexadecimal format.</returns>
+		public static async Task<string> GetRipeMd160HashAsync(string input)
+		{
+			return await Task.Run(() => GetRipeMd160Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the RIPEMD160 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns> RIPEMD160 digest in hexadecimal format.</returns>
+		public static async Task<string> GetRipeMd160HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetRipeMd160Hash(stream));
 		}
 
 		/// <summary>
@@ -323,6 +424,26 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
+		/// Asynchronously returns the SHA-1 digest for the informed string.
+		/// </summary>
+		/// <param name="input"> Input string.</param>
+		/// <returns> SHA-1 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha1HashAsync(string input)
+		{
+			return await Task.Run(() => GetSha1Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the SHA-1 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns> SHA-1 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha1HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetSha1Hash(stream));
+		}
+
+		/// <summary>
 		/// Returns the SHA-256 digest for the informed string.
 		/// </summary>
 		/// <param name="input"> Input string.</param>
@@ -376,6 +497,26 @@ namespace SmartIT.Library.Utilities
 				// Return the hexadecimal string.
 				return sBuilder.ToString().ToUpperInvariant();
 			}
+		}
+
+		/// <summary>
+		/// Asynchronously returns the SHA-256 digest for the informed string.
+		/// </summary>
+		/// <param name="input"> Input string.</param>
+		/// <returns> SHA-256 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha256HashAsync(string input)
+		{
+			return await Task.Run(() => GetSha256Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the SHA-256 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns> SHA-256 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha256HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetSha256Hash(stream));
 		}
 
 		/// <summary>
@@ -435,6 +576,26 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
+		/// Asynchronously returns the SHA-384 digest for the informed string.
+		/// </summary>
+		/// <param name="input"> Input string.</param>
+		/// <returns> SHA-384 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha384HashAsync(string input)
+		{
+			return await Task.Run(() => GetSha384Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the SHA-384 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns> SHA-384 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha384HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetSha384Hash(stream));
+		}
+
+		/// <summary>
 		/// Returns the SHA-512 digest for the informed string.
 		/// </summary>
 		/// <param name="input"> Input string.</param>
@@ -488,6 +649,26 @@ namespace SmartIT.Library.Utilities
 				// Return the hexadecimal string.
 				return sBuilder.ToString().ToUpperInvariant();
 			}
+		}
+
+		/// <summary>
+		/// Asynchronously returns the SHA-512 digest for the informed string.
+		/// </summary>
+		/// <param name="input"> Input string.</param>
+		/// <returns> SHA-512 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha512HashAsync(string input)
+		{
+			return await Task.Run(() => GetSha512Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the SHA-512 digest for the informed stream.
+		/// </summary>
+		/// <param name="stream">Input stream.</param>
+		/// <returns> SHA-512 digest in hexadecimal format.</returns>
+		public static async Task<string> GetSha512HashAsync(Stream stream)
+		{
+			return await Task.Run(() => GetSha512Hash(stream));
 		}
 	}
 }

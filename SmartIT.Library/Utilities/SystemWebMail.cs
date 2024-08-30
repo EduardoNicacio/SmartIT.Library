@@ -39,8 +39,6 @@ namespace SmartIT.Library.Utilities.Mail
 			string Body,
 #pragma warning disable CS0618 // Type or member is obsolete
 			MailPriority MailPriority,
-#pragma warning restore CS0618 // Type or member is obsolete
-#pragma warning disable CS0618 // Type or member is obsolete
 			System.Web.Mail.MailFormat MailFormat,
 #pragma warning restore CS0618 // Type or member is obsolete
 			string SmtpServer)
@@ -99,8 +97,6 @@ namespace SmartIT.Library.Utilities.Mail
 			string Body,
 #pragma warning disable CS0618 // Type or member is obsolete
 			MailPriority MailPriority,
-#pragma warning restore CS0618 // Type or member is obsolete
-#pragma warning disable CS0618 // Type or member is obsolete
 			System.Web.Mail.MailFormat MailFormat,
 #pragma warning restore CS0618 // Type or member is obsolete
 			string SmtpServer,

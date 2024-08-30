@@ -8,6 +8,7 @@
 namespace SmartIT.Library.Helpers
 {
 	using System.IO;
+	using System.Threading.Tasks;
 
 	/// <summary>
 	/// Stream helper static class.
@@ -26,6 +27,22 @@ namespace SmartIT.Library.Helpers
 				input.CopyTo(ms);
 				return ms.ToArray();
 			}
+		}
+
+		/// <summary>
+		/// Asynchronously converts a stream into a byte array.
+		/// </summary>
+		/// <param name="input">Input stream.</param>
+		/// <returns>Byte array.</returns>
+		public static Task<byte[]> StreamToByteArrayAsync(Stream input) 
+		{
+			byte[] result;
+			using (var ms = new MemoryStream())
+			{
+				input.CopyTo(ms);
+				result = ms.ToArray();
+			}
+			return Task.FromResult(result);
 		}
 	}
 }

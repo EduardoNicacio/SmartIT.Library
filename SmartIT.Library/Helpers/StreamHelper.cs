@@ -7,25 +7,25 @@
 
 namespace SmartIT.Library.Helpers
 {
-    using System.IO;
+	using System.IO;
 
-    /// <summary>
-    /// Stream helper static class.
-    /// </summary>
-    public static class StreamHelper
-    {
-        /// <summary>
-        /// Converts a stream into a byte array.
-        /// </summary>
-        /// <param name="input">Input stream.</param>
-        /// <returns>Byte array.</returns>
-        public static byte[] StreamToByteArray(Stream input)
-        {
-            using (var ms = new MemoryStream())
-            {
-                input.CopyTo(ms);
-                return ms.ToArray();
-            }
-        }
-    }
+	/// <summary>
+	/// Stream helper static class.
+	/// </summary>
+	public static class StreamHelper
+	{
+		/// <summary>
+		/// Converts a stream into a byte array.
+		/// </summary>
+		/// <param name="input">Input stream.</param>
+		/// <returns>Byte array.</returns>
+		public static byte[] StreamToByteArray(Stream input)
+		{
+			using (var ms = new MemoryStream())
+			{
+				input.CopyTo(ms);
+				return ms.ToArray();
+			}
+		}
+	}
 }

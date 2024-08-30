@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library", "SmartIT.Library\SmartIT.Library.csproj", "{E39543D1-AA80-4C1D-A7FE-B7761D445DD0}"
 EndProject
@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5B864E
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{296057C9-77AC-4FCB-8E4B-309CF016BB0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library.Tests", "SmartIT.Library.Tests\SmartIT.Library.Tests.csproj", "{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library.Data.Tests", "SmartIT.Library.Data.Tests\SmartIT.Library.Data.Tests.csproj", "{E7EB96C3-18DF-4599-B2B9-F156822E932D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,8 +34,23 @@ Global
 		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A85E5E26-8D3C-4547-B12D-4D461840C69F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7EB96C3-18DF-4599-B2B9-F156822E932D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7EB96C3-18DF-4599-B2B9-F156822E932D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7EB96C3-18DF-4599-B2B9-F156822E932D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7EB96C3-18DF-4599-B2B9-F156822E932D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A} = {296057C9-77AC-4FCB-8E4B-309CF016BB0B}
+		{E7EB96C3-18DF-4599-B2B9-F156822E932D} = {296057C9-77AC-4FCB-8E4B-309CF016BB0B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA0CF53C-E48B-4AFD-BFFB-38CDDF6F8304}
 	EndGlobalSection
 EndGlobal

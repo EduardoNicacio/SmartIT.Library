@@ -7,165 +7,165 @@
 
 namespace SmartIT.Library.Data
 {
-    using Oracle.DataAccess.Client;
-    using System;
-    using System.Configuration;
-    using System.Data;
-    using System.Data.OleDb;
-    using System.Data.SqlClient;
+	using Oracle.DataAccess.Client;
+	using System;
+	using System.Configuration;
+	using System.Data;
+	using System.Data.OleDb;
+	using System.Data.SqlClient;
 
-    /// <summary>
-    /// Factory de conexões com bases de dados.
-    /// </summary>
-    public static class DataBaseProviderFactory
-    {
-        /// <summary>
-        /// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
-        /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexao.</param>
-        /// <param name="providerName">Nome do provider para acesso.</param>
-        /// <returns> Conexao referente a chave.</returns>
-        public static IDbConnection CreateConnection(string connectionStringName, string providerName)
-        {
-            IDbConnection connection = null;
+	/// <summary>
+	/// Factory de conexões com bases de dados.
+	/// </summary>
+	public static class DataBaseProviderFactory
+	{
+		/// <summary>
+		/// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
+		/// </summary>
+		/// <param name="connectionStringName">Nome da string de conexao.</param>
+		/// <param name="providerName">Nome do provider para acesso.</param>
+		/// <returns> Conexao referente a chave.</returns>
+		public static IDbConnection CreateConnection(string connectionStringName, string providerName)
+		{
+			IDbConnection connection = null;
 
-            // Recupera a string de conexao
-            string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+			// Recupera a string de conexao
+			string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
 
-            // Cria a Conexao de acordo com o provider (SQL, Oracle, OleDb)
-            switch (providerName.ToLowerInvariant())
-            {
-                case "system.data.sqlclient":
-                    connection = new SqlConnection(connectionString);
-                    break;
+			// Cria a Conexao de acordo com o provider (SQL, Oracle, OleDb)
+			switch (providerName.ToLowerInvariant())
+			{
+				case "system.data.sqlclient":
+					connection = new SqlConnection(connectionString);
+					break;
 
-                case "system.data.oledb":
-                    connection = new OleDbConnection(connectionString);
-                    break;
+				case "system.data.oledb":
+					connection = new OleDbConnection(connectionString);
+					break;
 
-                case "oracle.dataaccess":
-                case "oracle.dataaccess.client":
-                    connection = new OracleConnection(connectionString);
-                    break;
-                default: break;
-            }
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
+					connection = new OracleConnection(connectionString);
+					break;
+				default: break;
+			}
 
-            return connection;
-        }
+			return connection;
+		}
 
-        /// <summary>
-        /// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
-        /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexao.</param>
-        /// <returns> Conexao referente a chave.</returns>
-        public static IDbConnection CreateConnection(string connectionStringName)
-        {
-            string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+		/// <summary>
+		/// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
+		/// </summary>
+		/// <param name="connectionStringName">Nome da string de conexao.</param>
+		/// <returns> Conexao referente a chave.</returns>
+		public static IDbConnection CreateConnection(string connectionStringName)
+		{
+			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
-            if (string.IsNullOrEmpty(providerName))
-            {
-                throw new ArgumentNullException("Attribute 'ProviderName' not defined for the connection string '" + connectionStringName + "' in the configuration file.");
-            }
+			if (string.IsNullOrEmpty(providerName))
+			{
+				throw new ArgumentNullException("Attribute 'ProviderName' not defined for the connection string '" + connectionStringName + "' in the configuration file.");
+			}
 
-            return CreateConnection(connectionStringName, providerName);
-        }
+			return CreateConnection(connectionStringName, providerName);
+		}
 
-        /// <summary>
-        /// Retorna uma instancia concreta de um DataAdapter.
-        /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexao.</param>
-        /// <returns> Instância concreta de um DataAdapter.</returns>
-        public static IDbDataAdapter CreateDataAdapter(string connectionStringName)
-        {
-            IDbDataAdapter dataAdapter = null;
+		/// <summary>
+		/// Retorna uma instancia concreta de um DataAdapter.
+		/// </summary>
+		/// <param name="connectionStringName">Nome da string de conexao.</param>
+		/// <returns> Instância concreta de um DataAdapter.</returns>
+		public static IDbDataAdapter CreateDataAdapter(string connectionStringName)
+		{
+			IDbDataAdapter dataAdapter = null;
 
-            // Recupera o nome do Provider
-            string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+			// Recupera o nome do Provider
+			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
-            // Cria um DataAdapter de acordo com o provider utilizado
-            switch (providerName.ToLowerInvariant())
-            {
-                case "system.data.sqlclient":
-                    dataAdapter = new SqlDataAdapter();
-                    break;
+			// Cria um DataAdapter de acordo com o provider utilizado
+			switch (providerName.ToLowerInvariant())
+			{
+				case "system.data.sqlclient":
+					dataAdapter = new SqlDataAdapter();
+					break;
 
-                case "system.data.oledb":
-                    dataAdapter = new OleDbDataAdapter();
-                    break;
+				case "system.data.oledb":
+					dataAdapter = new OleDbDataAdapter();
+					break;
 
-                case "oracle.dataaccess":
-                case "oracle.dataaccess.client":
-                    dataAdapter = new OracleDataAdapter();
-                    break;
-                default: break;
-            }
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
+					dataAdapter = new OracleDataAdapter();
+					break;
+				default: break;
+			}
 
-            return dataAdapter;
-        }
+			return dataAdapter;
+		}
 
-        /// <summary>
-        /// Retorna uma instancia concreta de um DbCommand.
-        /// </summary>
-        /// <param name="connectionStringName">Nome da string de conexao.</param>
-        /// <param name="commandText">Comando SQL que será atribuido ao objeto DbCommand.</param>
-        /// <returns> Objeto IDbCommand.</returns>
-        public static IDbCommand CreateCommand(string connectionStringName, string commandText)
-        {
-            IDbCommand command = null;
-            string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+		/// <summary>
+		/// Retorna uma instancia concreta de um DbCommand.
+		/// </summary>
+		/// <param name="connectionStringName">Nome da string de conexao.</param>
+		/// <param name="commandText">Comando SQL que será atribuido ao objeto DbCommand.</param>
+		/// <returns> Objeto IDbCommand.</returns>
+		public static IDbCommand CreateCommand(string connectionStringName, string commandText)
+		{
+			IDbCommand command = null;
+			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
-            // Cria o command correspondente ao nome do Provider (SQL, Oracle ou OleDb)
-            switch (providerName.ToLowerInvariant())
-            {
-                case "system.data.sqlclient":
-                    command = new SqlCommand(commandText);
-                    break;
+			// Cria o command correspondente ao nome do Provider (SQL, Oracle ou OleDb)
+			switch (providerName.ToLowerInvariant())
+			{
+				case "system.data.sqlclient":
+					command = new SqlCommand(commandText);
+					break;
 
-                case "system.data.oledb":
-                    command = new OleDbCommand(commandText);
-                    break;
+				case "system.data.oledb":
+					command = new OleDbCommand(commandText);
+					break;
 
-                case "oracle.dataaccess":
-                case "oracle.dataaccess.client":
-                    command = new OracleCommand(commandText);
-                    break;
-                default: break;
-            }
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
+					command = new OracleCommand(commandText);
+					break;
+				default: break;
+			}
 
-            return command;
-        }
+			return command;
+		}
 
-        /// <summary>
-        /// Retorna o simbolo uilizado para criaçao de parametros na consulta SQL.
-        /// </summary>
-        /// <param name="providerName">Nome do provider.</param>
-        /// <returns> String com o simbolo para o provider.</returns>
-        public static string GetParamSymbol(string providerName)
-        {
-            string paramSymbol = null;
+		/// <summary>
+		/// Retorna o simbolo uilizado para criaçao de parametros na consulta SQL.
+		/// </summary>
+		/// <param name="providerName">Nome do provider.</param>
+		/// <returns> String com o simbolo para o provider.</returns>
+		public static string GetParamSymbol(string providerName)
+		{
+			string paramSymbol = null;
 
-            // Retorna o símbolo do SQL conforme o nome do provider
-            switch (providerName.ToLowerInvariant())
-            {
-                // SQL Server - default
-                case "system.data.sqlclient":
-                    paramSymbol = "@";
-                    break;
+			// Retorna o símbolo do SQL conforme o nome do provider
+			switch (providerName.ToLowerInvariant())
+			{
+				// SQL Server - default
+				case "system.data.sqlclient":
+					paramSymbol = "@";
+					break;
 
-                // OleDB
-                case "system.data.oledb":
-                    paramSymbol = "?";
-                    break;
+				// OleDB
+				case "system.data.oledb":
+					paramSymbol = "?";
+					break;
 
-                // Oracle Data Access
-                case "oracle.dataaccess":
-                case "oracle.dataaccess.client":
-                    paramSymbol = ":";
-                    break;
-                default: break;
-            }
+				// Oracle Data Access
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
+					paramSymbol = ":";
+					break;
+				default: break;
+			}
 
-            return paramSymbol;
-        }
-    }
+			return paramSymbol;
+		}
+	}
 }

@@ -89,7 +89,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public async Task Verify_GeneratePasswordAsync_LengthUnderflow()
+		public Task Verify_GeneratePasswordAsync_LengthUnderflow()
 		{
 			// Arrange
 
@@ -97,6 +97,7 @@ namespace SmartIT.Library.Tests.Helpers
 
 			// Assert
 			Assert.ThrowsAsync<ArgumentException>(async () => await PasswordHelper.GeneratePasswordAsync(0));
+			return Task.CompletedTask;
 		}
 
 		[Test]
@@ -111,7 +112,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public async Task Verify_GeneratePasswordAsync_LengthOverflow()
+		public Task Verify_GeneratePasswordAsync_LengthOverflow()
 		{
 			// Arrange
 
@@ -119,6 +120,7 @@ namespace SmartIT.Library.Tests.Helpers
 
 			// Assert
 			Assert.ThrowsAsync<ArgumentException>(async () => await PasswordHelper.GeneratePasswordAsync(129));
+			return Task.CompletedTask;
 		}
 
 		[Test]

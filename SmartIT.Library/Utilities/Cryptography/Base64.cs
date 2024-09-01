@@ -38,11 +38,11 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <summary>
 		/// Encodes a Stream using the Base64 algorithm.
 		/// </summary>
-		/// <param name="input">Input stream.</param>
+		/// <param name="stream">Input stream.</param>
 		/// <returns>Base64 encoded string.</returns>
-		public static string Base64Encode(Stream input)
+		public static string Base64Encode(Stream stream)
 		{
-			return System.Convert.ToBase64String(StreamHelper.StreamToByteArray(input));
+			return System.Convert.ToBase64String(StreamHelper.StreamToByteArray(stream));
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>Plain string.</returns>
 		public static string Base64Decode(string input)
 		{
-			byte[] base64EncodedBytes = System.Convert.FromBase64String(input);
+			var base64EncodedBytes = System.Convert.FromBase64String(input);
 			return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 		}
 	}

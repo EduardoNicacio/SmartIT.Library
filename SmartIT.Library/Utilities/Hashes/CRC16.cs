@@ -5,12 +5,12 @@
 // <date>26/05/2016</date>
 // <summary>CRC16 implementation.</summary>
 
-namespace SmartIT.Library.Utilities.Cryptography
+namespace SmartIT.Library.Utilities.Hashes
 {
 	using System;
 
 	/// <summary>
-	/// CRC16 implementation class.
+	/// CRC16-ARC implementation class.
 	/// </summary>
 	public static class Crc16
 	{

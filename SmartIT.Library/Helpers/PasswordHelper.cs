@@ -11,19 +11,18 @@ namespace SmartIT.Library.Helpers
 	using System;
 	using System.Security.Cryptography;
 	using System.Threading.Tasks;
-	using System.Web.UI.MobileControls.Adapters;
 
 	/// <summary>
 	/// A password helper class.
 	/// </summary>
 	public class PasswordHelper
 	{
-		private static char[] startingChars = new char[2] { '<', '&' };
-		private static char[] punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
+		private static char[] _startingChars = new char[2] { '<', '&' };
+		private static char[] _punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
 		private readonly string _password;
 		private readonly string _salt;
 		private readonly string _pepper;
-		
+
 		private const string PEPPER = "|c^.:?m)#q+(]V;}[Z(})/?-;$]+@!|^/8*_9.$&.&!(?=^!Wx?[@%+&-@b;)>N;&+*w[>$2+_$%l;+h+#zhs^{e?&=*(}X_%|:}]]}*X[+)Er%J/-=;Q0{:+=%c7:^$/:_)hxF+*){2|;(>:*N^+!_&|}B.$})?[V=[+v({-:-@9-Z$j?.[-}(@MHx+}(}Mz_S(7#4}{..>@G|!+++{+C=|_}=+r^@&$0;L*|kz-;$++/N3$=}?;%&]]*/^#^!+:*{]-x^$g{|?*))_=B@^.#%L;g|+)#[nq}?y(_(m;]S^I$*q=l-[_/?}&-!k^(+[_{Z|&:^%!_)!=p%=)=wYd-#.UP$%s1{*l%+[%?!c+7=@=.;{+M)!^}&d/]{];(&}";
 
 		/// <summary>
@@ -103,10 +102,10 @@ namespace SmartIT.Library.Helpers
 		/// Generates a random password of the specified length.
 		/// </summary>
 		/// <param name="length">The number of characters in the generated password. The length must be between 1 and 128 characters.</param>
-		/// <param name="numberOfNonAlphanumericCharacters">The minimum number of non-alphanumeric characters (such as @, #, !, %, &, and so on) in the generated password.</param>
+		/// <param name="numberOfNonAlphanumericCharacters">The minimum number of non-alphanumeric characters (such as @, #, !, %, and so on) in the generated password.</param>
 		/// <returns>A random password of the specified length.</returns>
 		/// <exception cref="ArgumentException"></exception>
-		static string GeneratePasswordInternal(int length, int numberOfNonAlphanumericCharacters) 
+		static string GeneratePasswordInternal(int length, int numberOfNonAlphanumericCharacters)
 		{
 			if (length < 1 || length > 128)
 			{
@@ -147,7 +146,7 @@ namespace SmartIT.Library.Helpers
 						continue;
 					}
 
-					array2[i] = punctuations[num2 - 62];
+					array2[i] = _punctuations[num2 - 62];
 					num++;
 				}
 
@@ -162,7 +161,7 @@ namespace SmartIT.Library.Helpers
 							num3 = random.Next(0, length);
 						}
 						while (!char.IsLetterOrDigit(array2[num3]));
-						array2[num3] = punctuations[random.Next(0, punctuations.Length)];
+						array2[num3] = _punctuations[random.Next(0, _punctuations.Length)];
 					}
 				}
 
@@ -184,7 +183,7 @@ namespace SmartIT.Library.Helpers
 			int startIndex = 0;
 			while (true)
 			{
-				int num = s.IndexOfAny(startingChars, startIndex);
+				int num = s.IndexOfAny(_startingChars, startIndex);
 				if (num < 0)
 				{
 					return false;

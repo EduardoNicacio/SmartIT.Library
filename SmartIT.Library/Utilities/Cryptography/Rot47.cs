@@ -8,6 +8,7 @@
 namespace SmartIT.Library.Utilities.Cryptography
 {
 	using Helpers;
+	using System;
 	using System.IO;
 	using System.Text;
 
@@ -43,11 +44,18 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>Encoded string.</returns>
 		public static string Rot47Encode(string input)
 		{
+			if (string.IsNullOrWhiteSpace(input))
+			{
+				throw new ArgumentNullException(nameof(input));
+			}
+
 			StringBuilder RetStr = new StringBuilder(string.Empty);
+			
 			foreach (char c in input)
 			{
 				RetStr.Append(Rot47Shifter(c).ToString());
 			}
+			
 			return RetStr.ToString();
 		}
 
@@ -78,6 +86,11 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>The plain string.</returns>
 		public static string Rot47Decode(string input)
 		{
+			if (string.IsNullOrWhiteSpace(input))
+			{
+				throw new ArgumentNullException(nameof(input));
+			}
+
 			return Rot47Encode(input);
 		}
 

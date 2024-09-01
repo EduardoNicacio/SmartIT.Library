@@ -5,7 +5,7 @@
 // <date>26/05/2016</date>
 // <summary>CRC64 implementation. Includes ISO complient solution.</summary>
 
-namespace SmartIT.Library.Utilities.Cryptography
+namespace SmartIT.Library.Utilities.Hashes
 {
 	using System;
 	using System.Collections.Generic;
@@ -45,6 +45,11 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <param name="seed">Custom seed.</param>
 		public Crc64(UInt64 polynomial, UInt64 seed)
 		{
+			if (!BitConverter.IsLittleEndian)
+			{
+				throw new PlatformNotSupportedException("Not supported on Big Endian processors");
+			}
+
 			table = InitializeTable(polynomial);
 			this.seed = seed;
 			this.hash = seed;
@@ -97,13 +102,13 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>Unsigned 64bits integer.</returns>
 		protected static UInt64 CalculateHash(UInt64 seed, UInt64[] table, IList<byte> buffer, int start, int size)
 		{
-			var tmpHash = seed;
+			var hash = seed;
 			for (var i = start; i < start + size; i++)
 				unchecked
 				{
-					tmpHash = (tmpHash >> 8) ^ table[(buffer[i] ^ tmpHash) & 0xff];
+					hash = (hash >> 8) ^ table[(buffer[i] ^ hash) & 0xff];
 				}
-			return tmpHash;
+			return hash;
 		}
 
 		/// <summary>
@@ -148,10 +153,10 @@ namespace SmartIT.Library.Utilities.Cryptography
 		protected static ulong[] CreateTable(ulong polynomial)
 		{
 			var createTable = new UInt64[256];
-			for (var i = 0; i < 256; ++i)
+			for (var i = 0; i < 256; i++)
 			{
 				var entry = (UInt64)i;
-				for (var j = 0; j < 8; ++j)
+				for (var j = 0; j < 8; j++)
 				{
 					if ((entry & 1) == 1)
 					{

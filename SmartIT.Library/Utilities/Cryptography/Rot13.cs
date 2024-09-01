@@ -21,7 +21,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>ROT13 encoded string.</returns>
 		public static string Rot13Encode(string input)
 		{
-			return CaesarCipher.Caesar(input, 13);
+			return CaesarCipher.Encipher(input, 13);
 		}
 
 		/// <summary>
@@ -31,7 +31,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>ROT13 encoded string.</returns>
 		public static string Rot13Encode(Stream input)
 		{
-			return CaesarCipher.Caesar(input, 13);
+			return CaesarCipher.Encipher(input, 13);
 		}
 
 		/// <summary>
@@ -41,7 +41,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>ROT13 encoded string.</returns>
 		public static string Rot13Encode(byte[] input)
 		{
-			return CaesarCipher.Caesar(input, 13);
+			return CaesarCipher.Encipher(input, 13);
 		}
 
 		/// <summary>

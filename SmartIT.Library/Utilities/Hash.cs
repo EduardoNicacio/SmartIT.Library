@@ -7,7 +7,7 @@
 
 namespace SmartIT.Library.Utilities
 {
-	using SmartIT.Library.Utilities.Cryptography;
+	using SmartIT.Library.Utilities.Hashes;
 	using System.IO;
 	using System.Security.Cryptography;
 	using System.Text;
@@ -19,17 +19,17 @@ namespace SmartIT.Library.Utilities
 	public static class Hash
 	{
 		/// <summary>
-		/// Returns the CRC16 digest for the informed string.
+		/// Returns the CRC16-ARC digest for the informed string.
 		/// </summary>
 		/// <param name="input">String de entrada.</param>
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
 		public static string GetCrc16Hash(string input)
 		{
-			return Crc16.ComputeHash(Encoding.UTF8.GetBytes(input)).ToString("x2");
+			return Crc16.ComputeHash(Encoding.UTF8.GetBytes(input)).ToString("x2").ToUpperInvariant();
 		}
 
 		/// <summary>
-		/// Returns the CRC16 digest for the informed stream.
+		/// Returns the CRC16-ARC digest for the informed stream.
 		/// </summary>
 		/// <param name="stream">Input stream.</param>
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
@@ -40,11 +40,11 @@ namespace SmartIT.Library.Utilities
 			{
 				fileData = binaryReader.ReadBytes((int)stream.Length);
 			}
-			return Crc16.ComputeHash(fileData).ToString("x2");
+			return Crc16.ComputeHash(fileData).ToString("x2").ToUpperInvariant();
 		}
 
 		/// <summary>
-		/// Asynchronously returns the CRC16 digest for the informed string.
+		/// Asynchronously returns the CRC16-ARC digest for the informed string.
 		/// </summary>
 		/// <param name="input">String de entrada.</param>
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
@@ -54,7 +54,7 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Asynchronously returns the CRC16 digest for the informed stream.
+		/// Asynchronously returns the CRC16-ARC digest for the informed stream.
 		/// </summary>
 		/// <param name="stream">Input stream.</param>
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
@@ -289,82 +289,6 @@ namespace SmartIT.Library.Utilities
 		public static async Task<string> GetMd5HashAsync(Stream stream)
 		{
 			return await Task.Run(() => GetMd5Hash(stream));
-		}
-
-		/// <summary>
-		/// Returns the RIPEMD160 digest for the informed string.
-		/// </summary>
-		/// <param name="input"> Input string.</param>
-		/// <returns> RIPEMD160 digest in hexadecimal format.</returns>
-		public static string GetRipeMd160Hash(string input)
-		{
-			using (RIPEMD160 ripeMd160Hash = RIPEMD160.Create())
-			{
-				// Convert the input string to a byte array and compute the hash.
-				byte[] data = ripeMd160Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-				// Create a new Stringbuilder to collect the bytes
-				// and create a string.
-				StringBuilder sBuilder = new StringBuilder();
-
-				// Loop through each byte of the hashed data 
-				// and format each one as a hexadecimal string.
-				for (int i = 0; i < data.Length; i++)
-				{
-					sBuilder.Append(data[i].ToString("x2"));
-				}
-
-				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
-			}
-		}
-
-		/// <summary>
-		/// Returns the RIPEMD160 digest for the informed stream.
-		/// </summary>
-		/// <param name="stream">Input stream.</param>
-		/// <returns> RIPEMD160 digest in hexadecimal format.</returns>
-		public static string GetRipeMd160Hash(Stream stream)
-		{
-			using (RIPEMD160 ripeMd160Hash = RIPEMD160.Create())
-			{
-				// Convert the input stream to a byte array and compute the hash.
-				byte[] data = ripeMd160Hash.ComputeHash(stream);
-
-				// Create a new Stringbuilder to collect the bytes
-				// and create a string.
-				StringBuilder sBuilder = new StringBuilder();
-
-				// Loop through each byte of the hashed data 
-				// and format each one as a hexadecimal string.
-				for (int i = 0; i < data.Length; i++)
-				{
-					sBuilder.Append(data[i].ToString("x2"));
-				}
-
-				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
-			}
-		}
-
-		/// <summary>
-		/// Asynchronously returns the RIPEMD160 digest for the informed string.
-		/// </summary>
-		/// <param name="input"> Input string.</param>
-		/// <returns> RIPEMD160 digest in hexadecimal format.</returns>
-		public static async Task<string> GetRipeMd160HashAsync(string input)
-		{
-			return await Task.Run(() => GetRipeMd160Hash(input));
-		}
-
-		/// <summary>
-		/// Asynchronously returns the RIPEMD160 digest for the informed stream.
-		/// </summary>
-		/// <param name="stream">Input stream.</param>
-		/// <returns> RIPEMD160 digest in hexadecimal format.</returns>
-		public static async Task<string> GetRipeMd160HashAsync(Stream stream)
-		{
-			return await Task.Run(() => GetRipeMd160Hash(stream));
 		}
 
 		/// <summary>

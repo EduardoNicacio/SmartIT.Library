@@ -22,6 +22,10 @@ namespace SmartIT.Library.Helpers
 		/// <returns>Byte array.</returns>
 		public static byte[] StreamToByteArray(Stream input)
 		{
+			if (input is null) 
+			{
+				throw new System.ArgumentNullException(nameof(input));
+			}
 			using (var ms = new MemoryStream())
 			{
 				input.CopyTo(ms);
@@ -36,13 +40,7 @@ namespace SmartIT.Library.Helpers
 		/// <returns>Byte array.</returns>
 		public static Task<byte[]> StreamToByteArrayAsync(Stream input) 
 		{
-			byte[] result;
-			using (var ms = new MemoryStream())
-			{
-				input.CopyTo(ms);
-				result = ms.ToArray();
-			}
-			return Task.FromResult(result);
+			return Task.Run(() => StreamToByteArray(input));
 		}
 	}
 }

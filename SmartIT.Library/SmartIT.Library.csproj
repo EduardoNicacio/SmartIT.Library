@@ -118,9 +118,9 @@
     <Compile Include="Utilities\AuthenticationHelper.cs" />
     <Compile Include="Utilities\Cryptography\Base64.cs" />
     <Compile Include="Utilities\Cryptography\CaesarCipher.cs" />
-    <Compile Include="Utilities\Cryptography\CRC16.cs" />
-    <Compile Include="Utilities\Cryptography\CRC32.cs" />
-    <Compile Include="Utilities\Cryptography\CRC64.cs" />
+    <Compile Include="Utilities\Hashes\CRC16.cs" />
+    <Compile Include="Utilities\Hashes\CRC32.cs" />
+    <Compile Include="Utilities\Hashes\CRC64.cs" />
     <Compile Include="Utilities\Cryptography\Rot13.cs" />
     <Compile Include="Utilities\Cryptography\Rot47.cs" />
     <Compile Include="Utilities\EnumToList.cs" />

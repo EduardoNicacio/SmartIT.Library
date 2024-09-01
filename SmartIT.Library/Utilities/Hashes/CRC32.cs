@@ -5,7 +5,7 @@
 // <date>26/05/2016</date>
 // <summary>CRC32 implementation.</summary>
 
-namespace SmartIT.Library.Utilities.Cryptography
+namespace SmartIT.Library.Utilities.Hashes
 {
 	using System;
 	using System.Collections.Generic;

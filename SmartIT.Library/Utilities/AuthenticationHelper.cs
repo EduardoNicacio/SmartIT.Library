@@ -56,9 +56,9 @@ namespace SmartIT.Library.Utilities
 		/// Asynchronously gets the Windows user.
 		/// </summary>
 		/// <returns>Key-Value Pair.</returns>
-		public static Task<KeyValuePair<bool, string>> GetWindowsUserAsync() 
+		public static Task<KeyValuePair<bool, string>> GetWindowsUserAsync()
 		{
-			return Task.FromResult(GetWindowsUser());
+			return Task.Run(() => GetWindowsUser());
 		}
 	}
 }

@@ -4,22 +4,22 @@ Main features:
 
 #SmartIT.Library
 
-1. String Extensions: provides the inumerous string formatters, specially for the Brazilian standards;
-2. Criptography
-  2.a. Base64: Implements the Base64 encoder and decoder;
-  2.b. CaesarCipher: Implements the Caesar algorithm;
-  2.c. CRC16: implements the CRC16 hash generation;
-  2.d. CRC32: implements the CRC32 hash generation;
-  2.e. CRC64: implements the CRC64 hash generation;
-  2.f. Rot13: implements the ROT13 [Caesar(string, 13)] algorithm;
-  2.f. Rot47: implements the ROT47 algorithm;
-6. AuthenticationHelper: provides methods to authenticate users on Active Directory;
-7. EnumToList: converts an Enum class to a list;
+1. String Extensions: provides the inumerous string formatters, specially for the Brazilian standards (CPF, CNPJ, Zip Code, etc.);
+2. Criptography<br>
+  2.a. Base64: Implements the Base64 encoder and decoder;<br>
+  2.b. CaesarCipher: Implements the Caesar algorithm;<br>
+  2.c. CRC16: implements the CRC16 hash generation;<br>
+  2.d. CRC32: implements the CRC32 hash generation;<br>
+  2.e. CRC64: implements the CRC64 hash generation;<br>
+  2.f. Rot13: implements the ROT13 [Caesar(string, 13)] algorithm;<br>
+  2.g. Rot47: implements the ROT47 algorithm;<br>
+6. AuthenticationHelper: provides methods to authenticate users in the MS Active Directory;
+7. EnumToList: converts an Enum type to a value list;
 8. EventViewer: provides methods to white log messages into Windows Event Log System;
 9. ExportToExcel: provides funcionality to easily export a data source to an Excel file;
-10. Hash: provides methods to easily generate CRC16, CRC32, CRC64, MD5, SHA1, SHA256, SHA384 and SHA512 hashes from either strings or byte-streams;
+10. Hash: provides methods to easily generate CRC16, CRC32, CRC64, MD5, SHA1, SHA256, SHA384 and SHA512 hashes from either strings or memory streams;
 11. Misc: provides miscelaneous methods to limit strings, get Enum descriptions, get Enum stringvalue attribute, remove special chars, format date and time to Unix format, get a class properties through reflection, and a generic comparer class that helps in GridView sorting;
-12. StringValueAttribute: adds a new attribute to classes or enum types (StringValue);
+12. StringValueAttribute: adds a new attribute to classes or Enum types (StringValue);
 13. SystemNetMail: an implementation to easily send mail messages using the System.Net.Mail class;
 14. SystemWebMail: an implementation to easily send mail messages using the (deprecated) System.Web.Mail class;
 15. Validation: provides methods to many types of validations (IsNumber, IsDate, IsDecimal, IsEmail, etc);

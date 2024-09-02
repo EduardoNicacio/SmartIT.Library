@@ -85,7 +85,7 @@ namespace SmartIT.Library.Tests.Helpers
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentException>(() => PasswordHelper.GeneratePassword(0));
+			Assert.Throws<ArgumentOutOfRangeException>(() => PasswordHelper.GeneratePassword(0));
 		}
 
 		[Test]
@@ -96,7 +96,7 @@ namespace SmartIT.Library.Tests.Helpers
 			// Act
 
 			// Assert
-			Assert.ThrowsAsync<ArgumentException>(async () => await PasswordHelper.GeneratePasswordAsync(0));
+			Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await PasswordHelper.GeneratePasswordAsync(0));
 			return Task.CompletedTask;
 		}
 
@@ -108,7 +108,7 @@ namespace SmartIT.Library.Tests.Helpers
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentException>(() => PasswordHelper.GeneratePassword(129));
+			Assert.Throws<ArgumentOutOfRangeException>(() => PasswordHelper.GeneratePassword(129));
 		}
 
 		[Test]
@@ -119,7 +119,7 @@ namespace SmartIT.Library.Tests.Helpers
 			// Act
 
 			// Assert
-			Assert.ThrowsAsync<ArgumentException>(async () => await PasswordHelper.GeneratePasswordAsync(129));
+			Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await PasswordHelper.GeneratePasswordAsync(129));
 			return Task.CompletedTask;
 		}
 

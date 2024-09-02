@@ -109,12 +109,12 @@ namespace SmartIT.Library.Helpers
 		{
 			if (length < 1 || length > 128)
 			{
-				throw new ArgumentException(nameof(length));
+				throw new ArgumentOutOfRangeException(nameof(length));
 			}
 
 			if (numberOfNonAlphanumericCharacters > length || numberOfNonAlphanumericCharacters < 0)
 			{
-				throw new ArgumentException(nameof(numberOfNonAlphanumericCharacters));
+				throw new ArgumentOutOfRangeException(nameof(numberOfNonAlphanumericCharacters));
 			}
 
 			string text;

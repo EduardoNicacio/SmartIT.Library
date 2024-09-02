@@ -140,7 +140,7 @@
     <Compile Include="Utilities\Cryptography\Rot13.cs" />
     <Compile Include="Utilities\Cryptography\Rot47.cs" />
     <Compile Include="Utilities\EnumToList.cs" />
-    <Compile Include="Utilities\EventViewer.cs" />
+    <Compile Include="Helpers\EventViewerHelper.cs" />
     <Compile Include="Utilities\ExportToExcel.cs" />
     <Compile Include="Utilities\Hash.cs" />
     <Compile Include="Utilities\Misc.cs" />

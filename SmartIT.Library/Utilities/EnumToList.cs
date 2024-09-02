@@ -54,7 +54,7 @@ namespace SmartIT.Library.Utilities
 		/// Gets the Enum description value.
 		/// </summary>
 		/// <typeparam name="TEnum">Enum type.</typeparam>
-		/// <param name="value">Enum value (starting in zero).</param>
+		/// <param name="value">Enum value (starting at zero).</param>
 		/// <returns>The enum element description.</returns>
 		public static string GetEnumDescription<TEnum>(int value)
 		{
@@ -72,6 +72,30 @@ namespace SmartIT.Library.Utilities
 			var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
 			return attributes.Length > 0 ? attributes[0].Description : value.ToString();
+		}
+
+		/// <summary>
+		/// Gets the Enum string value.
+		/// </summary>
+		/// <typeparam name="TEnum">Enum type.</typeparam>
+		/// <param name="value">Enum value (starting at zero)</param>
+		/// <returns>The enum element string value.</returns>
+		public static string GetEnumStringValue<TEnum>(int value)
+		{
+			return GetEnumStringValue((Enum)(object)(TEnum)(object)value);
+		}
+
+		/// <summary>
+		/// Gets the Enum string value.
+		/// </summary>
+		/// <param name="value">Enum element.</param>
+		/// <returns>The enum element string value.</returns>
+		public static string GetEnumStringValue(Enum value)
+		{
+			var fi = value.GetType().GetField(value.ToString());
+			var attributes = (StringValueAttribute[])fi.GetCustomAttributes(typeof(StringValueAttribute), false);
+
+			return attributes.Length > 0 ? attributes[0].Value : value.ToString();
 		}
 	}
 }

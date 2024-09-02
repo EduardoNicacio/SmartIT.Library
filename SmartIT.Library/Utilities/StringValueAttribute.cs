@@ -3,12 +3,12 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Class that adds the StringValue attribute to the Enum types.</summary>
+// <summary>Class that adds the StringValue attribute to Enum types.</summary>
 
 namespace SmartIT.Library.Utilities
 {
 	/// <summary>
-	/// Class that adds the StringValue attribute to the Enum types.
+	/// Class that adds the StringValue attribute to Enum types.
 	/// </summary>
 	public class StringValueAttribute : System.Attribute
 	{

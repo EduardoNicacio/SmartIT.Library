@@ -3,7 +3,7 @@
     using SmartIT.Library.Helpers;
 
     [TestFixture]
-    public class EventViewerTests
+    public class EventViewerHelperTests
     {
         protected const string machineName = "Ryzen-5900X";
         protected const string source = "Application";

@@ -8,6 +8,7 @@
 namespace SmartIT.Library.Utilities.Mail
 {
 	using System;
+	using System.Runtime.InteropServices;
 	using System.Web.Mail;
 
 	/// <summary>
@@ -39,13 +40,15 @@ namespace SmartIT.Library.Utilities.Mail
 			string Body,
 #pragma warning disable CS0618 // Type or member is obsolete
 			MailPriority MailPriority,
+#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
 			System.Web.Mail.MailFormat MailFormat,
 #pragma warning restore CS0618 // Type or member is obsolete
 			string SmtpServer)
 		{
 #pragma warning disable CS0618 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
 			MailMessage objemail = new MailMessage
-#pragma warning restore CS0618 // Type or member is obsolete
 			{
 				// Define os parametros do e-mail
 				Priority = MailPriority,
@@ -57,6 +60,8 @@ namespace SmartIT.Library.Utilities.Mail
 				Subject = Subject,
 				Body = Body
 			};
+#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning restore CS0618 // Type or member is obsolete
 
 #pragma warning disable CS0618 // Type or member is obsolete
 			SmtpMail.SmtpServer = SmtpServer;
@@ -69,9 +74,13 @@ namespace SmartIT.Library.Utilities.Mail
 				SmtpMail.Send(objemail);
 #pragma warning restore CS0618 // Type or member is obsolete
 			}
-			catch (Exception ex)
+			catch (COMException ex)
 			{
-				throw ex;
+				throw new COMException(ex.Message, ex);
+			}
+			catch (PlatformNotSupportedException ex)
+			{
+				throw new PlatformNotSupportedException(ex.Message, ex);
 			}
 		}
 
@@ -97,14 +106,16 @@ namespace SmartIT.Library.Utilities.Mail
 			string Body,
 #pragma warning disable CS0618 // Type or member is obsolete
 			MailPriority MailPriority,
+#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
 			System.Web.Mail.MailFormat MailFormat,
 #pragma warning restore CS0618 // Type or member is obsolete
 			string SmtpServer,
 			string[] Attachments)
 		{
 #pragma warning disable CS0618 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
 			MailMessage objemail = new MailMessage
-#pragma warning restore CS0618 // Type or member is obsolete
 			{
 				// Define os parametros do e-mail
 				Priority = MailPriority,
@@ -116,6 +127,8 @@ namespace SmartIT.Library.Utilities.Mail
 				Subject = Subject,
 				Body = Body
 			};
+#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning restore CS0618 // Type or member is obsolete
 
 #pragma warning disable CS0618 // Type or member is obsolete
 			SmtpMail.SmtpServer = SmtpServer;
@@ -135,9 +148,13 @@ namespace SmartIT.Library.Utilities.Mail
 				SmtpMail.Send(objemail);
 #pragma warning restore CS0618 // Type or member is obsolete
 			}
-			catch (Exception ex)
+			catch (COMException ex)
 			{
-				throw ex;
+				throw new COMException(ex.Message, ex);
+			}
+			catch (PlatformNotSupportedException ex)
+			{
+				throw new PlatformNotSupportedException(ex.Message, ex);
 			}
 		}
 
@@ -175,7 +192,7 @@ namespace SmartIT.Library.Utilities.Mail
 			if (disposing)
 			{
 				// Free any other managed objects here.
-				this.Dispose();
+				Dispose();
 			}
 
 			// Free any unmanaged objects here.

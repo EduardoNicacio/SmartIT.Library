@@ -1,9 +1,7 @@
-﻿
-using SmartIT.Library.Utilities;
-
-namespace SmartIT.Library.Tests.Utilities
+﻿namespace SmartIT.Library.Tests.Utilities
 {
 	using SmartIT.Library.Utilities;
+	using System.ComponentModel;
 
 	[TestFixture]
 	public class EnumToListTests
@@ -24,13 +22,13 @@ namespace SmartIT.Library.Tests.Utilities
 
 		protected enum EnumWithDescriptionAttribute
 		{
-			[System.ComponentModel.Description("None")]
+			[Description("None")]
 			None = 0,
-			[System.ComponentModel.Description("Value 1")]
+			[Description("Value 1")]
 			Value1,
-			[System.ComponentModel.Description("Value 2")]
+			[Description("Value 2")]
 			Value2,
-			[System.ComponentModel.Description("Value 3")]
+			[Description("Value 3")]
 			Value3
 		}
 

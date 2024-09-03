@@ -87,13 +87,13 @@ namespace SmartIT.Library.Utilities.Mail
 			bool EnableSsl,
 			List<string> Attachments)
 		{
-			List<Attachment> list = new List<Attachment>();
+			List<Attachment> attachments = new List<Attachment>();
 
-			foreach (var file in Attachments)
+			foreach (var attachment in Attachments)
 			{
-				list.Add(new Attachment(file, System.Net.Mime.MediaTypeNames.Application.Octet));
+				attachments.Add(new Attachment(attachment, System.Net.Mime.MediaTypeNames.Application.Octet));
 			}
-			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, list);
+			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, attachments);
 		}
 
 		/// <summary>
@@ -140,6 +140,7 @@ namespace SmartIT.Library.Utilities.Mail
 				message.IsBodyHtml = MailFormat.Equals(MailFormat.HtmlFormat);
 				message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
 				message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
+				message.Priority = MailPriority;
 
 				foreach (Attachment obj in Attachments)
 				{
@@ -244,13 +245,13 @@ namespace SmartIT.Library.Utilities.Mail
 			bool EnableSsl,
 			List<string> Attachments)
 		{
-			List<Attachment> list = new List<Attachment>();
+			List<Attachment> attachments = new List<Attachment>();
 
-			foreach (var file in Attachments)
+			foreach (var attachment in Attachments)
 			{
-				list.Add(new Attachment(file, mediaType: System.Net.Mime.MediaTypeNames.Application.Octet));
+				attachments.Add(new Attachment(attachment, mediaType: System.Net.Mime.MediaTypeNames.Application.Octet));
 			}
-			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, list);
+			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, attachments);
 		}
 
 		/// <summary>
@@ -295,8 +296,9 @@ namespace SmartIT.Library.Utilities.Mail
 				message.Subject = Subject;
 				message.Body = Body;
 				message.IsBodyHtml = MailFormat.Equals(MailFormat.HtmlFormat);
-				message.SubjectEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
-				message.BodyEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
+				message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
+				message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
+				message.Priority = MailPriority;
 
 				foreach (Attachment obj in Attachments)
 				{

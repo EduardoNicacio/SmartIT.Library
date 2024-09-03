@@ -13,7 +13,6 @@ namespace SmartIT.Library.Utilities
 	using System.Reflection;
 	using System.Text;
 	using System.Threading.Tasks;
-	using System.Web.UI.WebControls;
 
 	/// <summary>
 	/// Provides many methods for unsorted features.
@@ -44,7 +43,7 @@ namespace SmartIT.Library.Utilities
 		/// <param name="value"> Input string.</param>
 		/// <param name="limit"> Limit of chars (greater than 0).</param>
 		/// <returns> Resulting string.</returns>
-		public static async Task<string> LimiStringAsync(object value, int limit)
+		public static async Task<string> LimitStringAsync(object value, int limit)
 		{
 			return await Task.Run(() => LimitString(value, limit));
 		}
@@ -79,18 +78,10 @@ namespace SmartIT.Library.Utilities
 		/// <returns> The value of the StringValue property.</returns>
 		public static string GetEnumStringValue(Enum value)
 		{
-			string output = null;
-			Type type = value.GetType();
+			FieldInfo fi = value.GetType().GetField(value.ToString());
+			StringValueAttribute[] attributes = (StringValueAttribute[])fi.GetCustomAttributes(typeof(StringValueAttribute), false);
 
-			FieldInfo fi = type.GetField(value.ToString());
-			StringValueAttribute[] attrs = fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
-
-			if (attrs.Length > 0)
-			{
-				output = attrs[0].Value;
-			}
-
-			return output;
+			return (attributes.Length > 0) ? attributes[0].Value : value.ToString();
 		}
 
 		/// <summary>
@@ -104,18 +95,24 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Returns an Enum object given its StringValue property.
+		/// Returns an Enum object given its Description or StringValue attributes.
 		/// </summary>
-		/// <param name="value"> StringValue value.</param>
+		/// <param name="value"> Description or StringValue value.</param>
 		/// <param name="enumType"> Enum type.</param>
 		/// <returns> Enum object.</returns>
 		public static object GetEnumValue(string value, Type enumType)
 		{
-			foreach (FieldInfo fi in enumType.GetFields())
+			var fields = enumType.GetFields();
+			foreach (FieldInfo fi in fields)
 			{
-				StringValueAttribute[] attrs = fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
+				StringValueAttribute[] stringValueAttributes = fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
+				DescriptionAttribute[] descriptionAttributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
 
-				if (attrs.Length > 0 && attrs[0].Value == value)
+				if (stringValueAttributes.Length > 0 && stringValueAttributes[0].Value.Equals(value))
+				{
+					return Enum.Parse(enumType, fi.Name);
+				}
+				else if (descriptionAttributes.Length > 0 && descriptionAttributes[0].Description.Equals(value))
 				{
 					return Enum.Parse(enumType, fi.Name);
 				}
@@ -125,9 +122,9 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Asynchronously returns an Enum object given its StringValue property.
+		/// Asynchronously returns an Enum object given its Description or StringValue attributes
 		/// </summary>
-		/// <param name="value"> StringValue value.</param>
+		/// <param name="value"> Description or StringValue value.</param>
 		/// <param name="enumType"> Enum type.</param>
 		/// <returns> Enum object.</returns>
 		public static async Task<object> GetEnumValueAsync(string value, Type enumType)
@@ -144,6 +141,11 @@ namespace SmartIT.Library.Utilities
 		{
 			const string A = "Active";
 			const string I = "Inactive";
+
+			if (value is null)
+			{
+				return null;
+			}
 
 			bool v = Convert.ToBoolean(value);
 			return v ? A : I;
@@ -232,6 +234,26 @@ namespace SmartIT.Library.Utilities
 		public static async Task<double> DateTimeToUnixTimestampAsync(DateTime value)
 		{
 			return await Task.Run(() => DateTimeToUnixTimestamp(value));
+		}
+
+		/// <summary>
+		/// Converts an UNIX timestamp into a valid DateTime object.
+		/// </summary>
+		/// <param name="timestamp">The UNIX timestamp.</param>
+		/// <returns>A valid DateTime object.</returns>
+		public static DateTime UnixTimestampToDateTime(double timestamp)
+		{
+			return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
+		}
+
+		/// <summary>
+		/// Asynchronously converts an UNIX timestamp into a valid DateTime object.
+		/// </summary>
+		/// <param name="timestamp">The UNIX timestamp.</param>
+		/// <returns>A valid DateTime object.</returns>
+		public static async Task<DateTime> UnixTimestampToDateTimeAsync(double timestamp)
+		{
+			return await Task.Run(() => UnixTimestampToDateTime(timestamp));
 		}
 
 		/// <summary>
@@ -368,6 +390,21 @@ namespace SmartIT.Library.Utilities
 			{
 				return await Task.Run(() => Compare(x, y));
 			}
+		}
+
+		/// <summary>
+		/// Specifies the direction in which to sort a list of items.
+		/// </summary>
+		public enum SortDirection
+		{
+			/// <summary>
+			/// Sort from smallest to largest. For example, from A to Z.
+			/// </summary>
+			Ascending,
+			/// <summary>
+			/// Sort from largest to smallest. For example, from Z to A.
+			/// </summary>
+			Descending
 		}
 	}
 }

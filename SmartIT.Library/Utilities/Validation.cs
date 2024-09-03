@@ -17,16 +17,97 @@ namespace SmartIT.Library.Utilities
 	public static class Validation
 	{
 		/// <summary>
-		/// Validate numbers.
+		/// Validates an integer.
 		/// </summary>
 		/// <param name="value"> Value to validate.</param>
 		/// <returns> True if valid; false instead.</returns>
-		public static bool IsNumber(string value)
+		public static bool IsInteger(string value)
 		{
 			bool isValid;
 			try
 			{
 				isValid = int.Parse(value) >= 0 || int.Parse(value) <= 0;
+			}
+			catch (ArgumentNullException)
+			{
+				isValid = false;
+			}
+			catch (FormatException)
+			{
+				isValid = false;
+			}
+			catch (OverflowException)
+			{
+				isValid = false;
+			}
+			return isValid;
+		}
+
+		/// <summary>
+		/// Validates a long.
+		/// </summary>
+		/// <param name="value"> Value to validate.</param>
+		/// <returns> True if valid; false instead.</returns>
+		public static bool IsLong(string value)
+		{
+			bool isValid;
+			try
+			{
+				isValid = long.Parse(value) >= 0 || long.Parse(value) <= 0;
+			}
+			catch (ArgumentNullException)
+			{
+				isValid = false;
+			}
+			catch (FormatException)
+			{
+				isValid = false;
+			}
+			catch (OverflowException)
+			{
+				isValid = false;
+			}
+			return isValid;
+		}
+
+		/// <summary>
+		/// Validates a decimal.
+		/// </summary>
+		/// <param name="value"> Value to validate.</param>
+		/// <returns> True if valid; false instead.</returns>
+		public static bool IsDecimal(string value)
+		{
+			bool isValid;
+			try
+			{
+				isValid = decimal.Parse(value) >= 0 || decimal.Parse(value) <= 0;
+			}
+			catch (ArgumentNullException)
+			{
+				isValid = false;
+			}
+			catch (FormatException)
+			{
+				isValid = false;
+			}
+			catch (OverflowException)
+			{
+				isValid = false;
+			}
+			return isValid;
+		}
+
+		/// <summary>
+		/// Validates a double.
+		/// </summary>
+		/// <param name="value"> Value to validate.</param>
+		/// <returns> True if valid; false instead.</returns>
+		public static bool IsDouble(string value)
+		{
+			bool isValid;
+			try
+			{
+				isValid = double.Parse(value) >= 0 || double.Parse(value) <= 0;
 			}
 			catch (ArgumentNullException)
 			{
@@ -68,39 +149,17 @@ namespace SmartIT.Library.Utilities
 		}
 
 		/// <summary>
-		/// Validates decimal numbers.
-		/// </summary>
-		/// <param name="value"> Value to validate.</param>
-		/// <returns> True if valid; false instead.</returns>
-		public static bool IsDecimal(string value)
-		{
-			bool isValid;
-			try
-			{
-				isValid = decimal.Parse(value) >= 0 || decimal.Parse(value) <= 0;
-			}
-			catch (ArgumentNullException)
-			{
-				isValid = false;
-			}
-			catch (FormatException)
-			{
-				isValid = false;
-			}
-			catch (OverflowException)
-			{
-				isValid = false;
-			}
-			return isValid;
-		}
-
-		/// <summary>
 		/// Validates email addresses.
 		/// </summary>
 		/// <param name="value"> Value to validate.</param>
 		/// <returns> True if valid; false instead.</returns>
 		public static bool IsEmail(string value)
 		{
+			if (string.IsNullOrEmpty(value))
+			{
+				return false;
+			}
+
 			string patternStrictEmail = @"^(([^<>()[\]\\.,;:\s@\""]+"
 				+ @"(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@"
 				+ @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
@@ -117,6 +176,8 @@ namespace SmartIT.Library.Utilities
 		/// <returns> True if valid; false instead.</returns>
 		public static bool IsCpf(string value)
 		{
+			if (string.IsNullOrWhiteSpace(value)) { return false; }
+
 			int[] mul1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 			int[] mul2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 			string temp;
@@ -186,6 +247,8 @@ namespace SmartIT.Library.Utilities
 		/// <returns> True if valid; false instead.</returns>
 		public static bool IsCnpj(string value)
 		{
+			if (string.IsNullOrWhiteSpace(value)) { return false; }
+
 			int[] mul1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 			int[] mul2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 			string digit;
@@ -255,6 +318,8 @@ namespace SmartIT.Library.Utilities
 		/// <returns> True if valid; false instead.</returns>
 		public static bool IsCep(string value)
 		{
+			if (string.IsNullOrEmpty(value)) { return false; }
+
 			Regex regEx = new Regex("^[0-9]{5}-[0-9]{3}$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(100));
 			return regEx.IsMatch(value);
 		}

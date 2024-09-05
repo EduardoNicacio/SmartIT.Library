@@ -151,10 +151,10 @@
 			// Arrange
 
 			// Act
-			var none = EnumToList.GetEnumStringValue((EnumWithStringValueAttribute)0);
-			var value1 = EnumToList.GetEnumStringValue((EnumWithStringValueAttribute)1);
-			var value2 = EnumToList.GetEnumStringValue((EnumWithStringValueAttribute)2);
-			var value3 = EnumToList.GetEnumStringValue((EnumWithStringValueAttribute)3);
+			var none = EnumToList.GetEnumStringValue<EnumWithStringValueAttribute>(0);
+			var value1 = EnumToList.GetEnumStringValue<EnumWithStringValueAttribute>(1);
+			var value2 = EnumToList.GetEnumStringValue<EnumWithStringValueAttribute>(2);
+			var value3 = EnumToList.GetEnumStringValue<EnumWithStringValueAttribute>(3);
 
 			// Assert
 			Assert.Multiple(() =>

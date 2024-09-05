@@ -26,7 +26,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Verify_GenerateSalt()
+		public void Validate_GenerateSalt()
 		{
 			// Arrange
 
@@ -39,7 +39,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public async Task Verify_GenerateSaltAsync()
+		public async Task Validate_GenerateSaltAsync()
 		{
 			// Arrange
 
@@ -52,7 +52,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Verify_GeneratePassword_ValidLength()
+		public void Validate_GeneratePassword_ValidLength()
 		{
 			// Arrange
 
@@ -65,7 +65,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public async Task Verify_GeneratePasswordAsync_ValidLength()
+		public async Task Validate_GeneratePasswordAsync_ValidLength()
 		{
 			// Arrange
 
@@ -78,7 +78,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Verify_GeneratePassword_LengthUnderflow()
+		public void Validate_GeneratePassword_LengthUnderflow()
 		{
 			// Arrange
 
@@ -89,7 +89,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public Task Verify_GeneratePasswordAsync_LengthUnderflow()
+		public Task Validate_GeneratePasswordAsync_LengthUnderflow()
 		{
 			// Arrange
 
@@ -101,7 +101,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Verify_GeneratePassword_LengthOverflow()
+		public void Validate_GeneratePassword_LengthOverflow()
 		{
 			// Arrange
 
@@ -112,7 +112,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public Task Verify_GeneratePasswordAsync_LengthOverflow()
+		public Task Validate_GeneratePasswordAsync_LengthOverflow()
 		{
 			// Arrange
 
@@ -124,7 +124,53 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Verify_ComputeDigest_1()
+		public void Validate_GeneratePassword_InvalidNumberOfNonAlphanumericCharacters_TestCase1()
+		{
+			// Arrange
+
+			// Act
+
+			// Assert
+			Assert.Throws<ArgumentOutOfRangeException>(() => PasswordHelper.GeneratePassword(16, 32));
+		}
+
+		[Test]
+		public void Validate_GeneratePassword_InvalidNumberOfNonAlphanumericCharacters_TestCase2()
+		{
+			// Arrange
+
+			// Act
+
+			// Assert
+			Assert.Throws<ArgumentOutOfRangeException>(() => PasswordHelper.GeneratePassword(16, -1));
+		}
+
+		[Test]
+		public Task Validate_GeneratePasswordAsync_InvalidNumberOfNonAlphanumericCharacters_TestCase1()
+		{
+			// Arrange
+
+			// Act
+
+			// Assert
+			Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await PasswordHelper.GeneratePasswordAsync(16, 32));
+			return Task.CompletedTask;
+		}
+
+		[Test]
+		public Task Validate_GeneratePasswordAsync_InvalidNumberOfNonAlphanumericCharacters_TestCase2()
+		{
+			// Arrange
+
+			// Act
+
+			// Assert
+			Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await PasswordHelper.GeneratePasswordAsync(16, -1));
+			return Task.CompletedTask;
+		}
+
+		[Test]
+		public void Validate_ComputeDigest()
 		{
 			// Arrange
 
@@ -137,7 +183,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public async Task Verify_ComputeDigestAsync_1()
+		public async Task Validate_ComputeDigestAsync()
 		{
 			// Arrange
 
@@ -150,7 +196,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Verify_CompareTwoDigests()
+		public void Validate_CompareTwoDigests()
 		{
 			// Arrange
 
@@ -165,13 +211,13 @@ namespace SmartIT.Library.Tests.Helpers
 				Assert.That(result2, Is.Not.Null);
 				Assert.That(result1, Has.Length.GreaterThan(0));
 				Assert.That(result2, Has.Length.GreaterThan(0));
-				Assert.That(result1.Length, Is.EqualTo(result2.Length));
+				Assert.That(result1, Has.Length.EqualTo(result2.Length));
 				Assert.That(result1, Is.Not.EqualTo(result2));
 			});
 		}
 
 		[Test]
-		public async Task Verify_CompareTwoDigestsAsync()
+		public async Task Validate_CompareTwoDigestsAsync()
 		{
 			// Arrange
 
@@ -186,7 +232,7 @@ namespace SmartIT.Library.Tests.Helpers
 				Assert.That(result2, Is.Not.Null);
 				Assert.That(result1, Has.Length.GreaterThan(0));
 				Assert.That(result2, Has.Length.GreaterThan(0));
-				Assert.That(result1.Length, Is.EqualTo(result2.Length));
+				Assert.That(result1, Has.Length.EqualTo(result2.Length));
 				Assert.That(result1, Is.Not.EqualTo(result2));
 			});
 		}

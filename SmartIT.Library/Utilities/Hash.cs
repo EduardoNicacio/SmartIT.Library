@@ -11,6 +11,8 @@ namespace SmartIT.Library.Utilities
 	using SmartIT.Library.Utilities.Hashes;
 	using System;
 	using System.IO;
+	using System.Net;
+	using System.Net.NetworkInformation;
 	using System.Security.Cryptography;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -28,6 +30,16 @@ namespace SmartIT.Library.Utilities
 		public static string GetCrc16Hash(string input)
 		{
 			return Crc16.ComputeHash(Encoding.UTF8.GetBytes(input)).ToString("x2").ToUpperInvariant();
+		}
+
+		/// <summary>
+		/// Returns the CRC16-ARC digest for the informed array of bytes.
+		/// </summary>
+		/// <param name="input">Input byte array.</param>
+		/// <returns>CRC16 digest in hexadecimal format.</returns>
+		public static string GetCrc16Hash(byte[] input)
+		{
+			return Crc16.ComputeHash(input).ToString("x2").ToUpperInvariant();
 		}
 
 		/// <summary>
@@ -51,6 +63,16 @@ namespace SmartIT.Library.Utilities
 		/// <param name="input">String de entrada.</param>
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
 		public static async Task<string> GetCrc16HashAsync(string input)
+		{
+			return await Task.Run(() => GetCrc16Hash(input));
+		}
+
+		/// <summary>
+		/// Asynchronously returns the CRC16-ARC digest for the informed array of bytes.
+		/// </summary>
+		/// <param name="input">Input byte array.</param>
+		/// <returns>CRC16 digest in hexadecimal format.</returns>
+		public static async Task<string> GetCrc16HashAsync(byte[] input) 
 		{
 			return await Task.Run(() => GetCrc16Hash(input));
 		}

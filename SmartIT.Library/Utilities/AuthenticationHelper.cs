@@ -7,11 +7,11 @@
 
 namespace SmartIT.Library.Utilities
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Configuration;
 	using System.Security.Principal;
 	using System.Threading.Tasks;
-	using System.Web;
 
 	/// <summary>
 	/// Authentication helper.
@@ -29,9 +29,9 @@ namespace SmartIT.Library.Utilities
 
 			var wi = WindowsIdentity.GetCurrent();
 
-			string windowsLogin = wi != null ? wi.Name : HttpContext.Current.User.Identity.Name;
+			string windowsLogin = wi != null ? wi.Name : Environment.UserName;
 
-			int hasDomain = windowsLogin.IndexOfAny(new char[] { '\\' }, 1, windowsLogin.Length);
+			int hasDomain = windowsLogin.IndexOfAny(new char[] { '\\' }, 0, windowsLogin.Length);
 			string domain = string.Empty;
 
 			if (hasDomain > 0 && !string.IsNullOrWhiteSpace(windowsLogin))
@@ -40,9 +40,13 @@ namespace SmartIT.Library.Utilities
 				domain = wi != null ? wi.Name.Substring(0, hasDomain + 1).Replace(@"\", string.Empty) : string.Empty;
 			}
 
-			var mainDomain = ConfigurationManager.AppSettings["Domain"];
+			ConfigurationManager.RefreshSection("appSettings");
 
-			if (domain.ToUpperInvariant().Equals(mainDomain.ToUpperInvariant()))
+			var mainDomain = ConfigurationManager.AppSettings.Count > 0 ? ConfigurationManager.AppSettings["Domain"] : domain;
+
+			if (!string.IsNullOrWhiteSpace(domain) &&
+				!string.IsNullOrWhiteSpace(mainDomain) &&
+				domain.ToUpperInvariant().Equals(mainDomain.ToUpperInvariant()))
 			{
 				activeDirectoryUser = true;
 			}

@@ -91,7 +91,7 @@ namespace SmartIT.Library.Extensions
 		{
 			return string.IsNullOrWhiteSpace(source) ?
 				string.Empty :
-				Regex.Replace(source, @"[^0-9a-zA-Z]+", string.Empty);
+				Regex.Replace(source, @"[^0-9a-zA-Z]+", string.Empty, RegexOptions.None, TimeSpan.FromMilliseconds(100));
 		}
 
 		/// <summary>

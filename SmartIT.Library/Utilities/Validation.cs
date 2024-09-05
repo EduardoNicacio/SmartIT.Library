@@ -90,10 +90,6 @@ namespace SmartIT.Library.Utilities
 			{
 				isValid = false;
 			}
-			catch (OverflowException)
-			{
-				isValid = false;
-			}
 			return isValid;
 		}
 
@@ -107,17 +103,21 @@ namespace SmartIT.Library.Utilities
 			bool isValid;
 			try
 			{
-				isValid = double.Parse(value) >= 0 || double.Parse(value) <= 0;
+				var isInfinity = double.Parse(value);
+				if (double.IsInfinity(isInfinity))
+				{
+					isValid = false;
+				}
+				else
+				{
+					isValid = double.Parse(value) >= 0 || double.Parse(value) <= 0;
+				}
 			}
 			catch (ArgumentNullException)
 			{
 				isValid = false;
 			}
 			catch (FormatException)
-			{
-				isValid = false;
-			}
-			catch (OverflowException)
 			{
 				isValid = false;
 			}
@@ -155,16 +155,14 @@ namespace SmartIT.Library.Utilities
 		/// <returns> True if valid; false instead.</returns>
 		public static bool IsEmail(string value)
 		{
-			if (string.IsNullOrEmpty(value))
-			{
-				return false;
-			}
+			if (string.IsNullOrEmpty(value)) { return false; }
 
 			string patternStrictEmail = @"^(([^<>()[\]\\.,;:\s@\""]+"
 				+ @"(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@"
 				+ @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 				+ @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+"
 				+ @"[a-zA-Z]{2,}))$";
+
 			Regex re = new Regex(patternStrictEmail, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(100));
 			return re.IsMatch(value);
 		}
@@ -318,7 +316,7 @@ namespace SmartIT.Library.Utilities
 		/// <returns> True if valid; false instead.</returns>
 		public static bool IsCep(string value)
 		{
-			if (string.IsNullOrEmpty(value)) { return false; }
+			if (string.IsNullOrWhiteSpace(value)) { return false; }
 
 			Regex regEx = new Regex("^[0-9]{5}-[0-9]{3}$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(100));
 			return regEx.IsMatch(value);

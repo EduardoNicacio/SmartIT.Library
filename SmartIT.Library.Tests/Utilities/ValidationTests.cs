@@ -36,6 +36,19 @@
 		}
 
 		[Test]
+		public void Validate_IsInteger_OverflowValue()
+		{
+			// Arrange
+			long input = 0x8FFFFFFF;
+
+			// Act
+			var result = Validation.IsInteger(input.ToString());
+
+			// Assert
+			Assert.That(result, Is.False);
+		}
+
+		[Test]
 		public void Validate_IsInteger_ValidValue()
 		{
 			// Arrange
@@ -66,6 +79,19 @@
 
 			// Act
 			var result = Validation.IsLong(string.Empty);
+
+			// Assert
+			Assert.That(result, Is.False);
+		}
+
+		[Test]
+		public void Validate_IsLong_OverflowValue()
+		{
+			// Arrange
+			UInt64 input = 0x8FFFFFFFFFFFFFFF;
+
+			// Act
+			var result = Validation.IsLong(input.ToString());
 
 			// Assert
 			Assert.That(result, Is.False);
@@ -108,6 +134,21 @@
 		}
 
 		[Test]
+		public void Validate_IsDecimal_OverflowValue()
+		{
+			// Arrange
+			var d1 = decimal.MaxValue;
+			var d2 = decimal.MaxValue;
+			double d3 = (double)d1 + (double)d2;
+
+			// Act
+			var result = Validation.IsDecimal(d3.ToString());
+
+			// Assert
+			Assert.That(result, Is.False);
+		}
+
+		[Test]
 		public void Validate_IsDecimal_ValidValue()
 		{
 			// Arrange
@@ -138,6 +179,19 @@
 
 			// Act
 			var result = Validation.IsDouble(string.Empty);
+
+			// Assert
+			Assert.That(result, Is.False);
+		}
+
+		[Test]
+		public void Validate_IsDouble_OverflowValue()
+		{
+			// Arrange
+			var input = double.MaxValue + double.MaxValue;
+
+			// Act
+			var result = Validation.IsDouble(input.ToString());
 
 			// Assert
 			Assert.That(result, Is.False);
@@ -262,6 +316,18 @@
 		}
 
 		[Test]
+		public void Validate_IsCpf_InvalidLength()
+		{
+			// Arrange
+
+			// Act
+			var result1 = Validation.IsCpf("11111111111111");
+
+			// Assert
+			Assert.That(result1, Is.False);
+		}
+
+		[Test]
 		public void Validate_IsCpf_ValidValue()
 		{
 			// Arrange
@@ -297,6 +363,18 @@
 
 			// Act
 			var result1 = Validation.IsCnpj("12.345.678/9999-99");
+
+			// Assert
+			Assert.That(result1, Is.False);
+		}
+
+		[Test]
+		public void Validate_IsCnpj_InvalidLength()
+		{
+			// Arrange
+
+			// Act
+			var result1 = Validation.IsCnpj("000.912.345.678/9999-99");
 
 			// Assert
 			Assert.That(result1, Is.False);
@@ -349,7 +427,7 @@
 			// Arrange
 
 			// Act
-			var result1 = Validation.IsCep("00000-999");
+			var result1 = Validation.IsCep("12345-678");
 
 			// Assert
 			Assert.That(result1, Is.True);

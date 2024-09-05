@@ -39,10 +39,9 @@ namespace SmartIT.Library.Data
 		/// <param name="commandTimeout"> Timeout da conexão.</param>
 		private DbHelper(string connectionStringName, int commandTimeout)
 		{
-			if (ConfigurationManager.ConnectionStrings[connectionStringName] == null
-			 || string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ToString()))
+			if (ConfigurationManager.ConnectionStrings[connectionStringName] == null)
 			{
-				throw new ArgumentException("Conexão não encontrada.");
+				throw new ArgumentNullException($"{connectionStringName} not found.");
 			}
 
 			this.connectionStringName = connectionStringName;
@@ -85,7 +84,7 @@ namespace SmartIT.Library.Data
 		}
 
 		/// <summary>
-		/// Recupera o o valor do atributo ActiveConnectionAttribute de uma classe.
+		/// Recupera o valor do atributo ActiveConnection de uma classe.
 		/// </summary>
 		/// <param name="type"> Tipo da classe que contem o atributo.</param>
 		/// <returns> Valor do atributo.</returns>

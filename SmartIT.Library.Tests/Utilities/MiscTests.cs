@@ -785,6 +785,44 @@
 			});
 		}
 
+		[Test]
+		public async Task Validate_GetClassPropertiesAsync_FromStruct()
+		{
+			// Arrange
+
+			// Act
+			var result = await Misc.GetClassPropertiesAsync(new MockedStructForTests());
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Null);
+				Assert.That(result, Does.Contain("MockedStructForTests"));
+				Assert.That(result, Does.Contain("Id"));
+				Assert.That(result, Does.Contain("Name"));
+				Assert.That(result, Does.Contain("CreationDate"));
+			});
+		}
+
+		[Test]
+		public async Task Validate_GetClassPropertiesAsync_FromClass()
+		{
+			// Arrange
+
+			// Act
+			var result = await Misc.GetClassPropertiesAsync(new MockedClassForTests());
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Null);
+				Assert.That(result, Does.Contain("MockedClassForTests"));
+				Assert.That(result, Does.Contain("Id"));
+				Assert.That(result, Does.Contain("Name"));
+				Assert.That(result, Does.Contain("CreationDate"));
+			});
+		}
+
 		#endregion
 
 		#region ToAge tests
@@ -895,15 +933,15 @@
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
 				Assert.That(result2, Is.EqualTo(1));
-				
+
 				// Name check
 				Assert.That(result3, Is.EqualTo(-1));
 				Assert.That(result4, Is.EqualTo(1));
-				
+
 				// CreationDate check
 				Assert.That(result5, Is.EqualTo(-1));
 				Assert.That(result6, Is.EqualTo(1));
-				
+
 				// Equality check
 				Assert.That(result7, Is.EqualTo(0));
 				Assert.That(result8, Is.EqualTo(0));
@@ -951,19 +989,111 @@
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
 				Assert.That(result2, Is.EqualTo(1));
-				
+
 				// Name check
 				Assert.That(result3, Is.EqualTo(-1));
 				Assert.That(result4, Is.EqualTo(1));
-				
+
 				// CreationDate check
 				Assert.That(result5, Is.EqualTo(-1));
 				Assert.That(result6, Is.EqualTo(1));
-				
+
 				// Equality check
 				Assert.That(result7, Is.EqualTo(0));
 				Assert.That(result8, Is.EqualTo(0));
 				Assert.That(result9, Is.EqualTo(0));
+			});
+		}
+
+		[Test]
+		public void Validate_GenericComparer_ForClass_EmptyConstructor()
+		{
+			// Arrange
+			var class1 = new MockedClassForTests() { Id = 1, Name = "Name1", CreationDate = new DateTime(1980, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+			var class2 = new MockedClassForTests() { Id = 2, Name = "Name2", CreationDate = new DateTime(1981, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+
+			var idComparerAsc = new Misc.GenericComparer<MockedClassForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Ascending };
+			var idComparerDesc = new Misc.GenericComparer<MockedClassForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Descending };
+
+			// Act
+			var result1 = idComparerAsc.Compare(class1, class2);
+			var result2 = idComparerDesc.Compare(class1, class2);
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				// Id check
+				Assert.That(result1, Is.EqualTo(-1));
+				Assert.That(result2, Is.EqualTo(1));
+			});
+		}
+
+		[Test]
+		public void Validate_GenericComparer_ForStruct_EmptyConstructor()
+		{
+			// Arrange
+			var struct1 = new MockedStructForTests() { Id = 1, Name = "Name1", CreationDate = new DateTime(1980, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+			var struct2 = new MockedStructForTests() { Id = 2, Name = "Name2", CreationDate = new DateTime(1981, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+
+			var idComparerAsc = new Misc.GenericComparer<MockedStructForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Ascending };
+			var idComparerDesc = new Misc.GenericComparer<MockedStructForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Descending };
+
+			// Act
+			var result1 = idComparerAsc.Compare(struct1, struct2);
+			var result2 = idComparerDesc.Compare(struct1, struct2);
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				// Id check
+				Assert.That(result1, Is.EqualTo(-1));
+				Assert.That(result2, Is.EqualTo(1));
+			});
+		}
+
+		[Test]
+		public async Task Validate_GenericComparerAsync_ForClass()
+		{
+			// Arrange
+			var class1 = new MockedClassForTests() { Id = 1, Name = "Name1", CreationDate = new DateTime(1980, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+			var class2 = new MockedClassForTests() { Id = 2, Name = "Name2", CreationDate = new DateTime(1981, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+
+			var idComparerAsc = new Misc.GenericComparer<MockedClassForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Ascending };
+			var idComparerDesc = new Misc.GenericComparer<MockedClassForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Descending };
+
+			// Act
+			var result1 = await idComparerAsc.CompareAsync(class1, class2);
+			var result2 = await idComparerDesc.CompareAsync(class1, class2);
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				// Id check
+				Assert.That(result1, Is.EqualTo(-1));
+				Assert.That(result2, Is.EqualTo(1));
+			});
+		}
+
+		[Test]
+		public async Task Validate_GenericComparerAsync_ForStruct()
+		{
+			// Arrange
+			var struct1 = new MockedStructForTests() { Id = 1, Name = "Name1", CreationDate = new DateTime(1980, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+			var struct2 = new MockedStructForTests() { Id = 2, Name = "Name2", CreationDate = new DateTime(1981, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+
+			var idComparerAsc = new Misc.GenericComparer<MockedStructForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Ascending };
+			var idComparerDesc = new Misc.GenericComparer<MockedStructForTests>() { GenericSortExpression = "Id", GenericSortDirection = Misc.SortDirection.Descending };
+
+			// Act
+			var result1 = await idComparerAsc.CompareAsync(struct1, struct2);
+			var result2 = await idComparerDesc.CompareAsync(struct1, struct2);
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				// Id check
+				Assert.That(result1, Is.EqualTo(-1));
+				Assert.That(result2, Is.EqualTo(1));
 			});
 		}
 

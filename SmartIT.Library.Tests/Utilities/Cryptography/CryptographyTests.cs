@@ -266,7 +266,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => CaesarCipher.Encipher(string.Empty, 13));
+			Assert.Throws<ArgumentNullException>(() => CaesarCipher.Decipher(string.Empty, 13));
 		}
 
 		[Test]
@@ -277,7 +277,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Encipher(notEmptyString, 0));
+			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Decipher(notEmptyString, 0));
 		}
 
 		[Test]
@@ -288,7 +288,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Encipher(notEmptyString, 27));
+			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Decipher(notEmptyString, 27));
 		}
 
 		#endregion

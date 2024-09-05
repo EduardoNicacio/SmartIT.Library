@@ -42,13 +42,12 @@ namespace SmartIT.Library.Helpers
 				default: nEntryType = EventLogEntryType.Information; break;
 			}
 
-			if (!EventLog.SourceExists(sSource))
-			{
-				EventLog.CreateEventSource(sSource, sLog);
-			}
-
 			try
 			{
+				if (!EventLog.SourceExists(sSource))
+				{
+					EventLog.CreateEventSource(sSource, sLog);
+				}
 				EventLog.WriteEntry(sSource, sMessage, nEntryType, eventId);
 				return 0;
 			}
@@ -89,12 +88,12 @@ namespace SmartIT.Library.Helpers
 				if (eventLog.Log == source)
 				{
 					EventLogEntryCollection eventLogEntryCollection = eventLog.Entries;
-					for (int i = eventLogEntryCollection.Count - 1; i > -1; i--)
+					for (int i = 0; i < eventLogEntryCollection.Count; i++)
 					{
 						EventLogEntry eventLogEntry = eventLogEntryCollection[i];
 						if (eventLogEntry.EntryType == (EventLogEntryType)type &&
 							eventLogEntry.MachineName == machineName &&
-							(eventLogEntry.Message == message || eventLogEntry.ReplacementStrings[0] == message))
+							(eventLogEntry.Message == message || (eventLogEntry.ReplacementStrings.Length > 0 && eventLogEntry.ReplacementStrings[0] == message)))
 						{
 							return eventLogEntry;
 						}

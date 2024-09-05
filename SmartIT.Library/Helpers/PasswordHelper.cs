@@ -51,6 +51,20 @@ namespace SmartIT.Library.Helpers
 		}
 
 		/// <summary>
+		/// Generates a pseudo-random password with the specified length. Useful to generate a one-time password for the "Forgot password" functionality.
+		/// </summary>
+		/// <param name="pwdLength">The password lenght.</param>
+		/// <param name="numberOfNonAlphanumericCharacters">The number of non alphanumeric characters.</param>
+		/// <remarks>The password lenght must be between 1 and 128 charactetrs; ideally, between 12 and 72 characters.</remarks>
+		/// <returns>The pseudo-random password with the specified lenght.</returns>
+		/// <exception cref="System.ArgumentException">Throws an ArgumentException if the password lenght is out of the lower and upper limits.</exception>
+		/// <exception cref="System.ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException if the numberOfNonAlphanumericCharacters value is out of the lower and upper limits.</exception>
+		public static string GeneratePassword(int pwdLength, int numberOfNonAlphanumericCharacters)
+		{
+			return GeneratePasswordInternal(pwdLength, numberOfNonAlphanumericCharacters);
+		}
+
+		/// <summary>
 		/// Asynchronously generates a pseudo-random password with the specified length. Useful to generate a one-time password for the "Forgot password" functionality.
 		/// </summary>
 		/// <param name="pwdLength">The password lenght.</param>
@@ -60,6 +74,20 @@ namespace SmartIT.Library.Helpers
 		public static Task<string> GeneratePasswordAsync(int pwdLength)
 		{
 			return Task.Run(() => GeneratePassword(pwdLength));
+		}
+
+		/// <summary>
+		/// Asynchronously generates a pseudo-random password with the specified length. Useful to generate a one-time password for the "Forgot password" functionality.
+		/// </summary>
+		/// <param name="pwdLength">The password lenght.</param>
+		/// <param name="numberOfNonAlphanumericCharacters">The number of non alphanumeric characters.</param>
+		/// <remarks>The password lenght must be between 1 and 128 charactetrs; ideally, between 12 and 72 characters.</remarks>
+		/// <returns>The pseudo-random password with the specified lenght.</returns>
+		/// <exception cref="System.ArgumentException">Throws an ArgumentException if the password lenght is out of the lower and upper limits.</exception>
+		/// <exception cref="System.ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException if the numberOfNonAlphanumericCharacters value is out of the lower and upper limits.</exception>
+		public static Task<string> GeneratePasswordAsync(int pwdLength, int numberOfNonAlphanumericCharacters)
+		{
+			return Task.Run(() => GeneratePasswordInternal(pwdLength, numberOfNonAlphanumericCharacters));
 		}
 
 		/// <summary>
@@ -105,7 +133,7 @@ namespace SmartIT.Library.Helpers
 		/// <param name="numberOfNonAlphanumericCharacters">The minimum number of non-alphanumeric characters (such as @, #, !, %, and so on) in the generated password.</param>
 		/// <returns>A random password of the specified length.</returns>
 		/// <exception cref="ArgumentException"></exception>
-		static string GeneratePasswordInternal(int length, int numberOfNonAlphanumericCharacters)
+		private static string GeneratePasswordInternal(int length, int numberOfNonAlphanumericCharacters)
 		{
 			if (length < 1 || length > 128)
 			{
@@ -177,7 +205,7 @@ namespace SmartIT.Library.Helpers
 		/// <param name="s">The given string.</param>
 		/// <param name="matchIndex">The match index, if any.</param>
 		/// <returns>True, if the informed string contains dangerours chars; false instead.</returns>
-		internal static bool IsDangerousString(string s, out int matchIndex)
+		private static bool IsDangerousString(string s, out int matchIndex)
 		{
 			matchIndex = 0;
 			int startIndex = 0;

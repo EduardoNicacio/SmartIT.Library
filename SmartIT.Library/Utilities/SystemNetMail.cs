@@ -1,4 +1,4 @@
-﻿// <copyright file="SystemWebMail.cs" company="Eduardo Claudio Nicacio">
+﻿// <copyright file="SystemNetMail.cs" company="Eduardo Claudio Nicacio">
 // Copyright Eduardo Claudio Nicacio. All rights reserved.
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
@@ -13,7 +13,7 @@ namespace SmartIT.Library.Utilities.Mail
 	using System.Text;
 
 	/// <summary>
-	/// A System.Net.Mail simple implementation class.
+	/// A simple implementation for the System.Net.Mail class.
 	/// </summary>
 	public class SystemNetMail : MarshalByRefObject, IDisposable
 	{
@@ -21,7 +21,7 @@ namespace SmartIT.Library.Utilities.Mail
 		bool disposed = false;
 
 		/// <summary>
-		/// Dispatches an email.
+		/// Sends an email.
 		/// </summary>
 		/// <param name="From">From address.</param>
 		/// <param name="To">To address.</param>
@@ -30,12 +30,12 @@ namespace SmartIT.Library.Utilities.Mail
 		/// <param name="Subject">Mail subject.</param>
 		/// <param name="Body">Mail body.</param>
 		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail format.</param>
+		/// <param name="MailFormat">Mail body format.</param>
 		/// <param name="SmtpServer">Smtp server address.</param>
 		/// <param name="SmtpPort">Smtp port.</param>
 		/// <param name="SmtpUsername">Smtp username.</param>
 		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the ssl.</param>
+		/// <param name="EnableSsl">Enables or not the SSL.</param>
 		public static void SendMail(
 			string From,
 			string To,
@@ -49,13 +49,13 @@ namespace SmartIT.Library.Utilities.Mail
 			int SmtpPort,
 			string SmtpUsername,
 			string SmtpPassword,
-			bool EnableSsl)
+			bool EnableSsl = true)
 		{
 			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, new List<Attachment>());
 		}
 
 		/// <summary>
-		/// Dispatches an email.
+		/// Sends an email.
 		/// </summary>
 		/// <param name="From">From address.</param>
 		/// <param name="To">To address.</param>
@@ -97,7 +97,7 @@ namespace SmartIT.Library.Utilities.Mail
 		}
 
 		/// <summary>
-		/// Dispatches an email.
+		/// Sends an email.
 		/// </summary>
 		/// <param name="From">From address.</param>
 		/// <param name="To">To address.</param>
@@ -113,6 +113,9 @@ namespace SmartIT.Library.Utilities.Mail
 		/// <param name="SmtpPassword">Smtp password.</param>
 		/// <param name="EnableSsl">Enables or not the ssl.</param>
 		/// <param name="Attachments"><seealso cref="Attachment"/> object list.</param>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="InvalidOperationException"></exception>
+		/// <exception cref="SmtpException"></exception>
 		public static void SendMail(
 			string From,
 			string To,
@@ -137,7 +140,7 @@ namespace SmartIT.Library.Utilities.Mail
 				message.Bcc.Add(new MailAddress(Bcc));
 				message.Subject = Subject;
 				message.Body = Body;
-				message.IsBodyHtml = MailFormat.Equals(MailFormat.HtmlFormat);
+				message.IsBodyHtml = MailFormat.Equals(MailFormat.Html);
 				message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
 				message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
 				message.Priority = MailPriority;
@@ -151,7 +154,7 @@ namespace SmartIT.Library.Utilities.Mail
 				{
 					smtpServer.Host = SmtpServer;
 					smtpServer.Port = SmtpPort > 0 ? SmtpPort : 25;
-					smtpServer.EnableSsl = EnableSsl;
+					smtpServer.EnableSsl = true;
 
 					if (!string.IsNullOrWhiteSpace(SmtpUsername) && !string.IsNullOrWhiteSpace(SmtpPassword))
 					{
@@ -179,7 +182,7 @@ namespace SmartIT.Library.Utilities.Mail
 		}
 
 		/// <summary>
-		/// Dispatches an email.
+		/// Sends an email.
 		/// </summary>
 		/// <param name="From">From address.</param>
 		/// <param name="To">To address list.</param>
@@ -207,13 +210,13 @@ namespace SmartIT.Library.Utilities.Mail
 			int SmtpPort,
 			string SmtpUsername,
 			string SmtpPassword,
-			bool EnableSsl)
+			bool EnableSsl = true)
 		{
 			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, new List<Attachment>());
 		}
 
 		/// <summary>
-		/// Dispatches an email.
+		/// Sends an email.
 		/// </summary>
 		/// <param name="From">From address.</param>
 		/// <param name="To">To address list.</param>
@@ -255,7 +258,7 @@ namespace SmartIT.Library.Utilities.Mail
 		}
 
 		/// <summary>
-		/// Dispatches an email.
+		/// Sends an email.
 		/// </summary>
 		/// <param name="From">From address.</param>
 		/// <param name="To">To address list.</param>
@@ -271,6 +274,9 @@ namespace SmartIT.Library.Utilities.Mail
 		/// <param name="SmtpPassword">Smtp password.</param>
 		/// <param name="EnableSsl">Enables or not the ssl.</param>
 		/// <param name="Attachments"><see cref="Attachment"/> object list.</param>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="InvalidOperationException"></exception>
+		/// <exception cref="SmtpException"></exception>
 		public static void SendMail(
 			string From,
 			IEnumerable<MailAddress> To,
@@ -295,7 +301,7 @@ namespace SmartIT.Library.Utilities.Mail
 				foreach (var addr in Bcc) { message.Bcc.Add(addr); }
 				message.Subject = Subject;
 				message.Body = Body;
-				message.IsBodyHtml = MailFormat.Equals(MailFormat.HtmlFormat);
+				message.IsBodyHtml = MailFormat.Equals(MailFormat.Html);
 				message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
 				message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
 				message.Priority = MailPriority;
@@ -309,7 +315,7 @@ namespace SmartIT.Library.Utilities.Mail
 				{
 					smtpServer.Host = SmtpServer;
 					smtpServer.Port = SmtpPort > 0 ? SmtpPort : 25;
-					smtpServer.EnableSsl = EnableSsl;
+					smtpServer.EnableSsl = true;
 
 					if (!string.IsNullOrWhiteSpace(SmtpUsername) && !string.IsNullOrWhiteSpace(SmtpPassword))
 					{
@@ -379,18 +385,17 @@ namespace SmartIT.Library.Utilities.Mail
 	}
 
 	/// <summary>
-	/// Mail format enumeration.
+	/// Provides enumerated values for e-mail format. Recommended alternative: System.Net.Mail.
 	/// </summary>
 	public enum MailFormat
 	{
 		/// <summary>
-		/// HTML format e-mail.
+		/// Specifies that the e-mail format is plain text.
 		/// </summary>
-		HtmlFormat,
-
+		Text,
 		/// <summary>
-		/// Plain text format email.
+		/// Specifies that the e-mail format is HTML.
 		/// </summary>
-		PlainText
+		Html
 	}
 }

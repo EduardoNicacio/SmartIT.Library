@@ -102,13 +102,13 @@ namespace SmartIT.Library.Utilities.Hashes
 		/// <returns>Unsigned 64bits integer.</returns>
 		protected static UInt64 CalculateHash(UInt64 seed, UInt64[] table, IList<byte> buffer, int start, int size)
 		{
-			var hash = seed;
+			var result = seed;
 			for (var i = start; i < start + size; i++)
 				unchecked
 				{
-					hash = (hash >> 8) ^ table[(buffer[i] ^ hash) & 0xff];
+					result = (result >> 8) ^ table[(buffer[i] ^ result) & 0xff];
 				}
-			return hash;
+			return result;
 		}
 
 		/// <summary>

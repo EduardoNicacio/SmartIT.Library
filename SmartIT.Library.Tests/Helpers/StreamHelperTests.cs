@@ -45,7 +45,7 @@ namespace SmartIT.Library.Tests.Helpers
 		public void Verify_StreamToByteArray_EmptyInput()
 		{
 			// Arrange
-			var buffer = new byte[0];
+			var buffer = Array.Empty<byte>();
 			var memoryStream = new MemoryStream(buffer);
 
 			// Act
@@ -60,7 +60,7 @@ namespace SmartIT.Library.Tests.Helpers
 		public async Task Verify_StreamToByteArrayAsync_EmptyInput()
 		{
 			// Arrange
-			var buffer = new byte[0];
+			var buffer = Array.Empty<byte>();
 			var memoryStream = new MemoryStream(buffer);
 
 			// Act

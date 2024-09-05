@@ -31,7 +31,22 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
             Assert.That(result, Is.EqualTo("00"));
         }
 
-        [Test]
+		[Test]
+		public void Verify_GetCrc16Hash_EmptyByteArray()
+		{
+			// Arrange
+            var buffer = Array.Empty<byte>();
+
+			// Act
+			var result = Hash.GetCrc16Hash(buffer);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Has.Length.EqualTo(2));
+			Assert.That(result, Is.EqualTo("00"));
+		}
+
+		[Test]
         public void Verify_GetCrc16Hash_EmptyStream()
         {
             // Arrange
@@ -63,7 +78,24 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
             return result;
         }
 
-        [Test(ExpectedResult = "00")]
+		[Test(ExpectedResult = "00")]
+		public async Task<string> Verify_GetCrc16HashAsync_EmptyByteArray()
+		{
+			// Arrange
+			var buffer = Array.Empty<byte>();
+
+			// Act
+			var result = await Hash.GetCrc16HashAsync(buffer);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Has.Length.EqualTo(2));
+			Assert.That(result, Is.EqualTo("00"));
+
+			return result;
+		}
+
+		[Test(ExpectedResult = "00")]
         public async Task<string> Verify_GetCrc16HashAsync_EmptyStream()
         {
             // Arrange

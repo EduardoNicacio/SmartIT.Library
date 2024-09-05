@@ -317,9 +317,9 @@ namespace SmartIT.Library.Utilities
 					else if (IsDateColumn[colInx])
 					{
 						//  This is a date value.
-						var dtValue = DateTime.Parse(cellValue);
+						var dtValue = DateTime.Parse(cellValue, CultureInfo.InvariantCulture);
 						var strValue = dtValue.ToShortDateString();
-						AppendTextCell(excelColumnNames[colInx] + rowIndex.ToString(), strValue, ref writer);
+						AppendDateCell(excelColumnNames[colInx] + rowIndex.ToString(), strValue, ref writer);
 					}
 					else
 					{
@@ -342,7 +342,12 @@ namespace SmartIT.Library.Utilities
 		/// <param name="writer"></param>
 		private static void AppendTextCell(string cellReference, string cellStringValue, ref OpenXmlWriter writer)
 		{
-			writer.WriteElement(new Cell { CellValue = new CellValue(cellStringValue), CellReference = cellReference, DataType = CellValues.String });
+			writer.WriteElement(new Cell
+			{
+				CellValue = new CellValue(cellStringValue),
+				CellReference = cellReference,
+				DataType = CellValues.String
+			});
 		}
 
 		/// <summary>
@@ -357,7 +362,7 @@ namespace SmartIT.Library.Utilities
 			{
 				CellValue = new CellValue(cellStringValue),
 				CellReference = cellReference,
-				DataType = new EnumValue<CellValues>(CellValues.Number),
+				DataType = new EnumValue<CellValues>(CellValues.Date),
 				StyleIndex = 0
 			});
 		}

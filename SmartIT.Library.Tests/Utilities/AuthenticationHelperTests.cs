@@ -12,25 +12,37 @@
 		}
 
 		[Test]
-		public void TestAuthentication()
+		public void Validate_AuthenticationHelper_GetWindowsUser()
 		{
 			// Arrange
 
 			// Act
+			var windowsUser = AuthenticationHelper.GetWindowsUser();
 
 			// Assert
-			Assert.Pass();
+			Assert.Multiple(() =>
+			{
+				Assert.That(windowsUser, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Key, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Value, Is.Not.EqualTo(null));
+			});
 		}
 
 		[Test]
-		public void TestAuthenticationAsync() 
+		public async Task Validate_AuthenticationHelper_GetWindowsUserAsync()
 		{
 			// Arrange
 
 			// Act
+			var windowsUser = await AuthenticationHelper.GetWindowsUserAsync();
 
 			// Assert
-			Assert.Pass(); 
+			Assert.Multiple(() =>
+			{
+				Assert.That(windowsUser, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Key, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Value, Is.Not.EqualTo(null));
+			});
 		}
 	}
 }

@@ -35,14 +35,6 @@ namespace SmartIT.Library.Data
 		}
 
 		/// <summary>
-		/// Finalizes an instance of the <see cref="SafeDataReader" /> class.
-		/// </summary>
-		~SafeDataReader()
-		{
-			Dispose(false);
-		}
-
-		/// <summary>
 		/// Gets the RecordsAffected property value from the underlying datareader.
 		/// </summary>
 		/// <returns>The number of affected records.</returns>
@@ -396,12 +388,12 @@ namespace SmartIT.Library.Data
 		/// <param name="name">Name of the column containing the value.</param>
 		/// <param name="fieldOffset">Offset position within the field.</param>
 		/// <param name="buffer">Array containing the data.</param>
-		/// <param name="bufferOffset">Offset position within the buffer.</param>
+		/// <param name="bufferoffset">Offset position within the buffer.</param>
 		/// <param name="length">Length of data to read.</param>
 		/// <returns>The Long value of the column.</returns>
-		public long GetBytes(string name, long fieldOffset, byte[] buffer, int bufferOffset, int length)
+		public long GetBytes(string name, long fieldOffset, byte[] buffer, int bufferoffset, int length)
 		{
-			return GetBytes(dataReader.GetOrdinal(name), fieldOffset, buffer, bufferOffset, length);
+			return GetBytes(dataReader.GetOrdinal(name), fieldOffset, buffer, bufferoffset, length);
 		}
 
 		/// <summary>
@@ -410,15 +402,15 @@ namespace SmartIT.Library.Data
 		/// <remarks>
 		/// Returns 0 for null.
 		/// </remarks>
-		/// <param name="value">Ordinal column position of the value.</param>
+		/// <param name="i">Ordinal column position of the value.</param>
 		/// <param name="fieldOffset">Offset position within the field.</param>
 		/// <param name="buffer">Array containing the data.</param>
-		/// <param name="bufferOffset">Offset position within the buffer.</param>
+		/// <param name="bufferoffset">Offset position within the buffer.</param>
 		/// <param name="length">Length of data to read.</param>
 		/// <returns>The Long value of the column.</returns>
-		public virtual long GetBytes(int value, long fieldOffset, byte[] buffer, int bufferOffset, int length)
+		public virtual long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
 		{
-			return dataReader.IsDBNull(value) ? 0L : dataReader.GetBytes(value, fieldOffset, buffer, bufferOffset, length);
+			return dataReader.IsDBNull(i) ? 0L : dataReader.GetBytes(i, fieldOffset, buffer, bufferoffset, length);
 		}
 
 		/// <summary>
@@ -465,12 +457,12 @@ namespace SmartIT.Library.Data
 		/// <param name="name">Name of the column containing the value.</param>
 		/// <param name="fieldOffset">Offset position within the field.</param>
 		/// <param name="buffer">Array containing the data.</param>
-		/// <param name="bufferOffset">Offset position within the buffer.</param>
+		/// <param name="bufferoffset">Offset position within the buffer.</param>
 		/// <param name="length">Length of data to read.</param>
 		/// <returns>The Long value of the column.</returns>
-		public long GetChars(string name, long fieldOffset, char[] buffer, int bufferOffset, int length)
+		public long GetChars(string name, long fieldOffset, char[] buffer, int bufferoffset, int length)
 		{
-			return GetChars(dataReader.GetOrdinal(name), fieldOffset, buffer, bufferOffset, length);
+			return GetChars(dataReader.GetOrdinal(name), fieldOffset, buffer, bufferoffset, length);
 		}
 
 		/// <summary>
@@ -724,6 +716,7 @@ namespace SmartIT.Library.Data
 		{
 			// Do not change this code. Put cleanup code in Dispose(bool disposing) below.
 			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>
@@ -740,6 +733,14 @@ namespace SmartIT.Library.Data
 
 			// free shared unmanaged resources
 			disposedValue = true;
+		}
+
+		/// <summary>
+		/// Finalizes an instance of the <see cref="SafeDataReader" /> class.
+		/// </summary>
+		~SafeDataReader()
+		{
+			Dispose(false);
 		}
 	}
 }

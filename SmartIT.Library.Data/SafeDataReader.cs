@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>This is a DataReader that 'fixes' any null values before they are returned to our business code.</summary>
+// <summary>This is a DataReader implementation that handles any null values before they are returned to our business code.</summary>
 
 namespace SmartIT.Library.Data
 {
@@ -11,7 +11,7 @@ namespace SmartIT.Library.Data
 	using System.Data;
 
 	/// <summary>
-	/// This is a DataReader that 'fixes' any null values before they are returned to our business code.
+	/// This is a DataReader implementation that handles any null values before they are returned to our business code.
 	/// </summary>
 	public class SafeDataReader : IDataReader
 	{
@@ -232,15 +232,15 @@ namespace SmartIT.Library.Data
 		/// <returns> The double value of the field.</returns>
 		public virtual double GetDouble(int i)
 		{
-			return dataReader.IsDBNull(i) ? 0 : dataReader.GetDouble(i);
+			return dataReader.IsDBNull(i) ? (double)0 : dataReader.GetDouble(i);
 		}
 
 		/// <summary>
-		/// Gets a <see cref="SmartDate" /> from the datareader.
+		/// Gets a <see cref="DateTime" /> from the datareader.
 		/// </summary>
 		/// <remarks>
-		/// A null is converted into min possible date
-		/// See Chapter 5 for more details on the SmartDate class.
+		/// A null is converted into min possible date.
+		/// See Chapter 5 for more details on the DateTime class.
 		/// </remarks>
 		/// <param name="name">Name of the column containing the value.</param>
 		/// <returns> The DateTime value of the field if not null; otherwise, null.</returns>
@@ -250,11 +250,11 @@ namespace SmartIT.Library.Data
 		}
 
 		/// <summary>
-		/// Gets a <see cref="SmartDate" /> from the datareader.
+		/// Gets a <see cref="DateTime" /> from the datareader.
 		/// </summary>
 		/// <remarks>
-		/// A null is converted into the min possible date
-		/// See Chapter 5 for more details on the SmartDate class.
+		/// A null is converted into the min possible date.
+		/// See Chapter 5 for more details on the DateTime class.
 		/// </remarks>
 		/// <param name="i">Ordinal column position of the value.</param>
 		/// <returns> The DateTime value of the field if not null; otherwise, null.</returns>
@@ -275,7 +275,7 @@ namespace SmartIT.Library.Data
 		/// </summary>
 		/// <param name="name">Name of the column containing the value.</param>
 		/// <returns> Returns Guid. Empty for null.</returns>
-		public System.Guid GetGuid(string name)
+		public Guid GetGuid(string name)
 		{
 			return GetGuid(dataReader.GetOrdinal(name));
 		}
@@ -285,35 +285,9 @@ namespace SmartIT.Library.Data
 		/// </summary>
 		/// <param name="i">Ordinal column position of the value.</param>
 		/// <returns> Returns Guid. Empty for null.</returns>
-		public virtual System.Guid GetGuid(int i)
+		public virtual Guid GetGuid(int i)
 		{
 			return dataReader.IsDBNull(i) ? Guid.Empty : dataReader.GetGuid(i);
-		}
-
-		/// <summary>
-		/// Reads the next row of data from the datareader.
-		/// </summary>
-		/// <returns>True or false.</returns>
-		public bool Read()
-		{
-			return dataReader.Read();
-		}
-
-		/// <summary>
-		/// Moves to the next result set in the datareader.
-		/// </summary>
-		/// <returns>True or false.</returns>
-		public bool NextResult()
-		{
-			return dataReader.NextResult();
-		}
-
-		/// <summary>
-		/// Closes the datareader.
-		/// </summary>
-		public void Close()
-		{
-			dataReader.Close();
 		}
 
 		/// <summary>
@@ -605,7 +579,7 @@ namespace SmartIT.Library.Data
 		/// <returns>The Float value of the column, or 0 for null.</returns>
 		public virtual float GetFloat(int i)
 		{
-			return dataReader.IsDBNull(i) ? 0F : dataReader.GetFloat(i);
+			return dataReader.IsDBNull(i) ? (float)0 : dataReader.GetFloat(i);
 		}
 
 		/// <summary>
@@ -697,6 +671,32 @@ namespace SmartIT.Library.Data
 		public int GetValues(object[] values)
 		{
 			return dataReader.GetValues(values);
+		}
+
+		/// <summary>
+		/// Reads the next row of data from the datareader.
+		/// </summary>
+		/// <returns>True or false.</returns>
+		public bool Read()
+		{
+			return dataReader.Read();
+		}
+
+		/// <summary>
+		/// Moves to the next result set in the datareader.
+		/// </summary>
+		/// <returns>True or false.</returns>
+		public bool NextResult()
+		{
+			return dataReader.NextResult();
+		}
+
+		/// <summary>
+		/// Closes the datareader.
+		/// </summary>
+		public void Close()
+		{
+			dataReader.Close();
 		}
 
 		/// <summary>

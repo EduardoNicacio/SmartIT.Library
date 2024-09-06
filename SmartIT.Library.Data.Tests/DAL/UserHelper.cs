@@ -4,16 +4,28 @@ using System.Data.SqlClient;
 
 namespace SmartIT.Library.Data.Tests.DAL
 {
-	internal static class Helpers
+	internal static class UserHelper
 	{
-		// Declares a new class to be used in the tests
+		// Declares a series of classes to be used in the tests
 
 		[Serializable]
 		public class User
 		{
+			/// <summary>
+			/// Tests SafeDataReader.GetInt32()
+			/// </summary>
 			public int Id { get; set; }
+			/// <summary>
+			/// Tests SafeDataReader.GetString()
+			/// </summary>
 			public string Name { get; set; } = string.Empty;
+			/// <summary>
+			/// Tests SafeDataReader.GetString()
+			/// </summary>
 			public string Email { get; set; } = string.Empty;
+			/// <summary>
+			/// Tests SafeDataReader.GetDateTime()
+			/// </summary>
 			public DateTime CreationDate { get; set; }
 		}
 
@@ -180,7 +192,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 
 			public static bool ValidateModel(User user)
 			{
-				return user != null &&
+				return user is not null &&
 					!string.IsNullOrWhiteSpace(user.Name) &&
 					!string.IsNullOrWhiteSpace(user.Email) &&
 					user.CreationDate > DateTime.MinValue &&

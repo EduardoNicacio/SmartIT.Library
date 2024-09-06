@@ -19,6 +19,16 @@ namespace SmartIT.Library.Data
 		/// </summary>
 		/// <param name="v"> Valor  Valor Decimal.</param>
 		/// <returns> Valor do objeto.</returns>
+		public static object GetValue(decimal v)
+		{
+			return v == 0 ? DBNull.Value : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor  Valor Decimal.</param>
+		/// <returns> Valor do objeto.</returns>
 		public static object GetValue(decimal? v)
 		{
 			return GetValue((object)v);
@@ -51,17 +61,7 @@ namespace SmartIT.Library.Data
 		/// <returns> Valor do objeto, ou DBNull.</returns>
 		public static object GetValue(DateTime v)
 		{
-			return v == DateTime.MinValue ? DBNull.Value : (object)v;
-		}
-
-		/// <summary>
-		/// Retorna o valor de um objeto passado como parâmetro.
-		/// </summary>
-		/// <param name="v"> Valor int?.</param>
-		/// <returns> Valor do objeto.</returns>
-		public static object GetValue(int? v)
-		{
-			return GetValue((object)v);
+			return v == DateTime.MinValue ? DBNull.Value : GetValue((object)v);
 		}
 
 		/// <summary>
@@ -71,7 +71,17 @@ namespace SmartIT.Library.Data
 		/// <returns> Valor do objeto.</returns>
 		public static object GetValue(int v)
 		{
-			return v == 0 ? DBNull.Value : (object)v;
+			return v == 0 ? DBNull.Value : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor int?.</param>
+		/// <returns> Valor do objeto.</returns>
+		public static object GetValue(int? v)
+		{
+			return v == null ? DBNull.Value : GetValue((object)v);
 		}
 
 		/// <summary>
@@ -80,6 +90,66 @@ namespace SmartIT.Library.Data
 		/// <param name="v"> Valor Bool.</param>
 		/// <returns> Valor do objeto.</returns>
 		public static object GetValue(bool? v)
+		{
+			return (v == null) ? DBNull.Value : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor Object.</param>
+		/// <returns> Valor do objeto, ou DBNull.</returns>
+		public static object GetValue(Guid? v)
+		{
+			return (v == null) ? Guid.Empty : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor Object.</param>
+		/// <returns> Valor do objeto, ou DBNull.</returns>
+		public static object GetValue(byte[] v)
+		{
+			return (v.Length == 0) ? Array.Empty<byte>() : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor Object.</param>
+		/// <returns> Valor do objeto, ou DBNull.</returns>
+		public static object GetValue(double v)
+		{
+			return Math.Truncate((decimal)v) == 0 ? DBNull.Value : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor Object.</param>
+		/// <returns> Valor do objeto, ou DBNull.</returns>
+		public static object GetValue(double? v)
+		{
+			return GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor Object.</param>
+		/// <returns> Valor do objeto, ou DBNull.</returns>
+		public static object GetValue(long v)
+		{
+			return v == 0 ? DBNull.Value : GetValue((object)v);
+		}
+
+		/// <summary>
+		/// Retorna o valor de um objeto passado como parâmetro.
+		/// </summary>
+		/// <param name="v"> Valor Object.</param>
+		/// <returns> Valor do objeto, ou DBNull.</returns>
+		public static object GetValue(long? v)
 		{
 			return GetValue((object)v);
 		}

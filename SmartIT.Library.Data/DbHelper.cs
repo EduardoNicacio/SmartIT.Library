@@ -280,7 +280,7 @@ namespace SmartIT.Library.Data
 
 		/// <summary>
 		/// Executa um comando e retorna apenas a primeira coluna da primeira linha do
-		/// resultado. Caso não haja resultado, o método retorna null.
+		/// resultado. Caso não haja resultado, o método retorna -1.
 		/// </summary>
 		/// <param name="cmd"> DbCommand a ser executado.</param>
 		/// <returns> O valor encontrado, ou -1.</returns>
@@ -346,6 +346,7 @@ namespace SmartIT.Library.Data
 		/// <param name="cmd"> IDbCommand a ser executado.</param>
 		/// <param name="cnn"> IDbConnection - conexão.</param>
 		/// <returns> Objeto de banco.</returns>
+		/// <exception cref="ArgumentException"></exception>
 		public object ExecuteScalar(IDbCommand cmd, IDbConnection cnn)
 		{
 			cmd.CommandTimeout = commandTimeout;
@@ -465,7 +466,7 @@ namespace SmartIT.Library.Data
 		/// <returns> O próximo valor para a coluna procurada.</returns>
 		public int GetNextValue(string columnName, string tableName)
 		{
-			string sql = string.Format("select max({0}) val from {1}", columnName, tableName);
+			string sql = string.Format("SELECT MAX({0}) VAL FROM {1}", columnName, tableName);
 
 			IDbCommand cmd;
 			if (transaction != null && transaction.Connection != null)

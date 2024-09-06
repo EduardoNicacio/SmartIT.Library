@@ -1,11 +1,11 @@
 namespace SmartIT.Library.Data.Tests.DAL
 {
 	[TestFixture, SingleThreaded]
-	internal class DaoBaseTests
+	internal class UserBllTests
 	{
-		readonly Helpers.User user1 = new() { Id = 1, Name = "Eduardo", Email = "eduardo@email.com", CreationDate = DateTime.Now };
-		readonly Helpers.User user2 = new() { Id = 2, Name = "Claudio", Email = "claudio@email.com", CreationDate = DateTime.Now.AddDays(-1) };
-		readonly Helpers.User user3 = new() { Id = 3, Name = "Nicacio", Email = "nicacio@email.com", CreationDate = DateTime.Now.AddDays(-2) };
+		readonly UserHelper.User user1 = new() { Id = 1, Name = "Eduardo", Email = "eduardo@email.com", CreationDate = DateTime.Now };
+		readonly UserHelper.User user2 = new() { Id = 2, Name = "Claudio", Email = "claudio@email.com", CreationDate = DateTime.Now.AddDays(-1) };
+		readonly UserHelper.User user3 = new() { Id = 3, Name = "Nicacio", Email = "nicacio@email.com", CreationDate = DateTime.Now.AddDays(-2) };
 
 		[SetUp]
 		public void Setup()
@@ -14,13 +14,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 		}
 
 		[Test, Order(1)]
-		public void T01_Validate_ValidateModel_NullObject()
+		public void T01_Validate_ValidateModel_DefaultObject()
 		{
 			// Arrange
-			Helpers.User emptyUser = null;
+			UserHelper.User emptyUser = default!;
 
 			// Act
-			var result = Helpers.UserBll.ValidateModel(emptyUser);
+			var result = UserHelper.UserBll.ValidateModel(emptyUser);
 
 			// Assert
 			Assert.That(result, Is.False);
@@ -30,10 +30,10 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T02_Validate_ValidateModel_InvalidModel()
 		{
 			// Arrange
-			var emptyUser = new Helpers.User();
+			var emptyUser = new UserHelper.User();
 
 			// Act
-			var result = Helpers.UserBll.ValidateModel(emptyUser);
+			var result = UserHelper.UserBll.ValidateModel(emptyUser);
 
 			// Assert
 			Assert.That(result, Is.False);
@@ -45,7 +45,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.ValidateModel(user1);
+			var result = UserHelper.UserBll.ValidateModel(user1);
 
 			// Assert
 			Assert.That(result, Is.True);
@@ -57,7 +57,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.Insert(new Helpers.User());
+			var result = UserHelper.UserBll.Insert(new UserHelper.User());
 
 			// Assert
 			Assert.That(result, Is.EqualTo(0));
@@ -69,7 +69,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.Insert(user1);
+			var result = UserHelper.UserBll.Insert(user1);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -81,7 +81,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.Insert(user2);
+			var result = UserHelper.UserBll.Insert(user2);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -93,7 +93,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.Insert(user3);
+			var result = UserHelper.UserBll.Insert(user3);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -105,7 +105,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.SearchItem(new Helpers.User());
+			var result = UserHelper.UserBll.SearchItem(new UserHelper.User());
 
 			// Assert
 			Assert.That(result, Is.Null);
@@ -117,7 +117,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.SearchItem(new Helpers.User { Email = user1.Email });
+			var result = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user1.Email });
 
 			// Assert
 			Assert.Multiple(() =>
@@ -133,10 +133,10 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T10_Validate_Search_WithObject()
 		{
 			// Arrange
-			var user = new Helpers.User { Email = user2.Email };
+			var user = new UserHelper.User { Email = user2.Email };
 
 			// Act
-			var result = Helpers.UserBll.Search(user);
+			var result = UserHelper.UserBll.Search(user);
 
 			// Assert
 			Assert.Multiple(() =>
@@ -151,11 +151,11 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T11_Validate_Search_WithSearchCriteria()
 		{
 			// Arrange
-			Helpers.UserBll.SearchCriteria.Clear();
-			Helpers.UserBll.SearchCriteria.Add("Email", user3.Email);
+			UserHelper.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Add("Email", user3.Email);
 
 			// Act
-			var result = Helpers.UserBll.Search();
+			var result = UserHelper.UserBll.Search();
 
 			// Assert
 			Assert.Multiple(() =>
@@ -170,10 +170,10 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T12_Validate_SearchAll()
 		{
 			// Arrange
-			Helpers.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Clear();
 
 			// Act
-			var result = Helpers.UserBll.Search();
+			var result = UserHelper.UserBll.Search();
 
 			// Assert
 			Assert.Multiple(() =>
@@ -189,7 +189,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.Update(new Helpers.User());
+			var result = UserHelper.UserBll.Update(new UserHelper.User());
 
 			// Assert
 			Assert.That(result, Is.EqualTo(0));
@@ -199,11 +199,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T14_Validate_Update_UseCase1()
 		{
 			// Arrange
-			var existent = Helpers.UserBll.SearchItem(new Helpers.User { Email = user1.Email });
-			var user = new Helpers.User { Id = existent.Id, Name = "Eduardo after update", Email = "eduardo@email.com", CreationDate = existent.CreationDate };
+			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user1.Email });
+			int id = existent != null ? existent.Id : 0;
+			DateTime creationDate = existent != null ? existent.CreationDate : DateTime.Now;
+			var user = new UserHelper.User { Id = id, Name = "Eduardo after update", Email = "eduardo@email.com", CreationDate = creationDate };
 
 			// Act
-			var result = Helpers.UserBll.Update(user);
+			var result = UserHelper.UserBll.Update(user);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -213,11 +215,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T15_Validate_Update_UseCase2()
 		{
 			// Arrange
-			var existent = Helpers.UserBll.SearchItem(new Helpers.User { Email = user2.Email });
-			var user = new Helpers.User { Id = existent.Id, Name = "Claudio after update", Email = "claudio@email.com", CreationDate = existent.CreationDate };
+			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user2.Email });
+			int id = existent != null ? existent.Id : 0;
+			DateTime creationDate = existent != null ? existent.CreationDate : DateTime.Now;
+			var user = new UserHelper.User { Id = id, Name = "Claudio after update", Email = "claudio@email.com", CreationDate = creationDate };
 
 			// Act
-			var result = Helpers.UserBll.Update(user);
+			var result = UserHelper.UserBll.Update(user);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -227,11 +231,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T16_Validate_Update_UseCase3()
 		{
 			// Arrange
-			var existent = Helpers.UserBll.SearchItem(new Helpers.User { Email = user3.Email });
-			var user = new Helpers.User { Id = existent.Id, Name = "Nicacio after update", Email = "nicacio@email.com", CreationDate = existent.CreationDate };
+			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user3.Email });
+			int id = existent != null ? existent.Id : 0;
+			DateTime creationDate = existent != null ? existent.CreationDate : DateTime.Now;
+			var user = new UserHelper.User { Id = id, Name = "Nicacio after update", Email = "nicacio@email.com", CreationDate = creationDate };
 
 			// Act
-			var result = Helpers.UserBll.Update(user);
+			var result = UserHelper.UserBll.Update(user);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -243,7 +249,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			// Arrange
 
 			// Act
-			var result = Helpers.UserBll.Delete(new Helpers.User());
+			var result = UserHelper.UserBll.Delete(new UserHelper.User());
 
 			// Assert
 			Assert.That(result, Is.EqualTo(0));
@@ -253,10 +259,11 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T18_Validate_Delete_UseCase1()
 		{
 			// Arrange
-			var existent = Helpers.UserBll.SearchItem(new Helpers.User { Email = user1.Email });
+			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user1.Email });
+			int id = existent != null ? existent.Id : 0;
 
 			// Act
-			var result = Helpers.UserBll.Delete(existent);
+			var result = UserHelper.UserBll.Delete(new UserHelper.User { Id = id });
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -266,10 +273,11 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T19_Validate_Delete_UseCase2()
 		{
 			// Arrange
-			var existent = Helpers.UserBll.SearchItem(new Helpers.User { Email = user2.Email });
+			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user2.Email });
+			int id = existent != null ? existent.Id : 0;
 
 			// Act
-			var result = Helpers.UserBll.Delete(existent);
+			var result = UserHelper.UserBll.Delete(new UserHelper.User { Id = id });
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));
@@ -279,10 +287,11 @@ namespace SmartIT.Library.Data.Tests.DAL
 		public void T20_Validate_Delete_UseCase3()
 		{
 			// Arrange
-			var existent = Helpers.UserBll.SearchItem(new Helpers.User { Email = user3.Email });
+			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user3.Email });
+			int id = existent != null ? existent.Id : 0;
 
 			// Act
-			var result = Helpers.UserBll.Delete(existent);
+			var result = UserHelper.UserBll.Delete(new UserHelper.User { Id = id });
 
 			// Assert
 			Assert.That(result, Is.EqualTo(1));

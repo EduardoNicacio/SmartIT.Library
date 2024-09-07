@@ -119,11 +119,7 @@ namespace SmartIT.Library.Utilities.Mail
 		/// <param name="smtpPassword">Smtp password.</param>
 		/// <param name="enableSsl">Enables or not the ssl.</param>
 		/// <param name="attachments"><seealso cref="Attachment"/> object list.</param>
-		/// <exception cref="ArgumentException"></exception>
 		/// <exception cref="ArgumentNullException"></exception>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
-		/// <exception cref="InvalidOperationException"></exception>
-		/// <exception cref="SmtpException"></exception>
 		/// <returns>0 in case of success, or an exception.</returns>
 		public static int SendMail(
 			string from,
@@ -141,73 +137,20 @@ namespace SmartIT.Library.Utilities.Mail
 			bool enableSsl,
 			List<Attachment> attachments)
 		{
-			using (MailMessage message = new MailMessage())
+			if (string.IsNullOrWhiteSpace(from))
 			{
-				if (string.IsNullOrWhiteSpace(from))
-				{
-					throw new ArgumentNullException(nameof(from));
-				}
-				if (string.IsNullOrWhiteSpace(to))
-				{
-					throw new ArgumentNullException(nameof(to));
-				}
-
-				message.From = new MailAddress(from);
-				message.To.Add(new MailAddress(to));
-				if (!string.IsNullOrWhiteSpace(cc)) { message.CC.Add(new MailAddress(cc)); }
-				if (!string.IsNullOrWhiteSpace(bcc)) { message.Bcc.Add(new MailAddress(bcc)); }
-				message.Subject = subject;
-				message.Body = body;
-				message.IsBodyHtml = mailFormat.Equals(MailFormat.Html);
-				message.SubjectEncoding = Encoding.GetEncoding("UTF-8");
-				message.BodyEncoding = Encoding.GetEncoding("UTF-8");
-				message.Priority = mailPriority;
-
-				foreach (Attachment obj in attachments)
-				{
-					message.Attachments.Add(obj);
-				}
-
-				using (SmtpClient smtpClient = new SmtpClient())
-				{
-					if (string.IsNullOrEmpty(smtpServer))
-					{
-						throw new ArgumentNullException(nameof(smtpServer));
-					}
-					if (smtpPort <= 0 || smtpPort > 65535)
-					{
-						throw new ArgumentOutOfRangeException(nameof(smtpPort));
-					}
-
-					smtpClient.Host = smtpServer;
-					smtpClient.Port = smtpPort;
-					smtpClient.EnableSsl = enableSsl;
-
-					if (!string.IsNullOrWhiteSpace(smtpUsername) && !string.IsNullOrWhiteSpace(smtpPassword))
-					{
-						smtpClient.Credentials = new System.Net.NetworkCredential(smtpUsername, smtpPassword);
-					}
-
-					try
-					{
-						smtpClient.Send(message);
-					}
-					catch (ArgumentNullException ex)
-					{
-						throw new ArgumentNullException(ex.Message, ex);
-					}
-					catch (InvalidOperationException ex)
-					{
-						throw new InvalidOperationException(ex.Message, ex);
-					}
-					catch (SmtpException ex)
-					{
-						throw new SmtpException(ex.Message, ex);
-					}
-				}
+				throw new ArgumentNullException(nameof(from));
+			}
+			if (string.IsNullOrWhiteSpace(to))
+			{
+				throw new ArgumentNullException(nameof(to));
 			}
 
-			return 0;
+			List<MailAddress> toList = new List<MailAddress> { new MailAddress(to) };
+			List<MailAddress> ccList = new List<MailAddress> { new MailAddress(cc) };
+			List<MailAddress> bccList = new List<MailAddress> { new MailAddress(bcc) };
+
+			return SendMail(from, toList, ccList, bccList, subject, body, mailPriority, mailFormat, smtpServer, smtpPort, smtpUsername, smtpPassword, enableSsl, attachments);
 		}
 
 		/// <summary>
@@ -330,17 +273,17 @@ namespace SmartIT.Library.Utilities.Mail
 			bool enableSsl,
 			List<Attachment> attachments)
 		{
+			if (string.IsNullOrWhiteSpace(from))
+			{
+				throw new ArgumentNullException(nameof(from));
+			}
+			if (to is null || !to.Any())
+			{
+				throw new ArgumentNullException(nameof(to));
+			}
+
 			using (MailMessage message = new MailMessage())
 			{
-				if (string.IsNullOrWhiteSpace(from))
-				{
-					throw new ArgumentNullException(nameof(from));
-				}
-				if (to is null || !to.Any())
-				{
-					throw new ArgumentNullException(nameof(to));
-				}
-
 				message.From = new MailAddress(from);
 				foreach (var addr in to) { message.To.Add(addr); }
 				foreach (var addr in cc) { message.CC.Add(addr); }

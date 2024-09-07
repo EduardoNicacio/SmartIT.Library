@@ -285,6 +285,32 @@ namespace SmartIT.Library.Tests.Extensions
 		}
 
 		[Test]
+		public void Verify_ToCpf_LongCpf()
+		{
+			// Arrange
+			var longCpf = "123456789000";
+
+			// Act
+			var result = StringExtensions.ToCpf(longCpf);
+
+			// Assert
+			Assert.That(result, Is.EqualTo(longCpf));
+		}
+
+		[Test]
+		public async Task Verify_ToCpfAsync_LongCpf()
+		{
+			// Arrange
+			const string longCpf = "123456789000";
+
+			// Act
+			var result = await StringExtensions.ToCpfAsync(longCpf);
+
+			// Assert
+			Assert.That(result, Is.EqualTo(longCpf));
+		}
+
+		[Test]
 		public void Verify_ToCleanCpf_EmptyString()
 		{
 			// Arrange
@@ -386,6 +412,32 @@ namespace SmartIT.Library.Tests.Extensions
 			Assert.That(result, Is.EqualTo(toCleanCnpj));
 
 			return result;
+		}
+
+		[Test]
+		public void Verify_ToCnpj_LongCnpj() 
+		{
+			// Arrange
+			var longCnpj = "123456789012345";
+
+			// Act
+			var result = StringExtensions.ToCnpj(longCnpj);
+
+			// Assert
+			Assert.That(result, Is.EqualTo(longCnpj));
+		}
+
+		[Test]
+		public async Task Verify_ToCnpjAsync_LongCnpj() 
+		{
+			// Arrange
+			const string longCnpj = "123456789012345";
+
+			// Act
+			var result = await StringExtensions.ToCnpjAsync(longCnpj);
+
+			// Assert
+			Assert.That(result, Is.EqualTo(longCnpj));
 		}
 
 		[Test]

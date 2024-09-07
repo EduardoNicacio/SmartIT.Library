@@ -3,17 +3,18 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>02/09/2016</date>
-// <summary>Class that encapsulates a System.Net.Mail object.</summary>
+// <summary>A simple wrapper for the System.Net.Mail class.</summary>
 
 namespace SmartIT.Library.Utilities.Mail
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Net.Mail;
 	using System.Text;
 
 	/// <summary>
-	/// A simple implementation for the System.Net.Mail class.
+	/// A simple wrapper for the System.Net.Mail class.
 	/// </summary>
 	public class SystemNetMail : MarshalByRefObject, IDisposable
 	{
@@ -23,147 +24,173 @@ namespace SmartIT.Library.Utilities.Mail
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
-		/// <param name="From">From address.</param>
-		/// <param name="To">To address.</param>
-		/// <param name="Cc">Cc address.</param>
-		/// <param name="Bcc">Bcc address.</param>
-		/// <param name="Subject">Mail subject.</param>
-		/// <param name="Body">Mail body.</param>
-		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail body format.</param>
-		/// <param name="SmtpServer">Smtp server address.</param>
-		/// <param name="SmtpPort">Smtp port.</param>
-		/// <param name="SmtpUsername">Smtp username.</param>
-		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the SSL.</param>
-		public static void SendMail(
-			string From,
-			string To,
-			string Cc,
-			string Bcc,
-			string Subject,
-			string Body,
-			MailPriority MailPriority,
-			MailFormat MailFormat,
-			string SmtpServer,
-			int SmtpPort,
-			string SmtpUsername,
-			string SmtpPassword,
-			bool EnableSsl = true)
+		/// <param name="from">From address.</param>
+		/// <param name="to">To address.</param>
+		/// <param name="cc">Cc address.</param>
+		/// <param name="bcc">Bcc address.</param>
+		/// <param name="subject">Mail subject.</param>
+		/// <param name="body">Mail body.</param>
+		/// <param name="mailPriority">Mail priority.</param>
+		/// <param name="mailFormat">Mail body format.</param>
+		/// <param name="smtpServer">Smtp server address.</param>
+		/// <param name="smtpPort">Smtp port.</param>
+		/// <param name="smtpUsername">Smtp username.</param>
+		/// <param name="smtpPassword">Smtp password.</param>
+		/// <param name="enableSsl">Enables or not the SSL.</param>
+		/// <returns>0 in case of success, or an exception.</returns>
+		public static int SendMail(
+			string from,
+			string to,
+			string cc,
+			string bcc,
+			string subject,
+			string body,
+			MailPriority mailPriority,
+			MailFormat mailFormat,
+			string smtpServer,
+			int smtpPort,
+			string smtpUsername,
+			string smtpPassword,
+			bool enableSsl = false)
 		{
-			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, new List<Attachment>());
+			SendMail(from, to, cc, bcc, subject, body, mailPriority, mailFormat, smtpServer, smtpPort, smtpUsername, smtpPassword, enableSsl, new List<Attachment>());
+			return 0;
 		}
 
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
-		/// <param name="From">From address.</param>
-		/// <param name="To">To address.</param>
-		/// <param name="Cc">Cc address.</param>
-		/// <param name="Bcc">Bcc address.</param>
-		/// <param name="Subject">Mail subject.</param>
-		/// <param name="Body">Mail body.</param>
-		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail format.</param>
-		/// <param name="SmtpServer">Smtp server address.</param>
-		/// <param name="SmtpPort">Smtp port.</param>
-		/// <param name="SmtpUsername">Smtp username.</param>
-		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the ssl.</param>
-		/// <param name="Attachments"><seealso cref="Attachment"/> object list.</param>
-		public static void SendMail(
-			string From,
-			string To,
-			string Cc,
-			string Bcc,
-			string Subject,
-			string Body,
-			MailPriority MailPriority,
-			MailFormat MailFormat,
-			string SmtpServer,
-			int SmtpPort,
-			string SmtpUsername,
-			string SmtpPassword,
-			bool EnableSsl,
-			List<string> Attachments)
+		/// <param name="from">From address.</param>
+		/// <param name="to">To address.</param>
+		/// <param name="cc">Cc address.</param>
+		/// <param name="bcc">Bcc address.</param>
+		/// <param name="subject">Mail subject.</param>
+		/// <param name="body">Mail body.</param>
+		/// <param name="mailPriority">Mail priority.</param>
+		/// <param name="mailFormat">Mail format.</param>
+		/// <param name="smtpServer">Smtp server address.</param>
+		/// <param name="smtpPort">Smtp port.</param>
+		/// <param name="smtpUsername">Smtp username.</param>
+		/// <param name="smtpPassword">Smtp password.</param>
+		/// <param name="enableSsl">Enables or not the ssl.</param>
+		/// <param name="attachments"><seealso cref="Attachment"/> object list.</param>
+		/// <returns>0 in case of success, or an exception.</returns>
+		public static int SendMail(
+			string from,
+			string to,
+			string cc,
+			string bcc,
+			string subject,
+			string body,
+			MailPriority mailPriority,
+			MailFormat mailFormat,
+			string smtpServer,
+			int smtpPort,
+			string smtpUsername,
+			string smtpPassword,
+			bool enableSsl,
+			List<string> attachments)
 		{
-			List<Attachment> attachments = new List<Attachment>();
+			List<Attachment> list = new List<Attachment>();
 
-			foreach (var attachment in Attachments)
+			foreach (var attachment in attachments)
 			{
-				attachments.Add(new Attachment(attachment, System.Net.Mime.MediaTypeNames.Application.Octet));
+				list.Add(new Attachment(attachment, System.Net.Mime.MediaTypeNames.Application.Octet));
 			}
-			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, attachments);
+
+			SendMail(from, to, cc, bcc, subject, body, mailPriority, mailFormat, smtpServer, smtpPort, smtpUsername, smtpPassword, enableSsl, list);
+			return 0;
 		}
 
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
-		/// <param name="From">From address.</param>
-		/// <param name="To">To address.</param>
-		/// <param name="Cc">Cc address.</param>
-		/// <param name="Bcc">Bcc address.</param>
-		/// <param name="Subject">Mail subject.</param>
-		/// <param name="Body">Mail body.</param>
-		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail format.</param>
-		/// <param name="SmtpServer">Smtp server address.</param>
-		/// <param name="SmtpPort">Smtp port.</param>
-		/// <param name="SmtpUsername">Smtp username.</param>
-		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the ssl.</param>
-		/// <param name="Attachments"><seealso cref="Attachment"/> object list.</param>
+		/// <param name="from">From address.</param>
+		/// <param name="to">To address.</param>
+		/// <param name="cc">Cc address.</param>
+		/// <param name="bcc">Bcc address.</param>
+		/// <param name="subject">Mail subject.</param>
+		/// <param name="body">Mail body.</param>
+		/// <param name="mailPriority">Mail priority.</param>
+		/// <param name="mailFormat">Mail format.</param>
+		/// <param name="smtpServer">Smtp server address.</param>
+		/// <param name="smtpPort">Smtp port.</param>
+		/// <param name="smtpUsername">Smtp username.</param>
+		/// <param name="smtpPassword">Smtp password.</param>
+		/// <param name="enableSsl">Enables or not the ssl.</param>
+		/// <param name="attachments"><seealso cref="Attachment"/> object list.</param>
+		/// <exception cref="ArgumentException"></exception>
 		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="InvalidOperationException"></exception>
 		/// <exception cref="SmtpException"></exception>
-		public static void SendMail(
-			string From,
-			string To,
-			string Cc,
-			string Bcc,
-			string Subject,
-			string Body,
-			MailPriority MailPriority,
-			MailFormat MailFormat,
-			string SmtpServer,
-			int SmtpPort,
-			string SmtpUsername,
-			string SmtpPassword,
-			bool EnableSsl,
-			List<Attachment> Attachments)
+		/// <returns>0 in case of success, or an exception.</returns>
+		public static int SendMail(
+			string from,
+			string to,
+			string cc,
+			string bcc,
+			string subject,
+			string body,
+			MailPriority mailPriority,
+			MailFormat mailFormat,
+			string smtpServer,
+			int smtpPort,
+			string smtpUsername,
+			string smtpPassword,
+			bool enableSsl,
+			List<Attachment> attachments)
 		{
 			using (MailMessage message = new MailMessage())
 			{
-				message.From = new MailAddress(From);
-				message.To.Add(new MailAddress(To));
-				message.CC.Add(new MailAddress(Cc));
-				message.Bcc.Add(new MailAddress(Bcc));
-				message.Subject = Subject;
-				message.Body = Body;
-				message.IsBodyHtml = MailFormat.Equals(MailFormat.Html);
-				message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
-				message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
-				message.Priority = MailPriority;
+				if (string.IsNullOrWhiteSpace(from))
+				{
+					throw new ArgumentNullException(nameof(from));
+				}
+				if (string.IsNullOrWhiteSpace(to))
+				{
+					throw new ArgumentNullException(nameof(to));
+				}
 
-				foreach (Attachment obj in Attachments)
+				message.From = new MailAddress(from);
+				message.To.Add(new MailAddress(to));
+				if (!string.IsNullOrWhiteSpace(cc)) { message.CC.Add(new MailAddress(cc)); }
+				if (!string.IsNullOrWhiteSpace(bcc)) { message.Bcc.Add(new MailAddress(bcc)); }
+				message.Subject = subject;
+				message.Body = body;
+				message.IsBodyHtml = mailFormat.Equals(MailFormat.Html);
+				message.SubjectEncoding = Encoding.GetEncoding("UTF-8");
+				message.BodyEncoding = Encoding.GetEncoding("UTF-8");
+				message.Priority = mailPriority;
+
+				foreach (Attachment obj in attachments)
 				{
 					message.Attachments.Add(obj);
 				}
 
-				using (SmtpClient smtpServer = new SmtpClient())
+				using (SmtpClient smtpClient = new SmtpClient())
 				{
-					smtpServer.Host = SmtpServer;
-					smtpServer.Port = SmtpPort > 0 ? SmtpPort : 25;
-					smtpServer.EnableSsl = true;
-
-					if (!string.IsNullOrWhiteSpace(SmtpUsername) && !string.IsNullOrWhiteSpace(SmtpPassword))
+					if (string.IsNullOrEmpty(smtpServer))
 					{
-						smtpServer.Credentials = new System.Net.NetworkCredential(SmtpUsername, SmtpPassword);
+						throw new ArgumentNullException(nameof(smtpServer));
+					}
+					if (smtpPort <= 0 || smtpPort > 65535)
+					{
+						throw new ArgumentOutOfRangeException(nameof(smtpPort));
+					}
+
+					smtpClient.Host = smtpServer;
+					smtpClient.Port = smtpPort;
+					smtpClient.EnableSsl = enableSsl;
+
+					if (!string.IsNullOrWhiteSpace(smtpUsername) && !string.IsNullOrWhiteSpace(smtpPassword))
+					{
+						smtpClient.Credentials = new System.Net.NetworkCredential(smtpUsername, smtpPassword);
 					}
 
 					try
 					{
-						smtpServer.Send(message);
+						smtpClient.Send(message);
 					}
 					catch (ArgumentNullException ex)
 					{
@@ -179,152 +206,180 @@ namespace SmartIT.Library.Utilities.Mail
 					}
 				}
 			}
+
+			return 0;
 		}
 
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
-		/// <param name="From">From address.</param>
-		/// <param name="To">To address list.</param>
-		/// <param name="Cc">Cc address list.</param>
-		/// <param name="Bcc">Bcc address list.</param>
-		/// <param name="Subject">Mail subject.</param>
-		/// <param name="Body">Mail body.</param>
-		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail format.</param>
-		/// <param name="SmtpServer">Smtp server address.</param>
-		/// <param name="SmtpPort">Smtp port.</param>
-		/// <param name="SmtpUsername">Smtp username.</param>
-		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the ssl.</param>
-		public static void SendMail(
-			string From,
-			IEnumerable<MailAddress> To,
-			IEnumerable<MailAddress> Cc,
-			IEnumerable<MailAddress> Bcc,
-			string Subject,
-			string Body,
-			MailPriority MailPriority,
-			MailFormat MailFormat,
-			string SmtpServer,
-			int SmtpPort,
-			string SmtpUsername,
-			string SmtpPassword,
-			bool EnableSsl = true)
+		/// <param name="from">From address.</param>
+		/// <param name="to">To address list.</param>
+		/// <param name="cc">Cc address list.</param>
+		/// <param name="bcc">Bcc address list.</param>
+		/// <param name="subject">Mail subject.</param>
+		/// <param name="body">Mail body.</param>
+		/// <param name="mailPriority">Mail priority.</param>
+		/// <param name="mailFormat">Mail format.</param>
+		/// <param name="smtpServer">Smtp server address.</param>
+		/// <param name="smtpPort">Smtp port.</param>
+		/// <param name="smtpUsername">Smtp username.</param>
+		/// <param name="smtpPassword">Smtp password.</param>
+		/// <param name="enableSsl">Enables or not the ssl.</param>
+		/// <returns>0 in case of success, or an exception.</returns>
+		public static int SendMail(
+			string from,
+			IEnumerable<MailAddress> to,
+			IEnumerable<MailAddress> cc,
+			IEnumerable<MailAddress> bcc,
+			string subject,
+			string body,
+			MailPriority mailPriority,
+			MailFormat mailFormat,
+			string smtpServer,
+			int smtpPort,
+			string smtpUsername,
+			string smtpPassword,
+			bool enableSsl = false)
 		{
-			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, new List<Attachment>());
+			SendMail(from, to, cc, bcc, subject, body, mailPriority, mailFormat, smtpServer, smtpPort, smtpUsername, smtpPassword, enableSsl, new List<Attachment>());
+			return 0;
 		}
 
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
-		/// <param name="From">From address.</param>
-		/// <param name="To">To address list.</param>
-		/// <param name="Cc">Cc address list.</param>
-		/// <param name="Bcc">Bcc address list.</param>
-		/// <param name="Subject">Mail subject.</param>
-		/// <param name="Body">Mail body.</param>
-		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail format.</param>
-		/// <param name="SmtpServer">Smtp server address.</param>
-		/// <param name="SmtpPort">Smtp port.</param>
-		/// <param name="SmtpUsername">Smtp username.</param>
-		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the ssl.</param>
-		/// <param name="Attachments"><see cref="Attachment"/> object list.</param>
-		public static void SendMail(
-			string From,
-			IEnumerable<MailAddress> To,
-			IEnumerable<MailAddress> Cc,
-			IEnumerable<MailAddress> Bcc,
-			string Subject,
-			string Body,
-			MailPriority MailPriority,
-			MailFormat MailFormat,
-			string SmtpServer,
-			int SmtpPort,
-			string SmtpUsername,
-			string SmtpPassword,
-			bool EnableSsl,
-			List<string> Attachments)
+		/// <param name="from">From address.</param>
+		/// <param name="to">To address list.</param>
+		/// <param name="cc">Cc address list.</param>
+		/// <param name="bcc">Bcc address list.</param>
+		/// <param name="subject">Mail subject.</param>
+		/// <param name="body">Mail body.</param>
+		/// <param name="mailPriority">Mail priority.</param>
+		/// <param name="mailFormat">Mail format.</param>
+		/// <param name="smtpServer">Smtp server address.</param>
+		/// <param name="smtpPort">Smtp port.</param>
+		/// <param name="smtpUsername">Smtp username.</param>
+		/// <param name="smtpPassword">Smtp password.</param>
+		/// <param name="enableSsl">Enables or not the ssl.</param>
+		/// <param name="attachments"><see cref="Attachment"/> object list.</param>
+		/// <returns>0 in case of success, or an exception.</returns>
+		public static int SendMail(
+			string from,
+			IEnumerable<MailAddress> to,
+			IEnumerable<MailAddress> cc,
+			IEnumerable<MailAddress> bcc,
+			string subject,
+			string body,
+			MailPriority mailPriority,
+			MailFormat mailFormat,
+			string smtpServer,
+			int smtpPort,
+			string smtpUsername,
+			string smtpPassword,
+			bool enableSsl,
+			List<string> attachments)
 		{
-			List<Attachment> attachments = new List<Attachment>();
+			List<Attachment> list = new List<Attachment>();
 
-			foreach (var attachment in Attachments)
+			foreach (var attachment in attachments)
 			{
-				attachments.Add(new Attachment(attachment, mediaType: System.Net.Mime.MediaTypeNames.Application.Octet));
+				list.Add(new Attachment(attachment, mediaType: System.Net.Mime.MediaTypeNames.Application.Octet));
 			}
-			SendMail(From, To, Cc, Bcc, Subject, Body, MailPriority, MailFormat, SmtpServer, SmtpPort, SmtpUsername, SmtpPassword, EnableSsl, attachments);
+
+			SendMail(from, to, cc, bcc, subject, body, mailPriority, mailFormat, smtpServer, smtpPort, smtpUsername, smtpPassword, enableSsl, list);
+			return 0;
 		}
 
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
-		/// <param name="From">From address.</param>
-		/// <param name="To">To address list.</param>
-		/// <param name="Cc">Cc address list.</param>
-		/// <param name="Bcc">Bcc address list.</param>
-		/// <param name="Subject">Mail subject.</param>
-		/// <param name="Body">Mail body.</param>
-		/// <param name="MailPriority">Mail priority.</param>
-		/// <param name="MailFormat">Mail format.</param>
-		/// <param name="SmtpServer">Smtp server address.</param>
-		/// <param name="SmtpPort">Smtp port.</param>
-		/// <param name="SmtpUsername">Smtp username.</param>
-		/// <param name="SmtpPassword">Smtp password.</param>
-		/// <param name="EnableSsl">Enables or not the ssl.</param>
-		/// <param name="Attachments"><see cref="Attachment"/> object list.</param>
+		/// <param name="from">From address.</param>
+		/// <param name="to">To address list.</param>
+		/// <param name="cc">Cc address list.</param>
+		/// <param name="bcc">Bcc address list.</param>
+		/// <param name="subject">Mail subject.</param>
+		/// <param name="body">Mail body.</param>
+		/// <param name="mailPriority">Mail priority.</param>
+		/// <param name="mailFormat">Mail format.</param>
+		/// <param name="smtpServer">Smtp server address.</param>
+		/// <param name="smtpPort">Smtp port.</param>
+		/// <param name="smtpUsername">Smtp username.</param>
+		/// <param name="smtpPassword">Smtp password.</param>
+		/// <param name="enableSsl">Enables or not the ssl.</param>
+		/// <param name="attachments"><see cref="Attachment"/> object list.</param>
+		/// <exception cref="ArgumentException"></exception>
 		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="InvalidOperationException"></exception>
 		/// <exception cref="SmtpException"></exception>
-		public static void SendMail(
-			string From,
-			IEnumerable<MailAddress> To,
-			IEnumerable<MailAddress> Cc,
-			IEnumerable<MailAddress> Bcc,
-			string Subject,
-			string Body,
-			MailPriority MailPriority,
-			MailFormat MailFormat,
-			string SmtpServer,
-			int SmtpPort,
-			string SmtpUsername,
-			string SmtpPassword,
-			bool EnableSsl,
-			List<Attachment> Attachments)
+		/// <returns>0 in case of success, or an exception.</returns>
+		public static int SendMail(
+			string from,
+			IEnumerable<MailAddress> to,
+			IEnumerable<MailAddress> cc,
+			IEnumerable<MailAddress> bcc,
+			string subject,
+			string body,
+			MailPriority mailPriority,
+			MailFormat mailFormat,
+			string smtpServer,
+			int smtpPort,
+			string smtpUsername,
+			string smtpPassword,
+			bool enableSsl,
+			List<Attachment> attachments)
 		{
 			using (MailMessage message = new MailMessage())
 			{
-				message.From = new MailAddress(From);
-				foreach (var addr in To) { message.To.Add(addr); }
-				foreach (var addr in Cc) { message.CC.Add(addr); }
-				foreach (var addr in Bcc) { message.Bcc.Add(addr); }
-				message.Subject = Subject;
-				message.Body = Body;
-				message.IsBodyHtml = MailFormat.Equals(MailFormat.Html);
-				message.SubjectEncoding = Encoding.GetEncoding("ISO-8859-1");
-				message.BodyEncoding = Encoding.GetEncoding("ISO-8859-1");
-				message.Priority = MailPriority;
-
-				foreach (Attachment obj in Attachments)
+				if (string.IsNullOrWhiteSpace(from))
 				{
-					message.Attachments.Add(obj);
+					throw new ArgumentNullException(nameof(from));
+				}
+				if (to is null || !to.Any())
+				{
+					throw new ArgumentNullException(nameof(to));
 				}
 
-				using (SmtpClient smtpServer = new SmtpClient())
-				{
-					smtpServer.Host = SmtpServer;
-					smtpServer.Port = SmtpPort > 0 ? SmtpPort : 25;
-					smtpServer.EnableSsl = true;
+				message.From = new MailAddress(from);
+				foreach (var addr in to) { message.To.Add(addr); }
+				foreach (var addr in cc) { message.CC.Add(addr); }
+				foreach (var addr in bcc) { message.Bcc.Add(addr); }
+				message.Subject = subject;
+				message.Body = body;
+				message.IsBodyHtml = mailFormat.Equals(MailFormat.Html);
+				message.SubjectEncoding = Encoding.GetEncoding("UTF-8");
+				message.BodyEncoding = Encoding.GetEncoding("UTF-8");
+				message.Priority = mailPriority;
 
-					if (!string.IsNullOrWhiteSpace(SmtpUsername) && !string.IsNullOrWhiteSpace(SmtpPassword))
+				foreach (var attachment in attachments)
+				{
+					message.Attachments.Add(attachment);
+				}
+
+				using (SmtpClient smtpClient = new SmtpClient())
+				{
+					if (string.IsNullOrEmpty(smtpServer))
 					{
-						smtpServer.Credentials = new System.Net.NetworkCredential(SmtpUsername, SmtpPassword);
+						throw new ArgumentNullException(nameof(smtpServer));
+					}
+					if (smtpPort <= 0 || smtpPort > 65535)
+					{
+						throw new ArgumentOutOfRangeException(nameof(smtpPort));
+					}
+
+					smtpClient.Host = smtpServer;
+					smtpClient.Port = smtpPort;
+					smtpClient.EnableSsl = enableSsl;
+
+					if (!string.IsNullOrWhiteSpace(smtpUsername) && !string.IsNullOrWhiteSpace(smtpPassword))
+					{
+						smtpClient.Credentials = new System.Net.NetworkCredential(smtpUsername, smtpPassword);
 					}
 
 					try
 					{
-						smtpServer.Send(message);
+						smtpClient.Send(message);
 					}
 					catch (ArgumentNullException ex)
 					{
@@ -340,6 +395,8 @@ namespace SmartIT.Library.Utilities.Mail
 					}
 				}
 			}
+
+			return 0;
 		}
 
 		/// <summary>

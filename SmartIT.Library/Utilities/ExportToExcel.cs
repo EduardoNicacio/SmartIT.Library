@@ -5,8 +5,6 @@
 // <date>02/09/2016</date>
 // <summary>Utility class that generates Excel files.</summary>
 
-#define INCLUDE_WEB_FUNCTIONS
-
 namespace SmartIT.Library.Utilities
 {
 	using DocumentFormat.OpenXml;
@@ -20,7 +18,7 @@ namespace SmartIT.Library.Utilities
 	using System.Text;
 
 	/// <summary>
-	/// Utility class to export to Excel a set of data. 
+	/// Utility class to convert a set of data into an Excel spreadsheet.
 	/// </summary>
 	public static class ExportToExcel
 	{
@@ -46,7 +44,7 @@ namespace SmartIT.Library.Utilities
 					if (!IsNullableType(info.PropertyType))
 						row[info.Name] = info.GetValue(t, null);
 					else
-						row[info.Name] = (info.GetValue(t, null) ?? DBNull.Value);
+						row[info.Name] = info.GetValue(t, null) ?? DBNull.Value;
 				}
 				dt.Rows.Add(row);
 			}
@@ -75,9 +73,9 @@ namespace SmartIT.Library.Utilities
 		/// <returns></returns>
 		private static bool IsNullableType(Type type)
 		{
-			return (type == typeof(string)
+			return type == typeof(string)
 					|| type.IsArray
-					|| (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>)));
+					|| (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>));
 		}
 
 		/// <summary>
@@ -115,119 +113,25 @@ namespace SmartIT.Library.Utilities
 		/// 
 		/// </summary>
 		/// <param name="ds"></param>
-		/// <param name="excelFilename"></param>
+		/// <param name="xlsxFilePath"></param>
 		/// <returns></returns>
-		public static bool CreateExcelDocument(DataSet ds, string excelFilename)
+		public static bool CreateExcelDocument(DataSet ds, string xlsxFilePath)
 		{
 			try
 			{
-				using (var document = SpreadsheetDocument.Create(excelFilename, SpreadsheetDocumentType.Workbook))
+				using (var document = SpreadsheetDocument.Create(xlsxFilePath, SpreadsheetDocumentType.Workbook))
 				{
 					WriteExcelFile(ds, document);
 				}
-				Trace.WriteLine("Successfully created: " + excelFilename);
+				Trace.TraceInformation("Successfully created: " + xlsxFilePath);
 				return true;
 			}
 			catch (Exception ex)
 			{
-				Trace.WriteLine("Failed, exception thrown: " + ex.Message);
+				Trace.TraceError("Failed, exception thrown: " + ex.Message);
 				return false;
 			}
 		}
-
-#if INCLUDE_WEB_FUNCTIONS
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <param name="filename"></param>
-		/// <param name="Response"></param>
-		/// <returns></returns>
-		public static bool CreateExcelDocument(DataTable dt, string filename, System.Web.HttpResponse Response)
-		{
-			try
-			{
-				var ds = new DataSet();
-				ds.Tables.Add(dt);
-				CreateExcelDocumentAsStream(ds, filename, Response);
-				ds.Tables.Remove(dt);
-				return true;
-			}
-			catch (Exception ex)
-			{
-				Trace.WriteLine("Failed, exception thrown: " + ex.Message);
-				return false;
-			}
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="list"></param>
-		/// <param name="filename"></param>
-		/// <param name="Response"></param>
-		/// <returns></returns>
-		public static bool CreateExcelDocument<T>(List<T> list, string filename, System.Web.HttpResponse Response)
-		{
-			try
-			{
-				var ds = new DataSet();
-				ds.Tables.Add(ListToDataTable(list));
-				CreateExcelDocumentAsStream(ds, filename, Response);
-				return true;
-			}
-			catch (Exception ex)
-			{
-				Trace.WriteLine("Failed, exception thrown: " + ex.Message);
-				return false;
-			}
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="ds"></param>
-		/// <param name="filename"></param>
-		/// <param name="response"></param>
-		/// <returns></returns>
-		public static bool CreateExcelDocumentAsStream(DataSet ds, string filename, System.Web.HttpResponse response)
-		{
-			try
-			{
-				var stream = new System.IO.MemoryStream();
-				using (var document = SpreadsheetDocument.Create(stream, SpreadsheetDocumentType.Workbook, true))
-				{
-					WriteExcelFile(ds, document);
-				}
-				stream.Flush();
-				stream.Position = 0;
-
-				response.ClearContent();
-				response.Clear();
-				response.Buffer = true;
-				response.Charset = "";
-
-				response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
-				response.AddHeader("content-disposition", "attachment; filename=" + filename);
-				response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-				var data1 = new byte[stream.Length];
-				stream.Read(data1, 0, data1.Length);
-				response.BinaryWrite(data1);
-				response.Flush();
-				response.End();
-
-				return true;
-			}
-			catch (Exception ex)
-			{
-				Trace.WriteLine("Failed, exception thrown: " + ex.Message);
-				return false;
-			}
-		}
-
-#endif
 
 		/// <summary>
 		/// 

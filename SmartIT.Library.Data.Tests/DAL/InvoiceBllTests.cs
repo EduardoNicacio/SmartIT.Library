@@ -3,10 +3,12 @@
 	[TestFixture, SingleThreaded]
 	internal class InvoiceBllTests
 	{
+		const string emptyXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><e/>";
+
 		readonly InvoiceHelper.Invoice invoice1 = new()
 		{
 			Id = Guid.NewGuid(),
-			Data = string.Empty,
+			Data = emptyXml,
 			ItemCount = 5,
 			CreationDate = DateTime.UtcNow,
 			CancellationDate = null,
@@ -38,7 +40,7 @@
 		readonly InvoiceHelper.Invoice invoice3 = new()
 		{
 			Id = Guid.NewGuid(),
-			Data = string.Empty,
+			Data = emptyXml,
 			ItemCount = 20,
 			CreationDate = DateTime.UtcNow.AddMinutes(-20),
 			CancellationDate = null,
@@ -194,7 +196,79 @@
 		}
 
 		[Test, Order(11)]
-		public void T11_Validate_Search_WithSearchCriteria_ById()
+		public void T11_Validate_Search_WithSearchCriteria_DbNull()
+		{
+			// Arrange
+			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
+			InvoiceHelper.InvoiceBll.SearchCriteria.Add("CancellationDate", DBNull.Value);
+
+			// Act
+			var result = InvoiceHelper.InvoiceBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(3));
+			});
+		}
+
+		[Test, Order(12)]
+		public void T12_Validate_Search_WithSearchCriteria_InOperator()
+		{
+			// Arrange
+			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
+			InvoiceHelper.InvoiceBll.SearchCriteria.Add("ItemCount|IN", "(5,10)");
+
+			// Act
+			var result = InvoiceHelper.InvoiceBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(2));
+			});
+		}
+
+		[Test, Order(13)]
+		public void T13_Validate_Search_WithSearchCriteria_DiffOperator()
+		{
+			// Arrange
+			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
+			InvoiceHelper.InvoiceBll.SearchCriteria.Add("ItemCount|<>", 10);
+
+			// Act
+			var result = InvoiceHelper.InvoiceBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(2));
+			});
+		}
+
+		[Test, Order(14)]
+		public void T14_Validate_Search_WithSearchCriteria_LikeOperator()
+		{
+			// Arrange
+			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
+			InvoiceHelper.InvoiceBll.SearchCriteria.Add("Data|LIKE", "xml");
+
+			// Act
+			var result = InvoiceHelper.InvoiceBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(2));
+			});
+		}
+
+		[Test, Order(15)]
+		public void T15_Validate_Search_WithSearchCriteria_ById()
 		{
 			// Arrange
 			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
@@ -212,8 +286,8 @@
 			});
 		}
 
-		[Test, Order(12)]
-		public void T12_Validate_Search_WithSearchCriteria_ByItemCountRange()
+		[Test, Order(16)]
+		public void T16_Validate_Search_WithSearchCriteria_ByItemCountRange()
 		{
 			// Arrange
 			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
@@ -233,8 +307,8 @@
 			});
 		}
 
-		[Test, Order(13)]
-		public void T13_Validate_Search_WithSearchCriteria_ByCreationDateRange()
+		[Test, Order(17)]
+		public void T17_Validate_Search_WithSearchCriteria_ByCreationDateRange()
 		{
 			// Arrange
 			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
@@ -252,8 +326,8 @@
 			});
 		}
 
-		[Test, Order(14)]
-		public void T14_Validate_Search_WithSearchCriteria_ByTotalPriceRange()
+		[Test, Order(18)]
+		public void T18_Validate_Search_WithSearchCriteria_ByTotalPriceRange()
 		{
 			// Arrange
 			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
@@ -272,8 +346,8 @@
 			});
 		}
 
-		[Test, Order(15)]
-		public void T15_Validate_SearchAll()
+		[Test, Order(19)]
+		public void T19_Validate_SearchAll()
 		{
 			// Arrange
 			InvoiceHelper.InvoiceBll.SearchCriteria.Clear();
@@ -289,8 +363,8 @@
 			});
 		}
 
-		[Test, Order(16)]
-		public void T16_Validate_Update_EmptyObject()
+		[Test, Order(20)]
+		public void T20_Validate_Update_EmptyObject()
 		{
 			// Arrange
 			InvoiceHelper.Invoice emptyObject = default!;
@@ -302,8 +376,8 @@
 			Assert.That(result, Is.EqualTo(0));
 		}
 
-		[Test, Order(17)]
-		public void T17_Validate_Update_UseCase1()
+		[Test, Order(21)]
+		public void T21_Validate_Update_UseCase1()
 		{
 			// Arrange
 			int result = 0;
@@ -322,8 +396,8 @@
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(18)]
-		public void T18_Validate_Update_UseCase2()
+		[Test, Order(22)]
+		public void T22_Validate_Update_UseCase2()
 		{
 			// Arrange
 			int result = 0;
@@ -342,8 +416,8 @@
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(19)]
-		public void T19_Validate_Update_UseCase3()
+		[Test, Order(23)]
+		public void T23_Validate_Update_UseCase3()
 		{
 			// Arrange
 			int result = 0;
@@ -362,8 +436,8 @@
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(20)]
-		public void T20_Validate_Delete_EmptyObject()
+		[Test, Order(24)]
+		public void T24_Validate_Delete_EmptyObject()
 		{
 			// Arrange
 			InvoiceHelper.Invoice emptyInvoice = default!;
@@ -375,8 +449,8 @@
 			Assert.That(result, Is.EqualTo(0));
 		}
 
-		[Test, Order(21)]
-		public void T21_Validate_Delete_UseCase1()
+		[Test, Order(25)]
+		public void T25_Validate_Delete_UseCase1()
 		{
 			// Arrange
 			int result = 0;
@@ -392,8 +466,8 @@
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(22)]
-		public void T22_Validate_Delete_UseCase2()
+		[Test, Order(26)]
+		public void T26_Validate_Delete_UseCase2()
 		{
 			// Arrange
 			int result = 0;
@@ -409,8 +483,8 @@
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(23)]
-		public void T23_Validate_Delete_UseCase3()
+		[Test, Order(27)]
+		public void T27_Validate_Delete_UseCase3()
 		{
 			// Arrange
 			int result = 0;

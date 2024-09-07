@@ -163,10 +163,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 				Dictionary<string, string> alias = new()
 				{
 					{ "Id", "Id"},
+					{ "Data", "Data"},
+					{ "ItemCount", "ItemCount"},
 					{ "ItemCountFrom", "ItemCount"},
 					{ "ItemCountTo", "ItemCount"},
 					{ "CreationDateFrom", "CreationDate"},
 					{ "CreationDateTo", "CreationDate"},
+					{ "CancellationDate", "CancellationDate" },
 					{ "CancellationDateFrom", "CancellationDate"},
 					{ "CancellationDateTo", "CancellationDate"},
 					{ "IsCancelled", "IsCancelled"},

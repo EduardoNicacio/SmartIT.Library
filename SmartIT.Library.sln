@@ -16,9 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5B864E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{296057C9-77AC-4FCB-8E4B-309CF016BB0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library.Tests", "SmartIT.Library.Tests\SmartIT.Library.Tests.csproj", "{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartIT.Library.Tests", "SmartIT.Library.Tests\SmartIT.Library.Tests.csproj", "{4B2DEAC0-C78B-44B4-9E10-B66C4F61A03A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIT.Library.Data.Tests", "SmartIT.Library.Data.Tests\SmartIT.Library.Data.Tests.csproj", "{E7EB96C3-18DF-4599-B2B9-F156822E932D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartIT.Library.Data.Tests", "SmartIT.Library.Data.Tests\SmartIT.Library.Data.Tests.csproj", "{E7EB96C3-18DF-4599-B2B9-F156822E932D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0008B6FE-A6CC-4DBC-83EB-EE0077C404CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

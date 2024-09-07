@@ -1,5 +1,6 @@
 ﻿using SmartIT.Library.Data.DAL;
 using SmartIT.Library.Data.ModelManager;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SmartIT.Library.Data.Tests.DAL
@@ -29,7 +30,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			public DateTime CreationDate { get; set; }
 		}
 
-		[ActiveConnection("NUnitTests")]
+		[ActiveConnection("NUnitTests", 30)]
 		public class UserDao : DaoBase<UserDao>
 		{
 			public UserDao() : base() { }

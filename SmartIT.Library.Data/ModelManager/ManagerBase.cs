@@ -18,7 +18,7 @@ namespace SmartIT.Library.Data.ModelManager
 	public class ManagerBase<TEntityDb> where TEntityDb : new()
 	{
 		/// <summary>
-		/// Initializes static members of the <see cref="ManagerBase" /> class.
+		/// Initializes a new instance of the <see cref="ManagerBase{TEntityDb}" /> class.
 		/// </summary>
 		protected ManagerBase()
 		{
@@ -28,7 +28,7 @@ namespace SmartIT.Library.Data.ModelManager
 		}
 
 		/// <summary>
-		/// Initializes static members of the <see cref="ManagerBase" /> class.
+		/// Initializes a new instance of the <see cref="ManagerBase{TEntityDb}" /> class.
 		/// </summary>
 		static ManagerBase()
 		{

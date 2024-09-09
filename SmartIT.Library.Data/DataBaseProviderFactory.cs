@@ -7,11 +7,11 @@
 
 namespace SmartIT.Library.Data
 {
-	using Oracle.DataAccess.Client;
 	using System;
 	using System.Configuration;
 	using System.Data;
 	using System.Data.OleDb;
+	using System.Data.OracleClient;
 	using System.Data.SqlClient;
 
 	/// <summary>
@@ -19,49 +19,6 @@ namespace SmartIT.Library.Data
 	/// </summary>
 	public static class DataBaseProviderFactory
 	{
-		/// <summary>
-		/// Returns a database connection based on the connection string defined in the configuration file.
-		/// </summary>
-		/// <param name="connectionStringName"> The connection string name as it appears in the configuration file.</param>
-		/// <param name="providerName"> The provider name as it appears in the configuration file.</param>
-		/// <returns> An <see cref="IDbConnection"/> instance.</returns>
-		public static IDbConnection CreateConnection(string connectionStringName, string providerName)
-		{
-			// Retrieves the connection string from the configuration file
-			string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
-
-			if (string.IsNullOrWhiteSpace(connectionString))
-			{
-				throw new ArgumentException(nameof(connectionString));
-			}
-			if (string.IsNullOrWhiteSpace(providerName))
-			{
-				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
-			}
-
-			IDbConnection connection = null;
-
-			// Creates a Connection according to the data provider (SQL Server, Oracle, or OleDb).
-			switch (providerName.ToLowerInvariant())
-			{
-				case "system.data.sqlclient":
-					connection = new SqlConnection(connectionString);
-					break;
-
-				case "system.data.oledb":
-					connection = new OleDbConnection(connectionString);
-					break;
-
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
-					connection = new OracleConnection(connectionString);
-					break;
-				default: break;
-			}
-
-			return connection;
-		}
-
 		/// <summary>
 		/// Returns a database connection based on the connection string defined in the configuration file.
 		/// </summary>
@@ -76,17 +33,64 @@ namespace SmartIT.Library.Data
 			if (ConfigurationManager.ConnectionStrings[connectionStringName] == null ||
 				string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
 			{
-				throw new ArgumentException(nameof(connectionStringName));
+				throw new ArgumentNullException(nameof(connectionStringName));
 			}
-
-			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
-
-			if (string.IsNullOrWhiteSpace(providerName))
+			if (ConfigurationManager.ConnectionStrings[connectionStringName] == null ||
+				string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName))
 			{
 				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
 			}
 
+			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+
 			return CreateConnection(connectionStringName, providerName);
+		}
+
+		/// <summary>
+		/// Returns a database connection based on the connection string defined in the configuration file.
+		/// </summary>
+		/// <param name="connectionStringName"> The connection string name as it appears in the configuration file.</param>
+		/// <param name="providerName"> The provider name as it appears in the configuration file.</param>
+		/// <returns> An <see cref="IDbConnection"/> instance.</returns>
+		public static IDbConnection CreateConnection(string connectionStringName, string providerName)
+		{
+			if (string.IsNullOrWhiteSpace(connectionStringName))
+			{
+				throw new ArgumentNullException(nameof(connectionStringName));
+			}
+			if (string.IsNullOrWhiteSpace(providerName))
+			{
+				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
+			}
+			if (ConfigurationManager.ConnectionStrings[connectionStringName] == null ||
+				string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+			{
+				throw new ArgumentNullException(nameof(connectionStringName));
+			}
+
+			// Retrieves the connection string from the configuration file
+			string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+
+			IDbConnection connection = null;
+
+			// Creates a Connection according to the data provider (SQL Server, Oracle, or OleDb).
+			switch (providerName.ToLowerInvariant())
+			{
+				case "system.data.sqlclient":
+					connection = new SqlConnection(connectionString);
+					break;
+
+				case "system.data.oledb":
+					connection = new OleDbConnection(connectionString);
+					break;
+
+				case "system.data.oracleclient":
+					connection = new OracleConnection(connectionString);
+					break;
+				default: break;
+			}
+
+			return connection;
 		}
 
 		/// <summary>
@@ -122,8 +126,7 @@ namespace SmartIT.Library.Data
 					dataAdapter = new OleDbDataAdapter();
 					break;
 
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
+				case "system.data.oracleclient":
 					dataAdapter = new OracleDataAdapter();
 					break;
 				default: break;
@@ -169,8 +172,7 @@ namespace SmartIT.Library.Data
 					command = new OleDbCommand(commandText);
 					break;
 
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
+				case "system.data.oracleclient":
 					command = new OracleCommand(commandText);
 					break;
 				default: break;
@@ -202,8 +204,7 @@ namespace SmartIT.Library.Data
 					break;
 
 				// Oracle Data Access
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
+				case "system.data.oracleclient":
 					paramSymbol = ":";
 					break;
 				default: break;

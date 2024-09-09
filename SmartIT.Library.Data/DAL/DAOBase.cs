@@ -7,11 +7,10 @@
 
 namespace SmartIT.Library.Data.DAL
 {
-	using Oracle.DataAccess.Client;
-	using SmartIT.Library.Utilities;
 	using System;
 	using System.Collections.Generic;
 	using System.Data.OleDb;
+	using System.Data.OracleClient;
 	using System.Data.SqlClient;
 	using System.Text;
 
@@ -41,7 +40,7 @@ namespace SmartIT.Library.Data.DAL
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DaoBase{TEntity}" /> class.
 		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Necessary when the class thrown an ArgumentNullException.")]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Necessary when the class throwns an ArgumentNullException.")]
 		public DaoBase(string activeConnection = "ActiveConnection")
 		{
 			// Get the active connection

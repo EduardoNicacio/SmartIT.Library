@@ -30,7 +30,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName));
+			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName));
 		}
 
 		[Test, Order(3)]
@@ -46,7 +46,20 @@
 		}
 
 		[Test, Order(4)]
-		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters()
+		public void Validate_DataBaseProviderFactory_CreateConnection_BothParametersMissing()
+		{
+			// Arrange
+			string cnnStringName = string.Empty;
+			string providerName = string.Empty;
+
+			// Act
+
+			// Assert
+			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName));
+		}
+
+		[Test, Order(5)]
+		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_SqlServer()
 		{
 			// Arrange
 			string cnnStringName = "SQLCnnFull";
@@ -58,7 +71,33 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(5)]
+		[Test, Order(6)]
+		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_OleDb()
+		{
+			// Arrange
+			string cnnStringName = "OleDbCnnFull";
+
+			// Act
+			var result = DataBaseProviderFactory.CreateConnection(cnnStringName);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+		}
+
+		[Test, Order(7)]
+		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_Oracle()
+		{
+			// Arrange
+			string cnnStringName = "OracleCnnFull";
+
+			// Act
+			var result = DataBaseProviderFactory.CreateConnection(cnnStringName);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+		}
+
+		[Test, Order(6)]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ConnectionStringNameMissing()
 		{
 			// Arrange
@@ -70,7 +109,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName));
 		}
 
-		[Test, Order(6)]
+		[Test, Order(7)]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ProviderNameMissing()
 		{
 			// Arrange
@@ -82,8 +121,8 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName));
 		}
 
-		[Test, Order(7)]
-		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters()
+		[Test, Order(8)]
+		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_SqlServer()
 		{
 			// Arrange
 			string cnnStringName = "SQLCnnFull";
@@ -95,7 +134,33 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(8)]
+		[Test, Order(9)]
+		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_OleDb()
+		{
+			// Arrange
+			string cnnStringName = "OleDbCnnFull";
+
+			// Act
+			var result = DataBaseProviderFactory.CreateDataAdapter(cnnStringName);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+		}
+
+		[Test, Order(10)]
+		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_Oracle()
+		{
+			// Arrange
+			string cnnStringName = "OracleCnnFull";
+
+			// Act
+			var result = DataBaseProviderFactory.CreateDataAdapter(cnnStringName);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+		}
+
+		[Test, Order(11)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ConnectionStringNameMissing()
 		{
 			// Arrange
@@ -108,7 +173,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
 		}
 
-		[Test, Order(9)]
+		[Test, Order(12)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ProviderNameMissing()
 		{
 			// Arrange
@@ -121,7 +186,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
 		}
 
-		[Test, Order(10)]
+		[Test, Order(13)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_CommandTextMissing()
 		{
 			// Arrange
@@ -134,8 +199,8 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
 		}
 
-		[Test, Order(11)]
-		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters()
+		[Test, Order(14)]
+		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_SqlServer()
 		{
 			// Arrange
 			string cnnStringName = "SQLCnnFull";
@@ -148,7 +213,35 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(12)]
+		[Test, Order(15)]
+		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_OleDb()
+		{
+			// Arrange
+			string cnnStringName = "OleDbCnnFull";
+			string commandText = "select * from dbo.Users;";
+
+			// Act
+			var result = DataBaseProviderFactory.CreateCommand(cnnStringName, commandText);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+		}
+
+		[Test, Order(16)]
+		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_Oracle()
+		{
+			// Arrange
+			string cnnStringName = "OracleCnnFull";
+			string commandText = "select * from Users;";
+
+			// Act
+			var result = DataBaseProviderFactory.CreateCommand(cnnStringName, commandText);
+
+			// Assert
+			Assert.That(result, Is.Not.Null);
+		}
+
+		[Test, Order(17)]
 		public void Validate_DataBaseProviderFactory_GetParamSymbol_AllBranches()
 		{
 			// Arrange
@@ -156,8 +249,7 @@
 			// Act
 			var resultNull = DataBaseProviderFactory.GetParamSymbol(string.Empty);
 			var resultSql = DataBaseProviderFactory.GetParamSymbol("system.data.sqlclient");
-			var resultOracle1 = DataBaseProviderFactory.GetParamSymbol("oracle.dataaccess");
-			var resultOracle2 = DataBaseProviderFactory.GetParamSymbol("oracle.dataaccess.client");
+			var resultOracle = DataBaseProviderFactory.GetParamSymbol("system.data.oracleclient");
 			var resultOledb = DataBaseProviderFactory.GetParamSymbol("system.data.oledb");
 
 			// Assert
@@ -165,8 +257,7 @@
 			{
 				Assert.That(resultNull, Is.Null);
 				Assert.That(resultSql, Is.EqualTo("@"));
-				Assert.That(resultOracle1, Is.EqualTo(":"));
-				Assert.That(resultOracle2, Is.EqualTo(resultOracle1));
+				Assert.That(resultOracle, Is.EqualTo(":"));
 				Assert.That(resultOledb, Is.EqualTo("?"));
 			});
 		}

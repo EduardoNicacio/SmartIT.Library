@@ -20,8 +20,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartIT.Library.Tests", "Sm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartIT.Library.Data.Tests", "SmartIT.Library.Data.Tests\SmartIT.Library.Data.Tests.csproj", "{E7EB96C3-18DF-4599-B2B9-F156822E932D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0008B6FE-A6CC-4DBC-83EB-EE0077C404CB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

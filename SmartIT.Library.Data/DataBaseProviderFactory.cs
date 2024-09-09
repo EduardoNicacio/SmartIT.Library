@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Eduardo Claudio Nicacio</author>
 // <date>03/07/2014</date>
-// <summary>Factory de conexões com bases de dados.</summary>
+// <summary>Implementation of a Database provider factory. Currently it supports SQL Server, Oracle and OleDb.</summary>
 
 namespace SmartIT.Library.Data
 {
@@ -15,24 +15,33 @@ namespace SmartIT.Library.Data
 	using System.Data.SqlClient;
 
 	/// <summary>
-	/// Factory de conexões com bases de dados.
+	/// Implementation of a Database provider factory. Currently it supports SQL Server, Oracle and OleDb.
 	/// </summary>
 	public static class DataBaseProviderFactory
 	{
 		/// <summary>
-		/// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
+		/// Returns a database connection based on the connection string defined in the configuration file.
 		/// </summary>
-		/// <param name="connectionStringName">Nome da string de conexao.</param>
-		/// <param name="providerName">Nome do provider para acesso.</param>
-		/// <returns> Conexao referente a chave.</returns>
+		/// <param name="connectionStringName"> The connection string name as it appears in the configuration file.</param>
+		/// <param name="providerName"> The provider name as it appears in the configuration file.</param>
+		/// <returns> An <see cref="IDbConnection"/> instance.</returns>
 		public static IDbConnection CreateConnection(string connectionStringName, string providerName)
 		{
-			IDbConnection connection = null;
-
-			// Recupera a string de conexao
+			// Retrieves the connection string from the configuration file
 			string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
 
-			// Cria a Conexao de acordo com o provider (SQL, Oracle, OleDb)
+			if (string.IsNullOrWhiteSpace(connectionString))
+			{
+				throw new ArgumentException(nameof(connectionString));
+			}
+			if (string.IsNullOrWhiteSpace(providerName))
+			{
+				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
+			}
+
+			IDbConnection connection = null;
+
+			// Creates a Connection according to the data provider (SQL Server, Oracle, or OleDb).
 			switch (providerName.ToLowerInvariant())
 			{
 				case "system.data.sqlclient":
@@ -54,35 +63,55 @@ namespace SmartIT.Library.Data
 		}
 
 		/// <summary>
-		/// Retorna uma conexao baseado na chave definida no arquivo de configuraçao.
+		/// Returns a database connection based on the connection string defined in the configuration file.
 		/// </summary>
-		/// <param name="connectionStringName">Nome da string de conexao.</param>
-		/// <returns> Conexao referente a chave.</returns>
+		/// <param name="connectionStringName">The connection string name as it appears in the configuration file.</param>
+		/// <returns> An <see cref="IDbConnection"/> instance.</returns>
 		public static IDbConnection CreateConnection(string connectionStringName)
 		{
+			if (string.IsNullOrWhiteSpace(connectionStringName))
+			{
+				throw new ArgumentNullException(nameof(connectionStringName));
+			}
+			if (ConfigurationManager.ConnectionStrings[connectionStringName] == null ||
+				string.IsNullOrWhiteSpace(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+			{
+				throw new ArgumentException(nameof(connectionStringName));
+			}
+
 			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
-			if (string.IsNullOrEmpty(providerName))
+			if (string.IsNullOrWhiteSpace(providerName))
 			{
-				throw new ArgumentNullException("Attribute 'ProviderName' not defined for the connection string '" + connectionStringName + "' in the configuration file.");
+				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
 			}
 
 			return CreateConnection(connectionStringName, providerName);
 		}
 
 		/// <summary>
-		/// Retorna uma instancia concreta de um DataAdapter.
+		/// Returns an instance of a DataAdapter.
 		/// </summary>
-		/// <param name="connectionStringName">Nome da string de conexao.</param>
-		/// <returns> Instância concreta de um DataAdapter.</returns>
+		/// <param name="connectionStringName"> The connection string name as it appears in the configuration file.</param>
+		/// <returns> An <see cref="IDbDataAdapter"/> instance.</returns>
 		public static IDbDataAdapter CreateDataAdapter(string connectionStringName)
 		{
-			IDbDataAdapter dataAdapter = null;
+			if (string.IsNullOrWhiteSpace(connectionStringName))
+			{
+				throw new ArgumentNullException(nameof(connectionStringName));
+			}
 
-			// Recupera o nome do Provider
+			// Retrieves the ProviderName from the configuration file
 			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
-			// Cria um DataAdapter de acordo com o provider utilizado
+			if (string.IsNullOrWhiteSpace(providerName))
+			{
+				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
+			}
+
+			IDbDataAdapter dataAdapter = null;
+
+			// Creates a new DataAdapter according to the provider defined in the configuration file
 			switch (providerName.ToLowerInvariant())
 			{
 				case "system.data.sqlclient":
@@ -104,17 +133,32 @@ namespace SmartIT.Library.Data
 		}
 
 		/// <summary>
-		/// Retorna uma instancia concreta de um DbCommand.
+		/// Returns an instance of a DbCommand.
 		/// </summary>
-		/// <param name="connectionStringName">Nome da string de conexao.</param>
-		/// <param name="commandText">Comando SQL que será atribuido ao objeto DbCommand.</param>
-		/// <returns> Objeto IDbCommand.</returns>
+		/// <param name="connectionStringName"> The connection string name as it appears in the configuration file.</param>
+		/// <param name="commandText"> The SQL command that will be assigned to the DbCommand object.</param>
+		/// <returns> An <see cref="IDbCommand"/> instance.</returns>
 		public static IDbCommand CreateCommand(string connectionStringName, string commandText)
 		{
-			IDbCommand command = null;
+			if (string.IsNullOrWhiteSpace(connectionStringName))
+			{
+				throw new ArgumentNullException(nameof(connectionStringName));
+			}
+
 			string providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
-			// Cria o command correspondente ao nome do Provider (SQL, Oracle ou OleDb)
+			if (string.IsNullOrWhiteSpace(providerName))
+			{
+				throw new ArgumentNullException($"Attribute 'ProviderName' not defined for the connection string '{connectionStringName}' in the configuration file.");
+			}
+			if (string.IsNullOrWhiteSpace(commandText))
+			{
+				throw new ArgumentNullException(nameof(commandText));
+			}
+
+			IDbCommand command = null;
+
+			// Creates a Command according to the data provider (SQL Server, Oracle, or OleDb).
 			switch (providerName.ToLowerInvariant())
 			{
 				case "system.data.sqlclient":
@@ -136,10 +180,10 @@ namespace SmartIT.Library.Data
 		}
 
 		/// <summary>
-		/// Retorna o simbolo uilizado para criaçao de parametros na consulta SQL.
+		/// Returns the symbol used to create parameters in the SQL query.
 		/// </summary>
-		/// <param name="providerName">Nome do provider.</param>
-		/// <returns> String com o simbolo para o provider.</returns>
+		/// <param name="providerName"> The provider name as it appears in the configuration file.</param>
+		/// <returns> The symbol associated with the given provider [@, ?, or :].</returns>
 		public static string GetParamSymbol(string providerName)
 		{
 			string paramSymbol = null;

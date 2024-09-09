@@ -8,6 +8,7 @@
 namespace SmartIT.Library.Data.DAL
 {
 	using Oracle.DataAccess.Client;
+	using SmartIT.Library.Utilities;
 	using System;
 	using System.Collections.Generic;
 	using System.Data.OleDb;
@@ -99,6 +100,7 @@ namespace SmartIT.Library.Data.DAL
 			// Cria um SQL Command
 			SqlCommand cmd = (SqlCommand)DbHelper.CreateCommand(sql, typeof(SqlCommand));
 			cmd.CommandTimeout = commandTimeout;
+			string cmdSymbol = DataBaseProviderFactory.GetParamSymbol("system.data.sqlclient");
 
 			StringBuilder customWhere = new StringBuilder(string.Empty);
 
@@ -140,8 +142,8 @@ namespace SmartIT.Library.Data.DAL
 								}
 								else
 								{
-									customWhere.Append(string.Format(" {0} {1} {2} @{3}", logicalOperator, alias[key], oper, key));
-									cmd.Parameters.AddWithValue("@" + key, criteria[s]);
+									customWhere.Append(string.Format(" {0} {1} {2} {3}{4}", logicalOperator, alias[key], oper, cmdSymbol, key));
+									cmd.Parameters.AddWithValue(cmdSymbol + key, criteria[s]);
 								}
 							}
 						}
@@ -166,8 +168,8 @@ namespace SmartIT.Library.Data.DAL
 									}
 									else
 									{
-										customWhere.Append(string.Format(" AND {0} {1} @{2}", alias[key], oper, key));
-										cmd.Parameters.AddWithValue("@" + key, criteria[s]);
+										customWhere.Append(string.Format(" AND {0} {1} {2}{3}", alias[key], oper, cmdSymbol, key));
+										cmd.Parameters.AddWithValue(cmdSymbol + key, criteria[s]);
 									}
 								}
 							}
@@ -176,7 +178,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", s));
+						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", s));
 					}
 				}
 				else
@@ -189,14 +191,14 @@ namespace SmartIT.Library.Data.DAL
 						}
 						else
 						{
-							customWhere.Append(string.Format(" AND {0} = @{1}", alias[s], s));
-							cmd.Parameters.AddWithValue("@" + s, criteria[s]);
+							customWhere.Append(string.Format(" AND {0} = {1}{2}", alias[s], cmdSymbol, s));
+							cmd.Parameters.AddWithValue(cmdSymbol + s, criteria[s]);
 						}
 					}
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", s));
+						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", s));
 					}
 				}
 			}
@@ -268,6 +270,7 @@ namespace SmartIT.Library.Data.DAL
 			// Cria um Oracle Command
 			OracleCommand cmd = (OracleCommand)DbHelper.CreateCommand(sql, typeof(OracleCommand));
 			cmd.CommandTimeout = commandTimeout;
+			string cmdSymbol = DataBaseProviderFactory.GetParamSymbol("oracle.dataaccess");
 
 			StringBuilder customWhere = new StringBuilder(string.Empty);
 
@@ -301,8 +304,8 @@ namespace SmartIT.Library.Data.DAL
 							}
 							else
 							{
-								customWhere.Append(string.Format(" {0} {1} {2} :{3}", logicalOperator, alias[key], oper, key));
-								cmd.Parameters.Add(":" + key, criteria[o]);
+								customWhere.Append(string.Format(" {0} {1} {2} {3}{4}", logicalOperator, alias[key], oper, cmdSymbol, key));
+								cmd.Parameters.Add(cmdSymbol + key, criteria[o]);
 							}
 						}
 						else
@@ -314,15 +317,15 @@ namespace SmartIT.Library.Data.DAL
 							}
 							else
 							{
-								customWhere.Append(string.Format(" AND {0} {1} :{2}", alias[key], oper, key));
-								cmd.Parameters.Add(":" + key, criteria[o]);
+								customWhere.Append(string.Format(" AND {0} {1} {2}{3}", alias[key], oper, cmdSymbol, key));
+								cmd.Parameters.Add(cmdSymbol + key, criteria[o]);
 							}
 						}
 					}
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", o));
+						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", o));
 					}
 				}
 				else
@@ -335,14 +338,14 @@ namespace SmartIT.Library.Data.DAL
 						}
 						else
 						{
-							customWhere.Append(string.Format(" AND {0} = :{1}", alias[o], o));
-							cmd.Parameters.Add(":" + o, criteria[o]);
+							customWhere.Append(string.Format(" AND {0} = {1}{2}", alias[o], cmdSymbol, o));
+							cmd.Parameters.Add(cmdSymbol + o, criteria[o]);
 						}
 					}
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", o));
+						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", o));
 					}
 				}
 			}
@@ -407,6 +410,7 @@ namespace SmartIT.Library.Data.DAL
 			// Cria um OleDbCommand
 			OleDbCommand cmd = (OleDbCommand)DbHelper.CreateCommand(sql, typeof(OleDbCommand));
 			cmd.CommandTimeout = commandTimeout;
+			string cmdSymbol = DataBaseProviderFactory.GetParamSymbol("system.data.oledb");
 
 			StringBuilder customWhere = new StringBuilder(string.Empty);
 
@@ -448,8 +452,8 @@ namespace SmartIT.Library.Data.DAL
 								}
 								else
 								{
-									customWhere.Append(string.Format(" {0} {1} {2} ?", logicalOperator, alias[key], oper));
-									cmd.Parameters.AddWithValue("@" + key, criteria[c]);
+									customWhere.Append(string.Format(" {0} {1} {2} {3}{4}", logicalOperator, alias[key], oper, cmdSymbol, key));
+									cmd.Parameters.AddWithValue(cmdSymbol + key, criteria[c]);
 								}
 							}
 						}
@@ -468,8 +472,8 @@ namespace SmartIT.Library.Data.DAL
 								}
 								else
 								{
-									customWhere.Append(string.Format(" AND {0} {1} ?", alias[key], oper));
-									cmd.Parameters.AddWithValue("@" + key, criteria[c]);
+									customWhere.Append(string.Format(" AND {0} {1} {2}{3}", alias[key], oper, cmdSymbol, key));
+									cmd.Parameters.AddWithValue(cmdSymbol + key, criteria[c]);
 								}
 							}
 						}
@@ -477,7 +481,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", c));
+						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", c));
 					}
 				}
 				else
@@ -490,14 +494,14 @@ namespace SmartIT.Library.Data.DAL
 						}
 						else
 						{
-							customWhere.Append(string.Format(" AND {0} = ?", alias[c]));
-							cmd.Parameters.AddWithValue("@" + c, criteria[c]);
+							customWhere.Append(string.Format(" AND {0} = {1}{2}", alias[c], cmdSymbol, c));
+							cmd.Parameters.AddWithValue(cmdSymbol + c, criteria[c]);
 						}
 					}
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("A chave '{0}' não existe na coleção de aliases de pesquisa.", c));
+						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", c));
 					}
 				}
 			}

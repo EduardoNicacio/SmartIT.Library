@@ -84,6 +84,8 @@ namespace SmartIT.Library.Data
 					connection = new OleDbConnection(connectionString);
 					break;
 
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
 				case "system.data.oracleclient":
 					connection = new OracleConnection(connectionString);
 					break;
@@ -126,6 +128,8 @@ namespace SmartIT.Library.Data
 					dataAdapter = new OleDbDataAdapter();
 					break;
 
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
 				case "system.data.oracleclient":
 					dataAdapter = new OracleDataAdapter();
 					break;
@@ -172,6 +176,8 @@ namespace SmartIT.Library.Data
 					command = new OleDbCommand(commandText);
 					break;
 
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
 				case "system.data.oracleclient":
 					command = new OracleCommand(commandText);
 					break;
@@ -204,6 +210,8 @@ namespace SmartIT.Library.Data
 					break;
 
 				// Oracle Data Access
+				case "oracle.dataaccess":
+				case "oracle.dataaccess.client":
 				case "system.data.oracleclient":
 					paramSymbol = ":";
 					break;

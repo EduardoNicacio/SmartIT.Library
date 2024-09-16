@@ -22,7 +22,7 @@ namespace SmartIT.Library.Helpers
 		/// <returns>Byte array.</returns>
 		public static byte[] StreamToByteArray(Stream input)
 		{
-			if (input is null) 
+			if (input is null)
 			{
 				throw new System.ArgumentNullException(nameof(input));
 			}
@@ -38,7 +38,7 @@ namespace SmartIT.Library.Helpers
 		/// </summary>
 		/// <param name="input">Input stream.</param>
 		/// <returns>Byte array.</returns>
-		public static Task<byte[]> StreamToByteArrayAsync(Stream input) 
+		public static Task<byte[]> StreamToByteArrayAsync(Stream input)
 		{
 			return Task.Run(() => StreamToByteArray(input));
 		}

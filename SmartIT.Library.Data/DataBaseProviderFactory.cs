@@ -7,11 +7,11 @@
 
 namespace SmartIT.Library.Data
 {
+	using Oracle.ManagedDataAccess.Client;
 	using System;
 	using System.Configuration;
 	using System.Data;
 	using System.Data.OleDb;
-	using System.Data.OracleClient;
 	using System.Data.SqlClient;
 
 	/// <summary>
@@ -76,19 +76,25 @@ namespace SmartIT.Library.Data
 			// Creates a Connection according to the data provider (SQL Server, Oracle, or OleDb).
 			switch (providerName.ToLowerInvariant())
 			{
+				// SQL Server - default
 				case "system.data.sqlclient":
 					connection = new SqlConnection(connectionString);
 					break;
 
+				// OleDb
 				case "system.data.oledb":
 					connection = new OleDbConnection(connectionString);
 					break;
 
+				// Oracle
+				case "system.data.oracleclient":
 				case "oracle.dataaccess":
 				case "oracle.dataaccess.client":
-				case "system.data.oracleclient":
+				case "oracle.manageddataaccess":
+				case "oracle.manageddataaccess.client":
 					connection = new OracleConnection(connectionString);
 					break;
+				
 				default: break;
 			}
 
@@ -120,19 +126,25 @@ namespace SmartIT.Library.Data
 			// Creates a new DataAdapter according to the provider defined in the configuration file
 			switch (providerName.ToLowerInvariant())
 			{
+				// SQL Server - default
 				case "system.data.sqlclient":
 					dataAdapter = new SqlDataAdapter();
 					break;
 
+				// OleDb
 				case "system.data.oledb":
 					dataAdapter = new OleDbDataAdapter();
 					break;
 
+				// Oracle
+				case "system.data.oracleclient":
 				case "oracle.dataaccess":
 				case "oracle.dataaccess.client":
-				case "system.data.oracleclient":
+				case "oracle.manageddataaccess":
+				case "oracle.manageddataaccess.client":
 					dataAdapter = new OracleDataAdapter();
 					break;
+				
 				default: break;
 			}
 
@@ -168,19 +180,25 @@ namespace SmartIT.Library.Data
 			// Creates a Command according to the data provider (SQL Server, Oracle, or OleDb).
 			switch (providerName.ToLowerInvariant())
 			{
+				// SQL Server - default
 				case "system.data.sqlclient":
 					command = new SqlCommand(commandText);
 					break;
 
+				// OleDb
 				case "system.data.oledb":
 					command = new OleDbCommand(commandText);
 					break;
 
+				// Oracle
+				case "system.data.oracleclient":
 				case "oracle.dataaccess":
 				case "oracle.dataaccess.client":
-				case "system.data.oracleclient":
+				case "oracle.manageddataaccess":
+				case "oracle.manageddataaccess.client":
 					command = new OracleCommand(commandText);
 					break;
+				
 				default: break;
 			}
 
@@ -209,12 +227,15 @@ namespace SmartIT.Library.Data
 					paramSymbol = "?";
 					break;
 
-				// Oracle Data Access
+				// Oracle
+				case "system.data.oracleclient":
 				case "oracle.dataaccess":
 				case "oracle.dataaccess.client":
-				case "system.data.oracleclient":
+				case "oracle.manageddataaccess":
+				case "oracle.manageddataaccess.client":
 					paramSymbol = ":";
 					break;
+				
 				default: break;
 			}
 

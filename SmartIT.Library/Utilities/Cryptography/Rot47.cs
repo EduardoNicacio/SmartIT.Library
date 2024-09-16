@@ -50,12 +50,12 @@ namespace SmartIT.Library.Utilities.Cryptography
 			}
 
 			StringBuilder RetStr = new StringBuilder(string.Empty);
-			
+
 			foreach (char c in input)
 			{
 				RetStr.Append(Rot47Shifter(c).ToString());
 			}
-			
+
 			return RetStr.ToString();
 		}
 

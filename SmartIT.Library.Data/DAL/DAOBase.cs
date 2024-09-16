@@ -7,10 +7,10 @@
 
 namespace SmartIT.Library.Data.DAL
 {
+	using Oracle.ManagedDataAccess.Client;
 	using System;
 	using System.Collections.Generic;
 	using System.Data.OleDb;
-	using System.Data.OracleClient;
 	using System.Data.SqlClient;
 	using System.Text;
 

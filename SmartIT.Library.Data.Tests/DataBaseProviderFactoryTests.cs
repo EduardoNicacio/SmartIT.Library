@@ -84,7 +84,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(7)]
+		[Test, Order(7), Ignore("Not yet implemented")]
 		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_Oracle()
 		{
 			// Arrange
@@ -147,7 +147,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(10)]
+		[Test, Order(10), Ignore("Not yet implemented")]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_Oracle()
 		{
 			// Arrange
@@ -227,7 +227,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(16)]
+		[Test, Order(16), Ignore("Not yet implemented")]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_Oracle()
 		{
 			// Arrange

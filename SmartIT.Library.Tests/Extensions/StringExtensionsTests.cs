@@ -31,8 +31,8 @@ namespace SmartIT.Library.Tests.Extensions
 
 			// Act
 			var result = StringExtensions.AdjustL(emptyString);
+			
 			// Assert
-
 			Assert.That(result, Is.EqualTo(string.Empty));
 		}
 

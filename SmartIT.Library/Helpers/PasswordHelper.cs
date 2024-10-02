@@ -17,8 +17,8 @@ namespace SmartIT.Library.Helpers
 	/// </summary>
 	public class PasswordHelper
 	{
-		private static char[] _startingChars = new char[2] { '<', '&' };
-		private static char[] _punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
+		private static readonly char[] _startingChars = new char[2] { '<', '&' };
+		private static readonly char[] _punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
 		private readonly string _password;
 		private readonly string _salt;
 		private readonly string _pepper;
@@ -146,7 +146,6 @@ namespace SmartIT.Library.Helpers
 			}
 
 			string text;
-			int matchIndex;
 			do
 			{
 				byte[] array = new byte[length];
@@ -195,7 +194,7 @@ namespace SmartIT.Library.Helpers
 
 				text = new string(array2);
 			}
-			while (IsDangerousString(text, out matchIndex));
+			while (IsDangerousString(text, out _));
 			return text;
 		}
 

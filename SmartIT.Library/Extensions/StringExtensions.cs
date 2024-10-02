@@ -83,7 +83,7 @@ namespace SmartIT.Library.Extensions
 		}
 
 		/// <summary>
-		/// Returns a formated string.
+		/// Returns a formatted string.
 		/// </summary>
 		/// <param name="source">Original string.</param>
 		/// <returns>Return string.</returns>

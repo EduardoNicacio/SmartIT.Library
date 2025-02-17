@@ -16,7 +16,7 @@ namespace SmartIT.Library.Utilities.Mail
 	/// <summary>
 	/// A simple wrapper for the System.Net.Mail class.
 	/// </summary>
-	public class SystemNetMail
+	public static class SystemNetMail
 	{
 		/// <summary>
 		/// Sends an email.

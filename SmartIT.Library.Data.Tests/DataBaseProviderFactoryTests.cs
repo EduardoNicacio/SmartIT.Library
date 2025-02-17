@@ -59,6 +59,32 @@
 		}
 
 		[Test, Order(5)]
+		public void Validate_DataBaseProviderFactory_CreateConnection_ValidCnnString_MissingProvider()
+		{
+			// Arrange
+			string cnnStringName = "SQLCnnMissingProviderName";
+			string providerName = string.Empty;
+
+			// Act
+
+			// Assert
+			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName));
+		}
+
+		[Test, Order(6)]
+		public void Validate_DataBaseProviderFactory_CreateConnection_ValidConnection_MissingCnnString_MissingProvider()
+		{
+			// Arrange
+			string cnnStringName = "SQLCnnMissingConnectionString";
+			string providerName = "System.Data.SqlClient";
+
+			// Act
+
+			// Assert
+			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName));
+		}
+
+		[Test, Order(7)]
 		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_SqlServer()
 		{
 			// Arrange
@@ -71,7 +97,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(6)]
+		[Test, Order(8)]
 		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_OleDb()
 		{
 			// Arrange
@@ -84,7 +110,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(7), Ignore("Not yet implemented")]
+		[Test, Order(9), Ignore("Not yet implemented")]
 		public void Validate_DataBaseProviderFactory_CreateConnection_ValidParameters_Oracle()
 		{
 			// Arrange
@@ -97,7 +123,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(6)]
+		[Test, Order(10)]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ConnectionStringNameMissing()
 		{
 			// Arrange
@@ -109,7 +135,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName));
 		}
 
-		[Test, Order(7)]
+		[Test, Order(11)]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ProviderNameMissing()
 		{
 			// Arrange
@@ -121,7 +147,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName));
 		}
 
-		[Test, Order(8)]
+		[Test, Order(12)]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_SqlServer()
 		{
 			// Arrange
@@ -134,7 +160,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(9)]
+		[Test, Order(13)]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_OleDb()
 		{
 			// Arrange
@@ -147,7 +173,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(10), Ignore("Not yet implemented")]
+		[Test, Order(14), Ignore("Not yet implemented")]
 		public void Validate_DataBaseProviderFactory_CreateDataAdapter_ValidParameters_Oracle()
 		{
 			// Arrange
@@ -160,7 +186,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(11)]
+		[Test, Order(15)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ConnectionStringNameMissing()
 		{
 			// Arrange
@@ -173,7 +199,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
 		}
 
-		[Test, Order(12)]
+		[Test, Order(16)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ProviderNameMissing()
 		{
 			// Arrange
@@ -186,7 +212,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
 		}
 
-		[Test, Order(13)]
+		[Test, Order(17)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_CommandTextMissing()
 		{
 			// Arrange
@@ -199,7 +225,7 @@
 			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
 		}
 
-		[Test, Order(14)]
+		[Test, Order(18)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_SqlServer()
 		{
 			// Arrange
@@ -213,7 +239,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(15)]
+		[Test, Order(19)]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_OleDb()
 		{
 			// Arrange
@@ -227,7 +253,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(16), Ignore("Not yet implemented")]
+		[Test, Order(20), Ignore("Not yet implemented")]
 		public void Validate_DataBaseProviderFactory_CreateCommand_ValidParameters_Oracle()
 		{
 			// Arrange
@@ -241,7 +267,7 @@
 			Assert.That(result, Is.Not.Null);
 		}
 
-		[Test, Order(17)]
+		[Test, Order(21)]
 		public void Validate_DataBaseProviderFactory_GetParamSymbol_AllBranches()
 		{
 			// Arrange

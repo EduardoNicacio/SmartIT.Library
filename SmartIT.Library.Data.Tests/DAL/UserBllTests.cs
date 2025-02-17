@@ -7,10 +7,16 @@ namespace SmartIT.Library.Data.Tests.DAL
 		readonly UserHelper.User user2 = new() { Id = 2, Name = "Claudio", Email = "claudio@email.com", CreationDate = DateTime.Now.AddDays(-1) };
 		readonly UserHelper.User user3 = new() { Id = 3, Name = "Nicacio", Email = "nicacio@email.com", CreationDate = DateTime.Now.AddDays(-2) };
 
-		[SetUp]
+		[OneTimeSetUp]
 		public void Setup()
 		{
-			// Method intentionally left empty.
+			// Reverts the DB to a clean state
+			UserHelper.UserBll.SearchCriteria.Clear();
+			var users = UserHelper.UserBll.Search();
+			foreach (var user in users)
+			{
+				UserHelper.UserBll.Delete(user);
+			}
 		}
 
 		[Test, Order(1)]
@@ -167,7 +173,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 		}
 
 		[Test, Order(12)]
-		public void T12_Validate_Search_WithSearchCriteria_WithLogicalOperator1() 
+		public void T12_Validate_Search_WithSearchCriteria_WithLogicalOperator1()
 		{
 			// Arrange
 			UserHelper.UserBll.SearchCriteria.Clear();

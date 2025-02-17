@@ -11,6 +11,7 @@ namespace SmartIT.Library.Data
 	using System.Configuration;
 	using System.Data;
 	using System.Data.Common;
+	using System.Threading;
 
 	/// <summary>
 	/// Prove acesso ao banco de dados, e possui metodos que facilitam manipulacao dos dados.
@@ -183,23 +184,25 @@ namespace SmartIT.Library.Data
 		/// <returns> Objeto IDataReader.</returns>
 		public IDataReader ExecuteReader(IDbCommand cmd, IDbConnection cnn)
 		{
+			if (cmd is null)
+			{
+				throw new ArgumentNullException(nameof(cmd));
+			}
+			if (cnn is null)
+			{
+				throw new ArgumentNullException(nameof(cnn));
+			}
+
 			IDataReader reader;
 			cmd.CommandTimeout = commandTimeout;
 
-			try
+			if (cnn.State != ConnectionState.Open)
 			{
-				if (cnn.State != ConnectionState.Open)
-				{
-					cnn.Open();
-				}
+				cnn.Open();
+			}
 
-				cmd.Connection = cnn;
-				reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-			}
-			catch (Exception ex)
-			{
-				throw new ArgumentException(ex.Message, ex);
-			}
+			cmd.Connection = cnn;
+			reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
 			return reader;
 		}
@@ -250,6 +253,15 @@ namespace SmartIT.Library.Data
 		/// <returns> Qtd. de linhas afetadas.</returns>
 		public int ExecuteNonQuery(IDbCommand cmd, IDbConnection cnn)
 		{
+			if (cmd is null)
+			{
+				throw new ArgumentNullException(nameof(cmd));
+			}
+			if (cnn is null)
+			{
+				throw new ArgumentNullException(nameof(cnn));
+			}
+
 			cmd.CommandTimeout = commandTimeout;
 			int rows;
 
@@ -262,10 +274,6 @@ namespace SmartIT.Library.Data
 
 				cmd.Connection = cnn;
 				rows = cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				throw new ArgumentException(ex.Message, ex);
 			}
 			finally
 			{
@@ -349,6 +357,15 @@ namespace SmartIT.Library.Data
 		/// <exception cref="ArgumentException"></exception>
 		public object ExecuteScalar(IDbCommand cmd, IDbConnection cnn)
 		{
+			if (cmd is null)
+			{
+				throw new ArgumentNullException(nameof(cmd));
+			}
+			if (cnn is null)
+			{
+				throw new ArgumentNullException(nameof(cnn));
+			}
+
 			cmd.CommandTimeout = commandTimeout;
 			object obj = null;
 
@@ -362,10 +379,6 @@ namespace SmartIT.Library.Data
 				cmd.Connection = cnn;
 				obj = cmd.ExecuteScalar();
 			}
-			catch (Exception ex)
-			{
-				throw new ArgumentException(ex.Message, ex);
-			}
 			finally
 			{
 				if (cnn.State != ConnectionState.Closed && cmd.Transaction == null)
@@ -375,87 +388,6 @@ namespace SmartIT.Library.Data
 			}
 
 			return obj;
-		}
-
-		/// <summary>
-		/// Executa uma consulta e retorna um DataView.
-		/// </summary>
-		/// <param name="sql"> Script SQL a ser executado.</param>
-		/// <returns> DataView com o resultado da consulta.</returns>
-		public DataView ExecuteDataView(string sql)
-		{
-			DbCommand cmd = (DbCommand)DataBaseProviderFactory.CreateCommand(connectionStringName, sql);
-			cmd.CommandTimeout = commandTimeout;
-
-			return ExecuteDataView(cmd);
-		}
-
-		/// <summary>
-		/// Executa uma consulta e retorna um DataView.
-		/// </summary>
-		/// <param name="cmd"> Objeto IDbCommand a ser executado.</param>
-		/// <returns> DataView com o resultado da consulta.</returns>
-		public DataView ExecuteDataView(IDbCommand cmd)
-		{
-			DataTable dt = ExecuteDataTable(cmd);
-			cmd.CommandTimeout = commandTimeout;
-
-			return dt.DefaultView;
-		}
-
-		/// <summary>
-		/// Executa um comando Db e retorna um DataTable.
-		/// </summary>
-		/// <param name="sql"> Script SQL a ser executado.</param>
-		/// <returns> DataView com o resultado da consulta.</returns>
-		public DataTable ExecuteDataTable(string sql)
-		{
-			DbCommand cmd = (DbCommand)DataBaseProviderFactory.CreateCommand(connectionStringName, sql);
-			cmd.CommandTimeout = commandTimeout;
-
-			return ExecuteDataTable(cmd);
-		}
-
-		/// <summary>
-		/// Executa um DbCommand e retorna um data source.
-		/// </summary>
-		/// <param name="cmd"> Objeto IDbCommand a ser executado.</param>
-		/// <returns> DataView com o resultado da consulta.</returns>
-		public DataTable ExecuteDataTable(IDbCommand cmd)
-		{
-			IDbConnection cnn = null;
-			DataSet ds = new DataSet();
-
-			try
-			{
-				cmd.CommandTimeout = commandTimeout;
-
-				IDbDataAdapter adapter = DataBaseProviderFactory.CreateDataAdapter(connectionStringName);
-				adapter.SelectCommand = cmd;
-
-				if (transaction == null || transaction.Connection == null)
-				{
-					cnn = DataBaseProviderFactory.CreateConnection(connectionStringName);
-					cnn.Open();
-
-					adapter.SelectCommand.Connection = cnn;
-				}
-
-				adapter.Fill(ds);
-			}
-			catch (Exception ex)
-			{
-				throw new ArgumentException(ex.Message, ex);
-			}
-			finally
-			{
-				if (cnn != null && cnn.State != ConnectionState.Closed)
-				{
-					cnn.Close();
-				}
-			}
-
-			return ds.Tables.Count > 0 ? ds.Tables[0].Copy() : null;
 		}
 
 		/// <summary>

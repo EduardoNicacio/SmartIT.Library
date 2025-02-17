@@ -16,11 +16,8 @@ namespace SmartIT.Library.Utilities.Mail
 	/// <summary>
 	/// A simple wrapper for the System.Net.Mail class.
 	/// </summary>
-	public class SystemNetMail : MarshalByRefObject, IDisposable
+	public class SystemNetMail
 	{
-		// Flag: Has Dispose already been called?
-		bool disposed = false;
-
 		/// <summary>
 		/// Sends an email.
 		/// </summary>
@@ -340,47 +337,6 @@ namespace SmartIT.Library.Utilities.Mail
 			}
 
 			return 0;
-		}
-
-		/// <summary>
-		/// Finalizes an instance of the <see cref="SystemNetMail" /> class.
-		/// </summary>
-		~SystemNetMail()
-		{
-			Dispose(false);
-		}
-
-		/// <summary>
-		/// Implementation of Dispose pattern.
-		/// </summary>
-		public void Dispose()
-		{
-			// Dispose of unmanaged resources.
-			Dispose(true);
-
-			// Suppress finalization.
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// Protected implementation of Dispose pattern.
-		/// </summary>
-		/// <param name="disposing"></param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (disposed)
-			{
-				return;
-			}
-
-			if (disposing)
-			{
-				// Free any other managed objects here.
-				Dispose();
-			}
-
-			// Free any unmanaged objects here.
-			disposed = true;
 		}
 	}
 

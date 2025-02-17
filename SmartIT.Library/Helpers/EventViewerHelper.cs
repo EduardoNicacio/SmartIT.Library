@@ -21,7 +21,7 @@ namespace SmartIT.Library.Helpers
 		/// <param name="source"> Application.</param>
 		/// <param name="log"> Log entry.</param>
 		/// <param name="message"> Log message.</param>
-		/// <param name="type"> Entry type (0 Information, 1 Warning, 2 Error).</param>
+		/// <param name="type"> Entry type (1: Error, 2: Warning, 4: Info, 8: Success Audit, 16: Failure Audit).</param>
 		/// <param name="eventId"> Event ID.</param>
 		/// <returns>0 in case of success; -1 instead.</returns>
 		public static int SetEventLog(string source, string log, string message, byte type, int eventId)
@@ -62,7 +62,7 @@ namespace SmartIT.Library.Helpers
 		/// <param name="source"> Application.</param>
 		/// <param name="log"> Log entry.</param>
 		/// <param name="message"> Log message.</param>
-		/// <param name="type"> Entry type (0 Information, 1 Warning, 2 Error).</param>
+		/// <param name="type"> Entry type (1: Error, 2: Warning, 4: Info, 8: Success Audit, 16: Failure Audit).</param>
 		/// <param name="eventId"> Event ID.</param>
 		/// <returns>A Task.</returns>
 		public static async Task<int> SetEventLogAsync(string source, string log, string message, byte type, int eventId)

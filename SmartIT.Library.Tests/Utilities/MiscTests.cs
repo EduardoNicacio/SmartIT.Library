@@ -832,12 +832,13 @@
 		{
 			// Arrange
 			var birthdate = new DateTime(1978, 12, 2, 13, 40, 00, DateTimeKind.Utc);
+			var dateDiff = DateTime.Today.Subtract(birthdate).TotalDays / 365;
 
 			// Act
 			var result = Misc.ToAge(birthdate);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(45));
+			Assert.That(result, Is.EqualTo(Math.Round(dateDiff)));
 		}
 
 		[Test]
@@ -845,6 +846,7 @@
 		{
 			// Arrange
 			var birthdate = new DateTime(1978, 12, 2, 13, 40, 00, DateTimeKind.Utc);
+			var dateDiff = DateTime.Today.Subtract(birthdate).TotalDays / 365;
 
 			// Act
 			var result1 = Misc.ToAge(birthdate, DateTime.Today);
@@ -853,7 +855,7 @@
 			// Assert
 			Assert.Multiple(() =>
 			{
-				Assert.That(result1, Is.EqualTo(45));
+				Assert.That(result1, Is.EqualTo(Math.Round(dateDiff)));
 				Assert.That(result2, Is.EqualTo(40));
 			});
 		}
@@ -863,12 +865,13 @@
 		{
 			// Arrange
 			var birthdate = new DateTime(1978, 12, 2, 13, 40, 00, DateTimeKind.Utc);
+			var dateDiff = DateTime.Today.Subtract(birthdate).TotalDays / 365;
 
 			// Act
 			var result = await Misc.ToAgeAsync(birthdate);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(45));
+			Assert.That(result, Is.EqualTo(Math.Round(dateDiff)));
 		}
 
 		[Test]
@@ -876,6 +879,7 @@
 		{
 			// Arrange
 			var birthdate = new DateTime(1978, 12, 2, 13, 40, 00, DateTimeKind.Utc);
+			var dateDiff = DateTime.Today.Subtract(birthdate).TotalDays / 365;
 
 			// Act
 			var result1 = await Misc.ToAgeAsync(birthdate, DateTime.Today);
@@ -884,7 +888,7 @@
 			// Assert
 			Assert.Multiple(() =>
 			{
-				Assert.That(result1, Is.EqualTo(45));
+				Assert.That(result1, Is.EqualTo(Math.Round(dateDiff)));
 				Assert.That(result2, Is.EqualTo(40));
 			});
 		}

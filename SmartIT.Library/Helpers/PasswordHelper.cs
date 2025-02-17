@@ -127,6 +127,74 @@ namespace SmartIT.Library.Helpers
 		}
 
 		/// <summary>
+		/// Verifies if a string contains dangerous chars that would enable cross-site injection.
+		/// </summary>
+		/// <param name="s">The given string.</param>
+		/// <param name="matchIndex">The match index, if any.</param>
+		/// <returns>True, if the informed string contains dangerours chars; false instead.</returns>
+		public static bool IsDangerousString(string s, out int matchIndex)
+		{
+			matchIndex = 0;
+			int startIndex = 0;
+			while (true)
+			{
+				int num = s.IndexOfAny(_startingChars, startIndex);
+				if (num < 0)
+				{
+					return false;
+				}
+
+				if (num == s.Length - 1)
+				{
+					break;
+				}
+
+				matchIndex = num;
+				switch (s[num])
+				{
+					case '<':
+						if (IsAtoZ(s[num + 1]) || s[num + 1] == '!' || s[num + 1] == '/' || s[num + 1] == '?')
+						{
+							return true;
+						}
+
+						break;
+					case '&':
+						if (s[num + 1] == '#')
+						{
+							return true;
+						}
+
+						break;
+				}
+
+				startIndex = num + 1;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Verifies if a given char is within the A-Z boundaries.
+		/// </summary>
+		/// <param name="c">The informed char.</param>
+		/// <returns>True, or false.</returns>
+		public static bool IsAtoZ(char c)
+		{
+			if (c < 'a' || c > 'z')
+			{
+				if (c >= 'A')
+				{
+					return c <= 'Z';
+				}
+
+				return false;
+			}
+
+			return true;
+		}
+
+		/// <summary>
 		/// Generates a random password of the specified length.
 		/// </summary>
 		/// <param name="length">The number of characters in the generated password. The length must be between 1 and 128 characters.</param>
@@ -196,74 +264,6 @@ namespace SmartIT.Library.Helpers
 			}
 			while (IsDangerousString(text, out _));
 			return text;
-		}
-
-		/// <summary>
-		/// Verifies if a string contains dangerous chars that would enable cross-site injection.
-		/// </summary>
-		/// <param name="s">The given string.</param>
-		/// <param name="matchIndex">The match index, if any.</param>
-		/// <returns>True, if the informed string contains dangerours chars; false instead.</returns>
-		private static bool IsDangerousString(string s, out int matchIndex)
-		{
-			matchIndex = 0;
-			int startIndex = 0;
-			while (true)
-			{
-				int num = s.IndexOfAny(_startingChars, startIndex);
-				if (num < 0)
-				{
-					return false;
-				}
-
-				if (num == s.Length - 1)
-				{
-					break;
-				}
-
-				matchIndex = num;
-				switch (s[num])
-				{
-					case '<':
-						if (IsAtoZ(s[num + 1]) || s[num + 1] == '!' || s[num + 1] == '/' || s[num + 1] == '?')
-						{
-							return true;
-						}
-
-						break;
-					case '&':
-						if (s[num + 1] == '#')
-						{
-							return true;
-						}
-
-						break;
-				}
-
-				startIndex = num + 1;
-			}
-
-			return false;
-		}
-
-		/// <summary>
-		/// Verifies if a given char is within the A-Z boundaries.
-		/// </summary>
-		/// <param name="c">The informed char.</param>
-		/// <returns>True, or false.</returns>
-		private static bool IsAtoZ(char c)
-		{
-			if (c < 'a' || c > 'z')
-			{
-				if (c >= 'A')
-				{
-					return c <= 'Z';
-				}
-
-				return false;
-			}
-
-			return true;
 		}
 	}
 }

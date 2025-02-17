@@ -186,7 +186,7 @@ namespace SmartIT.Library.Utilities
 
 			cpf = value.Trim().Replace(".", string.Empty).Replace("-", string.Empty);
 
-			// MUST HAVE 11 chars! ALWAYS!
+			// MUST HAVE 11 digits! ALWAYS!
 			if (cpf.Length != 11)
 			{
 				return false;
@@ -257,7 +257,7 @@ namespace SmartIT.Library.Utilities
 
 			cnpj = value.Trim().Replace(".", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
 
-			// MUST HAVE 14 chars! ALWAYS!
+			// MUST HAVE 14 digits! ALWAYS!
 			if (cnpj.Length != 14)
 			{
 				return false;
@@ -272,7 +272,7 @@ namespace SmartIT.Library.Utilities
 				sum += int.Parse(temp[i].ToString()) * mul1[i];
 			}
 
-			rest = (sum % 11);
+			rest = sum % 11;
 
 			if (rest < 2)
 			{
@@ -293,7 +293,7 @@ namespace SmartIT.Library.Utilities
 				sum += int.Parse(temp[i].ToString()) * mul2[i];
 			}
 
-			rest = (sum % 11);
+			rest = sum % 11;
 
 			if (rest < 2)
 			{

@@ -236,5 +236,56 @@ namespace SmartIT.Library.Tests.Helpers
 				Assert.That(result1, Is.Not.EqualTo(result2));
 			});
 		}
+
+		[Test]
+		public void Validate_GeneratePassword_IsDangerousString() 
+		{
+			// Arrange
+			int matchIndex = 0;
+
+			// Act
+			var result1 = PasswordHelper.IsDangerousString("<!", out matchIndex);
+			var result2 = PasswordHelper.IsDangerousString("</", out matchIndex);
+			var result3 = PasswordHelper.IsDangerousString("<?", out matchIndex);
+			var result4 = PasswordHelper.IsDangerousString("&#", out matchIndex);
+			var result5 = PasswordHelper.IsDangerousString("00", out matchIndex);
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result1, Is.True);
+				Assert.That(result2, Is.True);
+				Assert.That(result3, Is.True);
+				Assert.That(result4, Is.True);
+				Assert.That(result5, Is.False);
+			});
+		}
+
+		[Test]
+		public void Validate_GeneratePassword_IsAtoZ()
+		{
+			// Arrange
+
+			// Act
+			var result1 = PasswordHelper.IsAtoZ('^');
+			var result2 = PasswordHelper.IsAtoZ('|');
+			var result3 = PasswordHelper.IsAtoZ('a');
+			var result4 = PasswordHelper.IsAtoZ('z');
+			var result5 = PasswordHelper.IsAtoZ('A');
+			var result6 = PasswordHelper.IsAtoZ('Z');
+			var result7 = PasswordHelper.IsAtoZ('$');
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result1, Is.False);
+				Assert.That(result2, Is.False);
+				Assert.That(result3, Is.True);
+				Assert.That(result4, Is.True);
+				Assert.That(result5, Is.True);
+				Assert.That(result6, Is.True);
+				Assert.That(result7, Is.False);
+			});
+		}
 	}
 }

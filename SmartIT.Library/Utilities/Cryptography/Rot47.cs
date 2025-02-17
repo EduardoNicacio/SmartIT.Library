@@ -18,26 +18,6 @@ namespace SmartIT.Library.Utilities.Cryptography
 	public static class Rot47
 	{
 		/// <summary>
-		/// Encodes a Stream using the ROT47 algorithm.
-		/// </summary>
-		/// <param name="input">Stream input.</param>
-		/// <returns>Encoded string.</returns>
-		public static string Rot47Encode(Stream input)
-		{
-			return Rot47Encode(StreamHelper.StreamToByteArray(input));
-		}
-
-		/// <summary>
-		/// Encodes a Stream using the ROT47 algorithm.
-		/// </summary>
-		/// <param name="input">Input Byte array.</param>
-		/// <returns>Encoded string.</returns>
-		public static string Rot47Encode(byte[] input)
-		{
-			return Rot47Encode(Encoding.UTF8.GetString(input, 0, input.Length));
-		}
-
-		/// <summary>
 		/// Encodes a plain text using the ROT47 algorithm.
 		/// </summary>
 		/// <param name="input">Input string.</param>
@@ -60,6 +40,41 @@ namespace SmartIT.Library.Utilities.Cryptography
 		}
 
 		/// <summary>
+		/// Encodes a Stream using the ROT47 algorithm.
+		/// </summary>
+		/// <param name="input">Stream input.</param>
+		/// <returns>Encoded string.</returns>
+		public static string Rot47Encode(Stream input)
+		{
+			return Rot47Encode(StreamHelper.StreamToByteArray(input));
+		}
+
+		/// <summary>
+		/// Encodes a Stream using the ROT47 algorithm.
+		/// </summary>
+		/// <param name="input">Input Byte array.</param>
+		/// <returns>Encoded string.</returns>
+		public static string Rot47Encode(byte[] input)
+		{
+			return Rot47Encode(Encoding.UTF8.GetString(input, 0, input.Length));
+		}
+
+		/// <summary>
+		/// Decodes a plain text using the ROT47 algorithm.
+		/// </summary>
+		/// <param name="input">Input plain text.</param>
+		/// <returns>The plain string.</returns>
+		public static string Rot47Decode(string input)
+		{
+			if (string.IsNullOrWhiteSpace(input))
+			{
+				throw new ArgumentNullException(nameof(input));
+			}
+
+			return Rot47Encode(input);
+		}
+
+		/// <summary>
 		/// Decodes a Stream using the ROT47 algorithm.
 		/// </summary>
 		/// <param name="input">Input string.</param>
@@ -76,21 +91,6 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>The plain string.</returns>
 		public static string Rot47Decode(byte[] input)
 		{
-			return Rot47Encode(input);
-		}
-
-		/// <summary>
-		/// Decodes a plain text using the ROT47 algorithm.
-		/// </summary>
-		/// <param name="input">Input plain text.</param>
-		/// <returns>The plain string.</returns>
-		public static string Rot47Decode(string input)
-		{
-			if (string.IsNullOrWhiteSpace(input))
-			{
-				throw new ArgumentNullException(nameof(input));
-			}
-
 			return Rot47Encode(input);
 		}
 

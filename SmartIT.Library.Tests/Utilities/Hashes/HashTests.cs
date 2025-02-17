@@ -388,6 +388,20 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 		}
 
 		[Test]
+		public void Verify_Crc64_InternalMethods_NullTable()
+		{
+			// Arrange
+			const ulong defaultSeed = 0x0;
+			var buffer = Encoding.UTF8.GetBytes(notEmptyString);
+
+			// Act
+			Crc64Iso.Table = null;
+			var result = Crc64Iso.Compute(defaultSeed, buffer);
+
+			Assert.That(result, Is.GreaterThan(0));
+		}
+
+		[Test]
 		public void Verify_GetCrc64IsoHash_EmptyString()
 		{
 			// Arrange

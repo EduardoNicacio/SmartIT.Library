@@ -18,7 +18,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// Encodes a plain text using the ROT13 algorithm.
 		/// </summary>
 		/// <param name="input">Input plain text.</param>
-		/// <returns>ROT13 encoded string.</returns>
+		/// <returns>The encoded string.</returns>
 		public static string Rot13Encode(string input)
 		{
 			return CaesarCipher.Encipher(input, 13);
@@ -28,7 +28,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// Encodes a stream using the ROT13 algorithm.
 		/// </summary>
 		/// <param name="input">Input stream.</param>
-		/// <returns>ROT13 encoded string.</returns>
+		/// <returns>The encoded string.</returns>
 		public static string Rot13Encode(Stream input)
 		{
 			return CaesarCipher.Encipher(input, 13);
@@ -38,7 +38,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// Encodes a byte array using the ROT13 algorithm.
 		/// </summary>
 		/// <param name="input">Input byte array.</param>
-		/// <returns>ROT13 encoded string.</returns>
+		/// <returns>The encoded string.</returns>
 		public static string Rot13Encode(byte[] input)
 		{
 			return CaesarCipher.Encipher(input, 13);
@@ -48,7 +48,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// Decodes a plain text using the ROT13 algorithm.
 		/// </summary>
 		/// <param name="input">Input plain text.</param>
-		/// <returns>Decoded string.</returns>
+		/// <returns>The decoded string.</returns>
 		public static string Rot13Decode(string input)
 		{
 			return Rot13Encode(input);
@@ -58,7 +58,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// Decodes a Stream using the ROT13 algorithm.
 		/// </summary>
 		/// <param name="input">Input stream.</param>
-		/// <returns>Decoded string.</returns>
+		/// <returns>The decoded string.</returns>
 		public static string Rot13Decode(Stream input)
 		{
 			return Rot13Encode(input);
@@ -68,7 +68,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// Decodes a byte array using the ROT13 algorithm.
 		/// </summary>
 		/// <param name="input">Input byte array.</param>
-		/// <returns>Decoded string.</returns>
+		/// <returns>The decoded string.</returns>
 		public static string Rot13Decode(byte[] input)
 		{
 			return Rot13Encode(input);

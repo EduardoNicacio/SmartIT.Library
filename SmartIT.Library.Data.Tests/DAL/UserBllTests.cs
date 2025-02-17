@@ -167,7 +167,103 @@ namespace SmartIT.Library.Data.Tests.DAL
 		}
 
 		[Test, Order(12)]
-		public void T12_Validate_SearchAll()
+		public void T12_Validate_Search_WithSearchCriteria_WithLogicalOperator1() 
+		{
+			// Arrange
+			UserHelper.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Add("CreationDateFrom|>=", DateTime.Today);
+			UserHelper.UserBll.SearchCriteria.Add("CreationDateTo|<=", DateTime.Today.AddDays(1));
+
+			// Act
+			var result = UserHelper.UserBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.GreaterThanOrEqualTo(1));
+				Assert.That(result[0].Name, Is.EqualTo(user1.Name));
+			});
+		}
+
+		[Test, Order(13)]
+		public void T13_Validate_Search_WithSearchCriteria_WithLogicalOperator2()
+		{
+			// Arrange
+			UserHelper.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Add("Name|IN", "('" + user2.Name + "')");
+
+			// Act
+			var result = UserHelper.UserBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(1));
+				Assert.That(result[0].Name, Is.EqualTo(user2.Name));
+			});
+		}
+
+		[Test, Order(14)]
+		public void T14_Validate_Search_WithSearchCriteria_WithLogicalOperator3()
+		{
+			// Arrange
+			UserHelper.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Add("Name|<>", user3.Name);
+
+			// Act
+			var result = UserHelper.UserBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(2));
+				Assert.That(result[0].Name, Is.EqualTo(user2.Name));
+				Assert.That(result[1].Name, Is.EqualTo(user1.Name));
+			});
+		}
+
+
+		[Test, Order(15)]
+		public void T15_Validate_Search_WithSearchCriteria_WithLogicalOperator4()
+		{
+			// Arrange
+			UserHelper.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Add("Name|LIKE", user1.Name);
+
+			// Act
+			var result = UserHelper.UserBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.Empty);
+				Assert.That(result, Has.Count.EqualTo(1));
+				Assert.That(result[0].Name, Is.EqualTo(user1.Name));
+			});
+		}
+
+		[Test, Order(16)]
+		public void T16_Validate_Search_WithSearchCriteria_WithLogicalOperator5()
+		{
+			// Arrange
+			UserHelper.UserBll.SearchCriteria.Clear();
+			UserHelper.UserBll.SearchCriteria.Add("Name|IS", DBNull.Value);
+
+			// Act
+			var result = UserHelper.UserBll.Search();
+
+			// Assert
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Empty);
+			});
+		}
+
+		[Test, Order(17)]
+		public void T17_Validate_SearchAll()
 		{
 			// Arrange
 			UserHelper.UserBll.SearchCriteria.Clear();
@@ -183,8 +279,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			});
 		}
 
-		[Test, Order(13)]
-		public void T13_Validate_Update_EmptyObject()
+		[Test, Order(18)]
+		public void T18_Validate_Update_EmptyObject()
 		{
 			// Arrange
 
@@ -195,8 +291,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(0));
 		}
 
-		[Test, Order(14)]
-		public void T14_Validate_Update_UseCase1()
+		[Test, Order(19)]
+		public void T19_Validate_Update_UseCase1()
 		{
 			// Arrange
 			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user1.Email });
@@ -211,8 +307,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(15)]
-		public void T15_Validate_Update_UseCase2()
+		[Test, Order(20)]
+		public void T20_Validate_Update_UseCase2()
 		{
 			// Arrange
 			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user2.Email });
@@ -227,8 +323,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(16)]
-		public void T16_Validate_Update_UseCase3()
+		[Test, Order(21)]
+		public void T21_Validate_Update_UseCase3()
 		{
 			// Arrange
 			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user3.Email });
@@ -243,8 +339,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(17)]
-		public void T17_Validate_Delete_EmptyObject()
+		[Test, Order(22)]
+		public void T22_Validate_Delete_EmptyObject()
 		{
 			// Arrange
 
@@ -255,8 +351,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(0));
 		}
 
-		[Test, Order(18)]
-		public void T18_Validate_Delete_UseCase1()
+		[Test, Order(23)]
+		public void T23_Validate_Delete_UseCase1()
 		{
 			// Arrange
 			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user1.Email });
@@ -269,8 +365,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(19)]
-		public void T19_Validate_Delete_UseCase2()
+		[Test, Order(24)]
+		public void T24_Validate_Delete_UseCase2()
 		{
 			// Arrange
 			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user2.Email });
@@ -283,8 +379,8 @@ namespace SmartIT.Library.Data.Tests.DAL
 			Assert.That(result, Is.EqualTo(1));
 		}
 
-		[Test, Order(20)]
-		public void T20_Validate_Delete_UseCase3()
+		[Test, Order(25)]
+		public void T25_Validate_Delete_UseCase3()
 		{
 			// Arrange
 			var existent = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user3.Email });

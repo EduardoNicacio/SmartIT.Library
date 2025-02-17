@@ -96,8 +96,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>The decoded string.</returns>
 		public static string Decipher(byte[] input, int shift)
 		{
-			var strValue = Encoding.UTF8.GetString(input, 0, input.Length);
-			return Decipher(strValue, shift);
+			return Decipher(Encoding.UTF8.GetString(input, 0, input.Length), shift);
 		}
 
 		/// <summary>
@@ -108,9 +107,7 @@ namespace SmartIT.Library.Utilities.Cryptography
 		/// <returns>The decoded string.</returns>
 		public static string Decipher(Stream input, int shift)
 		{
-			var byteArray = StreamHelper.StreamToByteArray(input);
-			var strValue = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
-			return Decipher(strValue, shift);
+			return Decipher(StreamHelper.StreamToByteArray(input), shift);
 		}
 
 		/// <summary>

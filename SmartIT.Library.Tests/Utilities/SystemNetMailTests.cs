@@ -17,8 +17,8 @@ namespace SmartIT.Library.Tests.Utilities
 		// SmtpClient config
 		const string smtpServer = "127.0.0.1";
 		const int smtpPort = 25;
-		const string smtpUsername = "";
-		const string smtpPassword = "";
+		const string smtpUsername = "enicacio@gmail";
+		const string smtpPassword = "!@123456@#$";
 
 		// Attachments
 		readonly List<string> attAsStrings = [];

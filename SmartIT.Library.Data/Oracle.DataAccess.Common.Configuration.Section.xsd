@@ -17,8 +17,6 @@
   <xs:simpleType name="ONSParameters">
     <xs:restriction base="xs:string">
       <xs:enumeration value="nodeList"/>
-      <!--<xs:enumeration value="walletFile"/>
-      <xs:enumeration value="walletPassword"/>-->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="ONSModeValues">

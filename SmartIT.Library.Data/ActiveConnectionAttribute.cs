@@ -8,10 +8,12 @@
 namespace SmartIT.Library.Data
 {
 	using SmartIT.Library.Utilities;
+	using System;
 
 	/// <summary>
 	/// Active Connection Attribute.
 	/// </summary>
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate)]
 	public class ActiveConnectionAttribute : StringValueAttribute
 	{
 		/// <summary>

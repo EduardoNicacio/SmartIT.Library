@@ -19,6 +19,14 @@ namespace SmartIT.Library.Data
 	/// </summary>
 	public static class DataBaseProviderFactory
 	{
+		private const string SYSTEM_DATA_SQLCLIENT = "system.data.sqlclient";
+		private const string SYSTEM_DATA_OLEDB = "system.data.oledb";
+		private const string SYSTEM_DATA_ORACLECLIENT = "system.data.oracleclient";
+		private const string ORACLE_DATAACCESS = "oracle.dataaccess";
+		private const string ORACLE_DATAACCESS_CLIENT = "oracle.dataaccess.client";
+		private const string ORACLE_MANAGEDDATAACCESS = "oracle.manageddataaccess";
+		private const string ORACLE_MANAGEDDATAACCESS_CLIENT = "oracle.manageddataaccess.client";
+
 		/// <summary>
 		/// Returns a database connection based on the connection string defined in the configuration file.
 		/// </summary>
@@ -77,24 +85,24 @@ namespace SmartIT.Library.Data
 			switch (providerName.ToLowerInvariant())
 			{
 				// SQL Server - default
-				case "system.data.sqlclient":
+				case SYSTEM_DATA_SQLCLIENT:
 					connection = new SqlConnection(connectionString);
 					break;
 
 				// OleDb
-				case "system.data.oledb":
+				case SYSTEM_DATA_OLEDB:
 					connection = new OleDbConnection(connectionString);
 					break;
 
 				// Oracle
-				case "system.data.oracleclient":
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
-				case "oracle.manageddataaccess":
-				case "oracle.manageddataaccess.client":
+				case SYSTEM_DATA_ORACLECLIENT:
+				case ORACLE_DATAACCESS:
+				case ORACLE_DATAACCESS_CLIENT:
+				case ORACLE_MANAGEDDATAACCESS:
+				case ORACLE_MANAGEDDATAACCESS_CLIENT:
 					connection = new OracleConnection(connectionString);
 					break;
-				
+
 				default: break;
 			}
 
@@ -127,24 +135,24 @@ namespace SmartIT.Library.Data
 			switch (providerName.ToLowerInvariant())
 			{
 				// SQL Server - default
-				case "system.data.sqlclient":
+				case SYSTEM_DATA_SQLCLIENT:
 					dataAdapter = new SqlDataAdapter();
 					break;
 
 				// OleDb
-				case "system.data.oledb":
+				case SYSTEM_DATA_OLEDB:
 					dataAdapter = new OleDbDataAdapter();
 					break;
 
 				// Oracle
-				case "system.data.oracleclient":
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
-				case "oracle.manageddataaccess":
-				case "oracle.manageddataaccess.client":
+				case SYSTEM_DATA_ORACLECLIENT:
+				case ORACLE_DATAACCESS:
+				case ORACLE_DATAACCESS_CLIENT:
+				case ORACLE_MANAGEDDATAACCESS:
+				case ORACLE_MANAGEDDATAACCESS_CLIENT:
 					dataAdapter = new OracleDataAdapter();
 					break;
-				
+
 				default: break;
 			}
 
@@ -181,24 +189,24 @@ namespace SmartIT.Library.Data
 			switch (providerName.ToLowerInvariant())
 			{
 				// SQL Server - default
-				case "system.data.sqlclient":
+				case SYSTEM_DATA_SQLCLIENT:
 					command = new SqlCommand(commandText);
 					break;
 
 				// OleDb
-				case "system.data.oledb":
+				case SYSTEM_DATA_OLEDB:
 					command = new OleDbCommand(commandText);
 					break;
 
 				// Oracle
-				case "system.data.oracleclient":
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
-				case "oracle.manageddataaccess":
-				case "oracle.manageddataaccess.client":
+				case SYSTEM_DATA_ORACLECLIENT:
+				case ORACLE_DATAACCESS:
+				case ORACLE_DATAACCESS_CLIENT:
+				case ORACLE_MANAGEDDATAACCESS:
+				case ORACLE_MANAGEDDATAACCESS_CLIENT:
 					command = new OracleCommand(commandText);
 					break;
-				
+
 				default: break;
 			}
 
@@ -218,24 +226,24 @@ namespace SmartIT.Library.Data
 			switch (providerName.ToLowerInvariant())
 			{
 				// SQL Server - default
-				case "system.data.sqlclient":
+				case SYSTEM_DATA_SQLCLIENT:
 					paramSymbol = "@";
 					break;
 
 				// OleDB
-				case "system.data.oledb":
+				case SYSTEM_DATA_OLEDB:
 					paramSymbol = "?";
 					break;
 
 				// Oracle
-				case "system.data.oracleclient":
-				case "oracle.dataaccess":
-				case "oracle.dataaccess.client":
-				case "oracle.manageddataaccess":
-				case "oracle.manageddataaccess.client":
+				case SYSTEM_DATA_ORACLECLIENT:
+				case ORACLE_DATAACCESS:
+				case ORACLE_DATAACCESS_CLIENT:
+				case ORACLE_MANAGEDDATAACCESS:
+				case ORACLE_MANAGEDDATAACCESS_CLIENT:
 					paramSymbol = ":";
 					break;
-				
+
 				default: break;
 			}
 

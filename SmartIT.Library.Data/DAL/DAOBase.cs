@@ -32,6 +32,11 @@ namespace SmartIT.Library.Data.DAL
 		private readonly int commandTimeout;
 
 		/// <summary>
+		/// Missing Search Alias default string.
+		/// </summary>
+		private const string MISSING_SEARCH_ALIAS_MESSAGE = "The key '{0}' does not exist in the search aliases collection.";
+
+		/// <summary>
 		/// Gets or sets the DBHelper.
 		/// </summary>
 		/// <value> The DbHelper value.</value>
@@ -177,7 +182,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", s));
+						throw new ArgumentNullException(string.Format(MISSING_SEARCH_ALIAS_MESSAGE, s));
 					}
 				}
 				else
@@ -197,7 +202,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", s));
+						throw new ArgumentNullException(string.Format(MISSING_SEARCH_ALIAS_MESSAGE, s));
 					}
 				}
 			}
@@ -324,7 +329,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", o));
+						throw new ArgumentNullException(string.Format(MISSING_SEARCH_ALIAS_MESSAGE, o));
 					}
 				}
 				else
@@ -344,7 +349,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", o));
+						throw new ArgumentNullException(string.Format(MISSING_SEARCH_ALIAS_MESSAGE, o));
 					}
 				}
 			}
@@ -480,7 +485,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", c));
+						throw new ArgumentNullException(string.Format(MISSING_SEARCH_ALIAS_MESSAGE, c));
 					}
 				}
 				else
@@ -500,7 +505,7 @@ namespace SmartIT.Library.Data.DAL
 					else
 					{
 						criteria.Clear();
-						throw new ArgumentNullException(string.Format("The key '{0}' does not exist in the search aliases collection.", c));
+						throw new ArgumentNullException(string.Format(MISSING_SEARCH_ALIAS_MESSAGE, c));
 					}
 				}
 			}

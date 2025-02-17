@@ -13,7 +13,7 @@ namespace SmartIT.Library.Data
 	/// <summary>
 	/// Active Connection Attribute.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate)]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
 	public class ActiveConnectionAttribute : StringValueAttribute
 	{
 		/// <summary>

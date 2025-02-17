@@ -7,10 +7,13 @@
 
 namespace SmartIT.Library.Utilities
 {
+	using System;
+
 	/// <summary>
 	/// Class that adds the StringValue attribute to Enum types.
 	/// </summary>
-	public class StringValueAttribute : System.Attribute
+	[AttributeUsage(AttributeTargets.All)]
+	public class StringValueAttribute : Attribute
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="StringValueAttribute" /> class.

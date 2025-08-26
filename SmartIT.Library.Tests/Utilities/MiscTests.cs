@@ -838,7 +838,7 @@
 			var result = Misc.ToAge(birthdate);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(Math.Round(dateDiff)));
+			Assert.That(result, Is.EqualTo(Math.Truncate(dateDiff)));
 		}
 
 		[Test]
@@ -855,7 +855,7 @@
 			// Assert
 			Assert.Multiple(() =>
 			{
-				Assert.That(result1, Is.EqualTo(Math.Round(dateDiff)));
+				Assert.That(result1, Is.EqualTo(Math.Truncate(dateDiff)));
 				Assert.That(result2, Is.EqualTo(40));
 			});
 		}
@@ -871,7 +871,7 @@
 			var result = await Misc.ToAgeAsync(birthdate);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(Math.Round(dateDiff)));
+			Assert.That(result, Is.EqualTo(Math.Truncate(dateDiff)));
 		}
 
 		[Test]
@@ -888,7 +888,7 @@
 			// Assert
 			Assert.Multiple(() =>
 			{
-				Assert.That(result1, Is.EqualTo(Math.Round(dateDiff)));
+				Assert.That(result1, Is.EqualTo(Math.Truncate(dateDiff)));
 				Assert.That(result2, Is.EqualTo(40));
 			});
 		}

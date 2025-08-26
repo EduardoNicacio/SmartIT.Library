@@ -37,9 +37,9 @@ namespace SmartIT.Library.Tests.Utilities
 			attAsStrings.Clear();
 
 			// Adds three attachments as paths to this list
-			attAsStrings.Add("E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment1.txt");
-			attAsStrings.Add("E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment2.txt");
-			attAsStrings.Add("E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment3.txt");
+			attAsStrings.Add("C:\\Users\\eduardo.nicacio\\source\\repos\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment1.txt");
+			attAsStrings.Add("C:\\Users\\eduardo.nicacio\\source\\repos\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment2.txt");
+			attAsStrings.Add("C:\\Users\\eduardo.nicacio\\source\\repos\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment3.txt");
 
 			// Clears the lists
 			attAsAttachments1.Clear();

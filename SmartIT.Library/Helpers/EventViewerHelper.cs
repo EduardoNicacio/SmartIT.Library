@@ -91,7 +91,7 @@ namespace SmartIT.Library.Helpers
 					{
 						EventLogEntry eventLogEntry = eventLogEntryCollection[i];
 						if (eventLogEntry.EntryType == (EventLogEntryType)type &&
-							eventLogEntry.MachineName == machineName &&
+							eventLogEntry.MachineName.StartsWith(machineName) &&
 							(eventLogEntry.Message == message || (eventLogEntry.ReplacementStrings.Length > 0 && eventLogEntry.ReplacementStrings[0] == message)))
 						{
 							return eventLogEntry;

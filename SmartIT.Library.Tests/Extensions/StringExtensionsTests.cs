@@ -31,7 +31,7 @@ namespace SmartIT.Library.Tests.Extensions
 
 			// Act
 			var result = StringExtensions.AdjustL(emptyString);
-			
+
 			// Assert
 			Assert.That(result, Is.EqualTo(string.Empty));
 		}
@@ -415,7 +415,7 @@ namespace SmartIT.Library.Tests.Extensions
 		}
 
 		[Test]
-		public void Verify_ToCnpj_LongCnpj() 
+		public void Verify_ToCnpj_LongCnpj()
 		{
 			// Arrange
 			var longCnpj = "123456789012345";
@@ -428,7 +428,7 @@ namespace SmartIT.Library.Tests.Extensions
 		}
 
 		[Test]
-		public async Task Verify_ToCnpjAsync_LongCnpj() 
+		public async Task Verify_ToCnpjAsync_LongCnpj()
 		{
 			// Arrange
 			const string longCnpj = "123456789012345";

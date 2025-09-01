@@ -1,5 +1,4 @@
 ﻿using SmartIT.Library.Data.Tests.DAL;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace SmartIT.Library.Data.Tests

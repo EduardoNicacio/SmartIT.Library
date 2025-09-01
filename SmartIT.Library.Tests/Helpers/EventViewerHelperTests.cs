@@ -5,8 +5,8 @@
 	[TestFixture]
 	public class EventViewerHelperTests
 	{
-		protected const string machineName = "C11-29G9LANKSI2";
-		protected const string source = "SmartIT.Library";
+		protected const string machineName = "Ryzen-5900X";
+		protected const string source = "Application";
 		protected const string log = "SmartIT.Library";
 		protected const string message = "SmartIT.Library.Utilities.EventViewerTests";
 		protected byte typeError = 1;
@@ -136,7 +136,7 @@
 		{
 			// Arrange
 			const string smartIT = "SmartIT.Library.2";
-			var callResult = EventViewerHelper.SetEventLog(smartIT, smartIT, message, typeInformation, 1007);
+			var callResult = EventViewerHelper.SetEventLog(source, smartIT, message, typeInformation, 1007);
 
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, smartIT, message, typeInformation, 1007);
@@ -145,7 +145,7 @@
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
-				Assert.That(result, Is.Null);
+				Assert.That(result, Is.Not.Null);
 			});
 		}
 

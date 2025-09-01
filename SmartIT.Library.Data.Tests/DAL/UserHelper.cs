@@ -1,6 +1,5 @@
 ﻿using SmartIT.Library.Data.DAL;
 using SmartIT.Library.Data.ModelManager;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace SmartIT.Library.Data.Tests.DAL

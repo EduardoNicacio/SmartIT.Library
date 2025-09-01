@@ -238,7 +238,7 @@ namespace SmartIT.Library.Tests.Helpers
 		}
 
 		[Test]
-		public void Validate_GeneratePassword_IsDangerousString() 
+		public void Validate_GeneratePassword_IsDangerousString()
 		{
 			// Arrange
 			int matchIndex = 0;

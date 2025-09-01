@@ -11,7 +11,6 @@ namespace SmartIT.Library.Data
 	using System.Configuration;
 	using System.Data;
 	using System.Data.Common;
-	using System.Threading;
 
 	/// <summary>
 	/// Prove acesso ao banco de dados, e possui metodos que facilitam manipulacao dos dados.

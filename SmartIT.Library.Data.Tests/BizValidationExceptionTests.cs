@@ -1,6 +1,4 @@
-﻿using NUnit.Framework.Constraints;
-
-namespace SmartIT.Library.Data.Tests
+﻿namespace SmartIT.Library.Data.Tests
 {
 	[TestFixture]
 	internal class BizValidationExceptionTests

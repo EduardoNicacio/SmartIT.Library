@@ -14,7 +14,7 @@
 		{
 			// Arrange
 			decimal value = 0m;
-			
+
 			// Act
 			var result = DbNullHelper.GetValue(value);
 

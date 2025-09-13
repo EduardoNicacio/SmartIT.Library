@@ -36,7 +36,7 @@ namespace SmartIT.Library.Utilities
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
 		public static string GetCrc16Hash(byte[] input)
 		{
-			return Crc16.ComputeHash(input).ToString("x2").ToUpperInvariant();
+			return Crc16.ComputeHash(input).ToString("x2").ToLowerInvariant();
 		}
 
 		/// <summary>
@@ -51,7 +51,7 @@ namespace SmartIT.Library.Utilities
 			{
 				fileData = binaryReader.ReadBytes((int)stream.Length);
 			}
-			return Crc16.ComputeHash(fileData).ToString("x2").ToUpperInvariant();
+			return Crc16.ComputeHash(fileData).ToString("x2").ToLowerInvariant();
 		}
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -184,7 +184,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -212,7 +212,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -259,7 +259,7 @@ namespace SmartIT.Library.Utilities
 			}
 
 			// Return the hexadecimal string.
-			return sBuilder.ToString().ToUpperInvariant();
+			return sBuilder.ToString().ToLowerInvariant();
 		}
 
 		/// <summary>
@@ -284,7 +284,7 @@ namespace SmartIT.Library.Utilities
 			}
 
 			// Return the hexadecimal string.
-			return sBuilder.ToString().ToUpperInvariant();
+			return sBuilder.ToString().ToLowerInvariant();
 		}
 
 		/// <summary>
@@ -331,7 +331,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -359,7 +359,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -407,7 +407,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -435,7 +435,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -483,7 +483,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -511,7 +511,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -559,7 +559,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -587,7 +587,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -635,7 +635,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 
@@ -663,7 +663,7 @@ namespace SmartIT.Library.Utilities
 				}
 
 				// Return the hexadecimal string.
-				return sBuilder.ToString().ToUpperInvariant();
+				return sBuilder.ToString().ToLowerInvariant();
 			}
 		}
 

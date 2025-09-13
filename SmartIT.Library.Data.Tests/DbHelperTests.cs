@@ -64,12 +64,12 @@ namespace SmartIT.Library.Data.Tests
 			var transaction = dbHelper.CreateTransaction();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(transaction, Is.Not.Null);
 				Assert.That(transaction.Connection, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test, Order(4)]
@@ -82,11 +82,11 @@ namespace SmartIT.Library.Data.Tests
 			var nextUserId = dbHelper.GetNextValue("Id", "dbo.[User]");
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(nextUserId, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test, Order(5)]
@@ -100,12 +100,12 @@ namespace SmartIT.Library.Data.Tests
 			var nextUserId = dbHelper.GetNextValue(command);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(command, Is.Not.Null);
 				Assert.That(nextUserId, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test, Order(6)]
@@ -119,11 +119,11 @@ namespace SmartIT.Library.Data.Tests
 			nextUserId = dbHelper.GetNextValue("Id", "dbo.[User]");
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(nextUserId, Is.GreaterThanOrEqualTo(0));
-			});
+			}
 		}
 
 		[Test, Order(7)]
@@ -143,14 +143,14 @@ namespace SmartIT.Library.Data.Tests
 			}
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(transaction, Is.Not.Null);
 				Assert.That(cmd, Is.Not.Null);
 				Assert.That(reader, Is.Not.Null);
 				Assert.That(userId, Is.GreaterThanOrEqualTo(0));
-			});
+			}
 		}
 
 		[Test, Order(8)]
@@ -164,12 +164,12 @@ namespace SmartIT.Library.Data.Tests
 			var activeTransaction = dbHelper.ActiveTransaction;
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(transaction, Is.Not.Null);
 				Assert.That(activeTransaction, Is.EqualTo(dbHelper.ActiveTransaction));
-			});
+			}
 		}
 
 		[Test, Order(9)]
@@ -188,12 +188,12 @@ namespace SmartIT.Library.Data.Tests
 			}
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(reader, Is.Not.Null);
 				Assert.That(count, Is.GreaterThanOrEqualTo(0));
-			});
+			}
 		}
 
 		[Test, Order(10)]
@@ -213,13 +213,13 @@ namespace SmartIT.Library.Data.Tests
 			}
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(transaction, Is.Not.Null);
 				Assert.That(reader, Is.Not.Null);
 				Assert.That(count, Is.GreaterThanOrEqualTo(0));
-			});
+			}
 		}
 
 		[Test, Order(11)]
@@ -257,11 +257,11 @@ namespace SmartIT.Library.Data.Tests
 			var count = dbHelper.ExecuteNonQuery("UPDATE dbo.[User] SET CreationDate = '2025-02-17 00:00:00.000' WHERE Id > 0;");
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(count, Is.GreaterThanOrEqualTo(1));
-			});
+			}
 		}
 
 		[Test, Order(14)]
@@ -275,12 +275,12 @@ namespace SmartIT.Library.Data.Tests
 			var count = dbHelper.ExecuteNonQuery(cmd);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(cmd, Is.Not.Null);
 				Assert.That(count, Is.GreaterThanOrEqualTo(1));
-			});
+			}
 		}
 
 		[Test, Order(15)]
@@ -319,12 +319,12 @@ namespace SmartIT.Library.Data.Tests
 			int count = dbHelper.ExecuteNonQuery("UPDATE dbo.[User] SET CreationDate = '2025-02-17 00:00:00.000' WHERE Id > 0;");
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(transaction, Is.Not.Null);
 				Assert.That(count, Is.GreaterThanOrEqualTo(0));
-			});
+			}
 		}
 
 		[Test, Order(18)]
@@ -338,12 +338,12 @@ namespace SmartIT.Library.Data.Tests
 			var result = dbHelper.ExecuteScalarWithScopeIdentity((SqlCommand)command);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(command, Is.Not.Null);
 				Assert.That(result, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test, Order(19)]
@@ -356,11 +356,11 @@ namespace SmartIT.Library.Data.Tests
 			var result = Convert.ToInt32(dbHelper.ExecuteScalar("INSERT INTO dbo.[User] (Name, Email, CreationDate) values ('oNicacioo', 'onicacioo@mail.com', '2025-02-17 00:00:00.000'); SELECT @@Identity;"));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(result, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test, Order(20)]
@@ -373,11 +373,11 @@ namespace SmartIT.Library.Data.Tests
 			var result = Convert.ToInt32(dbHelper.ExecuteScalar("INSERT INTO dbo.[User] (Name, Email, CreationDate) values ('oNicacioo', 'onicacioo@mail.com', '2025-02-17 00:00:00.000');"));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(result, Is.EqualTo(0));
-			});
+			}
 		}
 
 		[Test, Order(21)]
@@ -391,12 +391,12 @@ namespace SmartIT.Library.Data.Tests
 			var result = Convert.ToInt32(dbHelper.ExecuteScalar(command));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
 				Assert.That(command, Is.Not.Null);
 				Assert.That(result, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test, Order(22)]

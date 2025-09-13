@@ -31,12 +31,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, message, typeError, 1001);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -49,12 +49,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, message, typeWarning, 1002);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -67,12 +67,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, message, typeInformation, 1003);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -85,12 +85,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, message, typeSuccessAudit, 1004);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -103,12 +103,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, message, typeFailureAudit, 1005);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -122,12 +122,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, message, typeInformation, 1006);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -141,12 +141,12 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, smartIT, message, typeInformation, 1007);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -158,11 +158,11 @@
 			// Act
 			var result = EventViewerHelper.GetEventLog(machineName, source, "Eduardo", typeInformation, 99999);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(result, Is.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -175,12 +175,12 @@
 			// Act
 			var result = await EventViewerHelper.GetEventLogAsync(machineName, source, message, typeError, 1010);
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(callResult, Is.EqualTo(0));
 				Assert.That(result, Is.Not.Null);
-			});
+			}
 		}
 	}
 }

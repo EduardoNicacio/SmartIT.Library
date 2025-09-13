@@ -279,13 +279,13 @@
 			var resultOledb = DataBaseProviderFactory.GetParamSymbol("system.data.oledb");
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(resultNull, Is.Null);
 				Assert.That(resultSql, Is.EqualTo("@"));
 				Assert.That(resultOracle, Is.EqualTo(":"));
 				Assert.That(resultOledb, Is.EqualTo("?"));
-			});
+			}
 		}
 	}
 }

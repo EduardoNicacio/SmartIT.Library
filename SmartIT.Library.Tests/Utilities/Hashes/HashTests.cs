@@ -133,7 +133,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Arrange
 
 			// Act
-			var result = Crc16.ComputeHash("1D9A");
+			var result = Crc16.ComputeHash("1d9a");
 
 			// Assert
 			Assert.That(result, Is.GreaterThan(0));
@@ -150,7 +150,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.GreaterThan(2));
-			Assert.That(result, Is.EqualTo("1D9A"));
+			Assert.That(result, Is.EqualTo("1d9a"));
 		}
 
 		[Test]
@@ -166,10 +166,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.GreaterThan(2));
-			Assert.That(result, Is.EqualTo("1D9A"));
+			Assert.That(result, Is.EqualTo("1d9a"));
 		}
 
-		[Test(ExpectedResult = "1D9A")]
+		[Test(ExpectedResult = "1d9a")]
 		public async Task<string> Verify_GetCrc16HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -180,12 +180,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.GreaterThan(2));
-			Assert.That(result, Is.EqualTo("1D9A"));
+			Assert.That(result, Is.EqualTo("1d9a"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "1D9A")]
+		[Test(ExpectedResult = "1d9a")]
 		public async Task<string> Verify_GetCrc16HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -198,7 +198,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.GreaterThan(2));
-			Assert.That(result, Is.EqualTo("1D9A"));
+			Assert.That(result, Is.EqualTo("1d9a"));
 
 			return result;
 		}
@@ -224,13 +224,13 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			uint compute3 = Crc32.Compute(defaultPolynomial, defaultSeed, byteArray);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(hashSize, Is.EqualTo(32));
 				Assert.That(compute1, Is.GreaterThan(0));
 				Assert.That(compute2, Is.GreaterThan(0));
 				Assert.That(compute3, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test]
@@ -308,7 +308,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(8));
-			Assert.That(result, Is.EqualTo("BFECCDB4"));
+			Assert.That(result, Is.EqualTo("bfeccdb4"));
 		}
 
 		[Test]
@@ -324,10 +324,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(8));
-			Assert.That(result, Is.EqualTo("BFECCDB4"));
+			Assert.That(result, Is.EqualTo("bfeccdb4"));
 		}
 
-		[Test(ExpectedResult = "BFECCDB4")]
+		[Test(ExpectedResult = "bfeccdb4")]
 		public async Task<string> Verify_GetCrc32HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -338,12 +338,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(8));
-			Assert.That(result, Is.EqualTo("BFECCDB4"));
+			Assert.That(result, Is.EqualTo("bfeccdb4"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "BFECCDB4")]
+		[Test(ExpectedResult = "bfeccdb4")]
 		public async Task<string> Verify_GetCrc32HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -356,7 +356,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(8));
-			Assert.That(result, Is.EqualTo("BFECCDB4"));
+			Assert.That(result, Is.EqualTo("bfeccdb4"));
 
 			return result;
 		}
@@ -379,12 +379,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			var result2 = Crc64Iso.Compute(defaultSeed, buffer);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(hashSize, Is.EqualTo(64));
 				Assert.That(result1, Is.GreaterThan(0));
 				Assert.That(result2, Is.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test]
@@ -476,7 +476,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("7B84C529AEDCC51B"));
+			Assert.That(result, Is.EqualTo("7b84c529aedcc51b"));
 		}
 
 		[Test]
@@ -492,10 +492,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("7B84C529AEDCC51B"));
+			Assert.That(result, Is.EqualTo("7b84c529aedcc51b"));
 		}
 
-		[Test(ExpectedResult = "7B84C529AEDCC51B")]
+		[Test(ExpectedResult = "7b84c529aedcc51b")]
 		public async Task<string> Verify_GetCrc64IsoHashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -506,12 +506,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("7B84C529AEDCC51B"));
+			Assert.That(result, Is.EqualTo("7b84c529aedcc51b"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "7B84C529AEDCC51B")]
+		[Test(ExpectedResult = "7b84c529aedcc51b")]
 		public async Task<string> Verify_GetCrc64IsoHashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -524,7 +524,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("7B84C529AEDCC51B"));
+			Assert.That(result, Is.EqualTo("7b84c529aedcc51b"));
 
 			return result;
 		}
@@ -608,7 +608,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("DDAE32EBF5164344"));
+			Assert.That(result, Is.EqualTo("ddae32ebf5164344"));
 		}
 
 		[Test]
@@ -624,10 +624,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("DDAE32EBF5164344"));
+			Assert.That(result, Is.EqualTo("ddae32ebf5164344"));
 		}
 
-		[Test(ExpectedResult = "DDAE32EBF5164344")]
+		[Test(ExpectedResult = "ddae32ebf5164344")]
 		public async Task<string> Verify_GetCrc64EcmaHashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -638,12 +638,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("DDAE32EBF5164344"));
+			Assert.That(result, Is.EqualTo("ddae32ebf5164344"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "DDAE32EBF5164344")]
+		[Test(ExpectedResult = "ddae32ebf5164344")]
 		public async Task<string> Verify_GetCrc64EcmaHashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -656,7 +656,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(16));
-			Assert.That(result, Is.EqualTo("DDAE32EBF5164344"));
+			Assert.That(result, Is.EqualTo("ddae32ebf5164344"));
 
 			return result;
 		}
@@ -676,7 +676,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("D41D8CD98F00B204E9800998ECF8427E"));
+			Assert.That(result, Is.EqualTo("d41d8cd98f00b204e9800998ecf8427e"));
 		}
 
 		[Test]
@@ -692,10 +692,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("D41D8CD98F00B204E9800998ECF8427E"));
+			Assert.That(result, Is.EqualTo("d41d8cd98f00b204e9800998ecf8427e"));
 		}
 
-		[Test(ExpectedResult = "D41D8CD98F00B204E9800998ECF8427E")]
+		[Test(ExpectedResult = "d41d8cd98f00b204e9800998ecf8427e")]
 		public async Task<string> Verify_GetMd5HashAsync_EmptyString()
 		{
 			// Arrange
@@ -706,12 +706,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("D41D8CD98F00B204E9800998ECF8427E"));
+			Assert.That(result, Is.EqualTo("d41d8cd98f00b204e9800998ecf8427e"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "D41D8CD98F00B204E9800998ECF8427E")]
+		[Test(ExpectedResult = "d41d8cd98f00b204e9800998ecf8427e")]
 		public async Task<string> Verify_GetMd5HashAsync_EmptyStream()
 		{
 			// Arrange
@@ -724,7 +724,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("D41D8CD98F00B204E9800998ECF8427E"));
+			Assert.That(result, Is.EqualTo("d41d8cd98f00b204e9800998ecf8427e"));
 
 			return result;
 		}
@@ -740,7 +740,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("F8B9D28A62A3B6BA7235FC3E3D9C343D"));
+			Assert.That(result, Is.EqualTo("f8b9d28a62a3b6ba7235fc3e3d9c343d"));
 		}
 
 		[Test]
@@ -756,10 +756,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("F8B9D28A62A3B6BA7235FC3E3D9C343D"));
+			Assert.That(result, Is.EqualTo("f8b9d28a62a3b6ba7235fc3e3d9c343d"));
 		}
 
-		[Test(ExpectedResult = "F8B9D28A62A3B6BA7235FC3E3D9C343D")]
+		[Test(ExpectedResult = "f8b9d28a62a3b6ba7235fc3e3d9c343d")]
 		public async Task<string> Verify_GetMd5HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -770,12 +770,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("F8B9D28A62A3B6BA7235FC3E3D9C343D"));
+			Assert.That(result, Is.EqualTo("f8b9d28a62a3b6ba7235fc3e3d9c343d"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "F8B9D28A62A3B6BA7235FC3E3D9C343D")]
+		[Test(ExpectedResult = "f8b9d28a62a3b6ba7235fc3e3d9c343d")]
 		public async Task<string> Verify_GetMd5HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -788,7 +788,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(32));
-			Assert.That(result, Is.EqualTo("F8B9D28A62A3B6BA7235FC3E3D9C343D"));
+			Assert.That(result, Is.EqualTo("f8b9d28a62a3b6ba7235fc3e3d9c343d"));
 
 			return result;
 		}
@@ -808,7 +808,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"));
+			Assert.That(result, Is.EqualTo("da39a3ee5e6b4b0d3255bfef95601890afd80709"));
 		}
 
 		[Test]
@@ -824,10 +824,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"));
+			Assert.That(result, Is.EqualTo("da39a3ee5e6b4b0d3255bfef95601890afd80709"));
 		}
 
-		[Test(ExpectedResult = "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709")]
+		[Test(ExpectedResult = "da39a3ee5e6b4b0d3255bfef95601890afd80709")]
 		public async Task<string> Verify_GetSha1HashAsync_EmptyString()
 		{
 			// Arrange
@@ -838,12 +838,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"));
+			Assert.That(result, Is.EqualTo("da39a3ee5e6b4b0d3255bfef95601890afd80709"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709")]
+		[Test(ExpectedResult = "da39a3ee5e6b4b0d3255bfef95601890afd80709")]
 		public async Task<string> Verify_GetSha1HashAsync_EmptyStream()
 		{
 			// Arrange
@@ -856,7 +856,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"));
+			Assert.That(result, Is.EqualTo("da39a3ee5e6b4b0d3255bfef95601890afd80709"));
 
 			return result;
 		}
@@ -872,7 +872,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("FFE6B516F1892D9AFA27E312CA32BE58EB45A667"));
+			Assert.That(result, Is.EqualTo("ffe6b516f1892d9afa27e312ca32be58eb45a667"));
 		}
 
 		[Test]
@@ -888,10 +888,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("FFE6B516F1892D9AFA27E312CA32BE58EB45A667"));
+			Assert.That(result, Is.EqualTo("ffe6b516f1892d9afa27e312ca32be58eb45a667"));
 		}
 
-		[Test(ExpectedResult = "FFE6B516F1892D9AFA27E312CA32BE58EB45A667")]
+		[Test(ExpectedResult = "ffe6b516f1892d9afa27e312ca32be58eb45a667")]
 		public async Task<string> Verify_GetSha1HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -902,12 +902,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("FFE6B516F1892D9AFA27E312CA32BE58EB45A667"));
+			Assert.That(result, Is.EqualTo("ffe6b516f1892d9afa27e312ca32be58eb45a667"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "FFE6B516F1892D9AFA27E312CA32BE58EB45A667")]
+		[Test(ExpectedResult = "ffe6b516f1892d9afa27e312ca32be58eb45a667")]
 		public async Task<string> Verify_GetSha1HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -920,7 +920,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(40));
-			Assert.That(result, Is.EqualTo("FFE6B516F1892D9AFA27E312CA32BE58EB45A667"));
+			Assert.That(result, Is.EqualTo("ffe6b516f1892d9afa27e312ca32be58eb45a667"));
 
 			return result;
 		}
@@ -940,7 +940,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"));
+			Assert.That(result, Is.EqualTo("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"));
 		}
 
 		[Test]
@@ -956,10 +956,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"));
+			Assert.That(result, Is.EqualTo("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"));
 		}
 
-		[Test(ExpectedResult = "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855")]
+		[Test(ExpectedResult = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")]
 		public async Task<string> Verify_GetSha256HashAsync_EmptyString()
 		{
 			// Arrange
@@ -970,12 +970,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"));
+			Assert.That(result, Is.EqualTo("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855")]
+		[Test(ExpectedResult = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")]
 		public async Task<string> Verify_GetSha256HashAsync_EmptyStream()
 		{
 			// Arrange
@@ -988,7 +988,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"));
+			Assert.That(result, Is.EqualTo("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"));
 
 			return result;
 		}
@@ -1004,7 +1004,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("C5A81646915861C287FDDFE16001395A3A79CAADF30D04F36417C21944B01D91"));
+			Assert.That(result, Is.EqualTo("c5a81646915861c287fddfe16001395a3a79caadf30d04f36417c21944b01d91"));
 		}
 
 		[Test]
@@ -1020,10 +1020,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("C5A81646915861C287FDDFE16001395A3A79CAADF30D04F36417C21944B01D91"));
+			Assert.That(result, Is.EqualTo("c5a81646915861c287fddfe16001395a3a79caadf30d04f36417c21944b01d91"));
 		}
 
-		[Test(ExpectedResult = "C5A81646915861C287FDDFE16001395A3A79CAADF30D04F36417C21944B01D91")]
+		[Test(ExpectedResult = "c5a81646915861c287fddfe16001395a3a79caadf30d04f36417c21944b01d91")]
 		public async Task<string> Verify_GetSha256HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -1034,12 +1034,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("C5A81646915861C287FDDFE16001395A3A79CAADF30D04F36417C21944B01D91"));
+			Assert.That(result, Is.EqualTo("c5a81646915861c287fddfe16001395a3a79caadf30d04f36417c21944b01d91"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "C5A81646915861C287FDDFE16001395A3A79CAADF30D04F36417C21944B01D91")]
+		[Test(ExpectedResult = "c5a81646915861c287fddfe16001395a3a79caadf30d04f36417c21944b01d91")]
 		public async Task<string> Verify_GetSha256HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -1052,7 +1052,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(64));
-			Assert.That(result, Is.EqualTo("C5A81646915861C287FDDFE16001395A3A79CAADF30D04F36417C21944B01D91"));
+			Assert.That(result, Is.EqualTo("c5a81646915861c287fddfe16001395a3a79caadf30d04f36417c21944b01d91"));
 
 			return result;
 		}
@@ -1072,7 +1072,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B"));
+			Assert.That(result, Is.EqualTo("38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b"));
 		}
 
 		[Test]
@@ -1088,10 +1088,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B"));
+			Assert.That(result, Is.EqualTo("38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b"));
 		}
 
-		[Test(ExpectedResult = "38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B")]
+		[Test(ExpectedResult = "38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b")]
 		public async Task<string> Verify_GetSha384HashAsync_EmptyString()
 		{
 			// Arrange
@@ -1102,12 +1102,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B"));
+			Assert.That(result, Is.EqualTo("38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B")]
+		[Test(ExpectedResult = "38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b")]
 		public async Task<string> Verify_GetSha384HashAsync_EmptyStream()
 		{
 			// Arrange
@@ -1120,7 +1120,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B"));
+			Assert.That(result, Is.EqualTo("38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b"));
 
 			return result;
 		}
@@ -1136,7 +1136,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("6DAB350464C4B5CB17C281AB0C2A6D929806A6F04FD5B3897228E67D3BB4B8EE30CC04B6C86081BCED4461ABCC52B9EF"));
+			Assert.That(result, Is.EqualTo("6dab350464c4b5cb17c281ab0c2a6d929806a6f04fd5b3897228e67d3bb4b8ee30cc04b6c86081bced4461abcc52b9ef"));
 		}
 
 		[Test]
@@ -1152,10 +1152,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("6DAB350464C4B5CB17C281AB0C2A6D929806A6F04FD5B3897228E67D3BB4B8EE30CC04B6C86081BCED4461ABCC52B9EF"));
+			Assert.That(result, Is.EqualTo("6dab350464c4b5cb17c281ab0c2a6d929806a6f04fd5b3897228e67d3bb4b8ee30cc04b6c86081bced4461abcc52b9ef"));
 		}
 
-		[Test(ExpectedResult = "6DAB350464C4B5CB17C281AB0C2A6D929806A6F04FD5B3897228E67D3BB4B8EE30CC04B6C86081BCED4461ABCC52B9EF")]
+		[Test(ExpectedResult = "6dab350464c4b5cb17c281ab0c2a6d929806a6f04fd5b3897228e67d3bb4b8ee30cc04b6c86081bced4461abcc52b9ef")]
 		public async Task<string> Verify_GetSha384HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -1166,12 +1166,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("6DAB350464C4B5CB17C281AB0C2A6D929806A6F04FD5B3897228E67D3BB4B8EE30CC04B6C86081BCED4461ABCC52B9EF"));
+			Assert.That(result, Is.EqualTo("6dab350464c4b5cb17c281ab0c2a6d929806a6f04fd5b3897228e67d3bb4b8ee30cc04b6c86081bced4461abcc52b9ef"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "6DAB350464C4B5CB17C281AB0C2A6D929806A6F04FD5B3897228E67D3BB4B8EE30CC04B6C86081BCED4461ABCC52B9EF")]
+		[Test(ExpectedResult = "6dab350464c4b5cb17c281ab0c2a6d929806a6f04fd5b3897228e67d3bb4b8ee30cc04b6c86081bced4461abcc52b9ef")]
 		public async Task<string> Verify_GetSha384HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -1184,7 +1184,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(96));
-			Assert.That(result, Is.EqualTo("6DAB350464C4B5CB17C281AB0C2A6D929806A6F04FD5B3897228E67D3BB4B8EE30CC04B6C86081BCED4461ABCC52B9EF"));
+			Assert.That(result, Is.EqualTo("6dab350464c4b5cb17c281ab0c2a6d929806a6f04fd5b3897228e67d3bb4b8ee30cc04b6c86081bced4461abcc52b9ef"));
 
 			return result;
 		}
@@ -1204,7 +1204,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E"));
+			Assert.That(result, Is.EqualTo("cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"));
 		}
 
 		[Test]
@@ -1220,10 +1220,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E"));
+			Assert.That(result, Is.EqualTo("cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"));
 		}
 
-		[Test(ExpectedResult = "CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E")]
+		[Test(ExpectedResult = "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e")]
 		public async Task<string> Verify_GetSha512HashAsync_EmptyString()
 		{
 			// Arrange
@@ -1234,12 +1234,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E"));
+			Assert.That(result, Is.EqualTo("cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E")]
+		[Test(ExpectedResult = "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e")]
 		public async Task<string> Verify_GetSha512HashAsync_EmptyStream()
 		{
 			// Arrange
@@ -1252,7 +1252,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E"));
+			Assert.That(result, Is.EqualTo("cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"));
 
 			return result;
 		}
@@ -1268,7 +1268,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("72096406E2E0EB91C661DF08E8B52E7F8BC1E1523D5909DB1FF270BC213E2C318720F4AF72D5F9189A7F446E353FFEAC523D52E0E8E3244417789D08E4EAC258"));
+			Assert.That(result, Is.EqualTo("72096406e2e0eb91c661df08e8b52e7f8bc1e1523d5909db1ff270bc213e2c318720f4af72d5f9189a7f446e353ffeac523d52e0e8e3244417789d08e4eac258"));
 		}
 
 		[Test]
@@ -1284,10 +1284,10 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("72096406E2E0EB91C661DF08E8B52E7F8BC1E1523D5909DB1FF270BC213E2C318720F4AF72D5F9189A7F446E353FFEAC523D52E0E8E3244417789D08E4EAC258"));
+			Assert.That(result, Is.EqualTo("72096406e2e0eb91c661df08e8b52e7f8bc1e1523d5909db1ff270bc213e2c318720f4af72d5f9189a7f446e353ffeac523d52e0e8e3244417789d08e4eac258"));
 		}
 
-		[Test(ExpectedResult = "72096406E2E0EB91C661DF08E8B52E7F8BC1E1523D5909DB1FF270BC213E2C318720F4AF72D5F9189A7F446E353FFEAC523D52E0E8E3244417789D08E4EAC258")]
+		[Test(ExpectedResult = "72096406e2e0eb91c661df08e8b52e7f8bc1e1523d5909db1ff270bc213e2c318720f4af72d5f9189a7f446e353ffeac523d52e0e8e3244417789d08e4eac258")]
 		public async Task<string> Verify_GetSha512HashAsync_NotEmptyString()
 		{
 			// Arrange
@@ -1298,12 +1298,12 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("72096406E2E0EB91C661DF08E8B52E7F8BC1E1523D5909DB1FF270BC213E2C318720F4AF72D5F9189A7F446E353FFEAC523D52E0E8E3244417789D08E4EAC258"));
+			Assert.That(result, Is.EqualTo("72096406e2e0eb91c661df08e8b52e7f8bc1e1523d5909db1ff270bc213e2c318720f4af72d5f9189a7f446e353ffeac523d52e0e8e3244417789d08e4eac258"));
 
 			return result;
 		}
 
-		[Test(ExpectedResult = "72096406E2E0EB91C661DF08E8B52E7F8BC1E1523D5909DB1FF270BC213E2C318720F4AF72D5F9189A7F446E353FFEAC523D52E0E8E3244417789D08E4EAC258")]
+		[Test(ExpectedResult = "72096406e2e0eb91c661df08e8b52e7f8bc1e1523d5909db1ff270bc213e2c318720f4af72d5f9189a7f446e353ffeac523d52e0e8e3244417789d08e4eac258")]
 		public async Task<string> Verify_GetSha512HashAsync_NotEmptyStream()
 		{
 			// Arrange
@@ -1316,7 +1316,7 @@ namespace SmartIT.Library.Tests.Utilities.Hashes
 			// Assert
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Has.Length.EqualTo(128));
-			Assert.That(result, Is.EqualTo("72096406E2E0EB91C661DF08E8B52E7F8BC1E1523D5909DB1FF270BC213E2C318720F4AF72D5F9189A7F446E353FFEAC523D52E0E8E3244417789D08E4EAC258"));
+			Assert.That(result, Is.EqualTo("72096406e2e0eb91c661df08e8b52e7f8bc1e1523d5909db1ff270bc213e2c318720f4af72d5f9189a7f446e353ffeac523d52e0e8e3244417789d08e4eac258"));
 
 			return result;
 		}

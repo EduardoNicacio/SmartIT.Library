@@ -26,7 +26,7 @@ namespace SmartIT.Library.Utilities
 		/// <returns>CRC16 digest in hexadecimal format.</returns>
 		public static string GetCrc16Hash(string input)
 		{
-			return Crc16.ComputeHash(Encoding.UTF8.GetBytes(input)).ToString("x2").ToUpperInvariant();
+			return Crc16.ComputeHash(Encoding.UTF8.GetBytes(input)).ToString("x2").ToLowerInvariant();
 		}
 
 		/// <summary>

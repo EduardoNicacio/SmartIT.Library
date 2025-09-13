@@ -101,7 +101,7 @@
 			var value3 = EnumToList.GetEnumDescription((EnumWithDescriptionAttribute)3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(none, Is.Not.Null);
@@ -114,7 +114,7 @@
 				Assert.That(value1, Is.EqualTo("Value 1"));
 				Assert.That(value2, Is.EqualTo("Value 2"));
 				Assert.That(value3, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		[Test]
@@ -129,7 +129,7 @@
 			var value3 = EnumToList.GetEnumDescription(EnumWithDescriptionAttribute.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(none, Is.Not.Null);
@@ -142,7 +142,7 @@
 				Assert.That(value1, Is.EqualTo("Value 1"));
 				Assert.That(value2, Is.EqualTo("Value 2"));
 				Assert.That(value3, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		[Test]
@@ -157,7 +157,7 @@
 			var value3 = EnumToList.GetEnumStringValue<EnumWithStringValueAttribute>(3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(none, Is.Not.Null);
@@ -170,7 +170,7 @@
 				Assert.That(value1, Is.EqualTo("Value 1"));
 				Assert.That(value2, Is.EqualTo("Value 2"));
 				Assert.That(value3, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		[Test]
@@ -185,7 +185,7 @@
 			var value3 = EnumToList.GetEnumStringValue(EnumWithStringValueAttribute.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(none, Is.Not.Null);
@@ -198,7 +198,7 @@
 				Assert.That(value1, Is.EqualTo("Value 1"));
 				Assert.That(value2, Is.EqualTo("Value 2"));
 				Assert.That(value3, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 	}
 }

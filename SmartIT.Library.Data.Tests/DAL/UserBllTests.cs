@@ -126,13 +126,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.SearchItem(new UserHelper.User { Email = user1.Email });
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result?.Name, Is.EqualTo(user1.Name));
 				Assert.That(result?.Email, Is.EqualTo(user1.Email));
 				Assert.That(result?.CreationDate, Is.GreaterThan(DateTime.MinValue));
-			});
+			}
 		}
 
 		[Test, Order(10)]
@@ -145,12 +145,12 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search(user);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Email, Is.EqualTo(user2.Email));
-			});
+			}
 		}
 
 		[Test, Order(11)]
@@ -164,12 +164,12 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Email, Is.EqualTo(user3.Email));
-			});
+			}
 		}
 
 		[Test, Order(12)]
@@ -184,12 +184,12 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.GreaterThanOrEqualTo(1));
 				Assert.That(result[0].Name, Is.EqualTo(user1.Name));
-			});
+			}
 		}
 
 		[Test, Order(13)]
@@ -203,12 +203,12 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Name, Is.EqualTo(user2.Name));
-			});
+			}
 		}
 
 		[Test, Order(14)]
@@ -222,13 +222,13 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(2));
 				Assert.That(result[0].Name, Is.EqualTo(user2.Name));
 				Assert.That(result[1].Name, Is.EqualTo(user1.Name));
-			});
+			}
 		}
 
 
@@ -243,12 +243,12 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Name, Is.EqualTo(user1.Name));
-			});
+			}
 		}
 
 		[Test, Order(16)]
@@ -262,10 +262,10 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Empty);
-			});
+			}
 		}
 
 		[Test, Order(17)]
@@ -278,11 +278,11 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.GreaterThan(1));
-			});
+			}
 		}
 
 		[Test, Order(18)]

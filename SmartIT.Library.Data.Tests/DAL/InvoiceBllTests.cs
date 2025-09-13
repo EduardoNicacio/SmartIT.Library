@@ -169,12 +169,12 @@
 			var result = InvoiceHelper.InvoiceBll.SearchItem(new InvoiceHelper.Invoice { Id = invoice1.Id });
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result?.Id, Is.EqualTo(invoice1.Id));
 				Assert.That(result?.CreationDate, Is.GreaterThan(DateTime.MinValue));
-			});
+			}
 		}
 
 		[Test, Order(10)]
@@ -187,12 +187,12 @@
 			var result = InvoiceHelper.InvoiceBll.Search(invoice);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Id, Is.EqualTo(invoice1.Id));
-			});
+			}
 		}
 
 		[Test, Order(11)]
@@ -206,11 +206,11 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(3));
-			});
+			}
 		}
 
 		[Test, Order(12)]
@@ -224,11 +224,11 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(2));
-			});
+			}
 		}
 
 		[Test, Order(13)]
@@ -242,11 +242,11 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(2));
-			});
+			}
 		}
 
 		[Test, Order(14)]
@@ -260,11 +260,11 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(2));
-			});
+			}
 		}
 
 		[Test, Order(15)]
@@ -278,12 +278,12 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Id, Is.EqualTo(invoice1.Id));
-			});
+			}
 		}
 
 		[Test, Order(16)]
@@ -298,13 +298,13 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(2));
 				Assert.That(result[0].ItemCount, Is.EqualTo(invoice1.ItemCount));
 				Assert.That(result[1].ItemCount, Is.EqualTo(invoice2.ItemCount));
-			});
+			}
 		}
 
 		[Test, Order(17)]
@@ -319,11 +319,11 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(3));
-			});
+			}
 		}
 
 		[Test, Order(18)]
@@ -338,12 +338,12 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(1));
 				Assert.That(result[0].Id, Is.EqualTo(invoice2.Id));
-			});
+			}
 		}
 
 		[Test, Order(19)]
@@ -356,11 +356,11 @@
 			var result = InvoiceHelper.InvoiceBll.Search();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Empty);
 				Assert.That(result, Has.Count.EqualTo(3));
-			});
+			}
 		}
 
 		[Test, Order(20)]

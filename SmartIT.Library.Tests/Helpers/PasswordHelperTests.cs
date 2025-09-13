@@ -204,7 +204,7 @@ namespace SmartIT.Library.Tests.Helpers
 			var result1 = _pwdHelper1.ComputeDigest();
 			var result2 = _pwdHelper2.ComputeDigest();
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(result1, Is.Not.Null);
@@ -213,7 +213,7 @@ namespace SmartIT.Library.Tests.Helpers
 				Assert.That(result2, Has.Length.GreaterThan(0));
 				Assert.That(result1, Has.Length.EqualTo(result2.Length));
 				Assert.That(result1, Is.Not.EqualTo(result2));
-			});
+			}
 		}
 
 		[Test]
@@ -225,7 +225,7 @@ namespace SmartIT.Library.Tests.Helpers
 			var result1 = await _pwdHelper1.ComputeDigestAsync();
 			var result2 = await _pwdHelper2.ComputeDigestAsync();
 
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Assert
 				Assert.That(result1, Is.Not.Null);
@@ -234,7 +234,7 @@ namespace SmartIT.Library.Tests.Helpers
 				Assert.That(result2, Has.Length.GreaterThan(0));
 				Assert.That(result1, Has.Length.EqualTo(result2.Length));
 				Assert.That(result1, Is.Not.EqualTo(result2));
-			});
+			}
 		}
 
 		[Test]
@@ -251,14 +251,14 @@ namespace SmartIT.Library.Tests.Helpers
 			var result5 = PasswordHelper.IsDangerousString("00", out matchIndex);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.True);
 				Assert.That(result2, Is.True);
 				Assert.That(result3, Is.True);
 				Assert.That(result4, Is.True);
 				Assert.That(result5, Is.False);
-			});
+			}
 		}
 
 		[Test]
@@ -276,7 +276,7 @@ namespace SmartIT.Library.Tests.Helpers
 			var result7 = PasswordHelper.IsAtoZ('$');
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.False);
 				Assert.That(result2, Is.False);
@@ -285,7 +285,7 @@ namespace SmartIT.Library.Tests.Helpers
 				Assert.That(result5, Is.True);
 				Assert.That(result6, Is.True);
 				Assert.That(result7, Is.False);
-			});
+			}
 		}
 	}
 }

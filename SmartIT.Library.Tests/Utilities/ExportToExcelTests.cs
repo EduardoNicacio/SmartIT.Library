@@ -35,11 +35,11 @@ namespace SmartIT.Library.Tests.Utilities
 			result = ExportToExcel.ListToDataTable(dataList);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Rows, Has.Count.GreaterThan(0));
-			});
+			}
 		}
 
 		[Test, Order(2)]

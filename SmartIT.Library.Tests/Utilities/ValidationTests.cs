@@ -255,11 +255,11 @@
 			var result2 = Validation.IsEmail(string.Empty);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.False);
 				Assert.That(result2, Is.False);
-			});
+			}
 		}
 
 		[Test]
@@ -296,11 +296,11 @@
 			var result2 = Validation.IsCpf(string.Empty);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.False);
 				Assert.That(result2, Is.False);
-			});
+			}
 		}
 
 		[Test]
@@ -349,11 +349,11 @@
 			var result2 = Validation.IsCnpj(string.Empty);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.False);
 				Assert.That(result2, Is.False);
-			});
+			}
 		}
 
 		[Test]
@@ -402,11 +402,11 @@
 			var result2 = Validation.IsCep(string.Empty);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.False);
 				Assert.That(result2, Is.False);
-			});
+			}
 		}
 
 		[Test]

@@ -165,7 +165,7 @@
 			var result4 = Misc.GetEnumDescription(EnumBasic.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -178,7 +178,7 @@
 				Assert.That(result2, Is.EqualTo("Value1"));
 				Assert.That(result3, Is.EqualTo("Value2"));
 				Assert.That(result4, Is.EqualTo("Value3"));
-			});
+			}
 		}
 
 		[Test]
@@ -193,7 +193,7 @@
 			var result4 = Misc.GetEnumDescription(EnumWithDescriptionAttribute.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -206,7 +206,7 @@
 				Assert.That(result2, Is.EqualTo("Value 1"));
 				Assert.That(result3, Is.EqualTo("Value 2"));
 				Assert.That(result4, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		[Test]
@@ -221,7 +221,7 @@
 			var result4 = await Misc.GetEnumDescriptionAsync(EnumBasic.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -234,7 +234,7 @@
 				Assert.That(result2, Is.EqualTo("Value1"));
 				Assert.That(result3, Is.EqualTo("Value2"));
 				Assert.That(result4, Is.EqualTo("Value3"));
-			});
+			}
 		}
 
 		[Test]
@@ -249,7 +249,7 @@
 			var result4 = await Misc.GetEnumDescriptionAsync(EnumWithDescriptionAttribute.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -262,7 +262,7 @@
 				Assert.That(result2, Is.EqualTo("Value 1"));
 				Assert.That(result3, Is.EqualTo("Value 2"));
 				Assert.That(result4, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		#endregion
@@ -281,7 +281,7 @@
 			var result4 = Misc.GetEnumStringValue(EnumBasic.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -294,7 +294,7 @@
 				Assert.That(result2, Is.EqualTo("Value1"));
 				Assert.That(result3, Is.EqualTo("Value2"));
 				Assert.That(result4, Is.EqualTo("Value3"));
-			});
+			}
 		}
 
 		[Test]
@@ -309,7 +309,7 @@
 			var result4 = Misc.GetEnumStringValue(EnumWithStringValueAttribute.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -322,7 +322,7 @@
 				Assert.That(result2, Is.EqualTo("Value 1"));
 				Assert.That(result3, Is.EqualTo("Value 2"));
 				Assert.That(result4, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		[Test]
@@ -337,7 +337,7 @@
 			var result4 = await Misc.GetEnumStringValueAsync(EnumBasic.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -350,7 +350,7 @@
 				Assert.That(result2, Is.EqualTo("Value1"));
 				Assert.That(result3, Is.EqualTo("Value2"));
 				Assert.That(result4, Is.EqualTo("Value3"));
-			});
+			}
 		}
 
 		[Test]
@@ -365,7 +365,7 @@
 			var result4 = await Misc.GetEnumStringValueAsync(EnumWithStringValueAttribute.Value3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -378,7 +378,7 @@
 				Assert.That(result2, Is.EqualTo("Value 1"));
 				Assert.That(result3, Is.EqualTo("Value 2"));
 				Assert.That(result4, Is.EqualTo("Value 3"));
-			});
+			}
 		}
 
 		#endregion
@@ -397,14 +397,14 @@
 			var result4 = Misc.GetEnumValue("Value3", typeof(EnumBasic));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Null);
 				Assert.That(result2, Is.Null);
 				Assert.That(result3, Is.Null);
 				Assert.That(result4, Is.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -419,7 +419,7 @@
 			var result4 = Misc.GetEnumValue("Value 3", typeof(EnumWithDescriptionAttribute));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -432,7 +432,7 @@
 				Assert.That(result2, Is.EqualTo(EnumWithDescriptionAttribute.Value1));
 				Assert.That(result3, Is.EqualTo(EnumWithDescriptionAttribute.Value2));
 				Assert.That(result4, Is.EqualTo(EnumWithDescriptionAttribute.Value3));
-			});
+			}
 		}
 
 		[Test]
@@ -447,7 +447,7 @@
 			var result4 = Misc.GetEnumValue("Value 3", typeof(EnumWithStringValueAttribute));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -460,7 +460,7 @@
 				Assert.That(result2, Is.EqualTo(EnumWithStringValueAttribute.Value1));
 				Assert.That(result3, Is.EqualTo(EnumWithStringValueAttribute.Value2));
 				Assert.That(result4, Is.EqualTo(EnumWithStringValueAttribute.Value3));
-			});
+			}
 		}
 
 		[Test]
@@ -475,14 +475,14 @@
 			var result4 = await Misc.GetEnumValueAsync("Value3", typeof(EnumBasic));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Null);
 				Assert.That(result2, Is.Null);
 				Assert.That(result3, Is.Null);
 				Assert.That(result4, Is.Null);
-			});
+			}
 		}
 
 		[Test]
@@ -497,7 +497,7 @@
 			var result4 = await Misc.GetEnumValueAsync("Value 3", typeof(EnumWithDescriptionAttribute));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -510,7 +510,7 @@
 				Assert.That(result2, Is.EqualTo(EnumWithDescriptionAttribute.Value1));
 				Assert.That(result3, Is.EqualTo(EnumWithDescriptionAttribute.Value2));
 				Assert.That(result4, Is.EqualTo(EnumWithDescriptionAttribute.Value3));
-			});
+			}
 		}
 
 		[Test]
@@ -525,7 +525,7 @@
 			var result4 = await Misc.GetEnumValueAsync("Value 3", typeof(EnumWithStringValueAttribute));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Nullability
 				Assert.That(result1, Is.Not.Null);
@@ -538,7 +538,7 @@
 				Assert.That(result2, Is.EqualTo(EnumWithStringValueAttribute.Value1));
 				Assert.That(result3, Is.EqualTo(EnumWithStringValueAttribute.Value2));
 				Assert.That(result4, Is.EqualTo(EnumWithStringValueAttribute.Value3));
-			});
+			}
 		}
 
 		#endregion
@@ -558,7 +558,7 @@
 			var resultNull = Misc.GetBooleanToStatus(null);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(resultTrue, Is.Not.Null);
 				Assert.That(resultFalse, Is.Not.Null);
@@ -566,7 +566,7 @@
 
 				Assert.That(resultTrue, Is.EqualTo("Active"));
 				Assert.That(resultFalse, Is.EqualTo("Inactive"));
-			});
+			}
 		}
 
 		[Test]
@@ -582,7 +582,7 @@
 			var resultNull = await Misc.GetBooleanToStatusAsync(null);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(resultTrue, Is.Not.Null);
 				Assert.That(resultFalse, Is.Not.Null);
@@ -590,7 +590,7 @@
 
 				Assert.That(resultTrue, Is.EqualTo("Active"));
 				Assert.That(resultFalse, Is.EqualTo("Inactive"));
-			});
+			}
 		}
 
 		#endregion
@@ -611,13 +611,13 @@
 			var resultNull = Misc.GetStatusToBoolean(null);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(resultTrue, Is.True);
 				Assert.That(resultFalse, Is.False);
 				Assert.That(resultEmpty, Is.False);
 				Assert.That(resultNull, Is.False);
-			});
+			}
 		}
 
 		[Test]
@@ -634,13 +634,13 @@
 			var resultNull = await Misc.GetStatusToBooleanAsync(null);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(resultTrue, Is.True);
 				Assert.That(resultFalse, Is.False);
 				Assert.That(resultEmpty, Is.False);
 				Assert.That(resultNull, Is.False);
-			});
+			}
 		}
 
 		#endregion
@@ -656,11 +656,11 @@
 			var result = Misc.RemoveAccents(specialCharsString);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result, Is.EqualTo("aaaaAeeeEiiiIooooOuuuU"));
-			});
+			}
 		}
 
 		[Test]
@@ -672,11 +672,11 @@
 			var result = await Misc.RemoveAccentsAsync(specialCharsString);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result, Is.EqualTo("aaaaAeeeEiiiIooooOuuuU"));
-			});
+			}
 		}
 
 		#endregion
@@ -718,12 +718,12 @@
 			var result = Misc.UnixTimestampToDateTime(1000000000D);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.GreaterThan(DateTime.MinValue));
 				Assert.That(result, Is.LessThan(DateTime.MaxValue));
 				Assert.That(result, Is.EqualTo(constantDateTime2));
-			});
+			}
 		}
 
 		[Test]
@@ -735,12 +735,12 @@
 			var result = await Misc.UnixTimestampToDateTimeAsync(1000000000D);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.GreaterThan(DateTime.MinValue));
 				Assert.That(result, Is.LessThan(DateTime.MaxValue));
 				Assert.That(result, Is.EqualTo(constantDateTime2));
-			});
+			}
 		}
 
 		#endregion
@@ -756,14 +756,14 @@
 			var result = Misc.GetClassProperties(new MockedStructForTests());
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result, Does.Contain("MockedStructForTests"));
 				Assert.That(result, Does.Contain("Id"));
 				Assert.That(result, Does.Contain("Name"));
 				Assert.That(result, Does.Contain("CreationDate"));
-			});
+			}
 		}
 
 		[Test]
@@ -775,14 +775,14 @@
 			var result = Misc.GetClassProperties(new MockedClassForTests());
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result, Does.Contain("MockedClassForTests"));
 				Assert.That(result, Does.Contain("Id"));
 				Assert.That(result, Does.Contain("Name"));
 				Assert.That(result, Does.Contain("CreationDate"));
-			});
+			}
 		}
 
 		[Test]
@@ -794,14 +794,14 @@
 			var result = await Misc.GetClassPropertiesAsync(new MockedStructForTests());
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result, Does.Contain("MockedStructForTests"));
 				Assert.That(result, Does.Contain("Id"));
 				Assert.That(result, Does.Contain("Name"));
 				Assert.That(result, Does.Contain("CreationDate"));
-			});
+			}
 		}
 
 		[Test]
@@ -813,14 +813,14 @@
 			var result = await Misc.GetClassPropertiesAsync(new MockedClassForTests());
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result, Does.Contain("MockedClassForTests"));
 				Assert.That(result, Does.Contain("Id"));
 				Assert.That(result, Does.Contain("Name"));
 				Assert.That(result, Does.Contain("CreationDate"));
-			});
+			}
 		}
 
 		#endregion
@@ -853,11 +853,11 @@
 			var result2 = Misc.ToAge(birthdate, birthdate.AddYears(40));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.EqualTo(Math.Truncate(dateDiff)));
 				Assert.That(result2, Is.EqualTo(40));
-			});
+			}
 		}
 
 		[Test]
@@ -886,11 +886,11 @@
 			var result2 = await Misc.ToAgeAsync(birthdate, birthdate.AddYears(40));
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result1, Is.EqualTo(Math.Truncate(dateDiff)));
 				Assert.That(result2, Is.EqualTo(40));
-			});
+			}
 		}
 
 		#endregion
@@ -932,7 +932,7 @@
 			var result9 = dateComparerAsc.Compare(class1, class3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
@@ -950,7 +950,7 @@
 				Assert.That(result7, Is.EqualTo(0));
 				Assert.That(result8, Is.EqualTo(0));
 				Assert.That(result9, Is.EqualTo(0));
-			});
+			}
 		}
 
 		[Test]
@@ -988,7 +988,7 @@
 			var result9 = dateComparerAsc.Compare(struct1, struct3);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
@@ -1006,7 +1006,7 @@
 				Assert.That(result7, Is.EqualTo(0));
 				Assert.That(result8, Is.EqualTo(0));
 				Assert.That(result9, Is.EqualTo(0));
-			});
+			}
 		}
 
 		[Test]
@@ -1024,12 +1024,12 @@
 			var result2 = idComparerDesc.Compare(class1, class2);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
 				Assert.That(result2, Is.EqualTo(1));
-			});
+			}
 		}
 
 		[Test]
@@ -1047,12 +1047,12 @@
 			var result2 = idComparerDesc.Compare(struct1, struct2);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
 				Assert.That(result2, Is.EqualTo(1));
-			});
+			}
 		}
 
 		[Test]
@@ -1070,12 +1070,12 @@
 			var result2 = await idComparerDesc.CompareAsync(class1, class2);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
 				Assert.That(result2, Is.EqualTo(1));
-			});
+			}
 		}
 
 		[Test]
@@ -1093,12 +1093,12 @@
 			var result2 = await idComparerDesc.CompareAsync(struct1, struct2);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				// Id check
 				Assert.That(result1, Is.EqualTo(-1));
 				Assert.That(result2, Is.EqualTo(1));
-			});
+			}
 		}
 
 		#endregion

@@ -25,11 +25,11 @@
 			var result = new BizValidationException(ErrorMessage);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Message, Is.EqualTo(ErrorMessage));
-			});
+			}
 		}
 
 		[Test, Order(2)]
@@ -41,12 +41,12 @@
 			var result = new BizValidationException(Errors);
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Message, Is.EqualTo(ErrorMessage));
 				Assert.That(result.Errors, Has.Count.EqualTo(Errors.Count));
-			});
+			}
 		}
 
 		[Test, Order(3)]
@@ -61,12 +61,12 @@
 			};
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Message, Is.EqualTo(ErrorMessage));
 				Assert.That(result.Errors, Has.Count.EqualTo(Errors.Count));
-			});
+			}
 		}
 
 		[Test, Order(4)]
@@ -79,12 +79,12 @@
 			var localErrors = result.Errors;
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Message, Is.EqualTo(ErrorMessage));
 				Assert.That(localErrors, Has.Count.EqualTo(Errors.Count));
-			});
+			}
 		}
 
 		[Test, Order(5)]
@@ -97,12 +97,12 @@
 			var textErrorMessage = result.GetTextErrorMessage();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Errors, Has.Count.EqualTo(Errors.Count));
 				Assert.That(textErrorMessage, Is.Not.Null);
-			});
+			}
 		}
 
 		[Test, Order(6)]
@@ -115,12 +115,12 @@
 			var htmlErrorMessage = result.GetHtmlErrorMessage();
 
 			// Assert
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(result, Is.Not.Null);
 				Assert.That(result.Errors, Has.Count.EqualTo(Errors.Count));
 				Assert.That(htmlErrorMessage, Is.Not.Null);
-			});
+			}
 		}
 	}
 }

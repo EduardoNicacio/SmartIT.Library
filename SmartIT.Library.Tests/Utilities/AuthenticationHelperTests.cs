@@ -24,7 +24,7 @@
 			{
 				Assert.That(windowsUser, Is.Not.EqualTo(null));
 				Assert.That(windowsUser.Key, Is.Not.EqualTo(null));
-				Assert.That(windowsUser.Value, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Value, Is.Not.Null);
 			}
 		}
 
@@ -41,7 +41,7 @@
 			{
 				Assert.That(windowsUser, Is.Not.EqualTo(null));
 				Assert.That(windowsUser.Key, Is.Not.EqualTo(null));
-				Assert.That(windowsUser.Value, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Value, Is.Not.Null);
 			}
 		}
 	}

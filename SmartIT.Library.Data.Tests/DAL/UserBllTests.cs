@@ -66,7 +66,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Insert(new UserHelper.User());
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(5)]
@@ -294,7 +294,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Update(new UserHelper.User());
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(19)]
@@ -354,7 +354,7 @@ namespace SmartIT.Library.Data.Tests.DAL
 			var result = UserHelper.UserBll.Delete(new UserHelper.User());
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(23)]

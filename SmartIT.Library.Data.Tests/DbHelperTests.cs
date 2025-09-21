@@ -1,5 +1,5 @@
-﻿using SmartIT.Library.Data.Tests.DAL;
-using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using SmartIT.Library.Data.Tests.DAL;
 
 namespace SmartIT.Library.Data.Tests
 {
@@ -376,7 +376,7 @@ namespace SmartIT.Library.Data.Tests
 			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(dbHelper, Is.Not.Null);
-				Assert.That(result, Is.EqualTo(0));
+				Assert.That(result, Is.Zero);
 			}
 		}
 

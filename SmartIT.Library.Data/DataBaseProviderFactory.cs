@@ -7,12 +7,12 @@
 
 namespace SmartIT.Library.Data
 {
+	using Microsoft.Data.SqlClient;
 	using Oracle.ManagedDataAccess.Client;
 	using System;
 	using System.Configuration;
 	using System.Data;
 	using System.Data.OleDb;
-	using System.Data.SqlClient;
 
 	/// <summary>
 	/// Implementation of a Database provider factory. Currently it supports SQL Server, Oracle and OleDb.

@@ -947,9 +947,9 @@
 				Assert.That(result6, Is.EqualTo(1));
 
 				// Equality check
-				Assert.That(result7, Is.EqualTo(0));
-				Assert.That(result8, Is.EqualTo(0));
-				Assert.That(result9, Is.EqualTo(0));
+				Assert.That(result7, Is.Zero);
+				Assert.That(result8, Is.Zero);
+				Assert.That(result9, Is.Zero);
 			}
 		}
 
@@ -1003,9 +1003,9 @@
 				Assert.That(result6, Is.EqualTo(1));
 
 				// Equality check
-				Assert.That(result7, Is.EqualTo(0));
-				Assert.That(result8, Is.EqualTo(0));
-				Assert.That(result9, Is.EqualTo(0));
+				Assert.That(result7, Is.Zero);
+				Assert.That(result8, Is.Zero);
+				Assert.That(result9, Is.Zero);
 			}
 		}
 

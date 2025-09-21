@@ -117,7 +117,7 @@ namespace SmartIT.Library.Tests.Utilities
 			result = SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(6)]
@@ -130,7 +130,7 @@ namespace SmartIT.Library.Tests.Utilities
 			result = SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false, attAsStrings);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(7)]
@@ -143,7 +143,7 @@ namespace SmartIT.Library.Tests.Utilities
 			result = SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false, attAsAttachments1);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(8)]
@@ -238,7 +238,7 @@ namespace SmartIT.Library.Tests.Utilities
 			result = SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(13)]
@@ -260,7 +260,7 @@ namespace SmartIT.Library.Tests.Utilities
 			result = SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false, attAsStrings);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(14)]
@@ -282,7 +282,7 @@ namespace SmartIT.Library.Tests.Utilities
 			result = SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false, attAsAttachments2);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 	}
 }

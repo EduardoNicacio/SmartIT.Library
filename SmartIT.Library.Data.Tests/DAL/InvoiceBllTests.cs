@@ -108,7 +108,7 @@
 			var result = InvoiceHelper.InvoiceBll.Insert(emptyInvoice);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(5)]
@@ -373,7 +373,7 @@
 			var result = InvoiceHelper.InvoiceBll.Update(emptyObject);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(21)]
@@ -446,7 +446,7 @@
 			var result = InvoiceHelper.InvoiceBll.Delete(emptyInvoice);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(0));
+			Assert.That(result, Is.Zero);
 		}
 
 		[Test, Order(25)]

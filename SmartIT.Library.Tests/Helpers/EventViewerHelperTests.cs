@@ -34,7 +34,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -52,7 +52,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -70,7 +70,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -88,7 +88,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -106,7 +106,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -125,7 +125,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -144,7 +144,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}
@@ -178,7 +178,7 @@
 			using (Assert.EnterMultipleScope())
 			{
 				// Assert
-				Assert.That(callResult, Is.EqualTo(0));
+				Assert.That(callResult, Is.Zero);
 				Assert.That(result, Is.Not.Null);
 			}
 		}

@@ -23,6 +23,7 @@ namespace SmartIT.Library.Helpers
 		private readonly string _salt;
 		private readonly string _pepper;
 
+		// TODO: move this to an evironment variable OR Azure Vault
 		private const string PEPPER = "|c^.:?m)#q+(]V;}[Z(})/?-;$]+@!|^/8*_9.$&.&!(?=^!Wx?[@%+&-@b;)>N;&+*w[>$2+_$%l;+h+#zhs^{e?&=*(}X_%|:}]]}*X[+)Er%J/-=;Q0{:+=%c7:^$/:_)hxF+*){2|;(>:*N^+!_&|}B.$})?[V=[+v({-:-@9-Z$j?.[-}(@MHx+}(}Mz_S(7#4}{..>@G|!+++{+C=|_}=+r^@&$0;L*|kz-;$++/N3$=}?;%&]]*/^#^!+:*{]-x^$g{|?*))_=B@^.#%L;g|+)#[nq}?y(_(m;]S^I$*q=l-[_/?}&-!k^(+[_{Z|&:^%!_)!=p%=)=wYd-#.UP$%s1{*l%+[%?!c+7=@=.;{+M)!^}&d/]{];(&}";
 
 		/// <summary>

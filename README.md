@@ -1,8 +1,10 @@
+# SmartIT.Library
+
 The SmartIT.Library is a library written in .Net Framework and C# with the ADO.Net flexibility and power in mind. Feel free to download, modify and expand this framework.
 
 Main features:
 
-#SmartIT.Library
+## SmartIT.Library
 
 1. String Extensions: provides the inumerous string formatters, specially for the Brazilian standards (CPF, CNPJ, Zip Code, etc.);
 2. Criptography<br>
@@ -25,7 +27,7 @@ Main features:
 15. Validation: provides methods to many types of validations (IsNumber, IsDate, IsDecimal, IsEmail, etc);
 16. MaskTextBox: before the advent of jQuery validation and jQuery mask plugins, this class has provided funcionality to generate html error messages, even in HTML format, in Asp.Net applications.
 
-#SmartIT.Library.Data
+## SmartIT.Library.Data
 
 1. DAOBase: the base DAO class to manipulate data;
 2. ManagerBase: the manager base class to the DAO classes;

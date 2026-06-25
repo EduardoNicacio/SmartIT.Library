@@ -22,8 +22,7 @@
 			// Assert
 			using (Assert.EnterMultipleScope())
 			{
-				Assert.That(windowsUser, Is.Not.EqualTo(null));
-				Assert.That(windowsUser.Key, Is.Not.EqualTo(null));
+				Assert.That(windowsUser.Key, Is.True);
 				Assert.That(windowsUser.Value, Is.Not.Null);
 			}
 		}
@@ -39,10 +38,9 @@
 			// Assert
 			using (Assert.EnterMultipleScope())
 			{
-				Assert.That(windowsUser, Is.Not.EqualTo(null));
-				Assert.That(windowsUser.Key, Is.Not.EqualTo(null));
-				Assert.That(windowsUser.Value, Is.Not.Null);
-			}
+                Assert.That(windowsUser.Key, Is.True);
+                Assert.That(windowsUser.Value, Is.Not.Null);
+            }
 		}
 	}
 }

@@ -39,8 +39,8 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DbHelper.GetInstance(cnnStringName, 30));
-		}
+			Assert.Throws<ArgumentNullException>(new Action(() => DbHelper.GetInstance(cnnStringName, 30)));
+        }
 
 		[Test, Order(2)]
 		public void Validate_GetInstance_InexistentCnnString_ThrowsException()
@@ -48,11 +48,11 @@ namespace SmartIT.Library.Data.Tests
 			// Arrange
 			string cnnStringName = "SteveJobsBillGates";
 
-			// Act
+            // Act
 
-			// Assert
-			Assert.Throws<ArgumentNullException>(() => DbHelper.GetInstance(cnnStringName, 30));
-		}
+            // Assert
+            Assert.Throws<ArgumentNullException>(new Action(() => DbHelper.GetInstance(cnnStringName, 30)));
+        }
 
 		[Test, Order(3)]
 		public void Validate_GetInstance_ValidCnnString_ReturnsTransaction()
@@ -231,8 +231,8 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => dbHelper.ExecuteReader(cmd: null, cnn: null));
-		}
+            Assert.Throws<ArgumentNullException>(new Action(() => dbHelper.ExecuteReader(cmd: null, cnn: null)));
+        }
 
 		[Test, Order(12)]
 		public void Validate_GetInstance_ExecuteReader_NullConnection_ThrowsArgumentNullException()
@@ -244,7 +244,7 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => dbHelper.ExecuteReader(cmd: cmd, cnn: null));
+			Assert.Throws<ArgumentNullException>(new Action(() => dbHelper.ExecuteReader(cmd: cmd, cnn: null)));
 		}
 
 		[Test, Order(13)]
@@ -292,7 +292,7 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => dbHelper.ExecuteNonQuery(cmd: null, cnn: null));
+			Assert.Throws<ArgumentNullException>(new Action(() => dbHelper.ExecuteNonQuery(cmd: null, cnn: null)));
 		}
 
 		[Test, Order(16)]
@@ -305,7 +305,7 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => dbHelper.ExecuteNonQuery(cmd: cmd, cnn: null));
+			Assert.Throws<ArgumentNullException>(new Action(() => dbHelper.ExecuteNonQuery(cmd: cmd, cnn: null)));
 		}
 
 		[Test, Order(17)]
@@ -408,7 +408,7 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => dbHelper.ExecuteScalar(cmd: null, cnn: null));
+			Assert.Throws<ArgumentNullException>(new Action(() => dbHelper.ExecuteScalar(cmd: null, cnn: null)));
 		}
 
 		[Test, Order(23)]
@@ -421,7 +421,7 @@ namespace SmartIT.Library.Data.Tests
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => dbHelper.ExecuteScalar(cmd: cmd, cnn: null));
+			Assert.Throws<ArgumentNullException>(new Action(() => dbHelper.ExecuteScalar(cmd: cmd, cnn: null)));
 		}
 	}
 }

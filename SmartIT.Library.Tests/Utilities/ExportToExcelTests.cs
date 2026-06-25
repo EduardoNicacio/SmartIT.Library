@@ -6,7 +6,9 @@ namespace SmartIT.Library.Tests.Utilities
 	[TestFixture]
 	internal class ExportToExcelTests
 	{
-		internal class StubExcelClass
+        string[] path = Environment.ProcessPath.Split("bin");
+
+        internal class StubExcelClass
 		{
 			public StubExcelClass() { }
 			public int Id { get; set; }
@@ -47,7 +49,7 @@ namespace SmartIT.Library.Tests.Utilities
 		{
 			// Arrange
 			string currDateTime = DateTime.Now.ToString("MMddyyyy-HHmmss");
-			string pathExcel = $"E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\spreadsheets\\CreateExcelDocument_FromList_{currDateTime}.xlsx";
+			string pathExcel = $"{path[0]}spreadsheets\\CreateExcelDocument_FromList_{currDateTime}.xlsx";
 
 			// Act
 			bool result = ExportToExcel.CreateExcelDocument(dataList, pathExcel, "DataList");
@@ -61,7 +63,7 @@ namespace SmartIT.Library.Tests.Utilities
 		{
 			// Arrange
 			string currDateTime = DateTime.Now.ToString("MMddyyyy-HHmmss");
-			string pathExcel = $"E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\spreadsheets\\CreateExcelDocument_FromDataTable_{currDateTime}.xlsx";
+			string pathExcel = $"{path[0]}spreadsheets\\CreateExcelDocument_FromDataTable_{currDateTime}.xlsx";
 			var dataTable = ExportToExcel.ListToDataTable(dataList);
 
 			// Act
@@ -76,7 +78,7 @@ namespace SmartIT.Library.Tests.Utilities
 		{
 			// Arrange
 			string currDateTime = DateTime.Now.ToString("MMddyyyy-HHmmss");
-			string pathExcel = $"E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\spreadsheets\\CreateExcelDocument_FromDataSet_{currDateTime}.xlsx";
+			string pathExcel = $"{path[0]}spreadsheets\\CreateExcelDocument_FromDataSet_{currDateTime}.xlsx";
 			var dataSet = new DataSet();
 			dataSet.Tables.Add(ExportToExcel.ListToDataTable(dataList));
 			dataSet.Tables[0].TableName = "DataList";

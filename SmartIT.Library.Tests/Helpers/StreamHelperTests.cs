@@ -79,7 +79,7 @@ namespace SmartIT.Library.Tests.Helpers
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => StreamHelper.StreamToByteArray(null));
+			Assert.Throws<ArgumentNullException>(new Action(() => StreamHelper.StreamToByteArray(null)));
 		}
 
 		[Test]
@@ -90,7 +90,7 @@ namespace SmartIT.Library.Tests.Helpers
 			// Act
 
 			// Assert
-			Assert.ThrowsAsync<ArgumentNullException>(async () => await StreamHelper.StreamToByteArrayAsync(null));
+			Assert.ThrowsAsync<ArgumentNullException>((Func<Task>)(async () => await StreamHelper.StreamToByteArrayAsync(null)));
 			return Task.CompletedTask;
 		}
 	}

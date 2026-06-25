@@ -233,7 +233,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => CaesarCipher.Encipher(string.Empty, 13));
+			Assert.Throws<ArgumentNullException>(new Action(() => CaesarCipher.Encipher(string.Empty, 13)));
 		}
 
 		[Test]
@@ -244,7 +244,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Encipher(notEmptyString, 0));
+			Assert.Throws<ArgumentOutOfRangeException>(new Action(() => CaesarCipher.Encipher(notEmptyString, 0)));
 		}
 
 		[Test]
@@ -255,7 +255,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Encipher(notEmptyString, 27));
+			Assert.Throws<ArgumentOutOfRangeException>(new Action(() => CaesarCipher.Encipher(notEmptyString, 27)));
 		}
 
 		[Test]
@@ -266,7 +266,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => CaesarCipher.Decipher(string.Empty, 13));
+			Assert.Throws<ArgumentNullException>(new Action(() => CaesarCipher.Decipher(string.Empty, 13)));
 		}
 
 		[Test]
@@ -277,7 +277,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Decipher(notEmptyString, 0));
+			Assert.Throws<ArgumentOutOfRangeException>(new Action(() => CaesarCipher.Decipher(notEmptyString, 0)));
 		}
 
 		[Test]
@@ -288,7 +288,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => CaesarCipher.Decipher(notEmptyString, 27));
+			Assert.Throws<ArgumentOutOfRangeException>(new Action(() => CaesarCipher.Decipher(notEmptyString, 27)));
 		}
 
 		#endregion
@@ -303,7 +303,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot13.Rot13Encode(string.Empty));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot13.Rot13Encode(string.Empty)));
 		}
 
 		[Test]
@@ -315,7 +315,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot13.Rot13Encode(buffer));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot13.Rot13Encode(buffer)));
 		}
 
 		[Test]
@@ -328,7 +328,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot13.Rot13Encode(memoryStream));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot13.Rot13Encode(memoryStream)));
 		}
 
 		[Test]
@@ -384,7 +384,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot13.Rot13Decode(string.Empty));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot13.Rot13Decode(string.Empty)));
 		}
 
 		[Test]
@@ -396,7 +396,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot13.Rot13Decode(buffer));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot13.Rot13Decode(buffer)));
 		}
 
 		[Test]
@@ -409,7 +409,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot13.Rot13Decode(memoryStream));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot13.Rot13Decode(memoryStream)));
 		}
 
 		[Test]
@@ -469,7 +469,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot47.Rot47Encode(string.Empty));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot47.Rot47Encode(string.Empty)));
 		}
 
 		[Test]
@@ -481,7 +481,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot47.Rot47Encode(buffer));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot47.Rot47Encode(buffer)));
 		}
 
 		[Test]
@@ -494,7 +494,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot47.Rot47Encode(memoryStream));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot47.Rot47Encode(memoryStream)));
 		}
 
 		[Test]
@@ -550,7 +550,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot47.Rot47Decode(string.Empty));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot47.Rot47Decode(string.Empty)));
 		}
 
 		[Test]
@@ -562,7 +562,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot47.Rot47Decode(buffer));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot47.Rot47Decode(buffer)));
 		}
 
 		[Test]
@@ -575,7 +575,7 @@ namespace SmartIT.Library.Tests.Utilities.Cryptography
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => Rot47.Rot47Decode(memoryStream));
+			Assert.Throws<ArgumentNullException>(new Action(() => Rot47.Rot47Decode(memoryStream)));
 		}
 
 		[Test]

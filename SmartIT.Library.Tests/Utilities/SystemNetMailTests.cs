@@ -33,13 +33,15 @@ namespace SmartIT.Library.Tests.Utilities
 		[SetUp]
 		public void SetUp()
 		{
-			// Clears the list
-			attAsStrings.Clear();
+			string[] path = Environment.ProcessPath.Split("bin");
+
+            // Clears the list
+            attAsStrings.Clear();
 
 			// Adds three attachments as paths to this list
-			attAsStrings.Add("E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment1.txt");
-			attAsStrings.Add("E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment2.txt");
-			attAsStrings.Add("E:\\SRC\\ECNSoft\\00. SmartIT.Library\\SmartIT.Library\\SmartIT.Library.Tests\\attachments\\attachment3.txt");
+			attAsStrings.Add(path[0] + "attachments\\attachment1.txt");
+			attAsStrings.Add(path[0] + "attachments\\attachment2.txt");
+			attAsStrings.Add(path[0] + "attachments\\attachment3.txt");
 
 			// Clears the lists
 			attAsAttachments1.Clear();
@@ -71,7 +73,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => SystemNetMail.SendMail("", to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentNullException>(new Action(() => SystemNetMail.SendMail("", to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(2)]
@@ -82,7 +84,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => SystemNetMail.SendMail(from, "", cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentNullException>(new Action(() => SystemNetMail.SendMail(from, "", cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(3)]
@@ -93,7 +95,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, "", smtpPort, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentNullException>(new Action(() => SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, "", smtpPort, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(4)]
@@ -104,7 +106,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, 0, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentOutOfRangeException>(new Action(() => SystemNetMail.SendMail(from, to, cc, bcc, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, 0, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(5)]
@@ -162,7 +164,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => SystemNetMail.SendMail("", localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentNullException>(new Action(() => SystemNetMail.SendMail("", localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(9)]
@@ -178,7 +180,7 @@ namespace SmartIT.Library.Tests.Utilities
 			foreach (var value in bccList) { localBccList.Add(new MailAddress(value)); }
 
 			// Act
-			Assert.Throws<ArgumentNullException>(() => SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentNullException>(new Action(() => SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, smtpPort, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(10)]
@@ -197,7 +199,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, "", smtpPort, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentNullException>(new Action(() => SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, "", smtpPort, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(11)]
@@ -216,7 +218,7 @@ namespace SmartIT.Library.Tests.Utilities
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentOutOfRangeException>(() => SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, 0, smtpUsername, smtpPassword, false));
+			Assert.Throws<ArgumentOutOfRangeException>(new Action(() => SystemNetMail.SendMail(from, localToList, localCcList, localBccList, subject, body, MailPriority.Normal, MailFormat.Text, smtpServer, 0, smtpUsername, smtpPassword, false)));
 		}
 
 		[Test, Order(12)]

@@ -18,7 +18,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateConnection(cnnStringName)));
 		}
 
 		[Test, Order(2)]
@@ -30,7 +30,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateConnection(cnnStringName)));
 		}
 
 		[Test, Order(3)]
@@ -42,7 +42,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateConnection(cnnStringName)));
 		}
 
 		[Test, Order(4)]
@@ -55,7 +55,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName)));
 		}
 
 		[Test, Order(5)]
@@ -68,7 +68,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName)));
 		}
 
 		[Test, Order(6)]
@@ -81,7 +81,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateConnection(cnnStringName, providerName)));
 		}
 
 		[Test, Order(7)]
@@ -132,7 +132,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName)));
 		}
 
 		[Test, Order(11)]
@@ -144,7 +144,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateDataAdapter(cnnStringName)));
 		}
 
 		[Test, Order(12)]
@@ -196,7 +196,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText)));
 		}
 
 		[Test, Order(16)]
@@ -209,7 +209,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText)));
 		}
 
 		[Test, Order(17)]
@@ -222,7 +222,7 @@
 			// Act
 
 			// Assert
-			Assert.Throws<ArgumentNullException>(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText));
+			Assert.Throws<ArgumentNullException>(new Action(() => DataBaseProviderFactory.CreateCommand(cnnStringName, commandText)));
 		}
 
 		[Test, Order(18)]

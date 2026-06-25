@@ -5,10 +5,10 @@
 	[TestFixture]
 	public class EventViewerHelperTests
 	{
-		protected const string machineName = "Ryzen-5900X";
-		protected const string source = "Application";
-		protected const string log = "SmartIT.Library";
-		protected const string message = "SmartIT.Library.Utilities.EventViewerTests";
+		protected string machineName = Environment.GetEnvironmentVariable("COMPUTERNAME") ?? "";
+        protected string source = "Application";
+		protected string log = "SmartIT.Library";
+		protected string message = "SmartIT.Library.Utilities.EventViewerTests";
 		protected byte typeError = 1;
 		protected byte typeWarning = 2;
 		protected byte typeInformation = 4;
